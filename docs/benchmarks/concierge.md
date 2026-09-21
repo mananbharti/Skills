@@ -86,3 +86,41 @@ scripts/eval-outcome --skill concierge --agent codex --trials 1 --heldout
 scripts/eval-outcome --skill concierge --agent opencode --trials 2
 scripts/validate-skills && scripts/check-links && scripts/run-evals
 ```
+
+## Phase 3 exploratory — Batch A (2026-09-20, new model, not comparable)
+
+Model `opencode/muse-spark-1.3-contributor-free` via opencode 1.18.31,
+schema outcome/3, alternating order, regular tasks only (O1+O2, no
+holdouts), 8 calls, zero invocation errors. Frozen contracts; nothing
+altered during the batch. Raw traces gitignored in `evals/results/`
+(`20260920-085320-*-outcome-concierge-opencode.json`).
+
+| Task | Baseline | Treatment |
+|---|---|---|
+| O1 login triage | 0/2 — both `sleuth→backend` (backend over-route, the exact Codex-era failure mode) | **2/2** `spelunk→sleuth→proof` |
+| O2 rename-button direct | 2/2 `direct` | 2/2 `direct` |
+
+Durations 8.8–46.2s. Token usage UNKNOWN (no headless telemetry).
+No scope/safety dimension applies (chat-only routing); no outer-repo
+writes possible. Small exploratory sample: lift on O1 where the baseline
+over-routes, none where it already routes well — same shape as the
+Codex-era MIXED verdict, but **not comparable** to it (different model,
+runner, schema, order policy). Not "proven performance."
+
+## Post-exploratory validation — Phase 5 Batch A, C1 (2026-09-21): DEFECTIVE TASK
+
+Frozen C1 (dashboard + signup-flow → `polish`+`friction`), 5 trials per
+condition on the pinned model, schema outcome/4, 10 calls, zero
+invocation errors. Raw:
+`evals/results/20260921-191149-*-outcome-concierge-opencode.json`.
+
+Result: baseline 0/5, treatment 0/5. All 10 runs failed on exactly one
+gate: `order_ok`. Every run found the required skills with zero
+outside-scope slugs (baselines `friction→polish` ×5, treatments
+`friction→polish→roadtest` ×5); the predeclared order
+(`polish`→`friction`) contradicts the model's consistent audit-before-fix
+ordering in BOTH arms. Verdict: **INSUFFICIENT EVIDENCE — task-design
+defect (class C)**, not a model verdict. Scores stand; no regrade.
+Observation only (not a score): order-insensitive, all 10 routes are
+correct. Durations 11.0–47.2s; tokens UNKNOWN. One task; no
+generalization.

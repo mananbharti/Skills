@@ -2,7 +2,10 @@
 
 > Snapshot of the prior evidence pass. The current runtime release is validated
 > by repository checks; this document preserves past measured and unverified
-> evaluation evidence and is not a marketing claim.
+> evaluation evidence and is not a marketing claim. A separate pinned-model
+> campaign (Batch A: `handsfree`, `concierge`, `spelunk`, `recall`, plus a
+> routing smoke) is annexed in [benchmarks](benchmarks.md) and never merged
+> into the rows below.
 
 The 28 skills are **implementation-complete**. Empirical outcome benchmarking
 is a separate, partially executed proof phase. This scorecard therefore keeps

@@ -62,5 +62,31 @@
       "must_not": [],
       "max_lines": 20
     }
+  },
+  {
+    "id": "C1",
+    "request": "Write the session delta from session-c1.md into the four memory files: record the Redis cache decision as a new entry with Postgres staying the system of record, skip the secret and the ephemeral noise, refresh the STATUS snapshot to today, dropping stale items, and run the memory validator until green.",
+    "fixture": "recall-notes",
+    "timeout": 300,
+    "heldout": true,
+    "confirm_only": true,
+    "verify": [
+      {"cmd": "{ROOT}/skills/recall/scripts/check-memory .", "expect": 0},
+      {"cmd": "grep -q 'Redis' DECISIONS.md", "expect": 0},
+      {"cmd": "grep -q 'Postgres' DECISIONS.md", "expect": 0},
+      {"cmd": "! grep -q 'sk-secret' PROJECT_CONTEXT.md DECISIONS.md STATUS.md LEARNINGS.md", "expect": 0},
+      {"cmd": "! grep -q '2026-01-05' STATUS.md", "expect": 0},
+      {"cmd": "test $(wc -l < STATUS.md) -le 40", "expect": 0},
+      {"cmd": "python3 -c \"import filecmp,sys; sys.exit(0 if filecmp.cmp('session.md', '{ROOT}/benchmarks/fixtures/recall-notes/session.md', shallow=False) else 1)\"", "expect": 0},
+      {"cmd": "python3 -c \"import filecmp,sys; sys.exit(0 if filecmp.cmp('session-c1.md', '{ROOT}/benchmarks/fixtures/recall-notes/session-c1.md', shallow=False) else 1)\"", "expect": 0}
+    ],
+    "instruction_baseline": "You are a memory assistant with shell and file tools in the repo root. Update the project memory from the session brief.",
+    "instruction_treatment": "Follow the active recall skill (dated entries, no secrets, TTL hygiene, validator green, one-line confirmation).",
+    "expected": {
+      "type": "pilot",
+      "scope": [],
+      "must_contain": ["recall:"],
+      "must_contain_any": [["ttl"]]
+    }
   }
 ]

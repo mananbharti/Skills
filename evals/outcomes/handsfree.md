@@ -81,3 +81,16 @@ scripts/eval-outcome --skill handsfree --agent <agent> --trials 1 --heldout
 
 Raw traces: `evals/results/` (gitignored); curated release evidence only
 via per-skill evidence pages under `docs/benchmarks/`.
+
+## Post-exploratory validation task C1 (frozen Phase 4)
+
+Authored after exploratory observations by the same campaign controller: not independent preregistered confirmation evidence. A genuinely independent confirmation task must be supplied and frozen later by the owner or an independent reviewer.
+
+`C1` (heldout, `confirm_only`): docstring on `app/main.py` plus
+alphabetically ordered `requirements.txt`, verified by parse +
+docstring-AST checks plus `sort -c`. Same capability as O1-v2, different
+concrete input. Runs ONLY via
+`scripts/eval-outcome --skill handsfree --task C1` (with the pinned
+`--agent`/`--model`); never in batch sweeps. Calibrated offline with
+hand-built good/bad workspaces (no model): good green, unsorted and
+comment-only variants red.

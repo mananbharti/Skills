@@ -55,3 +55,14 @@ ALLOW_PAID_AGENT=1 scripts/eval-outcome --skill concierge --agent codex --trials
 
 Raw traces: `evals/results/` (gitignored). Curated verdict:
 `docs/benchmarks/concierge.md`.
+
+## Post-exploratory validation task C1 (frozen Phase 4)
+
+Authored after exploratory observations by the same campaign controller: not independent preregistered confirmation evidence. A genuinely independent confirmation task must be supplied and frozen later by the owner or an independent reviewer.
+
+`C1` (heldout, `confirm_only`): dated-dashboard + broken-signup-flow
+request routing to `polish`+`friction` (required), chosen from the same
+route-parser rubric. Same capability as O1/O3, different concrete input.
+Runs ONLY via `scripts/eval-outcome --skill concierge --task C1`; never
+in batch sweeps. Calibrated offline with synthetic good/bad routes (no
+model).

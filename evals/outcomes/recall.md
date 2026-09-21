@@ -55,3 +55,15 @@ scripts/eval-outcome --skill recall --agent <agent> --trials 1 --heldout
 
 Raw traces: `evals/results/` (gitignored). Curated verdict:
 `docs/benchmarks/recall.md`.
+
+## Post-exploratory validation task C1 (frozen Phase 4)
+
+Authored after exploratory observations by the same campaign controller: not independent preregistered confirmation evidence. A genuinely independent confirmation task must be supplied and frozen later by the owner or an independent reviewer.
+
+`C1` (heldout, `confirm_only`): session delta from the new
+`session-c1.md` brief (Redis cache decision as a new entry, Postgres
+stays system of record, fresh secret to skip, TTL refresh) — different
+concrete input, same workspace-gate + marker rubric. Runs ONLY via
+`scripts/eval-outcome --skill recall --task C1`; never in batch sweeps.
+Calibrated offline with a hand-built good workspace (all 8 checks green)
+and secret/stale/duplicate bad variants (correctly red); no model.

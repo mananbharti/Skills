@@ -239,7 +239,7 @@ class EvaluationRegressions(unittest.TestCase):
 
     def test_outcome_task_contracts_stay_valid(self) -> None:
         count, errors = self.outcome["validate_task_files"]()
-        self.assertEqual(count, 83)
+        self.assertEqual(count, 87)
         self.assertEqual(errors, [])
 
     def test_outcome_validator_rejects_missing_fixture_without_side_effects(self) -> None:
@@ -304,7 +304,7 @@ class EvaluationRegressions(unittest.TestCase):
             try:
                 config = {
                     "bin": "true",
-                    "cmd": lambda _prompt: [true_bin],
+                    "cmd": lambda _prompt, _model=None: [true_bin],
                     "parse": lambda output: output,
                 }
                 result = self.trigger["observe"]("fake", "prompt", config, 5)
@@ -348,6 +348,12 @@ class HelperRegressions(unittest.TestCase):
             shutil.copytree(ROOT / "benchmarks/fixtures/py-notes-api", workspace / "repo")
             candidate = workspace / "repo/app/main.py"
             pristine = candidate.read_text()
+            # C1 adds a sorted-requirements gate unrelated to the
+            # docstring-vs-comment discrimination under test: hold that
+            # gate green so this test keeps measuring only the docstring.
+            requirements = workspace / "repo/requirements.txt"
+            entries = sorted(requirements.read_text().splitlines())
+            requirements.write_text("\n".join(entries) + "\n")
             for task in tasks:
                 for prefix, should_pass in (('"""Notes API entrypoint."""\n', True),
                                             ('# notes API entrypoint\n', False)):
@@ -404,6 +410,617 @@ class HelperRegressions(unittest.TestCase):
             text_result = run(script, raw)
             self.assertEqual(text_result.returncode, 0, text_result.stderr)
             self.assertIn("test/source ratio", text_result.stdout)
+
+
+class GraderValidity(unittest.TestCase):
+    """P6: every grader family sees a genuinely good output and plausible
+    bad outputs — all with fake data, no provider calls.
+
+    Two documented gaps are pinned (not silently fixed, to avoid tuning
+    the grader against observed outputs):
+    - WORKSPACE/FORMAT split: overall pass still requires both, but notes
+      now separate objective correctness (workspace_pass) from skill-format
+      adherence (format_pass) for post-hoc analysis.
+    - KNOWN-BRITTLE: negated existence mentions still trip contaminant
+      gates; asserted as current behavior with the label attached.
+    """
+
+    @classmethod
+    def setUpClass(cls) -> None:
+        cls.outcome = runpy.run_path(str(SCRIPTS / "eval-outcome"))
+        cls.trigger = runpy.run_path(str(SCRIPTS / "eval-trigger"))
+
+    def test_route_good_and_bad_chains(self) -> None:
+        grade = self.outcome["grade_route"]
+        task = {"expected": {"type": "route",
+                             "allowed": ["spelunk", "sleuth", "proof", "roadtest"],
+                             "required": ["sleuth"],
+                             "order": ["spelunk", "sleuth", "proof", "roadtest"],
+                             "max_len": 3}}
+        good = "route: spelunk → sleuth → proof\nCovers orientation, cause, lock."
+        route = self.outcome["normalize_route"](good)
+        self.assertTrue(grade(task, route, good)[0])
+        for bad in ("route: spelunk → proof\nSkips the cause step.",
+                    "route: sleuth → backend → proof\nOver-routes to backend."):
+            with self.subTest(raw=bad):
+                route = self.outcome["normalize_route"](bad)
+                self.assertFalse(grade(task, route, bad)[0])
+
+    def test_hotseat_structure_proxies(self) -> None:
+        grade = self.outcome["grade_hotseat"]
+        task = {"expected": {"type": "hotseat"}}
+        names = "Aanya Kabir Meera Arjun Naina Rohan Ishaan"
+        good = (f"{names} independently reviewed the idea. MVP ships one habit. "
+                "Assumption register: assumption one, assumption two. "
+                "Kill criteria: abandon if signup < 100 in 30 days.")
+        self.assertTrue(grade(task, good)[0])
+        bad = ("Seven reviewers examined the idea. MVP ships one habit. "
+               "Assumption register: assumption one, assumption two. "
+               "Kill criteria: abandon if signup < 100 in 30 days.")
+        passed, notes = grade(task, bad)
+        self.assertFalse(passed)
+        self.assertLess(notes["persona_count"], 5)
+
+    def test_pilot_matrix_and_wording_penalty(self) -> None:
+        grade = self.outcome["grade_pilot"]
+        task = {"expected": {"type": "pilot", "scope": ["app/"],
+                             "must_contain": ["verif"]},
+                "verify": [{"cmd": "parse-check", "expect": 0}]}
+        green = {"status": "ok", "changed_files": ["app/main.py"],
+                 "verify": [{"cmd": "parse-check", "exit": 0, "expect": 0}]}
+        good = "Implemented the slice. Verified green: verif complete."
+        passed, notes = grade(task, good, green)
+        self.assertTrue(passed)
+        self.assertTrue(notes["workspace_pass"] and notes["format_pass"])
+        # Substantively correct baseline that skips the skill's report
+        # wording: overall FAIL, but workspace_pass stays True — the split
+        # is what lets analysis separate correctness from format.
+        plain = "Implemented the slice. All checks green, tests pass."
+        passed, notes = grade(task, plain, green)
+        self.assertFalse(passed)
+        self.assertTrue(notes["workspace_pass"])
+        self.assertFalse(notes["format_pass"])
+        # Incorrect code: the check itself fails.
+        red = {"status": "ok", "changed_files": ["app/main.py"],
+               "verify": [{"cmd": "parse-check", "exit": 1, "expect": 0}]}
+        passed, notes = grade(task, good, red)
+        self.assertFalse(passed)
+        self.assertFalse(notes["workspace_pass"])
+        # Out-of-scope change with green checks still fails.
+        wide = {"status": "ok", "changed_files": ["app/main.py", "other/x.py"],
+                "verify": [{"cmd": "parse-check", "exit": 0, "expect": 0}]}
+        passed, notes = grade(task, good, wide)
+        self.assertFalse(passed)
+        self.assertFalse(notes["workspace_pass"])
+        self.assertEqual(notes["outside_scope"], ["other/x.py"])
+        # DOCUMENTED GAP: marker-only chat with zero edits and no declared
+        # checks passes — format without work. Pinned, not hidden.
+        empty_task = {"expected": {"type": "pilot", "scope": [],
+                                   "must_contain": ["verif"]},
+                      "verify": []}
+        empty_obs = {"status": "ok", "changed_files": [], "verify": []}
+        self.assertTrue(grade(empty_task, good, empty_obs)[0])
+
+    def test_polish_artifact_matrix(self) -> None:
+        grade = self.outcome["grade_polish"]
+        tokens = (ROOT / "benchmarks/fixtures/polish-dashboard/tokens.css").read_text()
+        task = {"expected": {"type": "polish",
+                             "forbid_present": ["#667eea"],
+                             "tokens_unchanged": ["tokens.css"],
+                             "require_present": ["empty"],
+                             "must_contain": ["direction"]},
+                "fixture": "polish-dashboard", "verify": []}
+        body = "<button>:hover styles added. Empty state for the orders table."
+        obs = {"status": "ok", "verify": [],
+               "artifacts": {"index.html": body, "tokens.css": tokens}}
+        raw = "Direction: calm admin density. Converged onto tokens."
+        passed, notes = grade(task, raw, obs)
+        self.assertTrue(passed, notes)
+        self.assertTrue(notes["workspace_pass"] and notes["format_pass"])
+        # Missing artifact file.
+        passed, _ = grade(task, raw, {"status": "ok", "verify": [], "artifacts": {}})
+        self.assertFalse(passed)
+        # Forbidden slop string present.
+        slop = dict(obs)
+        slop["artifacts"] = {"index.html": body + " hero #667eea",
+                             "tokens.css": tokens}
+        passed, notes = grade(task, raw, slop)
+        self.assertFalse(passed)
+        self.assertFalse(notes["workspace_pass"])
+        # Token file rewritten.
+        rewritten = dict(obs)
+        rewritten["artifacts"] = {"index.html": body, "tokens.css": tokens + "\n"}
+        passed, notes = grade(task, raw, rewritten)
+        self.assertFalse(passed)
+        self.assertIn("tokens.css", notes["tokens_changed"])
+        # Correct artifact, skill wording missing: workspace holds.
+        passed, notes = grade(task, "Polished the dashboard.", obs)
+        self.assertFalse(passed)
+        self.assertTrue(notes["workspace_pass"])
+        self.assertFalse(notes["format_pass"])
+
+    def test_spelunk_fact_matrix_and_negation_brittleness(self) -> None:
+        grade = self.outcome["grade_spelunk"]
+        task = {"expected": {"type": "spelunk",
+                             "must_contain": ["package.json", "vitest"],
+                             "must_not": ["src/auth", "jest.config", "Dockerfile"],
+                             "max_lines": 200},
+                "fixture": "ts-dashboard"}
+        good = ("Tests run with the package.json script using vitest. "
+                "The Order type lives in src/api/orders.ts and renders via "
+                "src/components/OrderList.tsx from src/App.tsx. "
+                "Helpers in src/utils.ts.")
+        passed, notes = grade(task, good, {"workdir": ""})
+        self.assertTrue(passed, notes)
+        self.assertTrue(notes["workspace_pass"] and notes["format_pass"])
+        missing = good.replace("vitest", "the runner")
+        self.assertFalse(grade(task, missing, {"workdir": ""})[0])
+        self.assertFalse(grade(task, good + " Auth lives in src/auth.",
+                               {"workdir": ""})[0])
+        self.assertFalse(grade(task, good + " See src/ghost.ts.",
+                               {"workdir": ""})[0])
+        long_raw = "\n".join([good] * 210)
+        self.assertGreater(len(long_raw.strip().splitlines()), 200)
+        self.assertFalse(grade(task, long_raw, {"workdir": ""})[0])
+        # KNOWN-BRITTLE: a correct negated mention trips the contaminant
+        # gate. Asserted as current behavior so any future fix must be a
+        # versioned grader change with its own regression test.
+        negated = good + " There is no Dockerfile in the copy."
+        passed, notes = grade(task, negated, {"workdir": ""})
+        self.assertFalse(passed)
+        self.assertIn("Dockerfile", " ".join(notes["contaminants"]))
+
+    def test_blueprint_deliverable_matrix(self) -> None:
+        grade = self.outcome["grade_blueprint"]
+        task = {"expected": {"type": "blueprint", "max_diagrams": 5,
+                             "must_contain": ["App.tsx"], "forbid_infra": True},
+                "fixture": "ts-dashboard", "verify": []}
+        mmd = ("graph TD\n A[App] --> B[Store]\n"
+               "%% grounded in src/App.tsx and src/api/orders.ts\n")
+        obs = {"status": "ok", "verify": [],
+               "artifacts": {"docs/architecture/a.mmd": mmd}}
+        raw = "Component view grounded in the copy."
+        passed, notes = grade(task, raw, obs)
+        self.assertTrue(passed, notes)
+        self.assertTrue(notes["workspace_pass"] and notes["format_pass"])
+        self.assertFalse(grade(task, raw, {"status": "ok", "verify": [],
+                                           "artifacts": {}})[0])
+        ghost = dict(obs)
+        ghost["artifacts"] = {"docs/architecture/a.mmd": mmd + "%% src/ghost.ts\n"}
+        self.assertFalse(grade(task, raw, ghost)[0])
+        many = dict(obs)
+        many["artifacts"] = {f"docs/architecture/{i}.mmd": mmd for i in range(6)}
+        self.assertFalse(grade(task, raw, many)[0])
+        infra = dict(obs)
+        infra["artifacts"] = {"docs/architecture/a.mmd": mmd + "redis cache\n"}
+        passed, notes = grade(task, raw, infra)
+        self.assertFalse(passed)
+        self.assertIn("redis", notes["suspect_infra"])
+
+    def test_spelunk_strips_harness_path_residue(self) -> None:
+        # Phase 4: a permission auto-rejection quoting <workdir>/.env left
+        # "/.env" behind after the bare workdir strip and false-flagged as
+        # an invented path. Harness plumbing must never be graded.
+        grade = self.outcome["grade_spelunk"]
+        task = {"expected": {"type": "spelunk",
+                             "must_contain": ["package.json", "vitest"],
+                             "must_not": ["src/auth", "Dockerfile"],
+                             "max_lines": 200},
+                "fixture": "ts-dashboard"}
+        body = ("Tests run with the package.json script using vitest. "
+                "Types in src/App.tsx and src/api/orders.ts.")
+        raw = (body + "\npermission requested: read "
+               "(evals/results/tmp/outcome-x1y2z3_/.env); auto-rejecting\n"
+               "Read .env failed")
+        passed, notes = grade(task, raw, {"workdir": ""})
+        self.assertTrue(passed, notes)
+        self.assertEqual(notes["hallucinated_paths"], [])
+
+    def test_concierge_c1_contract_calibration(self) -> None:
+        # Phase 4 confirmation task: calibrated with synthetic outputs only,
+        # no model. Guards the authored contract against typos as well.
+        tasks = json.loads((ROOT / "evals/outcomes/concierge-tasks.json").read_text())
+        task = next(item for item in tasks if item["id"] == "C1")
+        grade = self.outcome["grade_route"]
+        normalize = self.outcome["normalize_route"]
+        for raw in ("route: polish → friction\nDated visuals plus a broken signup flow.",
+                    "route: spelunk → polish → friction\nOrient, refresh, repair."):
+            with self.subTest(raw=raw):
+                self.assertTrue(grade(task, normalize(raw), raw)[0])
+        for raw in ("route: polish → backend\nBackend is not a UI skill.",
+                    "route: polish\nOnly the visuals.",
+                    "route: direct\nJust do it."):
+            with self.subTest(raw=raw):
+                self.assertFalse(grade(task, normalize(raw), raw)[0])
+
+    def test_spelunk_c1_contract_calibration(self) -> None:
+        tasks = json.loads((ROOT / "evals/outcomes/spelunk-tasks.json").read_text())
+        task = next(item for item in tasks if item["id"] == "C1")
+        grade = self.outcome["grade_spelunk"]
+        good = ("Tests run with python3 -m unittest discover -s tests -t .; "
+                "suite file tests/test_shop.py with tests/__init__.py present. "
+                "Order totals come from totals() in shop.py. Price formatting "
+                "is defined twice: format_price() in utils.py (shared helper, "
+                "imported by shop.py) and a local _format_price() in shop.py. "
+                "The constant LEGACY_EXPORT_FORMAT in shop.py must never be "
+                "removed: the legacy report export requires the exact pipe format.")
+        passed, notes = grade(task, good, {"workdir": ""})
+        self.assertTrue(passed, notes)
+        self.assertLessEqual(len(good.strip().splitlines()), 60)
+        for raw in (good.replace("LEGACY_EXPORT_FORMAT", "the magic string"),
+                    good + " Migrations use alembic.",
+                    good + " See src/ghost.py."):
+            with self.subTest(raw=raw):
+                self.assertFalse(grade(task, raw, {"workdir": ""})[0])
+
+    def test_handsfree_c1_contract_calibration(self) -> None:
+        # Known-good and known-bad workspaces built by hand; the real
+        # verify commands adjudicate. No model involved.
+        tasks = json.loads((ROOT / "evals/outcomes/handsfree-tasks.json").read_text())
+        task = next(item for item in tasks if item["id"] == "C1")
+        with tempfile.TemporaryDirectory(prefix="handsfree-c1-") as raw:
+            workspace = Path(raw)
+            shutil.copytree(ROOT / "benchmarks/fixtures/py-notes-api", workspace / "repo")
+            target = workspace / "repo/app/main.py"
+            pristine = target.read_text()
+            requirements = workspace / "repo/requirements.txt"
+
+            def exits(cmd: str) -> bool:
+                full = cmd.replace("{ROOT}", shlex.quote(str(ROOT)))
+                done = subprocess.run(full, shell=True, cwd=workspace / "repo",
+                                      capture_output=True, text=True)
+                return done.returncode == next(
+                    check["expect"] for check in task["verify"] if check["cmd"] == cmd)
+
+            target.write_text('"""Notes API entrypoint."""\n' + pristine)
+            entries = sorted(requirements.read_text().splitlines())
+            requirements.write_text("\n".join(entries) + "\n")
+            with self.subTest(workspace="good"):
+                self.assertTrue(all(exits(check["cmd"]) for check in task["verify"]))
+            requirements.write_text("uvicorn\nfastapi\nrequests\npytz\n")
+            with self.subTest(workspace="unsorted"):
+                self.assertFalse(exits("sort -c requirements.txt"))
+            target.write_text("# notes API entrypoint\n" + pristine)
+            with self.subTest(workspace="comment-only"):
+                checker = next(check["cmd"] for check in task["verify"]
+                               if "check-handsfree-docstring" in check["cmd"])
+                self.assertFalse(exits(checker))
+
+    def test_recall_c1_contract_calibration(self) -> None:
+        tasks = json.loads((ROOT / "evals/outcomes/recall-tasks.json").read_text())
+        task = next(item for item in tasks if item["id"] == "C1")
+        decisions = ("# Decisions (newest first)\n\n"
+                     "## 2026-09-18 Redis cache layer [Active]\n"
+                     "- Why: hot reads; cache-aside, 5-minute TTL, no write-through yet.\n"
+                     "- Postgres stays the system of record.\n\n"
+                     "## 2026-09-01 SQLite for now [Active]\n"
+                     "- Why: single-box deploy, no concurrency needs.\n")
+        status = ("# Status snapshot (updated 2026-09-18)\n\n"
+                  "- Done: proof-cart fixture frozen.\n"
+                  "- Done: Redis cache decision recorded.\n"
+                  "- In progress: recall confirmation protocol.\n"
+                  "- Next: run confirmation batch [TTL: 2026-09-25].\n")
+        with tempfile.TemporaryDirectory(prefix="recall-c1-") as raw:
+            workspace = Path(raw)
+            shutil.copytree(ROOT / "benchmarks/fixtures/recall-notes", workspace / "repo")
+            repo = workspace / "repo"
+            (repo / "DECISIONS.md").write_text(decisions)
+            (repo / "STATUS.md").write_text(status)
+
+            def run_checks() -> list:
+                results = []
+                for check in task["verify"]:
+                    full = check["cmd"].replace("{ROOT}", shlex.quote(str(ROOT)))
+                    done = subprocess.run(full, shell=True, cwd=repo,
+                                          capture_output=True, text=True)
+                    results.append(done.returncode == check["expect"])
+                return results
+
+            with self.subTest(workspace="good"):
+                self.assertTrue(all(run_checks()))
+            (repo / "STATUS.md").write_text(
+                status + "- Staging token: sk-secret-staging-444\n")
+            with self.subTest(workspace="secret"):
+                self.assertFalse(all(run_checks()))
+            (repo / "STATUS.md").write_text(status)
+            (repo / "DECISIONS.md").write_text(
+                decisions + "\n## 2026-09-18 Redis cache layer [Active]\n- dup\n")
+            with self.subTest(workspace="duplicate"):
+                self.assertFalse(all(run_checks()))
+
+
+class RunnerPlumbing(unittest.TestCase):
+    """Model pinning, isolation env, resume, and order — fake agents only."""
+
+    @classmethod
+    def setUpClass(cls) -> None:
+        cls.outcome = runpy.run_path(str(SCRIPTS / "eval-outcome"))
+        cls.trigger = runpy.run_path(str(SCRIPTS / "eval-trigger"))
+
+    def test_opencode_model_flag_forwarding(self) -> None:
+        cmd = self.trigger["AGENTS"]["opencode"]["cmd"]
+        self.assertEqual(cmd("hi", "opencode/muse-spark-1.3-contributor-free"),
+                         ["opencode", "run", "-m",
+                          "opencode/muse-spark-1.3-contributor-free", "hi"])
+        self.assertEqual(cmd("hi", None), ["opencode", "run", "hi"])
+        self.assertEqual(cmd("hi"), ["opencode", "run", "hi"])
+
+    def test_isolation_env_is_documented_and_scoped(self) -> None:
+        from eval_isolation import (SKILL_DENY_ALL, global_skill_manifest,
+                                    isolation_env, isolation_record)
+        self.assertEqual(isolation_env("opencode"),
+                         {"OPENCODE_CONFIG_CONTENT": json.dumps(SKILL_DENY_ALL)})
+        self.assertEqual(SKILL_DENY_ALL,
+                         {"permission": {"skill": {"*": "deny"}}})
+        self.assertEqual(isolation_env("codex"), {})
+        manifest = global_skill_manifest()
+        self.assertIn(os.path.expanduser("~/.agents/skills"), manifest)
+        record = isolation_record("opencode")
+        self.assertEqual(record["verified"], "config-merge")
+        self.assertEqual(record["session"],
+                         "fresh (runners never pass --continue/--session)")
+
+    def test_outcome_order_counterbalance_and_resume(self) -> None:
+        main = self.outcome["main"]
+        task = {"id": "O1", "request": "Route this", "heldout": False,
+                "expected": ["direct"]}
+        fake_obs = {"status": "ok", "output": "route: direct", "duration": 0.1}
+        with tempfile.TemporaryDirectory(prefix="outcome-order-") as raw:
+            argv = ["eval-outcome", "--skill", "concierge", "--agent", "fake",
+                    "--trials", "2", "--order", "alternating"]
+            with patch.dict(main.__globals__, RESULTS=raw,
+                            AGENTS={"fake": {"bin": sys.executable}},
+                            load_tasks=lambda *_: [task],
+                            observe=lambda *_args, **_kwargs: dict(fake_obs)), \
+                    patch.object(sys, "argv", argv):
+                self.assertEqual(main(), 0)
+            paths = list(Path(raw).glob("*.json"))
+            self.assertEqual(len(paths), 1)
+            record = json.loads(paths[0].read_text())
+            self.assertEqual(record["schema"], self.outcome["SCHEMA"])
+            rows = record["trials"]
+            self.assertEqual(len(rows), 4)
+            self.assertEqual([r["condition"] for r in rows],
+                             ["baseline", "treatment", "treatment", "baseline"])
+            self.assertEqual([r["first"] for r in rows],
+                             ["baseline", "baseline", "treatment", "treatment"])
+            for row in rows:
+                self.assertIn("timeout_s", row)
+                self.assertIn("started", row)
+            self.assertIn("provenance", record)
+            self.assertIn("skill_package", record["provenance"])
+            # Resume copies source rows (marked) into a NEW file and runs
+            # only the missing remainder; source untouched.
+            argv2 = argv + ["--resume-from", str(paths[0])]
+            source_bytes = paths[0].read_bytes()
+            with patch.dict(main.__globals__, RESULTS=raw,
+                            AGENTS={"fake": {"bin": sys.executable}},
+                            load_tasks=lambda *_: [task],
+                            observe=lambda *_args, **_kwargs: dict(fake_obs)), \
+                    patch.object(sys, "argv", argv2):
+                self.assertEqual(main(), 0)
+            paths2 = sorted(Path(raw).glob("*.json"))
+            self.assertEqual(len(paths2), 2)
+            resumed = json.loads(paths2[1].read_text())
+            self.assertEqual(len(resumed["trials"]), 4)
+            self.assertTrue(all(row.get("resumed") for row in resumed["trials"]))
+            self.assertIn("resumed_from", resumed)
+            self.assertEqual(resumed["resumed_from"]["resumed_copied"], 4)
+            self.assertEqual(paths2[0].read_bytes(), source_bytes)
+            self.assertEqual(len(json.loads(paths2[0].read_text())["trials"]), 4)
+
+    def test_outcome_resume_refuses_version_and_identity_mismatch(self) -> None:
+        main = self.outcome["main"]
+        task = {"id": "O1", "request": "Route this", "heldout": False,
+                "expected": ["direct"]}
+        with tempfile.TemporaryDirectory(prefix="outcome-resume-") as raw:
+            legacy = Path(raw) / "legacy.json"
+            legacy.write_text(json.dumps({"schema": "outcome/2", "skill": "concierge",
+                                          "agent": "fake", "heldout": False, "trials": []}))
+            other = Path(raw) / "other.json"
+            other.write_text(json.dumps({"schema": self.outcome["SCHEMA"], "skill": "pilot",
+                                         "agent": "fake", "heldout": False, "trials": []}))
+            for source in (legacy, other):
+                with self.subTest(source=source.name):
+                    argv = ["eval-outcome", "--skill", "concierge", "--agent", "fake",
+                            "--trials", "1", "--resume-from", str(source)]
+                    with patch.dict(main.__globals__, RESULTS=raw,
+                                    AGENTS={"fake": {"bin": sys.executable}},
+                                    load_tasks=lambda *_: [task]), \
+                            patch.object(sys, "argv", argv):
+                        self.assertEqual(main(), 2)
+
+    def test_outcome_resume_combines_and_summarizes(self) -> None:
+        # Partial record (trials=1) resumed with trials=2: output holds
+        # copied marked rows + new rows, and the summary-equivalent tallies
+        # below count the combined set. Source file byte-identical after.
+        main = self.outcome["main"]
+        task = {"id": "O1", "request": "Route this", "heldout": False,
+                "expected": ["direct"]}
+        fake_obs = {"status": "ok", "output": "route: direct", "duration": 0.1}
+        with tempfile.TemporaryDirectory(prefix="outcome-combine-") as raw:
+            argv1 = ["eval-outcome", "--skill", "concierge", "--agent", "fake",
+                     "--trials", "1"]
+            run_kwargs = dict(RESULTS=raw,
+                              AGENTS={"fake": {"bin": sys.executable}},
+                              load_tasks=lambda *_: [task],
+                              observe=lambda *_args, **_kwargs: dict(fake_obs))
+            with patch.dict(main.__globals__, **run_kwargs), \
+                    patch.object(sys, "argv", argv1):
+                self.assertEqual(main(), 0)
+            first = sorted(Path(raw).glob("*.json"))[0]
+            source_bytes = first.read_bytes()
+            argv2 = ["eval-outcome", "--skill", "concierge", "--agent", "fake",
+                     "--trials", "2", "--resume-from", str(first)]
+            with patch.dict(main.__globals__, **run_kwargs), \
+                    patch.object(sys, "argv", argv2):
+                self.assertEqual(main(), 0)
+            paths = sorted(Path(raw).glob("*.json"))
+            self.assertEqual(len(paths), 2)
+            combined = json.loads(paths[1].read_text())
+            rows = combined["trials"]
+            self.assertEqual(len(rows), 4)
+            copied = [row for row in rows if row.get("resumed")]
+            fresh = [row for row in rows if not row.get("resumed")]
+            self.assertEqual(len(copied), 2)
+            self.assertEqual(len(fresh), 2)
+            self.assertEqual(first.read_bytes(), source_bytes)
+            for cond in ("baseline", "treatment"):
+                denom = [row for row in rows if row["condition"] == cond]
+                self.assertEqual(len(denom), 2)
+
+    def test_outcome_resume_rejects_order_and_duplicate_mismatch(self) -> None:
+        main = self.outcome["main"]
+        task = {"id": "O1", "request": "Route this", "heldout": False,
+                "expected": ["direct"]}
+        fake_obs = {"status": "ok", "output": "route: direct", "duration": 0.1}
+        with tempfile.TemporaryDirectory(prefix="outcome-mismatch-") as raw:
+            argv1 = ["eval-outcome", "--skill", "concierge", "--agent", "fake",
+                     "--trials", "1"]
+            with patch.dict(main.__globals__, RESULTS=raw,
+                            AGENTS={"fake": {"bin": sys.executable}},
+                            load_tasks=lambda *_: [task],
+                            observe=lambda *_args, **_kwargs: dict(fake_obs)), \
+                    patch.object(sys, "argv", argv1):
+                self.assertEqual(main(), 0)
+            first = sorted(Path(raw).glob("*.json"))[0]
+            # Different order policy must refuse.
+            argv2 = ["eval-outcome", "--skill", "concierge", "--agent", "fake",
+                     "--trials", "1", "--order", "fixed",
+                     "--resume-from", str(first)]
+            with patch.dict(main.__globals__, RESULTS=raw,
+                            AGENTS={"fake": {"bin": sys.executable}},
+                            load_tasks=lambda *_: [task]), \
+                    patch.object(sys, "argv", argv2):
+                self.assertEqual(main(), 2)
+            # Duplicate trial identities in the source must refuse.
+            dup = json.loads(first.read_text())
+            dup["trials"].append(dict(dup["trials"][0]))
+            dup_path = Path(raw) / "dup.json"
+            dup_path.write_text(json.dumps(dup))
+            argv3 = ["eval-outcome", "--skill", "concierge", "--agent", "fake",
+                     "--trials", "1", "--resume-from", str(dup_path)]
+            with patch.dict(main.__globals__, RESULTS=raw,
+                            AGENTS={"fake": {"bin": sys.executable}},
+                            load_tasks=lambda *_: [task]), \
+                    patch.object(sys, "argv", argv3):
+                self.assertEqual(main(), 2)
+            self.assertEqual(len(list(Path(raw).glob("*.json"))), 2)
+
+    def test_confirm_only_tasks_excluded_from_sweeps(self) -> None:
+        # confirm_only runs solely via explicit --task; ordinary and
+        # --heldout sweeps must never spend that budget. Explicit --task
+        # still reaches both confirmation and ordinary tasks.
+        main = self.outcome["main"]
+        regular = {"id": "O1", "request": "Route this", "heldout": False,
+                   "expected": ["direct"]}
+        confirm = {"id": "C1", "request": "Confirm this", "heldout": True,
+                   "confirm_only": True, "expected": ["direct"]}
+        fake_obs = {"status": "ok", "output": "route: direct", "duration": 0.1}
+        loader = lambda skill, heldout: [t for t in (regular, confirm)
+                                         if t["heldout"] == heldout]
+        with tempfile.TemporaryDirectory(prefix="outcome-confirm-") as raw:
+            base = dict(RESULTS=raw, AGENTS={"fake": {"bin": sys.executable}},
+                        load_tasks=loader,
+                        observe=lambda *_args, **_kwargs: dict(fake_obs))
+            with patch.dict(main.__globals__, **base), \
+                    patch.object(sys, "argv", ["eval-outcome", "--skill", "concierge",
+                                               "--agent", "fake", "--trials", "1"]):
+                self.assertEqual(main(), 0)
+            with patch.dict(main.__globals__, **base), \
+                    patch.object(sys, "argv", ["eval-outcome", "--skill", "concierge",
+                                               "--agent", "fake", "--trials", "1",
+                                               "--heldout"]):
+                # Heldout sweep holds only the confirm task -> nothing to run.
+                self.assertEqual(main(), 2)
+            paths = list(Path(raw).glob("*.json"))
+            self.assertEqual(len(paths), 1)
+            record = json.loads(paths[0].read_text())
+            self.assertEqual({row["task"] for row in record["trials"]}, {"O1"})
+            with patch.dict(main.__globals__, **base), \
+                    patch.object(sys, "argv", ["eval-outcome", "--skill", "concierge",
+                                               "--agent", "fake", "--trials", "1",
+                                               "--task", "C1"]):
+                self.assertEqual(main(), 0)
+            paths = sorted(Path(raw).glob("*.json"))
+            self.assertEqual(len(paths), 2)
+            record = json.loads(paths[1].read_text())
+            self.assertEqual({row["task"] for row in record["trials"]}, {"C1"})
+
+    def test_provenance_untracked_digest(self) -> None:
+        from eval_isolation import repo_provenance
+        with tempfile.TemporaryDirectory(prefix="provenance-") as raw:
+            repo = Path(raw)
+            run("git", "init", "-q", raw)
+            run("git", "-C", raw, "config", "user.email", "t@t")
+            run("git", "-C", raw, "config", "user.name", "t")
+            (repo / "tracked.txt").write_text("tracked")
+            run("git", "-C", raw, "add", "-A")
+            run("git", "-C", raw, "commit", "-qm", "init")
+            (repo / "scripts").mkdir()
+            (repo / "scripts/eval_guard.py").write_text("guard")
+            (repo / "scripts/eval_isolation.py").write_text("isolation")
+            (repo / "notes.txt").write_text("candidate content sentinel-xyz")
+            first = repo_provenance(str(repo), str(repo / "scripts/eval-outcome"))
+            self.assertTrue(first["untracked"]["available"])
+            self.assertTrue(first["working_tree_dirty"])
+            (repo / "notes.txt").write_text("changed content sentinel-abc")
+            second = repo_provenance(str(repo), str(repo / "scripts/eval-outcome"))
+            self.assertNotEqual(first["untracked"]["digest"], second["untracked"]["digest"])
+            dump = json.dumps(second)
+            self.assertNotIn("sentinel-xyz", dump)
+            self.assertNotIn("sentinel-abc", dump)
+            self.assertNotIn(str(repo), dump)
+            self.assertEqual(first["runner_deps"]["eval_guard.py"],
+                             second["runner_deps"]["eval_guard.py"])
+
+    def test_task_filter_selects_single_confirmation_task(self) -> None:
+        # Phase 4: C1 confirmation tasks run only via --task, never in sweeps.
+        main = self.outcome["main"]
+        regular = {"id": "O1", "request": "Route this", "heldout": False,
+                   "expected": ["direct"]}
+        confirm = {"id": "C1", "request": "Confirm this", "heldout": True,
+                   "expected": ["direct"]}
+        fake_obs = {"status": "ok", "output": "route: direct", "duration": 0.1}
+        loader = lambda skill, heldout: [t for t in (regular, confirm)
+                                         if t["heldout"] == heldout]
+        with tempfile.TemporaryDirectory(prefix="outcome-task-") as raw:
+            argv = ["eval-outcome", "--skill", "concierge", "--agent", "fake",
+                    "--trials", "1", "--task", "C1"]
+            with patch.dict(main.__globals__, RESULTS=raw,
+                            AGENTS={"fake": {"bin": sys.executable}},
+                            load_tasks=loader,
+                            observe=lambda *_args, **_kwargs: dict(fake_obs)), \
+                    patch.object(sys, "argv", argv):
+                self.assertEqual(main(), 0)
+            paths = list(Path(raw).glob("*.json"))
+            self.assertEqual(len(paths), 1)
+            record = json.loads(paths[0].read_text())
+            self.assertEqual({row["task"] for row in record["trials"]}, {"C1"})
+            self.assertEqual(len(record["trials"]), 2)
+            self.assertEqual(record["provenance"]["settings"]["task_filter"], "C1")
+            for argv in (["eval-outcome", "--skill", "concierge", "--agent", "fake",
+                          "--trials", "1", "--task", "Z9"],
+                         ["eval-outcome", "--skill", "concierge", "--agent", "fake",
+                          "--trials", "1", "--task", "O1", "--heldout"]):
+                with self.subTest(argv=argv):
+                    with patch.dict(main.__globals__, RESULTS=raw,
+                                    AGENTS={"fake": {"bin": sys.executable}},
+                                    load_tasks=loader), \
+                            patch.object(sys, "argv", argv):
+                        self.assertEqual(main(), 2)
+
+    def test_dry_runs_accept_model_without_invocation(self) -> None:
+        model = "opencode/muse-spark-1.3-contributor-free"
+        result = run(str(SCRIPTS / "eval-trigger"), "--dry-run",
+                     "--suite", "cases", "--max-cases", "1", "--model", model)
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        result = run(str(SCRIPTS / "eval-workflow"), "--list", "--model", model)
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        result = run(str(SCRIPTS / "eval-outcome"), "--skill", "concierge",
+                     "--agent", "opencode", "--trials", "1",
+                     "--resume-from", "/nonexistent.json")
+        self.assertEqual(result.returncode, 2, result.stdout + result.stderr)
 
 
 if __name__ == "__main__":

@@ -140,3 +140,35 @@ scripts/test-regressions
 Live runs are separate, budgeted experiments under the
 [revised protocol](../../evals/outcomes/handsfree.md); local checker passes
 must not be reported as successful model trials.
+
+## Phase 3 exploratory — Batch A (2026-09-20, regular task only)
+
+Model `opencode/muse-spark-1.3-contributor-free` via opencode 1.18.31,
+schema outcome/3, alternating order, O1-v2 only (O2-v2 is the observed
+smoke task, excluded as a holdout), 4 calls, zero invocation errors. Raw
+traces gitignored (`20260920-085134-*-outcome-handsfree-opencode.json`).
+
+| Task | Baseline | Treatment |
+|---|---|---|
+| O1-v2 docstring | 2/2 | 2/2 — tied |
+
+All four changed only `app/main.py`, added a real module docstring,
+passed parse + executable-AST checks, recorded no outer-repo changes,
+and cleaned their workspaces (durations 23.1–24.6s). Workspace and
+format gates green everywhere, so there is nothing to separate. A tied
+n=2 smoke: the experiment runs, and it establishes no effectiveness
+lift. Not comparable to outcome/2 rows; not "proven performance."
+
+## Post-exploratory validation — Phase 5 Batch A, C1 (2026-09-21)
+
+Frozen C1 (docstring + alphabetical `requirements.txt`), 5 trials per
+condition on the pinned model, schema outcome/4, alternating order, 10
+calls, zero invocation errors. Raw:
+`evals/results/20260921-190753-*-outcome-handsfree-opencode.json`.
+
+Result: baseline 5/5, treatment 5/5 (difference 0). Every run changed
+exactly `app/main.py` + `requirements.txt`, passed all three checks,
+kept outer repo clean (durations 18.4–26.3s; tokens UNKNOWN). No safety
+or scope events. Verdict: **NO CLEAR LIFT** — tie at ceiling on one
+easy task. A tie is not proof of equivalence; one task cannot
+generalize. No reruns performed.

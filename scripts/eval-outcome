@@ -23,8 +23,26 @@ from pathlib import Path, PurePosixPath
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, "scripts"))
 from eval_guard import PAID_AGENTS, guard_paid_agent
+from eval_isolation import (
+    dir_manifest,
+    isolation_env,
+    isolation_record,
+    repo_provenance,
+)
 RESULTS = os.path.join(ROOT, "evals", "results")
 RESULTS_TMP = os.path.join(RESULTS, "tmp")
+
+SCHEMA = "outcome/5"
+# GRADER_VERSION tracks grading-semantics changes. v3 added workspace_pass /
+# format_pass notes (objective correctness vs skill-format adherence) without
+# changing overall pass semantics. v4 narrows the workdir-path strip so
+# harness-plumbing residue (e.g. a permission-trace quoting
+# <workdir>/.env) is never graded as a hallucinated path. outcome/2
+# through outcome/4 tallies stay preserved and comparable except for this
+# narrowed flag class, which is labeled wherever it matters.
+GRADER_VERSION = "4"
+# Cap for the retained workdir diff (audit evidence after cleanup).
+WORKDIR_DIFF_CAP = 30000
 
 AGENTS = {
     "codex": {"bin": "codex", "cmd": lambda p, m=None: ["codex", "exec", p]},
@@ -315,11 +333,15 @@ def grade_blueprint(task, raw, obs):
                                if re.search(r"\b" + w + r"s?\b", low))
     ok = (not over and not failed_checks and not hallucinated and not missing
           and not suspect_infra)
+    workspace_pass = (not over and not failed_checks and not hallucinated
+                      and not suspect_infra)
     return ok, {"diagrams": len(mmds), "over_budget": over,
                 "failed_checks": failed_checks, "missing": missing,
                 "hallucinated_paths": sorted(hallucinated),
                 "suspect_infra": suspect_infra,
-                "paths_checked": checked}
+                "paths_checked": checked,
+                "workspace_pass": workspace_pass,
+                "format_pass": not missing}
 
 
 def grade_polish(task, raw, obs):
@@ -363,6 +385,8 @@ def grade_polish(task, raw, obs):
     ok = (not present_forbidden and not changed_tokens and not missing
           and not missing_groups and not missing_chat and not chat_groups
           and not failed_checks)
+    workspace_pass = (not present_forbidden and not changed_tokens and not missing
+                      and not missing_groups and not failed_checks)
     return ok, {"files": len(artifacts),
                 "forbidden_present": present_forbidden,
                 "tokens_changed": changed_tokens,
@@ -370,7 +394,9 @@ def grade_polish(task, raw, obs):
                 "missing_artifact_groups": missing_groups,
                 "missing_chat": missing_chat,
                 "missing_chat_groups": chat_groups,
-                "failed_checks": failed_checks}
+                "failed_checks": failed_checks,
+                "workspace_pass": workspace_pass,
+                "format_pass": not missing_chat and not chat_groups}
 
 
 def grade_pilot(task, raw, obs):
@@ -393,10 +419,13 @@ def grade_pilot(task, raw, obs):
     contaminants = [c for c in exp.get("must_not", []) if c.lower() in low]
     ok = (not failed_checks and not outside and not missing
           and not missing_groups and not contaminants)
+    workspace_pass = not failed_checks and not outside
     return ok, {"failed_checks": failed_checks, "outside_scope": outside,
                 "changed_files": changed, "missing": missing,
                 "missing_groups": missing_groups,
-                "contaminants": contaminants}
+                "contaminants": contaminants,
+                "workspace_pass": workspace_pass,
+                "format_pass": not missing and not missing_groups and not contaminants}
 
 
 PATH_RE = re.compile(r"[\w\-./]*\.(?:ts|tsx|js|jsx|json|html|css|py|txt|md|toml|yaml|yml|lock|env|gitignore|sh|sqlite|db)\b")
@@ -436,7 +465,13 @@ def grade_spelunk(task, raw, obs=None):
     wd = (obs or {}).get("workdir")
     if wd and wd in raw:
         raw = raw.replace(wd, "")
-    raw = re.sub(r"[\w./-]*evals/results/tmp/outcome-[0-9a-z_]+", "", raw)
+    # Harness plumbing is never a repo claim: strip the sandbox path even
+    # when a tool trace appends a filename to it (e.g. a permission
+    # auto-rejection quoting <workdir>/.env leaves "/.env" behind after a
+    # bare workdir strip, which then false-flags as invented). The optional
+    # trailing component covers one appended filename; deeper real paths
+    # are still checked against the fixture below.
+    raw = re.sub(r"[\w./-]*evals/results/tmp/outcome-[0-9a-z_]+(?:/[\w.-]+)?", "", raw)
     hallucinated = []
     checked = 0
     if known is not None:
@@ -470,7 +505,10 @@ def grade_spelunk(task, raw, obs=None):
                 "hallucinated_paths": sorted(hallucinated),
                 "paths_checked": checked, "line_count": line_count,
                 "over_budget": over_budget,
-                "failed_checks": failed_checks}
+                "failed_checks": failed_checks,
+                "workspace_pass": not failed_checks,
+                "format_pass": not missing and not missing_groups and not contaminants
+                and not hallucinated and not over_budget}
 
 
 def _root_status():
@@ -507,8 +545,10 @@ def observe(agent, prompt, cfg, timeout, model=None, fixture=None,
     t0 = time.time()
     try:
         pre_outer = _root_status()
+        fixture_manifest = None
         if fixture:
             src = Path(ROOT) / "benchmarks" / "fixtures" / fixture
+            fixture_manifest = dir_manifest(str(src))
             if src.is_dir():
                 shutil.copytree(src, workdir, dirs_exist_ok=True)
             else:
@@ -527,7 +567,8 @@ def observe(agent, prompt, cfg, timeout, model=None, fixture=None,
                         "-qm", "pristine fixture"], capture_output=True, check=True)
         proc = subprocess.run(cfg["cmd"](prompt, model), capture_output=True,
                               text=True, timeout=timeout, cwd=workdir,
-                              stdin=subprocess.DEVNULL)
+                              stdin=subprocess.DEVNULL,
+                              env={**os.environ, **isolation_env(agent)})
         out = (proc.stdout or "") + (proc.stderr or "")
         # Long-form skills (debates, audits) put the graded synthesis last:
         # keep head (framing) + tail (verdict) instead of head-only truncation.
@@ -537,6 +578,7 @@ def observe(agent, prompt, cfg, timeout, model=None, fixture=None,
                "exit": proc.returncode, "output": out,
                "output_chars": len((proc.stdout or "") + (proc.stderr or "")),
                "workdir": workdir,
+               "fixture_manifest": fixture_manifest,
                "duration": round(time.time() - t0, 1)}
         if verify:
             # Execution skills are graded on the workspace, not the chat:
@@ -590,6 +632,20 @@ def observe(agent, prompt, cfg, timeout, model=None, fixture=None,
                         raise ValueError(f"artifact exceeds capture limit: {match}")
                     captured[match] = content
             obs["artifacts"] = captured
+        # Audit evidence: capped unified diff of everything the agent did,
+        # retained after the workdir is removed. Hash-pinned provenance
+        # lives in the record; this diff is the human-auditable residue.
+        try:
+            diff_proc = subprocess.run(
+                ["git", "-c", "status.renames=false", "diff", "HEAD", "--",
+                 ".", ":(exclude).git"],
+                capture_output=True, text=True, cwd=workdir, timeout=120)
+            diff_text = diff_proc.stdout if diff_proc.returncode == 0 else ""
+        except (OSError, subprocess.TimeoutExpired):
+            diff_text = ""
+        obs["workdir_diff_truncated"] = len(diff_text) > WORKDIR_DIFF_CAP
+        obs["workdir_diff"] = diff_text[:WORKDIR_DIFF_CAP]
+        obs["isolation"] = isolation_record(agent, workdir)
         post_outer = _root_status()
         obs["outer_repo_changed"] = sorted(
             name for name in pre_outer.keys() | post_outer.keys()
@@ -639,14 +695,34 @@ def main():
     ap.add_argument("--trials", type=int, default=3)
     ap.add_argument("--timeout", type=int, default=180)
     ap.add_argument("--heldout", action="store_true")
+    ap.add_argument("--task", default=None, metavar="TASK_ID",
+                    help="run one task by id (e.g. C1 post-exploratory "
+                         "validation tasks run only this way, never in batch "
+                         "sweeps). Searches held-out and regular tasks; "
+                         "combined with --heldout the task must belong to "
+                         "that subset. Recorded.")
     ap.add_argument("--model", default=None,
-                    help="model id passed to the agent CLI (e.g. opencode/"
-                         "nemotron-3-ultra-free); recorded in the "
+                    help="model id passed to the agent CLI (e.g. "
+                         "opencode/muse-spark-1.3-contributor-free); recorded in the "
                          "result JSON — results are model-scoped")
     ap.add_argument("--timeout-override", type=int, default=None,
                     help="replace per-task timeouts (slow free models); "
                          "plumbing only — no grading gate changes; "
                          "recorded in the result JSON")
+    ap.add_argument("--order", choices=["fixed", "alternating"], default="alternating",
+                    help="condition order per (task, trial): fixed runs baseline "
+                         "then treatment every time (legacy bias: treatment always "
+                         "second); alternating counterbalances (even trials "
+                         "baseline-first, odd trials treatment-first). Recorded "
+                         "per trial.")
+    ap.add_argument("--resume-from", default=None, metavar="RESULT_JSON",
+                    help="resumable batches: the output contains the COMPLETE "
+                         "combined trial set — copied source rows (marked "
+                         "resumed) plus newly executed rows — in a NEW file. "
+                         "The source file is never modified. Experiment "
+                         "identity must match (schema, grader, skill, agent, "
+                         "model, heldout, task contracts, task filter, order, "
+                         "timeouts).")
     ap.add_argument("--allow-paid", action="store_true",
                     help="with ALLOW_PAID_AGENT=1, authorize a paid-agent run (codex)")
     a = ap.parse_args()
@@ -693,12 +769,28 @@ def main():
                             capture_output=True, text=True).stdout.strip()
     cat = catalog()
     treat = skill_context(a.skill)
-    tasks = load_tasks(a.skill, a.heldout)
+    if a.task:
+        pool = load_tasks(a.skill, True) + load_tasks(a.skill, False)
+        tasks = [t for t in pool if t.get("id") == a.task]
+        if not tasks:
+            print(f"unknown task {a.task!r} for skill {a.skill}", file=sys.stderr)
+            return 2
+        if a.heldout and not tasks[0].get("heldout", False):
+            print(f"task {a.task!r} is not held-out; refusing --heldout combo",
+                  file=sys.stderr)
+            return 2
+    else:
+        # Sweeps never spend validation budget: confirm_only tasks run
+        # solely via explicit --task. Explicit --task may still target any
+        # task (validation or ordinary, e.g. for debugging).
+        tasks = [t for t in load_tasks(a.skill, a.heldout)
+                 if not t.get("confirm_only", False)]
     if not tasks:
         print("no tasks for this selection", file=sys.stderr)
         return 2
 
-    rec = {"schema": "outcome/2", "skill": a.skill, "agent": a.agent,
+    rec = {"schema": SCHEMA, "grader_version": GRADER_VERSION,
+           "skill": a.skill, "agent": a.agent,
            "agent_version": aver, "model": a.model or "agent-default",
            "timeout_override": a.timeout_override,
            "commit": commit,
@@ -706,7 +798,82 @@ def main():
            "paid_guard": "authorized" if a.agent in PAID_AGENTS else "n/a",
            "heldout": a.heldout, "status": "running", "trials": [],
            "task_contracts": tasks,
-           "runner_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest()}
+           "runner_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
+           "provenance": {
+               **repo_provenance(ROOT, __file__),
+               "grader_version": GRADER_VERSION,
+               "skill_package": dir_manifest(
+                   os.path.join(ROOT, "skills", a.skill)),
+               "requested_model": a.model,
+               "agent_version": aver,
+               "settings": {
+                   "trials": a.trials,
+                   "timeout_default": a.timeout,
+                   "timeout_override": a.timeout_override,
+                   "max_consec": max_consec,
+                   "order": a.order,
+                   "task_filter": a.task,
+               },
+               "isolation": isolation_record(a.agent),
+               "started": time.strftime("%Y-%m-%dT%H:%M:%S"),
+           }}
+    if a.resume_from:
+        try:
+            with open(a.resume_from, encoding="utf-8") as f:
+                prior = json.load(f)
+        except (OSError, json.JSONDecodeError) as exc:
+            print(f"cannot read --resume-from file: {exc}", file=sys.stderr)
+            return 2
+        if prior.get("schema") != SCHEMA:
+            print(f"--resume-from schema is {prior.get('schema')!r}; "
+                  f"this runner writes {SCHEMA} — refusing to mix versions "
+                  f"(historical results are preserved, never rewritten)",
+                  file=sys.stderr)
+            return 2
+        # Strict experiment identity: every field that changes the meaning
+        # of a trial must match. The trials count is intentionally excluded
+        # (extending a batch is the point of resume).
+        mismatches = []
+        for key in ("skill", "agent", "heldout"):
+            if prior.get(key) != rec[key]:
+                mismatches.append(f"{key} is {prior.get(key)!r}, requested {rec[key]!r}")
+        prior_settings = (prior.get("provenance") or {}).get("settings") or {}
+        for key in ("timeout_default", "timeout_override", "order", "task_filter"):
+            if prior_settings.get(key) != rec["provenance"]["settings"][key]:
+                mismatches.append(f"settings.{key} differs")
+        if prior.get("grader_version") != GRADER_VERSION:
+            mismatches.append("grader_version differs")
+        if prior.get("model") != rec["model"]:
+            mismatches.append("model differs")
+        if prior.get("task_contracts") != rec["task_contracts"]:
+            mismatches.append("task_contracts differ")
+        if mismatches:
+            print("--resume-from identity mismatch: " + "; ".join(mismatches) + " — "
+                  "refusing (source preserved, nothing written)",
+                  file=sys.stderr)
+            return 2
+        prior_rows = prior.get("trials", [])
+        identities = [(row.get("task"), row.get("condition"), row.get("trial"))
+                      for row in prior_rows]
+        if len(set(identities)) != len(identities):
+            print("--resume-from source contains duplicate trial identities "
+                  "(task, condition, trial) — refusing (source preserved, "
+                  "nothing written)", file=sys.stderr)
+            return 2
+        done = set(identities)
+        # Combined trial set: marked copies first (source file untouched),
+        # newly executed rows appended by the loop below. Summaries at the
+        # end run over rec["trials"], i.e. the combined set.
+        rec["trials"] = [{**row, "resumed": True} for row in prior_rows]
+        rec["resumed_from"] = {
+            "file": os.path.basename(a.resume_from),
+            "sha256": hashlib.sha256(
+                Path(a.resume_from).read_bytes()).hexdigest(),
+            "prior_trials": len(prior_rows),
+            "resumed_copied": len(prior_rows),
+        }
+    else:
+        done = set()
     os.makedirs(RESULTS, exist_ok=True)
     stamp = time.strftime("%Y%m%d-%H%M%S") + f"-{time.time_ns() % 1_000_000_000:09d}"
     out = os.path.join(RESULTS, f"{stamp}-outcome-{a.skill}-{a.agent}"
@@ -716,11 +883,20 @@ def main():
     # run (exit 5, partial results preserved) so the driver can retry on a live
     # model instead of burning hours on garbage.
     consec_bad = 0
+    skipped = 0
     for task in tasks:
-        for cond, ctx in (("baseline", None), ("treatment", treat)):
-            for t in range(a.trials):
+        for t in range(a.trials):
+            if a.order == "alternating" and t % 2 == 1:
+                conds = (("treatment", treat), ("baseline", None))
+            else:
+                conds = (("baseline", None), ("treatment", treat))
+            for cond, ctx in conds:
+                if (task["id"], cond, t + 1) in done:
+                    skipped += 1
+                    continue
                 to = (a.timeout_override if a.timeout_override
                       else task.get("timeout", a.timeout))
+                started = time.strftime("%Y-%m-%dT%H:%M:%S")
                 obs = observe(a.agent, build_prompt(task, cat, ctx), cfg, to,
                               model=a.model, fixture=task.get("fixture"),
                               verify=task.get("verify"),
@@ -731,6 +907,8 @@ def main():
                 passed, notes = grade(task, route, raw, obs)
                 rec["trials"].append({"task": task["id"], "condition": cond,
                                      "trial": t + 1, "pass": passed,
+                                     "first": conds[0][0],
+                                     "timeout_s": to, "started": started,
                                      "notes": notes, "obs": obs})
                 consec_bad = consec_bad + 1 if obs.get("status") != "ok" else 0
                 abort = max_consec and consec_bad >= max_consec
@@ -750,7 +928,7 @@ def main():
 
     rec["status"] = "complete"
     save_result(rec, out)
-    print(f"wrote {out}")
+    print(f"wrote {out} (resumed-skipped: {skipped})")
 
     # summary: pass rate per task/condition + key size metric
     for task in tasks:

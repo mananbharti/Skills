@@ -23,11 +23,14 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 SCENARIOS = ROOT / "evals/workflow/scenarios"
 RESULTS = ROOT / "evals/results"
+RESULTS_TMP = RESULTS / "tmp"
 TRIGGER = runpy.run_path(str(ROOT / "scripts/eval-trigger"))
 AGENTS = TRIGGER["AGENTS"]
 observe = TRIGGER["observe"]
 guard_paid_agent = TRIGGER["guard_paid_agent"]
 PAID_AGENTS = TRIGGER["PAID_AGENTS"]
+sys.path.insert(0, str(ROOT / "scripts"))
+from eval_isolation import dir_manifest, isolation_record, repo_provenance
 
 
 def load_scenarios():
@@ -162,6 +165,11 @@ def main():
     parser.add_argument("--agent", choices=AGENTS, default="codex")
     parser.add_argument("--scenario", help="explicit scenario id; required for a live run")
     parser.add_argument("--timeout", type=int, default=600)
+    parser.add_argument("--model", default=None,
+                        help="model id forwarded to the agent CLI where the vendor "
+                             "documents a model flag (opencode -m, e.g. "
+                             "opencode/muse-spark-1.3-contributor-free); always "
+                             "recorded — results are model-scoped")
     parser.add_argument("--allow-paid", action="store_true",
                         help="with ALLOW_PAID_AGENT=1, authorize a paid-agent run (codex)")
     args = parser.parse_args()
@@ -200,7 +208,12 @@ def main():
     if cfg.get("unavailable") or not shutil.which(cfg.get("bin", "")):
         print(f"UNAVAILABLE: {cfg.get('bin')} not installed — no result fabricated", file=sys.stderr)
         return 3
-    with tempfile.TemporaryDirectory(prefix=f"workflow-{scenario['id'].lower()}-") as workdir:
+    # Repo-local tmp (not system TMPDIR): headless agents have been
+    # permission-blocked under /var/folders before; same arrangement as
+    # the outcome runner.
+    RESULTS_TMP.mkdir(parents=True, exist_ok=True)
+    with tempfile.TemporaryDirectory(prefix=f"workflow-{scenario['id'].lower()}-",
+                                     dir=str(RESULTS_TMP)) as workdir:
         return run_scenario(args, cfg, scenario, workdir)
 
 
@@ -208,13 +221,16 @@ def run_scenario(args, cfg, scenario, workdir):
     subprocess.run(["git", "init", "-q", workdir], check=True)
     skill_path, context_files = copy_skill(scenario["skill"], workdir)
     fixture = copy_fixture(scenario, workdir)
+    fixture_dir = ROOT / "benchmarks" / "fixtures" / scenario["fixture"] \
+        if scenario.get("fixture") else None
     before = manifest(workdir)
     prompt = (f"Read and follow the skill at {skill_path / 'SKILL.md'}.\n"
               "Evaluation scenario (assertions and answer keys are not provided):\n"
               f"Setup: {scenario['setup']}\nTask: {scenario['task']}\n"
               "Work only inside the current evaluation directory. Perform the task, then report "
               "observed evidence and unverified areas.")
-    result = observe(args.agent, prompt, cfg, args.timeout, workdir=workdir)
+    result = observe(args.agent, prompt, cfg, args.timeout, workdir=workdir,
+                     model=args.model)
     commit = subprocess.run(["git", "rev-parse", "--short", "HEAD"], cwd=ROOT,
                             capture_output=True, text=True).stdout.strip()
     try:
@@ -231,15 +247,18 @@ def run_scenario(args, cfg, scenario, workdir):
     bundle = RESULTS / f"{stamp}-workflow-{args.agent}-{scenario['id'].lower()}-artifacts.tar.gz"
     archive_workspace(workdir, bundle)
     record = {
-        "schema_version": "1.0", "kind": "workflow",
+        "schema_version": "1.2", "kind": "workflow",
         "timestamp": datetime.now(timezone.utc).isoformat(), "git_commit": commit,
-        "agent": args.agent, "agent_version": version, "model": result.get("model"),
+        "agent": args.agent, "agent_version": version,
+        "requested_model": args.model, "model": result.get("model"),
         "invocation": "verified" if cfg["verified"] else "unverified",
         "paid_guard": "authorized" if args.agent in PAID_AGENTS else "n/a",
+        "timeout_s": args.timeout,
         "scenario": {key: scenario[key] for key in
                      ("id", "skill", "title", "setup", "task", "path", "fixture")},
         "status": result["status"], "grading_status": "ungraded",
         "assertions": scenario["assertions"], "fixture": fixture,
+        "fixture_manifest": dir_manifest(str(fixture_dir)) if fixture_dir else None,
         "skill_context": context_files, "workspace_before": before,
         "workspace_after": manifest(workdir), "raw_output": result.get("raw", ""),
         "error": result.get("error"), "duration_s": round(result.get("duration", 0), 1),
@@ -247,9 +266,12 @@ def run_scenario(args, cfg, scenario, workdir):
         "provenance": {"working_tree_dirty": bool(repo_status),
                        "working_tree_diff_sha256": hashlib.sha256(repo_diff.encode()).hexdigest(),
                        "runner_sha256": sha256(ROOT / "scripts/eval-workflow"),
-                       "scenario_source_sha256": sha256(ROOT / scenario["path"])},
+                       "trigger_runner_sha256": sha256(ROOT / "scripts/eval-trigger"),
+                       "scenario_source_sha256": sha256(ROOT / scenario["path"]),
+                       "isolation": isolation_record(args.agent, workdir)},
         "limitations": ["CLI output does not expose the full tool-call transcript",
-                        "assertions require deterministic or human grading before pass/fail is claimed"],
+                        "assertions require deterministic or human grading before pass/fail is claimed",
+                        "skill-tool denial is config-merge verified; runtime hiding needs a live trace"],
     }
     output = RESULTS / f"{stamp}-workflow-{args.agent}-{scenario['id'].lower()}.json"
     output.write_text(json.dumps(record, indent=2) + "\n")

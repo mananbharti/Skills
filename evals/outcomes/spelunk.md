@@ -53,3 +53,15 @@ scripts/eval-outcome --skill spelunk --agent <agent> --trials 1 --heldout [--all
 
 Raw traces: `evals/results/` (gitignored). Curated verdict:
 `docs/benchmarks/spelunk.md`.
+
+## Post-exploratory validation task C1 (frozen Phase 4)
+
+Authored after exploratory observations by the same campaign controller: not independent preregistered confirmation evidence. A genuinely independent confirmation task must be supplied and frozen later by the owner or an independent reviewer.
+
+`C1` (heldout, `confirm_only`): fact map over the `unslop-shop` fixture
+(test command/files, `totals()`, every `format_price` definition,
+`LEGACY_EXPORT_FORMAT` keep-reason) — a repo the spelunk tasks never
+used, on a fixture with no `.env` permission-trip surface. Same rubric
+shape (recall + honesty + contaminant/path gates + budget). Runs ONLY
+via `scripts/eval-outcome --skill spelunk --task C1`; never in batch
+sweeps. Calibrated offline with synthetic good/bad outputs (no model).

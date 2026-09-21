@@ -40,5 +40,21 @@
       "must_contain": ["App.tsx", "utils.ts"],
       "must_not": ["src/auth", "jest.config", "Dockerfile"]
     }
+  },
+  {
+    "id": "C1",
+    "request": "Map this repo for me: (1) what command runs the test suite and which test files exist, (2) which function computes an order total and in which file, (3) where is price formatting defined — list every definition with its file, (4) which constant must never be removed during cleanup and why? Give exact file paths for every claim — check the files, don't guess.",
+    "fixture": "unslop-shop",
+    "timeout": 300,
+    "heldout": true,
+    "confirm_only": true,
+    "instruction_baseline": "You are an expert code explorer with shell and file tools in the repo root. Answer ONLY from files you actually read. For every factual claim give the exact file path. Keep the answer compact.",
+    "instruction_treatment": "Follow the active spelunk skill in quick mode (discovery order, budgets, epistemic labels). Answer ONLY from files you actually read, with exact paths.",
+    "expected": {
+      "type": "spelunk",
+      "must_contain": ["test_shop.py", "totals", "format_price", "LEGACY_EXPORT_FORMAT"],
+      "must_not": ["alembic", "django", "Dockerfile"],
+      "max_lines": 60
+    }
   }
 ]

@@ -34,5 +34,20 @@
       "order": ["scout", "backend", "proof"],
       "max_len": 3
     }
+  },
+  {
+    "id": "C1",
+    "request": "The dashboard looks dated and new users keep abandoning the signup flow halfway. Refresh the visuals and fix the flow so signups complete.",
+    "heldout": true,
+    "confirm_only": true,
+    "instruction_baseline": "Reply with exactly two lines. Line 1: `route: A → B → C` listing only needed skills in order, or `route: direct` (do it now, no skill needed), or `route: none` (no skill applies). Line 2: one sentence why.",
+    "instruction_treatment": "Reply with exactly two lines. Line 1: `route: A → B → C` listing only needed skills in order, or `route: direct` (do it now, no skill needed), or `route: none` (no skill applies). Line 2: one sentence why.",
+    "expected": {
+      "type": "route",
+      "allowed": ["spelunk", "polish", "friction", "proof", "roadtest"],
+      "required": ["polish", "friction"],
+      "order": ["spelunk", "polish", "friction", "proof", "roadtest"],
+      "max_len": 3
+    }
   }
 ]

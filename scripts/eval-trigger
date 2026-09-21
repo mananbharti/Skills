@@ -21,6 +21,11 @@ Machine results: evals/results/<ts>-<agent>.json
 import argparse, json, os, re, shutil, subprocess, sys, tempfile, time
 
 from eval_guard import PAID_AGENTS, guard_paid_agent
+from eval_isolation import (
+    isolation_env,
+    isolation_record,
+    repo_provenance,
+)
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -33,10 +38,13 @@ SKILLS = ROOT / "skills"
 # agent at least once (see evals/adapters/README.md). Others are the
 # documented headless modes from vendor docs, marked unverified until
 # first successful run — the runner records invocation:"unverified".
+# cmd(prompt, model): model is passed through only where the vendor
+# documents a model flag (opencode -m/--model). Other adapters record
+# the requested model without forwarding it — no invented flags.
 AGENTS = {
     "claude": {
         "bin": "claude",
-        "cmd": lambda p: ["claude", "-p", p, "--output-format", "json"],
+        "cmd": lambda p, m=None: ["claude", "-p", p, "--output-format", "json"],
         "verified": False,  # flags per official docs; execution hangs in the
         # dev environment (hang reproduced with/without sandbox, stdin closed)
         "parse": lambda out: json.loads(out).get("result", ""),
@@ -45,13 +53,13 @@ AGENTS = {
         "bin": "codex",
         # --skip-git-repo-check: named by codex itself when cwd is not a
         # trusted repo; the neutral eval workdir is not the user's repo
-        "cmd": lambda p: ["codex", "exec", "--skip-git-repo-check", p],
+        "cmd": lambda p, m=None: ["codex", "exec", "--skip-git-repo-check", p],
         "verified": True,
         "parse": lambda out: out.strip(),
     },
     "opencode": {
         "bin": "opencode",
-        "cmd": lambda p: ["opencode", "run", p],
+        "cmd": lambda p, m=None: ["opencode", "run"] + (["-m", m] if m else []) + [p],
         "verified": True,
         "parse": lambda out: out.strip(),
     },
@@ -109,16 +117,17 @@ def routing_prompt(utterance, skills, chain):
             f'User request: "{utterance}"\n\n{ask}')
 
 
-def observe(agent, prompt, cfg, timeout, workdir=None):
+def observe(agent, prompt, cfg, timeout, workdir=None, model=None):
     t0 = time.time()
     owns_workdir = workdir is None
     if owns_workdir:
         workdir = tempfile.mkdtemp(prefix="eval-run-")
     try:
         subprocess.run(["git", "init", "-q", workdir], capture_output=True)
-        proc = subprocess.run(cfg["cmd"](prompt), capture_output=True,
+        env = {**os.environ, **isolation_env(agent)}
+        proc = subprocess.run(cfg["cmd"](prompt, model), capture_output=True,
                               text=True, timeout=timeout, cwd=workdir,
-                              stdin=subprocess.DEVNULL)
+                              stdin=subprocess.DEVNULL, env=env)
     except subprocess.TimeoutExpired:
         return {"status": "error", "error": "timeout", "duration": time.time() - t0}
     except FileNotFoundError:
@@ -209,6 +218,11 @@ def main():
     ap.add_argument("--runs", type=int, default=1)
     ap.add_argument("--timeout", type=int, default=180)
     ap.add_argument("--tier", choices=["smoke", "standard", "release"], default="standard")
+    ap.add_argument("--model", default=None,
+                    help="model id forwarded to the agent CLI where the vendor "
+                         "documents a model flag (opencode -m, e.g. "
+                         "opencode/muse-spark-1.3-contributor-free); always "
+                         "recorded — results are model-scoped")
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--check", action="store_true")
     ap.add_argument("--json", action="store_true", help="print result JSON to stdout")
@@ -292,7 +306,7 @@ def main():
         for i, c in enumerate(cases, 1):
             chain = "→" in c["expected"]
             obs = observe(a.agent, routing_prompt(c["utterance"], skills, chain),
-                          cfg, a.timeout)
+                          cfg, a.timeout, model=a.model)
             normalized = normalize(obs["raw"]) if obs["status"] == "ok" else ""
             results.append({**c, "run": run, "observed": normalized,
                             "raw": obs.get("raw", "")[:300],
@@ -302,13 +316,17 @@ def main():
             print(f"  [{i}/{len(cases)} run{run}] {c['expected']:<22} -> "
                   f"{normalized or obs['status']}", file=sys.stderr)
 
-    doc = {"schema_version": "1.1", "suite": a.suite, "timestamp":
+    doc = {"schema_version": "1.3", "suite": a.suite, "timestamp":
            datetime.now(timezone.utc).isoformat(), "git_commit": commit,
            "agent": a.agent, "agent_version": agent_version,
+           "requested_model": a.model,
            "model": next((r["model"] for r in results if r.get("model")), None),
            "invocation_flags": "verified" if cfg["verified"]
            else "unverified", "runs": a.runs, "tier": a.tier,
+           "timeout_s": a.timeout,
            "paid_guard": "authorized" if a.agent in PAID_AGENTS else "n/a",
+           "provenance": {**repo_provenance(str(ROOT), __file__),
+                          "isolation": isolation_record(a.agent)},
            "case_count": len(cases), "cases": results}
     doc["metrics"] = score(results, skills)
     RESULTS.mkdir(exist_ok=True)

@@ -8,7 +8,7 @@ successful execution.
 | Agent | Binary | Invocation | Status | Source / notes |
 | --- | --- | --- | --- | --- |
 | Codex | `codex` | `codex exec "<prompt>"` | **verified, gated** 2026-09-14 (v0.153.4, model gpt-5.6-sol) | executed live; reads stdin — runner passes stdin=DEVNULL; paid-agent guard applies (below) |
-| OpenCode | `opencode` | `opencode run "<prompt>"` | **verified** 2026-09-14 (v1.18.30) | executed live |
+| OpenCode | `opencode` | `opencode run -m <model> "<prompt>"` | **verified** 2026-09-14 (v1.18.30); `-m` passthrough + run-scoped skill-tool denial via `OPENCODE_CONFIG_CONTENT` added Phase 1 (config-merge verified, no model call) | executed live; reads stdin — runner passes stdin=DEVNULL; paid-agent guard applies (below) |
 | Claude Code | `claude` | `claude -p "<prompt>" --output-format json` | flags per [official docs](https://code.claude.com/docs/en/headless); **execution hangs in the dev environment** (reproduced sandboxed and unsandboxed, stdin closed) — unverified until run in a working environment |
 | Cursor | `cursor-agent` | — | **UNAVAILABLE** (not installed) | add invocation after vendor docs check + install |
 | Antigravity | — | — | **UNAVAILABLE** (no headless CLI found) | recheck when vendor ships one |

@@ -60,20 +60,33 @@ and the UK AI Security Institute's [Inspect log model](https://inspect.aisi.org.
 
 ## Outcome benchmarks (proof phase underway)
 
-The outcome harness contains 83 validated tasks across all 28 skills. Ten
-skill families have executed trials: `hotseat` has a measured lift on its
+The outcome harness contains 87 validated tasks across all 28 skills
+(83 O-tasks + 4 frozen C1 confirmation tasks, each `confirm_only` and
+runnable only via `--task C1`). Ten skill families have executed trials
+on prior models/runners: `hotseat` has a measured lift on its
 pre-registered debate-structure proxies; five verdicts are MIXED; three show
 NO LIFT on the available evidence. The `handsfree` smoke sample exposed a
 grader defect and remains UNVERIFIED, alongside 18 unexecuted families. See
 [`docs/benchmarks.md`](benchmarks.md) and the per-skill pages; no verdict may be
 generalized beyond its recorded task, agent, model, and grader.
 
+A separate all-Muse-Spark campaign (pinned
+`opencode/muse-spark-1.3-contributor-free`, schemas outcome/3–5) ran
+Batch A exploratory + C1 confirmation for `handsfree`, `concierge`,
+`spelunk`, and `recall`, plus a 12-case routing smoke (10/12). Its rows
+are kept strictly separate from prior-model rows — never pooled — with
+the 28-row matrix in [`docs/benchmarks.md`](benchmarks.md). It supports
+only narrow task/model-specific conclusions: one tie, one defective
+task, one grader-dominated wash, one format-only edge. No suite-wide,
+cross-model, or compatibility superiority is established.
+
 `scripts/eval-outcome --check` validates task structure, fixture references,
 held-out coverage, verify-command shape, and artifact-glob shape without
 invoking an agent.
 
-The `outcome/2` runner checkpoints each completed trial, including invocation
-errors. New records also snapshot the selected task contracts in
+The outcome runner (schema outcome/5 current; outcome/2–4 rows preserved
+with their original grading provenance) checkpoints each completed trial,
+including invocation errors. New records also snapshot the selected task contracts in
 `task_contracts`, preserving their requests, commands, and expectations.
 External checker implementations still require the corresponding versioned
 checkout; the command snapshot alone does not freeze those files.

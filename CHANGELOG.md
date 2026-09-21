@@ -5,6 +5,26 @@ All notable changes to this project are documented here. Format follows
 
 ## [Unreleased]
 
+### All-Muse-Spark evaluation campaign, Batch A + routing smoke (2026-09-20/21)
+
+- Ran 80 evaluated-model calls on pinned
+  `opencode/muse-spark-1.3-contributor-free` (opencode 1.18.31): 28
+  exploratory + 40 C1 post-exploratory validation runs across `handsfree`, `concierge`,
+  `spelunk`, `recall`, plus a 12-case routing smoke (10/12).
+  Zero invocation failures; zero retries; no paid calls.
+- Narrow verdicts only: `handsfree` tie (NO CLEAR LIFT), `concierge`
+  validation void on a defective order gate, `spelunk` validation
+  grader-dominated (no regression), `recall` format-discipline edge
+  (MIXED). No suite-wide, cross-model, or compatibility superiority
+  claimed; 24 skills remain UNVERIFIED on this model.
+- Harness: run-scoped skill-tool denial, `--model` on all runners,
+  outcome schema v4 (workdir-residue strip), `--task` validation
+  selector, alternating condition order, per-record provenance. Four
+  frozen C1 tasks with offline calibration; raw records gitignored and
+  preserved locally, never rewritten.
+- 28-row evidence matrix in `docs/benchmarks.md`; prior-model rows kept
+  separate and never pooled.
+
 ### Corrected-contract verification (2026-09-19)
 
 - Completed four new `handsfree` v2 smoke calls on OpenCode 1.18.31 using
