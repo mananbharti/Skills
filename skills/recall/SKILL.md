@@ -178,6 +178,12 @@ Confirmation in chat is one line per file touched:
 `recall: DECISIONS.md +1 ( chose SQLite: single-box deploy ) · STATUS.md
 snapshot updated`.
 
+Marker discipline: `recall:` confirms writes; a read-only catch-up ends
+with a one-line `memory:` status line instead (e.g. `memory: STATUS.md
+fresh as of 2026-10-14; DECISIONS.md carries 1 stale item`). Never emit
+`recall:` when nothing was written, and never end a catch-up with
+`recall:`: the two markers tell the next session what happened.
+
 On session start, end the catch-up with a short freshness summary or name what
 needs compacting.
 

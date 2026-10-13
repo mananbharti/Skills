@@ -199,6 +199,32 @@ class NoLiftValidityFloors(unittest.TestCase):
         self.assertIn("verified", text.lower())
 
 
+class MixedValidityFloors(unittest.TestCase):
+    # Mixed-verdict repair guards: marker and task-contract discipline
+    # the outcome analysis depends on must survive future edits.
+    def test_recall_memory_marker_for_read_only_catch_up(self):
+        text = (ROOT / "skills/recall/SKILL.md").read_text(encoding="utf-8")
+        self.assertIn("memory:", text)
+        self.assertIn("recall:", text)
+        self.assertIn("Never emit", text)
+
+    def test_proof_literal_boundary_token_rule(self):
+        text = (ROOT / "skills/proof/SKILL.md").read_text(encoding="utf-8")
+        self.assertIn("literal singular word `boundary`", text)
+        self.assertIn("starting", text)
+
+    def test_spelunk_denial_safe_discovery(self):
+        text = (ROOT / "skills/spelunk/SKILL.md").read_text(encoding="utf-8")
+        self.assertIn("denial-safe", text)
+
+    def test_concierge_c1_is_order_insensitive(self):
+        tasks = json.loads((ROOT / "evals/outcomes/concierge-tasks.json").read_text())
+        task = next(item for item in tasks if item["id"] == "C1")
+        self.assertTrue(task["expected"].get("order_insensitive"))
+        self.assertIn("polish", task["expected"]["required"])
+        self.assertIn("friction", task["expected"]["required"])
+
+
 class PaidDefaultDeny(unittest.TestCase):
     def test_live_adapter_refuses_before_invocation_without_human_keys(self):
         # Remove any inherited authorization; never manufacture either key.

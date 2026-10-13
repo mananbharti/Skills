@@ -236,8 +236,15 @@ def grade_route(task, route, raw):
     route_set = set(route)
     outside = sorted(route_set - allowed - {"direct", "none"})
     ordered = [s for s in route if s in allowed]
-    order_ok = ordered == sorted(ordered, key=lambda s: exp["order"].index(s)) \
-        if all(s in exp.get("order", []) for s in ordered) else True
+    # order_insensitive drops the sequence assertion where the task cannot
+    # justify one (concierge C1: audit-before-fix and fix-before-audit are
+    # both defensible for a combined refresh-plus-flow task). Containment,
+    # required skills, and length still grade.
+    if exp.get("order_insensitive"):
+        order_ok = True
+    else:
+        order_ok = ordered == sorted(ordered, key=lambda s: exp["order"].index(s)) \
+            if all(s in exp.get("order", []) for s in ordered) else True
     ok = (not outside and required <= route_set and order_ok
           and len(route) <= exp.get("max_len", 6))
     return ok, {"route": route, "outside": outside, "order_ok": order_ok}
@@ -435,6 +442,41 @@ def grade_pilot(task, raw, obs):
 
 PATH_RE = re.compile(r"[\w\-./]*\.(?:ts|tsx|js|jsx|json|html|css|py|txt|md|toml|yaml|yml|lock|env|gitignore|sh|sqlite|db)\b")
 
+# Negation cues that turn a path/token mention into an absence denial
+# ("no X in the copy"), not an existence claim. Shared by the
+# hallucinated-path and contaminant gates.
+_NEG_RE = re.compile(r"\b(no|not|without|missing|never|neither|nor|absent|avoid|excluding|none|nonexistent)\b")
+
+# Bare technology names that collide with PATH_RE (Next.js ends in .js)
+# but are library mentions, never file claims. Lowercase, slash-free
+# tokens only; a real fixture file with such a name still passes on
+# the basename rule, so this only rescues would-be false flags.
+_TECH_NAMES = frozenset({
+    "next.js", "vue.js", "node.js", "react.js", "express.js", "d3.js",
+    "three.js", "chart.js", "ember.js", "backbone.js", "nuxt.js",
+    "gatsby.js", "jquery.js", "svelte.js", "alpine.js", "meteor.js",
+    "mithril.js", "knockout.js",
+})
+
+_PROBE_LINE_RE = re.compile(r"(?:ls|cat|stat|head|tail|file|find)\b|test\s+-")
+
+
+def _is_probe_occurrence(line, idx):
+    """True when the token at idx is a shell-probe argument, not a claim.
+
+    Covers backticked commands (`ls X`), shell-prompt lines, and lines
+    starting with an inspection command. Case-sensitive on purpose:
+    prose starting with capital "Test" is not a shell command.
+    """
+    if line[:idx].count("`") % 2 == 1:
+        return True
+    stripped = line.strip()
+    if stripped[:1] in ("$", ">", "#"):
+        return True
+    if _PROBE_LINE_RE.match(stripped):
+        return True
+    return False
+
 
 def fixture_files(name):
     out = []
@@ -457,7 +499,21 @@ def grade_spelunk(task, raw, obs=None):
     missing = [m for m in must if m not in low]
     missing_groups = [g for g in exp.get("must_contain_any", [])
                       if not any(alt.lower() in low for alt in g)]
-    contaminants = [c for c in exp.get("must_not", []) if c.lower() in low]
+    # Negation-aware contaminant gate: an absence denial ("no Dockerfile
+    # in the copy") is honest scoping, not forbidden-scope smuggling. A
+    # contaminant counts only with at least one non-negated occurrence.
+    contaminants = []
+    for cand in exp.get("must_not", []):
+        low_c = cand.lower()
+        start = 0
+        while True:
+            idx = low.find(low_c, start)
+            if idx < 0:
+                break
+            if not _NEG_RE.search(low[max(0, idx - 60):idx]):
+                contaminants.append(cand)
+                break
+            start = idx + len(low_c)
     # Hallucinated-path grading needs a fixture ground truth. Chat-only
     # tasks (no fixture) would flag every filename mention — technology
     # names like "Next.js" match PATH_RE — as invented paths, so the
@@ -469,7 +525,10 @@ def grade_spelunk(task, raw, obs=None):
     # that) before any path-existence grading.
     wd = (obs or {}).get("workdir")
     if wd and wd in raw:
-        raw = raw.replace(wd, "")
+        # Remove the workdir plus any appended path components in one
+        # pass: a tool trace quoting <workdir>/tests/test_shop.py must
+        # not leave "/tests/test_shop.py" behind as a fake repo claim.
+        raw = re.sub(re.escape(wd) + r"(?:/[\w.\-]+)*", "", raw)
     # Harness plumbing is never a repo claim: strip the sandbox path even
     # when a tool trace appends a filename to it (e.g. a permission
     # auto-rejection quoting <workdir>/.env leaves "/.env" behind after a
@@ -519,13 +578,15 @@ def grade_spelunk(task, raw, obs=None):
                 continue
             if tok in quoted:
                 continue
+            # Bare technology names (Next.js) are library mentions that
+            # collide with the path regex, never file claims.
+            if "/" not in tok and tok.lower() in _TECH_NAMES:
+                continue
             checked += 1
-            # Negated mentions deny existence ("no X in the copy") and
-            # are not existence claims. A token counts as claimed only
-            # when at least one occurrence lacks a negation cue in the
-            # 60 characters before it on the same line.
-            neg_re = (r"\b(no|not|without|missing|never|neither|nor|"
-                      r"absent|avoid|excluding|none|nonexistent)\b")
+            # An occurrence is an existence claim only when it is neither
+            # a negated absence denial ("no X in the copy") nor a shell
+            # probe (`ls X`, `test -f X`). A token counts as claimed with
+            # at least one claiming occurrence.
             claimed = False
             for line in lines:
                 low_line = line.lower()
@@ -535,7 +596,8 @@ def grade_spelunk(task, raw, obs=None):
                     idx = low_line.find(low_tok, start)
                     if idx < 0:
                         break
-                    if not re.search(neg_re, low_line[max(0, idx - 60):idx]):
+                    if (not _NEG_RE.search(low_line[max(0, idx - 60):idx])
+                            and not _is_probe_occurrence(line, idx)):
                         claimed = True
                         break
                     start = idx + len(low_tok)

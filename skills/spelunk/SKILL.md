@@ -147,6 +147,10 @@ return a narrower updated map before planning or editing.
 - Prefer a representative executable path and direct symbols over folder-shape
   narratives. Widen only where a dependency, configuration, or test changes
   the answer.
+- Config discovery is denial-safe: list config and env-var names first
+  (`ls`, glob, manifest keys), never read `.env` or secret file contents.
+  A denied read never aborts the map: record the denial, continue with
+  independent evidence, and name the gap under "Open unknowns".
 
 ## Quality gates
 

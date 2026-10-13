@@ -47,6 +47,7 @@
       "allowed": ["spelunk", "polish", "friction", "proof", "roadtest"],
       "required": ["polish", "friction"],
       "order": ["spelunk", "polish", "friction", "proof", "roadtest"],
+      "order_insensitive": true,
       "max_len": 3
     }
   }

@@ -182,6 +182,9 @@ evidence to roadtest rather than duplicating its deliverable.
 
 - Boundary choice justified in one line per test group ("API-level: the
   behavior is the contract").
+- Every report states each tested boundary on a line starting with the
+  literal singular word `boundary` (e.g. `boundary: empty-cart total at
+  API layer`); the plural alone does not satisfy the contract.
 - Test names state behavior; assertions are on outcomes, not internals.
 - Edge/error paths covered for new public surfaces.
 - Suite green as run by the actual runner: coverage/counts quoted only
@@ -199,10 +202,10 @@ evidence to roadtest rather than duplicating its deliverable.
 
 ## Output contract
 
-Chat: the boundary map (behavior → boundary, one line each), evidence
-(`N tests passing via <command>`), gaps deliberately left uncovered and
-why. On disk: test files in the project's convention: never a parallel
-`__tests_dump__` folder.
+Chat: the boundary map (behavior → boundary, one line each starting
+with `boundary:`), evidence (`N tests passing via <command>`), gaps
+deliberately left uncovered and why. On disk: test files in the
+project's convention: never a parallel `__tests_dump__` folder.
 
 ## Research basis
 

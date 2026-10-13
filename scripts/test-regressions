@@ -564,13 +564,19 @@ class GraderValidity(unittest.TestCase):
         long_raw = "\n".join([good] * 210)
         self.assertGreater(len(long_raw.strip().splitlines()), 200)
         self.assertFalse(grade(task, long_raw, {"workdir": ""})[0])
-        # KNOWN-BRITTLE: a correct negated mention trips the contaminant
-        # gate. Asserted as current behavior so any future fix must be a
-        # versioned grader change with its own regression test.
+        # Versioned fix (no-lift/mixed repair): a negated absence denial
+        # is honest scoping, not contaminant smuggling. The contaminant
+        # gate fires only on non-negated occurrences; a positive mention
+        # of forbidden scope still fails.
         negated = good + " There is no Dockerfile in the copy."
         passed, notes = grade(task, negated, {"workdir": ""})
+        self.assertTrue(passed, notes)
+        self.assertEqual(notes["contaminants"], [])
+        smuggled = good + " Auth lives in src/auth and ships in a Dockerfile."
+        passed, notes = grade(task, smuggled, {"workdir": ""})
         self.assertFalse(passed)
-        self.assertIn("Dockerfile", " ".join(notes["contaminants"]))
+        self.assertIn("src/auth", notes["contaminants"])
+        self.assertIn("Dockerfile", notes["contaminants"])
 
     def test_blueprint_deliverable_matrix(self) -> None:
         grade = self.outcome["grade_blueprint"]
@@ -659,6 +665,64 @@ class GraderValidity(unittest.TestCase):
         passed, notes = grade(task, ghost, {"workdir": ""})
         self.assertFalse(passed)
         self.assertIn("src/ghost.ts", notes["hallucinated_paths"])
+
+    def test_spelunk_exempts_tech_names_probes_and_workdir_traces(self) -> None:
+        # Mixed-skill repair: scout/specialist correct findings failed on
+        # (a) technology names colliding with the path regex, (b) shell
+        # probe commands (`ls X`), (c) tool traces quoting sandbox paths
+        # with appended components. None is an existence claim.
+        grade = self.outcome["grade_spelunk"]
+        task = {"expected": {"type": "spelunk",
+                             "must_contain": ["package.json"],
+                             "must_not": ["src/auth"],
+                             "max_lines": 200},
+                "fixture": "ts-dashboard"}
+        tech = ("Stack docs mention Next.js. "
+                "Grounded in src/App.tsx and package.json.")
+        passed, notes = grade(task, tech, {"workdir": ""})
+        self.assertTrue(passed, notes)
+        self.assertEqual(notes["hallucinated_paths"], [])
+        probe = ("Checked `ls package-lock.json`: no lockfile in the copy. "
+                 "Grounded in src/App.tsx and package.json.")
+        passed, notes = grade(task, probe, {"workdir": ""})
+        self.assertTrue(passed, notes)
+        self.assertEqual(notes["hallucinated_paths"], [])
+        workdir = "/tmp/evals/results/tmp/outcome-abc123_"
+        traced = ("Grounded in src/App.tsx and package.json. Trace read "
+                  + workdir + "/tests/test_shop.py during mapping.")
+        passed, notes = grade(task, traced, {"workdir": workdir})
+        self.assertTrue(passed, notes)
+        self.assertEqual(notes["hallucinated_paths"], [])
+        # A bare positive claim about a missing file still fails.
+        claimed = ("Grounded in src/App.tsx and package.json. "
+                   "Lockfile state lives in package-lock.json.")
+        passed, notes = grade(task, claimed, {"workdir": ""})
+        self.assertFalse(passed)
+        self.assertIn("package-lock.json", notes["hallucinated_paths"])
+
+    def test_route_order_insensitive_accepts_either_sequence(self) -> None:
+        # Concierge C1 defect fix: containment and required skills grade;
+        # sequence does not where the task cannot justify one.
+        grade = self.outcome["grade_route"]
+        task = {"expected": {"type": "route",
+                             "allowed": ["spelunk", "polish", "friction",
+                                         "proof", "roadtest"],
+                             "required": ["polish", "friction"],
+                             "order": ["spelunk", "polish", "friction",
+                                       "proof", "roadtest"],
+                             "order_insensitive": True,
+                             "max_len": 3}}
+        normalize = self.outcome["normalize_route"]
+        for chain in ("route: friction → polish",
+                      "route: polish → friction"):
+            with self.subTest(chain=chain):
+                route = normalize(chain + "\nAudit then refresh.")
+                self.assertTrue(grade(task, route, chain)[0])
+        missing = normalize("route: polish\nOnly visuals.")
+        passed, notes = grade(task, missing, "route: polish")
+        self.assertFalse(passed)
+        outsider = normalize("route: friction → backend\nScope drift.")
+        self.assertFalse(grade(task, outsider, "route: friction → backend")[0])
 
     def test_concierge_c1_contract_calibration(self) -> None:
         # Phase 4 confirmation task: calibrated with synthetic outputs only,
