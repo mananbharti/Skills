@@ -93,3 +93,9 @@ claims below; historical results and frozen rubrics are not regraded.
 | Topic | Source/version/date |
 | --- | --- |
 | Agentic Code Review architectures | Progressive context disclosure in AI PR reviews (2026) |
+
+## Verification 2026-10-14
+
+| Basis | Outcome |
+| --- | --- |
+| Google eng-practices reviewer guide + tukaani.org XZ notes; fetched 2026-10-14 | UI-demo-or-unverified rule, artifact-provenance row, single verdict ladder, override rule. |

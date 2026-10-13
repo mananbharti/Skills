@@ -36,7 +36,9 @@ to every entry: file:line or it isn't a finding.
 ## Dead weight (usually Medium)
 
 - **Dead code**: unreachable branches, functions nothing calls
-  (verified by search, not vibes), feature-flag remnants.
+  (verified by search, not vibes), feature-flag remnants. Dormant code
+  re-arms on deploys: Knight Capital's unused router function sat live
+  since 2005 until a 2012 deploy triggered it (>$460M).
 - **Abandoned files**: `new_version_final_v2.ts`, half-migrated
   modules, `old/` directories that linger.
 - **Unused dependencies**: imports gone, packages remain (check the

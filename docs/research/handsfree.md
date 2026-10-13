@@ -137,3 +137,9 @@ Independent review found the conditional decision-policy table still asked for e
 This resolves an observed instruction conflict; it does not establish lift or
 change historical grades. The fresh review and forward-trial records remain
 separate evidence.
+
+## Verification 2026-10-14
+
+| Basis | Outcome |
+| --- | --- |
+| SEC 2013-222; fetched 2026-10-14 | Added unacknowledged-alert stop branch to decision policy; AUTO/ASK-ONCE/BLOCKED classes confirmed. |

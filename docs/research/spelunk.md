@@ -106,3 +106,9 @@ release claims rather than padding the bibliography.
 - Cases: `evals/workflow/scenarios/spelunk.md` now has at least ten distinct setup/task/assertion/rubric cases. Synthetic cases require materialization; authored ≠ executed.
 - Executed deterministic reproduction: temporary first-party/cache/vendor/generated tree; old scanner reported 6 sources versus expected 1; current scanner reports 1 source, 1 test, excludes noise from debt/largest reports; JSON parsed. First edit failed shell continuation handling; repaired and rerun passed.
 - New behavior status: **UNVERIFIED** until independent task execution produces retained evidence. Token/spend/latency change: **UNKNOWN**; no measured savings or uplift asserted.
+
+## Verification 2026-10-14
+
+| Basis | Outcome |
+| --- | --- |
+| Local analysis; read-only boundary re-read | Leads-not-proof rule and denial-safe discovery confirmed; no new external evidence; no change. |

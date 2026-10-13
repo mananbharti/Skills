@@ -96,3 +96,9 @@ claims below; historical results and frozen rubrics are not regraded.
 | Topic | Source/version/date |
 | --- | --- |
 | LLM Vulnerability frameworks | OWASP Top 10 for Agentic Applications (2026) |
+
+## Verification 2026-10-14
+
+| Basis | Outcome |
+| --- | --- |
+| tukaani.org XZ backdoor notes (L. Collin); fetched 2026-10-14 | Added artifact-vs-tagged-source provenance to supply-chain review; scanner timelines unverified, not encoded. |

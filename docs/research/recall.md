@@ -105,3 +105,9 @@ release claims rather than padding the bibliography.
 - Cases: `evals/workflow/scenarios/recall.md` now has at least ten distinct setup/task/assertion/rubric cases. Synthetic cases require materialization; authored ≠ executed.
 - Executed checker: duplicate active/superseded headings rejected with exit 1; missing optional files reported. This does not test branch/concurrent semantic behavior.
 - New behavior status: **UNVERIFIED** until independent task execution produces retained evidence. Token/spend/latency change: **UNKNOWN**; no measured savings or uplift asserted.
+
+## Verification 2026-10-14
+
+| Basis | Outcome |
+| --- | --- |
+| Local analysis; four-file discipline re-read | Supersession model and marker discipline confirmed; no new external evidence; no change. |

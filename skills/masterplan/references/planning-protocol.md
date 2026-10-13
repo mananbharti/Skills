@@ -48,6 +48,9 @@ Separate code rollback from data restoration. A reverted application commit
 cannot undo deleted data or new writes made under a changed schema. For staged
 migrations, plan compatible readers/writers, backfill checks, cutover evidence,
 and restoration or irreversible owner gate before removing the old path.
+For expand/migrate work, the contract (removal) phase is its own owned
+slice with deprecation markers: skipping contract leaves the system worse
+than before, so a migration plan without a contract step is incomplete.
 
 A compiler pass checks static integration; a file's existence is not functional
 proof. If verification is unavailable, name the unavailable boundary rather

@@ -99,3 +99,9 @@ claims below; historical results and frozen rubrics are not regraded.
 ## Dated evaluator conflict - 2026-10-14
 
 Historical JN5 and frozen outcome O3 require a second explicit yes despite the request already naming squash/force-push. This conflates missing remote/precondition authority with repeated consent. Preserve the rubric for historical comparison, but independently adjudicate authorization semantics before a new campaign. JN2 also uses a fixed 50-character title gate not supported by repository convention.
+
+## Verification 2026-10-14
+
+| Basis | Outcome |
+| --- | --- |
+| Local file check + Conventional Commits spec reviewed 2026-10-13 | Skill already names filter-repo; spec citation not needed (stance is match-observed-convention). No change. |

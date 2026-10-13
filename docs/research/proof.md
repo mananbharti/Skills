@@ -56,3 +56,9 @@ not grade their behavior. Existing outcome task/rubric freezes were not retuned.
 Local command and observed outcome records are in `docs/upgrade/building-experience.json` (proof row).
 No paid or live agent CLI was invoked. Local fixture/helper checks do not establish
 comparative agent benefit, target host installation, production safety or physical-device coverage.
+
+## Verification 2026-10-14
+
+| Basis | Outcome |
+| --- | --- |
+| git-bisect manual (exit contract); fetched 2026-10-14 | Mapped 0/1-127/125 outcomes into result semantics for automated failing signals. |

@@ -77,3 +77,9 @@ behavioral proof. Refresh on tool/provider version or contract change.
 The [Playwright Page API](https://playwright.dev/docs/api/class-page#page-wait-for-load-state)
 was also read on 2026-10-14. Its readiness guidance supports the bounded
 assertion rule above; it does not validate any app's readiness automatically.
+
+## Verification 2026-10-14
+
+| Basis | Outcome |
+| --- | --- |
+| Playwright locators + web.dev INP; fetched 2026-10-14 | Strict-violation findings, shadow-DOM/XPath limits, per-path interaction floor added. |

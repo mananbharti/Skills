@@ -100,3 +100,9 @@ claims below; historical results and frozen rubrics are not regraded.
 ## Dated evaluator conflict - 2026-10-14
 
 Historical FD2 assumes all client-injected metadata invisible. Current FD7 separates target rendering behavior. Original outcome grep/h1 checks are fixture constraints, not proof of ranking or a universal semantic rule.
+
+## Verification 2026-10-14
+
+| Basis | Outcome |
+| --- | --- |
+| Google canonical-specification docs; fetched 2026-10-14 | Added redirect/canonical/sitemap signal-strength order; Google-selected-canonical specifics unverified, not encoded. |

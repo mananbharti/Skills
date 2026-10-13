@@ -92,3 +92,9 @@ claims below; historical results and frozen rubrics are not regraded.
 | Topic | Source/version/date |
 | --- | --- |
 | LLM Context Limits | "Lost in the Middle" degradation benchmarks (2026) |
+
+## Verification 2026-10-14
+
+| Basis | Outcome |
+| --- | --- |
+| Anthropic prompt-caching docs reviewed 2026-10-13, not independently re-fetched | Cache-prefix mechanics reviewed but not encoded (provider-specific; skill is universal). No change. |

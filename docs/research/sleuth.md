@@ -99,3 +99,9 @@ claims below; historical results and frozen rubrics are not regraded.
 ## Dated evaluator conflict - 2026-10-14
 
 Historical SL1 requires two hypotheses even for conclusive deterministic evidence. The current skill requires plausible rivals, not manufactured alternatives; retain historical rubric and adjudicate this confound independently.
+
+## Verification 2026-10-14
+
+| Basis | Outcome |
+| --- | --- |
+| git-bisect manual + SEC 2013-222; fetched 2026-10-14 | Bisect exit-125/skip constraints; Knight dead-code/alerts case in environment bugs. |

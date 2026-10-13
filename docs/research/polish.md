@@ -56,3 +56,9 @@ not grade their behavior. Existing outcome task/rubric freezes were not retuned.
 Local command and observed outcome records are in `docs/upgrade/building-experience.json` (polish row).
 No paid or live agent CLI was invoked. Local fixture/helper checks do not establish
 comparative agent benefit, target host installation, production safety or physical-device coverage.
+
+## Verification 2026-10-14
+
+| Basis | Outcome |
+| --- | --- |
+| W3C WCAG 2.2 SC 2.5.8 + web.dev INP/LCP; fetched 2026-10-14 | SC 2.5.8 24px rule in audit reference; INP 200ms / LCP 2.5s at p75 in workflow; no CLS number. |

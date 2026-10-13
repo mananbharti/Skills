@@ -330,6 +330,27 @@ class ResearchAnchors(unittest.TestCase):
         self.assertNotIn("Research shows", text)
         self.assertIn("command -v gh", text)
 
+    def test_expand_contract_slices_have_owners(self):
+        protocol = self._skill("masterplan", "references", "planning-protocol.md")
+        self.assertIn("contract (removal) phase is its own owned", protocol)
+        template = self._skill("masterplan", "references", "plan-template.md")
+        self.assertIn("Coexistence:", template)
+        release = self._skill("runway", "references", "release-protocol.md")
+        self.assertIn("contract-phase evidence", release)
+
+    def test_supply_chain_provenance_and_review_demo(self):
+        harden = self._skill("harden", "SKILL.md")
+        self.assertIn("tagged source", harden)
+        protocol = self._skill("referee", "references", "review-protocol.md")
+        self.assertIn("demo/screenshot or mark", protocol)
+        self.assertIn("tarball-only payloads", protocol)
+
+    def test_canonical_signal_order_and_dead_code_cost(self):
+        seo = self._skill("findable", "references", "seo-checklist.md")
+        self.assertIn("then rel=canonical, then sitemap", seo)
+        catalog = self._skill("unslop", "references", "slop-catalog.md")
+        self.assertIn("Knight Capital", catalog)
+
 
 class PaidDefaultDeny(unittest.TestCase):
     def test_live_adapter_refuses_before_invocation_without_human_keys(self):

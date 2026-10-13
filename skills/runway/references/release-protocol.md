@@ -14,7 +14,9 @@ artifact, authorization, or migration state changes.
 
 Prefer compatible expand, deploy, backfill, contract sequencing when old and new
 versions overlap. A destructive migration needs backup/restore or approved
-forward-fix plan before release. Green build does not prove data compatibility.
+forward-fix plan before release. Require contract-phase evidence (old path
+removed, or removal scheduled with a named owner), not strategy prose alone.
+Green build does not prove data compatibility.
 
 ## Evidence boundary
 

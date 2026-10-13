@@ -66,3 +66,9 @@ Decision: Bind idempotency keys to validated operation/tenant/intent; reject mis
 Trace: `skills/backend/references/boundary-cases.md`.
 Limits: current documentation guides the mechanism, not installed-version or
 behavioral proof. Refresh on tool/provider version or contract change.
+
+## Verification 2026-10-14
+
+| Basis | Outcome |
+| --- | --- |
+| Stripe webhooks + PostgreSQL RLS + AWS Builders Library idempotency docs; in-session re-check 2026-10-13 | Existing boundary-cases guidance confirmed (replay/effect identity, 2xx-first, verify-before-parse, app-role RLS tests); no behavior change. |

@@ -56,3 +56,9 @@ not grade their behavior. Existing outcome task/rubric freezes were not retuned.
 Local command and observed outcome records are in `docs/upgrade/building-experience.json` (ditto row).
 No paid or live agent CLI was invoked. Local fixture/helper checks do not establish
 comparative agent benefit, target host installation, production safety or physical-device coverage.
+
+## Verification 2026-10-14
+
+| Basis | Outcome |
+| --- | --- |
+| Playwright locators docs; fetched 2026-10-14 | Added semantics fidelity row, shadow-DOM/XPath limits; legal line downgraded to unconfirmed risk (no legal source). |

@@ -118,3 +118,9 @@ release claims rather than padding the bibliography.
 - Cases: `evals/workflow/scenarios/hotseat.md` now has at least ten distinct setup/task/assertion/rubric cases. Synthetic cases require materialization; authored ≠ executed.
 - Deterministic checks validate format/names/resource paths, not domain decision quality. No live comparison or agent CLI was invoked for this skill.
 - New behavior status: **UNVERIFIED** until independent task execution produces retained evidence. Token/spend/latency change: **UNKNOWN**; no measured savings or uplift asserted.
+
+## Verification 2026-10-14
+
+| Basis | Outcome |
+| --- | --- |
+| HBR premortem source checked for attribution only; horizon is own-text design choice | Fixed 18-month horizon labeled as adjustable default; facilitation wording beyond that unverified. |

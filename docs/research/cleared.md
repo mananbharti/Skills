@@ -92,3 +92,9 @@ claims below; historical results and frozen rubrics are not regraded.
 | Topic | Source/version/date |
 | --- | --- |
 | Agent deployment criteria | Evidence-backed deployment pipelines (2026) |
+
+## Verification 2026-10-14
+
+| Basis | Outcome |
+| --- | --- |
+| SEC 2013-222 (Knight Capital findings); fetched 2026-10-14 | Added deploy-controls and incident-response gate rows; see `skills/cleared/references/gate-dimensions.md`. |

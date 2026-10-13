@@ -129,3 +129,9 @@ Independent review found the browser capability probe hardcoded about:blank desp
 This resolves an observed instruction conflict; it does not establish lift or
 change historical grades. The fresh review and forward-trial records remain
 separate evidence.
+
+## Verification 2026-10-14
+
+| Basis | Outcome |
+| --- | --- |
+| Local analysis + prior ledger; no new external source | Softened unsourced handoff-degradation claim to mechanism; gated gh probe on `command -v gh`. |

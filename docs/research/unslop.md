@@ -106,3 +106,9 @@ Independent review found mandatory per-batch commits and universal green/browser
 This is an observed contract contradiction and correction, not a comparative
 result. New forward trials have separate retained evidence and do not regrade
 historical task outputs.
+
+## Verification 2026-10-14
+
+| Basis | Outcome |
+| --- | --- |
+| SEC 2013-222 (dead router function, loss scale); fetched 2026-10-14 | Knight cited as dead-code cost case; seam-concept enrichment deferred (source not fetched). |

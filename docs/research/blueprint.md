@@ -59,3 +59,9 @@ comparative agent benefit, target host installation, production safety or physic
 
 Source access limitation: `https://c4model.com/diagrams/review` returned an internal error.
 No new claim depends on that inaccessible page. The template remains network-dependent.
+
+## Verification 2026-10-14
+
+| Basis | Outcome |
+| --- | --- |
+| Mermaid usage docs + C4 model + GitHub diagram docs; in-session re-check 2026-10-13 | Existing strict-renderer/offline-source/trust-edge guidance confirmed; no behavior change. |

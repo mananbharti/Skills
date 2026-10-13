@@ -60,3 +60,9 @@ comparative agent benefit, target host installation, production safety or physic
 
 Source access limitation: AWS queue-backlog URL redirected to a page with no extracted body.
 It was not used to substantiate new arithmetic or timing claims.
+
+## Verification 2026-10-14
+
+| Basis | Outcome |
+| --- | --- |
+| k6 open/closed-model + HPA algorithm docs; in-session re-check 2026-10-13 | Existing workload/trigger/reversibility guidance confirmed; no behavior change. |

@@ -106,3 +106,9 @@ release claims rather than padding the bibliography.
 - Cases: `evals/workflow/scenarios/scout.md` now has at least ten distinct setup/task/assertion/rubric cases. Synthetic cases require materialization; authored ≠ executed.
 - Executed checker: well-formed local evidence note passes; unsupported fact note fails. This verifies structure discrimination, not citation truth.
 - New behavior status: **UNVERIFIED** until independent task execution produces retained evidence. Token/spend/latency change: **UNKNOWN**; no measured savings or uplift asserted.
+
+## Verification 2026-10-14
+
+| Basis | Outcome |
+| --- | --- |
+| Local analysis vs versioned-docs hierarchy | Source ladder and no-source-no-claim rules confirmed; no new external evidence; no change. |

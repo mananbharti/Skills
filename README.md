@@ -258,6 +258,13 @@ when relevant instead of quietly returning later.
 
 Browse the [research provenance index](docs/research/README.md).
 
+Verified sources behind current decisions include WCAG 2.2, Core Web
+Vitals thresholds, EARS requirement syntax, the Knight Capital SEC
+findings, Playwright locator semantics, the git-bisect exit contract,
+Fowler's expand/migrate/contract pattern, and Google's code-review
+guidance. Each ledger records what was confirmed, what changed runtime
+behavior, and what was deliberately left unencoded.
+
 ## Trust and safety
 
 These skills can guide agents that edit code, run commands, browse external
@@ -278,7 +285,9 @@ inspectable, but this bundle is not a security guarantee. See
 
 All 28 packages are present. The [release report](docs/release-readiness.md)
 distinguishes structural checks, independent review, observed demonstrations
-and unverified live comparisons. No benchmark superiority is claimed here.
+and unverified live comparisons. The [follow-up implementation
+record](docs/upgrade/followup-implementation.md) tracks later repairs on the
+current branch. No benchmark superiority is claimed here.
 
 ## Contributing
 

@@ -113,3 +113,9 @@ Independent review found completion-gate.md still required full-suite/build chec
 This is an observed contract contradiction and correction, not a comparative
 result. New forward trials have separate retained evidence and do not regrade
 historical task outputs.
+
+## Verification 2026-10-14
+
+| Basis | Outcome |
+| --- | --- |
+| Anthropic long-running-harness guidance; in-session re-check 2026-10-13 | Slice loop, decision log, completion gate, denial-safe config confirmed; no behavior change. |

@@ -34,6 +34,8 @@ HTML fixture can validate metadata, not Google indexing or rich-result delivery.
   respected.
 - Duplicate content: parameter URLs (utm, sort, page) canonicalized;
   trailing-slash/case variants resolve to one canonical when equivalent.
+  Signal strength runs redirects, then rel=canonical, then sitemap (weak):
+  when tag and sitemap disagree, the stronger signal wins the finding.
   Pagination pages with different items are not automatically equivalent.
   Canonical is a consolidation signal; it is not an access control or noindex.
 - Avoid unnecessary redirect chains; no soft-404s (successful status with

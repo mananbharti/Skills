@@ -113,3 +113,9 @@ Independent review found the quality gate contradicted its own irreversible-slic
 This is an observed contract contradiction and correction, not a comparative
 result. New forward trials have separate retained evidence and do not regrade
 historical task outputs.
+
+## Verification 2026-10-14
+
+| Basis | Outcome |
+| --- | --- |
+| Fowler ParallelChange (expand/migrate/contract); fetched 2026-10-14 | Contract phase is now an owned slice; coexistence control added to slice contracts. |
