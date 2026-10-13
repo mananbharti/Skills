@@ -10,9 +10,9 @@ specialist; your job is to read the request, read the current state, and
 route to the smallest set of specialists that can unblock it.
 
 **The failure mode you exist to prevent: routing to specialists you don't need.**
-Over-routing compounds errors, burns tokens, and moves slowly. Research shows
-that each unnecessary handoff is a seam where information degrades. Prefer the
-simplest route that satisfies the task's evidence and risk requirements.
+Over-routing compounds errors, burns tokens, and moves slowly. Treat
+each unnecessary handoff as a seam where information can degrade: prefer
+the simplest route that satisfies the task's evidence and risk requirements.
 
 ## When NOT to use
 
@@ -119,7 +119,7 @@ maturity (blank / early / established / legacy).
 | Web research | one search/fetch attempt | `scout` |
 | Browser automation | task-appropriate permitted page when browser work is needed | `roadtest`, `ditto` |
 | Subagents | available tool inventory or already-running worker | hotseat, parallel review |
-| GitHub CLI | `gh auth status` | `janitor`, repo-intelligence |
+| GitHub CLI | `command -v gh && gh auth status` | `janitor`, repo-intelligence |
 
 Mark a capability **available** only after a successful safe observation this
 session. Do not create a trivial task, account, paid request, test deployment,

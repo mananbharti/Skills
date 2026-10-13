@@ -77,11 +77,13 @@ incomplete, and **unverified** when no measurement ran.
 
 ### 1. Define the target
 
-What's slow, for whom, and what would "fast enough" mean: a number and a
-condition ("p95 checkout API < 400ms", "dashboard LCP < 2.5s", "test
-suite < 3min"). No target → set one from the user's complaint, stated as
-an assumption. Optimizing without a target is how you get 30% faster
-things nobody cared about.
+What's slow, for whom, and what would "fast enough" mean: a number with
+its percentile and device/network class ("p95 checkout API < 400ms on
+4G", "dashboard LCP < 2.5s at p75 desktop", "test suite < 3min"). Web
+thresholds: good LCP is 2.5s or less, good INP is 200ms or less, both at
+the 75th percentile segmented mobile/desktop. No target → set one from
+the user's complaint, stated as an assumption. Optimizing without a
+target is how you get 30% faster things nobody cared about.
 
 ### 2. Baseline under fixed conditions
 
@@ -138,7 +140,7 @@ Classify the bottleneck before selecting a remedy:
 | Query count or actual plan dominates | data access | inspect query shape, rows, index/selectivity, transaction scope |
 | Allocation/GC or heap growth dominates | memory pressure/retention | locate owners/retainers and reduce lifetime/allocation |
 | Queue age rises while consumers saturate | asynchronous capacity | bound producer/retry work and route scale decision to headroom |
-| Interaction trace has long task | main-thread responsiveness | split/defer noncritical work and measure actual interaction |
+| Interaction trace has long task | main-thread responsiveness | attribute the phase first (input delay vs handler duration vs presentation delay; only click/tap/keypress count toward INP), then split/defer noncritical work and measure actual interaction |
 
 Do not choose an index, cache, parallelism, memoization, or a new service from
 the symptom name alone. Each has a correctness and operational cost that must
@@ -230,7 +232,7 @@ unless it is an approved operational mitigation.
 ## Output contract
 
 ```text
-target:    dashboard LCP < 2.5s (assumption from "feels slow", confirmed)
+target:    dashboard LCP < 2.5s at p75 desktop (assumption from "feels slow", confirmed)
 baseline:  4.8s  (local, throttled 4G profile, 50k-row user, 3 runs median)
 changes:
   1. killed N+1 on orders list (eager-load)   4.8s → 2.9s   ✅ kept

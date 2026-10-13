@@ -115,8 +115,7 @@ merely to appear cautious.
 
 - **approve**: nothing above minor;
 - **approve with findings**: only findings explicitly safe to fix forward;
-- **request changes**: any major that should not merge as-is, even without a blocker;
-- **request changes**: any blocker.
+- **request changes**: any major that should not merge as-is, or any blocker.
 
 Nits never affect the verdict. State which mode ran, the diff scope
 covered, and anything explicitly not reviewed ("docs/" skipped).

@@ -151,6 +151,8 @@ it. Stop when another exchange would repeat positions rather than add evidence.
 
 1. Announce: "It is now 18 months in the future and this product has failed.
    The failure was real and significant. Your job is to explain why."
+   (18 months is a default horizon, not a method requirement: move it to
+   the decision's real horizon when that is known.)
 2. Each persona generates, *in silence and independently*, 3–5 specific
    failure causes using past tense ("users could not explain the value before the paid signup step").
    Treat these as hypothetical causes, never measured outcomes.

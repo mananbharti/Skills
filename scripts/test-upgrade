@@ -258,6 +258,79 @@ class TriggerDiscipline(unittest.TestCase):
         self.assertIn("screenshots", ditto)
 
 
+class ResearchAnchors(unittest.TestCase):
+    # Primary-source encodes from the 2026-10-14 verification pass.
+    # Each asserts the anchor that carries the sourced decision; sources:
+    # W3C WCAG 2.2 (2.5.8, 3.3.8+F109), web.dev INP/LCP, EARS (Mavin),
+    # SEC 2013-222 (Knight), Playwright locators, git-bisect manual.
+    def _skill(self, *parts):
+        return (ROOT / "skills" / Path(*parts)).read_text(encoding="utf-8")
+
+    def test_distill_ears_where_and_if_then(self):
+        text = self._skill("distill", "SKILL.md")
+        self.assertIn("Where <feature is included>", text)
+        self.assertIn("If <failure>, then the system shall", text)
+
+    def test_referee_single_verdict_ladder(self):
+        text = self._skill("referee", "SKILL.md")
+        self.assertEqual(text.count("- **request changes**:"), 1)
+
+    def test_hotseat_horizon_is_labeled_default(self):
+        text = self._skill("hotseat", "SKILL.md")
+        self.assertIn("default horizon", text)
+
+    def test_ditto_semantics_and_legal_caution(self):
+        text = self._skill("ditto", "SKILL.md")
+        self.assertIn("**semantics**", text)
+        self.assertIn("unconfirmed legal risk", text)
+        self.assertIn("shadow", text)
+
+    def test_polish_thresholds_and_target_size(self):
+        skill = self._skill("polish", "SKILL.md")
+        self.assertIn("200ms", skill)
+        self.assertIn("2.5s", skill)
+        self.assertIn("75th percentile", skill)
+        self.assertNotRegex(skill, r"CLS\s*[<≤]\s*[\d.]+")
+        audit = self._skill("polish", "references", "audit.md")
+        flat = re.sub(r"\s+", " ", audit)
+        self.assertIn("24 by 24", flat)
+        self.assertIn("2.5.8", audit)
+
+    def test_friction_paste_blocking_is_blocker(self):
+        text = self._skill("friction", "references", "usability-checklist.md")
+        self.assertIn("F109", text)
+        self.assertIn("blocker", text)
+
+    def test_hotpath_percentile_targets_and_phases(self):
+        text = self._skill("hotpath", "SKILL.md")
+        self.assertIn("percentile and device", text)
+        self.assertIn("presentation delay", text)
+
+    def test_roadtest_strictness_and_interaction_floor(self):
+        text = self._skill("roadtest", "SKILL.md")
+        self.assertIn("Strict mode", text)
+        self.assertIn("shadow", text)
+        self.assertIn("Interaction floor", text)
+
+    def test_proof_and_sleuth_bisect_contract(self):
+        self.assertIn("125", self._skill("proof", "references", "result-semantics.md"))
+        techniques = self._skill("sleuth", "references", "techniques.md")
+        self.assertIn("125", techniques)
+        self.assertIn("Knight Capital", techniques)
+
+    def test_handsfree_alert_stop_and_cleared_rows(self):
+        policy = self._skill("handsfree", "references", "decision-policy.md")
+        self.assertIn("unacknowledged automated alert", policy)
+        dims = self._skill("cleared", "references", "gate-dimensions.md")
+        self.assertIn("Deploy controls", dims)
+        self.assertIn("Incident response", dims)
+
+    def test_concierge_no_unsourced_claim_and_guarded_probe(self):
+        text = self._skill("concierge", "SKILL.md")
+        self.assertNotIn("Research shows", text)
+        self.assertIn("command -v gh", text)
+
+
 class PaidDefaultDeny(unittest.TestCase):
     def test_live_adapter_refuses_before_invocation_without_human_keys(self):
         # Remove any inherited authorization; never manufacture either key.

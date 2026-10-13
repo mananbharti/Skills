@@ -51,12 +51,13 @@ it as a deliberately unresolved decision with a safe discovery step.
 
 Write observable requirements as behavior under conditions:
 
-| Situation | Requirement form |
+| Situation | Requirement form (EARS: While, optional; When, optional; system; shall) |
 | --- | --- |
 | Ubiquitous behavior | The system shall <response> |
 | Triggered behavior | When <trigger>, the system shall <response> |
 | Conditional behavior | While <condition>, the system shall <response> |
-| Failure/exception | If <failure>, the system shall <safe response> |
+| Optional-feature behavior | Where <feature is included>, the system shall <response> |
+| Failure/exception | If <failure>, then the system shall <safe response> |
 | Prohibition/invariant | The system shall not <forbidden outcome> |
 
 The form is a tool, not a ritual. Pair each material requirement with an

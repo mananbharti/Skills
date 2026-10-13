@@ -24,6 +24,8 @@ failure does to the verdict.
 | SEO | public web | rendered-HTML metadata verified (`findable`) | warning |
 | Performance | budgets set or public web | CWV/benchmarks with numbers | warning (missed stated budget = blocked if it was the requirement) |
 | Deployment config | before `runway` | platform config present + valid (`vercel.json`, `Dockerfile`, …) | **BLOCKED** if absent/broken |
+| Deploy controls | production deploy imminent | deploy path tested, deployer authorized, pre-deploy checks named | **BLOCKED** if the production deploy path is untested |
+| Incident response | operating production service | response procedure + alert/escalation path named and owned | warning (BLOCKED if production operates with no response path at all) |
 
 ## Verdict arithmetic
 

@@ -169,8 +169,10 @@ brief you'll verify against.
 - Keyboard pass: focus visible on every interactive element, tab order
   sane.
 - For web: check current Core Web Vitals (LCP, INP, CLS) where
-  measurable: large unoptimized hero images and layout shift are design
-  bugs too.
+  measurable: good is LCP 2.5s or less and INP 200ms or less, both at the
+  75th percentile segmented mobile/desktop. Lab INP without real
+  interactions is not evidence, and INP ignores scroll/hover/zoom. Large
+  unoptimized hero images and layout shift are design bugs too.
 - Then hand off: `friction` for usability, `roadtest`
   for browser-flow evidence.
 

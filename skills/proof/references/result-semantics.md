@@ -16,8 +16,11 @@ checking the repository's installed version. Do not silently convert an unknown
 race or regression into xfail, skip, or retry-until-green.
 
 For regression tests, retain expected assertion failure on the broken revision
-and pass on the fix. A syntax/import/setup error is not that failure. Mutation
-probes belong in an isolated copy or controlled worktree; restore them before
+and pass on the fix. A syntax/import/setup error is not that failure. When a
+failing signal feeds automation (`git bisect run` or equivalent), map
+outcomes to the bisect contract: exit 0 means good, 1-127 except 125
+means bad, 125 means untestable (revision skipped), anything else aborts.
+Mutation probes belong in an isolated copy or controlled worktree; restore them before
 running the final suite and preserve unrelated user changes. A mutation that
 survives means that probe did not establish sensitivity; inspect the oracle,
 reachable path or equivalent mutation before making a correctness claim.
