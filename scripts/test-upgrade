@@ -2,6 +2,7 @@
 """Focused evaluation integrity regressions; local fake agents only."""
 import json
 import os
+import re
 import runpy
 import subprocess
 import sys
@@ -228,6 +229,33 @@ class MixedValidityFloors(unittest.TestCase):
         text = (ROOT / "skills/referee/SKILL.md").read_text(encoding="utf-8")
         self.assertIn("Override rule", text)
         self.assertIn("override:", text)
+
+
+class TriggerDiscipline(unittest.TestCase):
+    # Word ownership in always-on descriptions: "review" belongs to
+    # referee (pilot inspects per-slice diffs, backend inspects server
+    # behavior); reference-recreation pointers belong to ditto. Guards
+    # the false-trigger audit's two genuine findings.
+    def _description(self, slug):
+        text = (ROOT / "skills" / slug / "SKILL.md").read_text(encoding="utf-8")
+        match = re.search(r"^description:\s*(.*)$", text, re.M)
+        self.assertIsNotNone(match, slug)
+        return match.group(1)
+
+    def test_review_belongs_to_referee(self):
+        pilot = self._description("pilot")
+        self.assertNotIn("diff review", pilot)
+        self.assertIn("referee", pilot)
+        backend = self._description("backend")
+        self.assertNotIn("review", backend)
+        referee = self._description("referee")
+        self.assertIn("diffs", referee)
+
+    def test_reference_recreation_points_to_ditto(self):
+        polish = self._description("polish")
+        self.assertIn("ditto", polish)
+        ditto = self._description("ditto")
+        self.assertIn("screenshots", ditto)
 
 
 class PaidDefaultDeny(unittest.TestCase):

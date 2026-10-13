@@ -1,6 +1,6 @@
 ---
 name: backend
-description: Design, change, debug, or review server-side behavior when an API, database, authentication or authorization path, background job, webhook, external dependency, migration, cache, concurrency invariant, or production reliability concern is in scope. Use this skill for backend work in any stack; inspect the repository before choosing framework-specific patterns.
+description: Design, change, debug, or inspect server-side behavior when an API, database, authentication or authorization path, background job, webhook, external dependency, migration, cache, concurrency invariant, or production reliability concern is in scope. Use this skill for backend work in any stack; inspect the repository before choosing framework-specific patterns.
 ---
 
 # backend: server-side engineering without framework cosplay

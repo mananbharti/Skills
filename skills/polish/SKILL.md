@@ -1,6 +1,6 @@
 ---
 name: polish
-description: Refines a product interface while preserving its visual language, improving hierarchy, typography, spacing, density, states, responsiveness, keyboard use, focus, motion, and accessibility. Use when the user asks to make an existing web or app interface look intentional and professional.
+description: Refines a product interface while preserving its visual language, improving hierarchy, typography, spacing, density, states, responsiveness, keyboard use, focus, motion, and accessibility. Use when the user asks to make an existing web or app interface look intentional and professional. To recreate a reference screenshot, URL, or design export instead, use `ditto`.
 ---
 
 # polish: make AI interfaces stop looking AI-generated

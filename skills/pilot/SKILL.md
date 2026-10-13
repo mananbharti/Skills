@@ -1,6 +1,6 @@
 ---
 name: pilot
-description: Implements an approved plan one coherent slice at a time with fresh inspection, risk-appropriate verification, diff review, and clean handoff state. Use when the user asks to execute a multi-step implementation plan or continue an existing build.
+description: Implements an approved plan one coherent slice at a time with fresh inspection, risk-appropriate verification, per-slice diff inspection, and clean handoff state. Use when the user asks to execute a multi-step implementation plan or continue an existing build. Not a standalone change reviewer; use `referee` for that.
 ---
 
 # pilot: fly the plan
