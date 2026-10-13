@@ -149,3 +149,24 @@ raw captures, and executes an explicit whole-change source/docs check excluding
 only those raw formats. [Discovery](upgrade/evidence/staged-whitespace-discovery.json)
 and [scoped source check](upgrade/evidence/source-diff-check.json) record both.
 No raw test outcome or review receipt was rewritten to manufacture a pass.
+
+## Clean committed checkout and Git record
+
+A new local clone of committed candidate
+`c86c38e3c5b87627074a467e000030f23ef942b8` passed the required validators,
+45 existing regressions, 12 upgrade regressions, fixture checks, 28 standalone
+package copies, demo replays, offline/game models and regenerated-index check.
+The clone remained clean. [Exact clean-checkout receipt](upgrade/evidence/clean-checkout.json).
+This is local execution evidence, not a remote GitHub Actions run.
+
+Implementation commits on `codex/deep-skills-v2`:
+
+- `190ca7a`: evaluation identity, on-demand context and package/trigger checks.
+- `9a03932`: intelligence workflow corrections and individual cases.
+- `8164472`: backend, architecture, UX and verification boundaries.
+- `274f6d2`: safety, cleanup and release evidence contracts.
+- `b66defd`: retained task/review evidence, CI, ownership and readiness docs.
+- `c86c38e`: CSV newline correction and explicit raw-capture whitespace scope.
+
+A final evidence-only commit saves the clean-checkout receipt. No PR, push,
+external post, deployment or release was created.
