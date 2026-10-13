@@ -107,6 +107,10 @@ def load_scenarios():
     covered = {item["skill"] for item in scenarios}
     for skill in sorted(known - covered):
         errors.append(f"{skill}: no workflow scenarios")
+    for skill in sorted(covered):
+        count = sum(item["skill"] == skill for item in scenarios)
+        if count < 10:
+            errors.append(f"{skill}: only {count} workflow cases; upgrade contract requires at least 10")
     return scenarios, errors
 
 

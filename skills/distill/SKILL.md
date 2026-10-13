@@ -11,9 +11,10 @@ fact it needs is on the page, and nothing on the page is filler.
 
 ## When NOT to use
 
-- The idea hasn't survived critique yet → `hotseat` first.
-- The request is already precise (goal, scope, and definition of done are
-  unambiguous) → skip straight to planning.
+- The user asks whether to pursue an idea or choose between products →
+  `hotseat`. An uncritiqued idea alone does not require debate.
+- The request is already precise → the current owner can execute it; use
+  `masterplan` only when complexity warrants planning.
 - The task is a small mechanical fix ("rename this variable") → just do it.
 
 ## Prerequisites
@@ -50,12 +51,13 @@ it as a deliberately unresolved decision with a safe discovery step.
 
 Write observable requirements as behavior under conditions:
 
-| Situation | Requirement form |
+| Situation | Requirement form (EARS: While, optional; When, optional; system; shall) |
 | --- | --- |
 | Ubiquitous behavior | The system shall <response> |
 | Triggered behavior | When <trigger>, the system shall <response> |
 | Conditional behavior | While <condition>, the system shall <response> |
-| Failure/exception | If <failure>, the system shall <safe response> |
+| Optional-feature behavior | Where <feature is included>, the system shall <response> |
+| Failure/exception | If <failure>, then the system shall <safe response> |
 | Prohibition/invariant | The system shall not <forbidden outcome> |
 
 The form is a tool, not a ritual. Pair each material requirement with an
@@ -67,7 +69,7 @@ and "production-ready" are labels until their observable condition is named.
 
 | Request type | Brief shape |
 | --- | --- |
-| **tiny task** (button rename, copy fix) | goal + acceptance criterion + where: 5–10 lines, no template ceremony |
+| **tiny task** (button rename, copy fix) | goal + acceptance criterion + where + one-line Non-goals + one numbered assumption (A1:): 7-12 lines, no other ceremony |
 | **feature** | full template below |
 | **large feature / migration** | full template + NFRs, rollout constraints, backward-compatibility and data-migration notes |
 | **bug/change request** | reproduction facts + expected behavior + scope guard (what NOT to fix along the way) |
@@ -132,8 +134,10 @@ example). Core sections:
 
 ### 5. One-pass confirmation
 
-Show the brief. Ask for corrections once, integrate, done. Don't loop on
-polish: downstream skills (`masterplan`) will surface anything structural.
+Show the brief with unresolved decisions distinguished from safe assumptions.
+If the user authorized implementation and no material decision remains, proceed
+within that scope; a brief is not a new approval gate. If the user requested
+only requirements, deliver them and stop. Ask only for a load-bearing answer.
 
 ### 6. Run the implementation-readiness review
 
@@ -194,11 +198,20 @@ polished prose.
 - The verification section names real commands/checks (that exist in this
   repo or are standard).
 - Assumptions are numbered and falsifiable ("A1: single-user, no roles").
+- Marker floor (applies at every scale, including compact briefs): the
+  brief contains a literal `Non-goals` line and at least one numbered
+  assumption (`A1:`), even if each is a single line. A brief without
+  these markers is incomplete, not concise.
+- Auth-bites rule: when the request touches login, identity, per-user
+  data, sessions, tokens, passwords, or money, the brief names that
+  surface explicitly (one line suffices, e.g. under Scope or NFRs).
+  Omitting it because the brief is short is a miss, not brevity.
 
 ## Stop conditions
 
-- User confirms the brief → hand off to `masterplan` (or implement
-  directly if the task is small), then stop.
+- Brief removes blocking ambiguity → deliver for a requirements-only request;
+  otherwise continue the already-authorized next action. Use `masterplan` only
+  when the implementation needs it.
 - The request reveals an unsettled product decision → stop and route back
   to `hotseat` for that decision.
 

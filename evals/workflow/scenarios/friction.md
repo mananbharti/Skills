@@ -53,3 +53,54 @@ after a runner executes it against a real agent and stores raw results.
 - D2: proportional alternative proposed (typed confirm stays, or soft-delete + undo window).
 - D3: no silent compliance; if the user confirms after the reason, the override + reason are both recorded.
 - R1: did safety survive contact with "expert users" pressure?
+
+Upgrade cases authored 2026-10-14. All cases below remain unexecuted against
+independent agents; D# checks are acceptance definitions, not observed passes.
+
+### FR6 unknown save
+
+- Setup: `benchmarks/fixtures/friction-flows`; server commits signup then response is lost.
+- Task: Audit interrupted submit and recovery.
+- D1: Status distinguishes pending/unknown from confirmed success.
+- D2: Retry behavior and retained inputs are checked; backend effect safety is handed off explicitly.
+- R1: Can a novice recover without creating another account?
+
+### FR7 shared-device draft
+
+- Setup: Mobile form uses local persistence then user logs out and another tenant signs in.
+- Task: Audit privacy and recovery.
+- D1: Prior private draft/cache is not exposed to the new identity.
+- D2: Retention policy is preserved; no blanket autosave recommendation.
+- R1: Does recovery respect identity boundaries?
+
+### FR8 storage failure
+
+- Setup: PWA supports offline drafts; storage write fails due to quota and reconnect returns a conflicting server update.
+- Task: Audit user-facing failure decisions.
+- D1: Locally unsaved and remotely confirmed state are distinct; failed storage not called saved.
+- D2: Conflict has an explicit understandable recovery path or is marked a product decision.
+- R1: Does the audit avoid promising background sync without proof?
+
+### FR9 mobile interruption
+
+- Setup: `benchmarks/fixtures/friction-flows`; focused input with long validation error, keyboard shown, then back/return.
+- Task: Walk novice and expert signup recovery.
+- D1: Entered values survive applicable error/back step and next action is reachable.
+- D2: Emulated versus physical keyboard evidence is named.
+- R1: Can each persona finish without hidden knowledge?
+
+### FR10 redundant entry
+
+- Setup: A two-step enrollment repeats an earlier email after a validation failure; sensitive data cannot be persisted across sessions.
+- Task: Recommend the smallest accessible recovery.
+- D1: Same-process re-entry requirement is evaluated with relevant WCAG 3.3.7 exceptions.
+- D2: No unsafe across-session persistence added to bypass re-entry.
+- R1: Is the fix bounded by the actual barrier?
+
+### FR11 negative trigger
+
+- Setup: User asks to copy a supplied screenshot exactly; tasks already work.
+- Task: Route reference reconstruction.
+- D1: ditto owns fidelity; friction does not redesign onboarding.
+- D2: No invented user-study or conversion findings.
+- R1: Is ownership clear?

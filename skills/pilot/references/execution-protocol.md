@@ -31,3 +31,20 @@ or needs replan. A checkbox is evidence-backed state, not intent.
 State active slice, changed paths, checks and results, dirty-tree overlap,
 recovery path, unresolved risk, and next safe action. Never claim completion
 from partial implementation.
+
+## Secret denial and exact completion evidence
+
+Configuration inspection begins with names in source or `.env.example`, never
+a blanket `.env` read. When the host denies a read, stop that read branch. Use
+permitted names-only artifacts when enough, continue independent implementation,
+and report the limitation. Do not retry the protected file through another tool.
+
+Before marking a slice done, record changed behavior, current diff scope,
+command/observation, exit/result, and which criterion it proves. Distinguish
+`implemented`, `verified`, `blocked`, and `unverified`; a plan checkbox or an
+existing file is not runtime evidence. Report verification in chat even when
+a durable decision log exists, without manufacturing green for absent tooling.
+
+On resume, compare the active slice record to actual diff/tree and relevant
+commands. Do not redo completed work or reuse results from another candidate.
+A flaky check gets a bounded diagnostic; rerunning until green is not proof.

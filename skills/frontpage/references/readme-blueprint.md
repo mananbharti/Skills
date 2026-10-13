@@ -12,9 +12,9 @@ reader value.
 3. **One command to try it**: the copy-paste that gets a working
    example running. If there's no such command yet, the honest v0 says
    what's coming instead of faking it.
-4. **The visual**: a screenshot/GIF of the real thing (current build,
-   not the 2024 mock), or the skill-map diagram for a bundle. A README
-   without a single visual is a wall.
+4. **A useful visual, if warranted**: a screenshot/GIF of the current build,
+   or a skill-map diagram for a bundle. A tiny CLI can use a concise input/output
+   example instead; do not manufacture a visual requirement.
 
 ## The menu
 

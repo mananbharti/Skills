@@ -1,0 +1,10 @@
+{
+  "command": [
+    "scripts/validate-skills"
+  ],
+  "cwd": "/Users/uday/Skills",
+  "time_utc": "2026-10-13T19:40:14.236148+00:00",
+  "exit_code": 0,
+  "stdout": "INFO: skills-ref unavailable; local strict validation completed\nOK: 28 frontmatter blocks are strict and spec-shaped\nOK: 28 self-contained skills satisfy the repository contract\n",
+  "stderr": ""
+}

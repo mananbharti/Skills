@@ -1,0 +1,14 @@
+{
+  "command": [
+    "python3",
+    "-m",
+    "unittest",
+    "-v",
+    "test_notes"
+  ],
+  "cwd": "/private/tmp/skills-forward/harden",
+  "time_utc": "2026-10-13T19:35:23.298730+00:00",
+  "exit_code": 0,
+  "stdout": "",
+  "stderr": "test_configuration (test_notes.Boundary.test_configuration) ... ok\ntest_delete_injection (test_notes.Boundary.test_delete_injection) ... ok\ntest_delete_scope (test_notes.Boundary.test_delete_scope) ... ok\ntest_injection (test_notes.Boundary.test_injection) ... ok\ntest_owner_reads (test_notes.Boundary.test_owner_reads) ... ok\n\n----------------------------------------------------------------------\nRan 5 tests in 0.000s\n\nOK\n"
+}

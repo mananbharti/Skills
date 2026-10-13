@@ -19,7 +19,8 @@
 ## Slices
 ### Slice 1: <name>  (depends on:, )
 - Action: <verb-led specific instructions, e.g., 'Create file at...', 'Add endpoint...'>
-- Files: <real paths, verified>
+- Files: <existing/read | proposed/new | to-discover; parent checked for new paths>
+- Coexistence: <where old and new behavior overlap: flag, dual-support window, or owner of the cutover>
 - Validation Criteria: <measurable output for verification, e.g., 'unit tests pass', 'JSON response matches schema'>
 - Rollback: <how to undo>
 

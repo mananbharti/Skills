@@ -1,0 +1,2 @@
+Choose Now/Next/Scale and first useful measurement from supplied assumed workloads, including recovery model; no invented traffic, prices or capacity.
+Constraints: safe local owned workspace only; do not modify source fixture/skill, use paid agents, publish, deploy, or mutate real services. Exploratory observation only, no controlled comparative proof.

@@ -1,0 +1,6 @@
+$ ['python3', '-c', 'import billing; print({"default":billing.total([{"price":100,"qty":1}]),"cap_5_percent":billing.total([{"price":100,"qty":1}],0.05),"negative_cap":billing.total([{"price":100,"qty":1}],-0.10)})']
+exit: 0
+stdout:
+{'default': 90.0, 'cap_5_percent': 95.0, 'negative_cap': 110.0}
+
+stderr:

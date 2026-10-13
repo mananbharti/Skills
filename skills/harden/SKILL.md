@@ -63,7 +63,7 @@ second breach.
 | Focused review | one PR, endpoint, integration, or component changed | changed-path findings and applicable tests |
 | Identity review | authentication, session, authorization, role, tenant, or admin path changes | identity/access matrix and negative tests |
 | API review | a public/internal API or webhook is exposed | contract, object/property/function access, resource, and upstream-data review |
-| Supply-chain review | dependencies, build, CI/CD, artifacts, or IaC change | reachable-risk and provenance/configuration findings |
+| Supply-chain review | dependencies, build, CI/CD, artifacts, or IaC change | reachable-risk and provenance/configuration findings; compare release artifacts against tagged source, since lockfile/diff review alone misses tarball-only payloads |
 | Agentic-system review | model output can call tools, access data, or persist memory | tool/identity/data-flow model and autonomy controls |
 | Pre-release assessment | a release needs security evidence | scoped report, remediation status, residual risk, and release blockers |
 

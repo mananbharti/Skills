@@ -1,0 +1,14 @@
+--- a/shop.py
++++ b/shop.py
+@@ -1,9 +1,8 @@
+ """Order totaling. Stdlib only."""
+ from utils import format_price
+ 
+-
+-def _format_price(cents):
+-    return f"${cents / 100:.2f}"
++# Preserve the existing private symbol while sharing the identical formatter.
++_format_price = format_price
+ 
+ 
+ def _old_compute(lines):

@@ -1,3 +1,76 @@
+# referee - current failure-first research pass
+
+Reviewed 2026-10-14 against commit 66668739d4e3b99aab30bdea9594ca6361072c84.
+
+Ownership: actionable independent diff review; harden owns deep security, proof owns test strategy.
+
+Observed baseline instruction defect: Major findings defined as should-not-merge yet verdict allowed majors forward; simpler alternative automatically major; missing criteria stopped all review.
+
+Changed judgment: Require changes for merge-blocking majors; factual cost before complexity severity; recover intent while continuing bounded correctness review; recovery need not be down migration.
+
+## Source-to-decision trace
+
+| Source | Organization / version / date | Access | Proposition and exact artifact | Rejected alternative / limit | Refresh |
+| --- | --- | --- | --- | --- | --- |
+| [What to look for in a code review](https://google.github.io/eng-practices/review/reviewer/looking-for.html) | Google; current engineering practices; living; date not established | fetched 2026-10-14 | Functionality, tests and context matter; personal style preferences do not block. Decision encoded in `skills/referee/SKILL.md` (prerequisites/verdict) and `skills/referee/references/finding-format.md` (severity/recovery). | No general guarantee or behavioral lift inferred. | source revision, target version, or affected boundary changes |
+
+Each source was opened individually through web access. Dates not shown by a
+source are explicitly unknown; retrieval date is not publication date. The
+self-contained package retains full source records in its research reference.
+
+## Failure situation register
+
+O = observed instruction defect in this checkout; R = locally reproducible
+seeded fixture; S = mechanism described by named primary source; H = original
+local evaluation hypothesis, not a reported incident or measured prevalence.
+Unmarked rows below are H. These are distinct candidate situations, not fifteen
+observed incidents. Replication and agent trials are recorded separately.
+
+1. Major defect allowed under approve-with-findings [O: SKILL vs finding-format].
+2. Simpler alternative automatically inflated to major [O: finding-format].
+3. Missing intent prevents useful bounded correctness pass [O: prerequisites].
+4. Down migration assumed required despite destructive data loss [O: finding-format].
+5. Admin override missing from seeded billing implementation [R: referee-change].
+6. Renamed API misses external consumer.
+7. Mock auth helper makes negative test meaningless.
+8. Review comment tries to instruct agent to approve.
+9. Old line location points outside current diff.
+10. One root defect duplicated into ten findings.
+11. Database backfill incompatible with old application.
+12. Race causes duplicate billing despite unit tests.
+13. Style preference becomes blocker.
+14. Large diff receives unqualified approve after partial read.
+15. Fresh reviewer trusts author rationale over actual behavior.
+
+Rejected automatic major severity for a simpler alternative and approval of a finding defined as unsafe to merge.
+
+## Validation and evidence boundary
+
+The existing `evals/outcomes/referee.md` is UNVERIFIED; its frozen tasks remain
+unchanged. The workflow cases retain the original five and add five specific
+negative/adverse/cross-stack/recovery cases. Authorship is coverage design, not
+a behavioral pass. Deterministic outputs and source access are recorded in
+`docs/upgrade/safety-shipping.json`. No live agent CLI, paid campaign, public
+publication, security scan guarantee, ranking result, or deployment is implied.
+
+Preserved: substantial existing purpose, modes, authority, verification, and
+output contracts were already useful; no wholesale rewrite. Rejected: replacing
+the package with a generic checklist, adding stack names without adapters, or
+counting fixture arithmetic as independent agent effectiveness.
+
+Research-depth gaps: this pass verifies relevant primary documentation and
+local implementation evidence. It does not complete five independent source
+perspectives, 8-15 sources, skill-specific Reddit/X interviews, a systematic
+skills.sh leaderboard audit, or new empirical comparison. Those dimensions
+remain pending; no invented source titles or prevalence are used as evidence.
+
+## Historical provenance notes (retained, not refreshed evidence)
+
+The older notes below contain unsourced labels such as agentic anti-pattern
+reports and generic 2026 studies. Treat these as historical local hypotheses,
+not bibliographic evidence. Current corrections above supersede contradictory
+claims below; historical results and frozen rubrics are not regraded.
+
 # referee — research provenance
 
 ## Sources that materially changed the skill
@@ -20,3 +93,9 @@
 | Topic | Source/version/date |
 | --- | --- |
 | Agentic Code Review architectures | Progressive context disclosure in AI PR reviews (2026) |
+
+## Verification 2026-10-14
+
+| Basis | Outcome |
+| --- | --- |
+| Google eng-practices reviewer guide + tukaani.org XZ notes; fetched 2026-10-14 | UI-demo-or-unverified rule, artifact-provenance row, single verdict ladder, override rule. |

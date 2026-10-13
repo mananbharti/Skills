@@ -1,0 +1,14 @@
+$ ['rg', '-n', '_format_price|format_price|BasePricer|Pricer|_old_compute|notify', '.', '-g', '!characterize.py']
+exit: 0
+stdout:
+./shop.py:2:from utils import format_price
+./shop.py:5:def _format_price(cents):
+./shop.py:9:def _old_compute(lines):
+./shop.py:17:class BasePricer:
+./shop.py:22:class Pricer(BasePricer):
+./shop.py:33:    return LEGACY_EXPORT_FORMAT.format(oid=oid, total=format_price(total_cents))
+./shop.py:36:def notify(msg):
+./shop.py:50:    return _format_price(int(round(subtotal * 100)))
+./utils.py:5:def format_price(cents):
+
+stderr:

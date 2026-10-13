@@ -56,6 +56,10 @@ scripts/check-links
 scripts/build-docs
 scripts/check-context
 scripts/test-regressions
+scripts/test-upgrade
+scripts/check-packages
+scripts/check-demos
+scripts/test-archetypes
 scripts/run-evals
 ```
 
@@ -70,3 +74,13 @@ scripts/run-evals
 
 Use the pull request template. For bugs, exact requests and transcripts are
 more useful than summaries; remove secrets and personal data first.
+
+## One failure is a useful contribution
+
+Start with one reproducible user problem, the current behavior, an independent
+pass criterion and a minimal fixture. Identify the existing skill owner, cite
+the source that changes its decision, then submit the smallest fix and its
+observed check output. State whether a case is authored, executed, independently
+graded or still unverified. New runtime or platform claims need actual trials.
+Do not rewrite frozen historical outcomes or tune a grader solely to erase a
+loss. Version a changed experiment and keep the earlier record.

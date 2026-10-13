@@ -55,8 +55,10 @@ dimension: what good means, and the tell that it's bad.
 
 - **Responsive**: real breakpoints by content, not three magic widths;
   no avoidable horizontal scroll on mobile; target sizes follow applicable
-  accessibility requirements and product context; tables get a
-  mobile strategy (not just overflow-scroll).
+  accessibility requirements and product context: WCAG 2.2 SC 2.5.8 sets 24
+  by 24 CSS px minimum at AA (undersized targets pass only with 24px
+  spacing circles, an equivalent control, inline/UA/essential exceptions);
+  tables get a mobile strategy (not just overflow-scroll).
 - **Mobile behavior**: primary action reachable; modals usable; keyboard
   doesn't cover the focused input.
 - **Accessibility in design (A11y)**: focus indicators designed (not removed),

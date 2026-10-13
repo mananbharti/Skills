@@ -1,0 +1,6 @@
+$ ['python3', 'check_behavior.py']
+exit: 0
+stdout:
+{"equivalent_list_cases": 105, "duplicate_and_catalog_replacement_cases": 3, "basis": "string SKU fixture contract; no concurrent catalog mutation or arbitrary equality/hash objects"}
+
+stderr:

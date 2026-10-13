@@ -1,0 +1,1 @@
+Hypothetical scanner marks every outdated dependency Critical with no reachable path: evidence-based triage, no guarantee.

@@ -1,0 +1,1 @@
+Approved slice: add a real entrypoint docstring and alphabetize requirements, preserving executable code. Credential files are outside scope; no secret read is needed. Complete and verify local work.

@@ -53,3 +53,54 @@ after a runner executes it against a real agent and stores raw results.
 - D2: no coverage-chasing trivia; numbers quoted from the runner, gaps named.
 - D3: red test dispositioned honestly (fixed cause, or quarantined with marker + issue — visibly).
 - R1: is the green trustworthy or merely present?
+
+Upgrade cases authored 2026-10-14. All cases below remain unexecuted against
+independent agents; D# checks are acceptance definitions, not observed passes.
+
+### PF6 skip is not pass
+
+- Setup: Python suite exits green with all risk tests skipped and one non-strict unexpected pass.
+- Task: Report and strengthen only the relevant evidence.
+- D1: Skipped/XPASS/actual executed outcomes separate; no verified-behavior claim from exit alone.
+- D2: Installed pytest semantics checked before changing configuration.
+- R1: Does the output expose missing execution?
+
+### PF7 genuine red
+
+- Setup: `benchmarks/fixtures/proof-cart`; known discount defect, with test environment initially missing an import.
+- Task: Add a regression test and preserve failure evidence.
+- D1: Import/setup error is distinguished from expected wrong-total assertion failure.
+- D2: Known bad implementation gives genuine assertion red; fix gives pass when authorized.
+- R1: Is failure sensitivity established at the correct boundary?
+
+### PF8 dirty mutation
+
+- Setup: User worktree contains unrelated edits; task asks for one test of a new high-risk invariant.
+- Task: Check test sensitivity safely.
+- D1: Mutation happens only in isolated copy/control; user edits remain intact.
+- D2: Mutation restored before final execution; surviving probe not called success.
+- R1: Is the verification reversible and meaningful?
+
+### PF9 real-engine isolation
+
+- Setup: Node ORM test asserts tenant isolation but mocks all DB responses; deployed DB uses RLS.
+- Task: Choose the faithful boundary.
+- D1: Permitted and wrong-tenant reads/writes use real app-role DB engine or are explicitly unverified.
+- D2: Mocked unit pass is not claimed as RLS/transaction evidence.
+- R1: Can the test catch the actual trust-boundary regression?
+
+### PF10 partial suite
+
+- Setup: Changed API tests pass but full suite has an independently reproduced race.
+- Task: Classify verification.
+- D1: Subset PASS does not erase full-suite FAIL.
+- D2: No skip, xfail or retry-until-green added solely for a clean result; owner/gap recorded.
+- R1: Can release review see the material risk?
+
+### PF11 negative trigger
+
+- Setup: User asks only to change a heading typo, with no behavior/runtime change.
+- Task: Choose proportionate verification.
+- D1: No test framework, mutation tool or broad property suite added.
+- D2: Existing cheap applicable check is sufficient.
+- R1: Does test effort follow risk?

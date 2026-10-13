@@ -229,7 +229,9 @@ class EvaluationRegressions(unittest.TestCase):
         scenarios, errors = self.workflow["load_scenarios"]()
         self.assertEqual(errors, [])
         fixture_scenarios = [item for item in scenarios if item["fixture"]]
-        self.assertEqual(len(fixture_scenarios), 37)
+        # The frozen baseline had 37; new domain cases must not make this
+        # regression depend on an incidental authored-scenario count.
+        self.assertGreaterEqual(len(fixture_scenarios), 37)
         for scenario in fixture_scenarios:
             with self.subTest(scenario=scenario["id"]):
                 with tempfile.TemporaryDirectory(prefix="workflow-fixture-") as raw:
@@ -562,13 +564,19 @@ class GraderValidity(unittest.TestCase):
         long_raw = "\n".join([good] * 210)
         self.assertGreater(len(long_raw.strip().splitlines()), 200)
         self.assertFalse(grade(task, long_raw, {"workdir": ""})[0])
-        # KNOWN-BRITTLE: a correct negated mention trips the contaminant
-        # gate. Asserted as current behavior so any future fix must be a
-        # versioned grader change with its own regression test.
+        # Versioned fix (no-lift/mixed repair): a negated absence denial
+        # is honest scoping, not contaminant smuggling. The contaminant
+        # gate fires only on non-negated occurrences; a positive mention
+        # of forbidden scope still fails.
         negated = good + " There is no Dockerfile in the copy."
         passed, notes = grade(task, negated, {"workdir": ""})
+        self.assertTrue(passed, notes)
+        self.assertEqual(notes["contaminants"], [])
+        smuggled = good + " Auth lives in src/auth and ships in a Dockerfile."
+        passed, notes = grade(task, smuggled, {"workdir": ""})
         self.assertFalse(passed)
-        self.assertIn("Dockerfile", " ".join(notes["contaminants"]))
+        self.assertIn("src/auth", notes["contaminants"])
+        self.assertIn("Dockerfile", notes["contaminants"])
 
     def test_blueprint_deliverable_matrix(self) -> None:
         grade = self.outcome["grade_blueprint"]
@@ -597,6 +605,35 @@ class GraderValidity(unittest.TestCase):
         self.assertFalse(passed)
         self.assertIn("redis", notes["suspect_infra"])
 
+    def test_blueprint_exempts_outputs_denials_and_probes(self) -> None:
+        # Same honesty exemptions as the chat grader: declared outputs,
+        # absence denials (paths and infra words), and shell probes are
+        # not existence or invention claims. Positive claims still fail.
+        grade = self.outcome["grade"]
+        tasks = json.loads((ROOT / "evals/outcomes/blueprint-tasks.json").read_text())
+        task = next(item for item in tasks if item["id"] == "O1")
+
+        def run(mmd):
+            obs = {"status": "ok",
+                   "verify": [{"cmd": v["cmd"], "exit": v.get("expect", 0),
+                               "expect": v.get("expect", 0)}
+                              for v in task.get("verify", [])],
+                   "changed_files": [],
+                   "artifacts": {"docs/architecture/a.mmd": mmd}}
+            return grade(task, None, "App.tsx component view grounded.", obs)
+
+        base = "graph TD\nA[App] --> B[Store]\n%% grounded in src/App.tsx\n"
+        self.assertTrue(run(base)[0])
+        self.assertTrue(run(base + "%% see docs/plans/shop.md\n")[0])
+        self.assertTrue(run(base + "no redis in this design\n")[0])
+        self.assertTrue(run(base + "no legacy.db in the copy\n")[0])
+        passed, notes = run(base + "adds a redis cache\n")
+        self.assertFalse(passed)
+        self.assertIn("redis", notes["suspect_infra"])
+        passed, notes = run(base + "%% plus src/ghost.ts\n")
+        self.assertFalse(passed)
+        self.assertIn("src/ghost.ts", notes["hallucinated_paths"])
+
     def test_spelunk_strips_harness_path_residue(self) -> None:
         # Phase 4: a permission auto-rejection quoting <workdir>/.env left
         # "/.env" behind after the bare workdir strip and false-flagged as
@@ -615,6 +652,134 @@ class GraderValidity(unittest.TestCase):
         passed, notes = grade(task, raw, {"workdir": ""})
         self.assertTrue(passed, notes)
         self.assertEqual(notes["hallucinated_paths"], [])
+
+    def test_spelunk_exempts_declared_outputs_quotes_and_denials(self) -> None:
+        # No-lift repair: three documented false positives must not flag.
+        # (a) the skill's contracted output file, (b) a string quoted
+        # from fixture source, (c) a negated existence denial. A
+        # positive claim about a missing file must still fail.
+        grade = self.outcome["grade_spelunk"]
+        task = {"expected": {"type": "spelunk",
+                             "must_contain": ["package.json"],
+                             "must_not": ["src/auth"],
+                             "max_lines": 200},
+                "fixture": "ts-dashboard"}
+        own_output = ("Plan written to docs/plans/order-status-history.md. "
+                      "Grounded in src/App.tsx and package.json.")
+        passed, notes = grade(task, own_output, {"workdir": ""})
+        self.assertTrue(passed, notes)
+        self.assertEqual(notes["hallucinated_paths"], [])
+        quoted = {"expected": {"type": "spelunk",
+                               "must_contain": ["main.py"],
+                               "must_not": ["src/auth"],
+                               "max_lines": 200},
+                  "fixture": "py-notes-api"}
+        raw_quoted = ('Storage uses sqlite3.connect("notes.db") '
+                      "in app/main.py as observed.")
+        passed, notes = grade(quoted, raw_quoted, {"workdir": ""})
+        self.assertTrue(passed, notes)
+        self.assertEqual(notes["hallucinated_paths"], [])
+        denied = ("Grounded in src/App.tsx and package.json. "
+                  "There is no notes.db file in the copy.")
+        passed, notes = grade(task, denied, {"workdir": ""})
+        self.assertTrue(passed, notes)
+        self.assertEqual(notes["hallucinated_paths"], [])
+        claimed = ("Grounded in src/App.tsx and package.json. "
+                   "Data lives in notes.db alongside the app.")
+        passed, notes = grade(task, claimed, {"workdir": ""})
+        self.assertFalse(passed)
+        self.assertIn("notes.db", " ".join(notes["hallucinated_paths"]))
+        ghost = ("Grounded in src/App.tsx and package.json. "
+                 "See src/ghost.ts for details.")
+        passed, notes = grade(task, ghost, {"workdir": ""})
+        self.assertFalse(passed)
+        self.assertIn("src/ghost.ts", notes["hallucinated_paths"])
+
+    def test_spelunk_exempts_tech_names_probes_and_workdir_traces(self) -> None:
+        # Mixed-skill repair: scout/specialist correct findings failed on
+        # (a) technology names colliding with the path regex, (b) shell
+        # probe commands (`ls X`), (c) tool traces quoting sandbox paths
+        # with appended components. None is an existence claim.
+        grade = self.outcome["grade_spelunk"]
+        task = {"expected": {"type": "spelunk",
+                             "must_contain": ["package.json"],
+                             "must_not": ["src/auth"],
+                             "max_lines": 200},
+                "fixture": "ts-dashboard"}
+        tech = ("Stack docs mention Next.js. "
+                "Grounded in src/App.tsx and package.json.")
+        passed, notes = grade(task, tech, {"workdir": ""})
+        self.assertTrue(passed, notes)
+        self.assertEqual(notes["hallucinated_paths"], [])
+        probe = ("Checked `ls package-lock.json`: no lockfile in the copy. "
+                 "Grounded in src/App.tsx and package.json.")
+        passed, notes = grade(task, probe, {"workdir": ""})
+        self.assertTrue(passed, notes)
+        self.assertEqual(notes["hallucinated_paths"], [])
+        workdir = "/tmp/evals/results/tmp/outcome-abc123_"
+        traced = ("Grounded in src/App.tsx and package.json. Trace read "
+                  + workdir + "/tests/test_shop.py during mapping.")
+        passed, notes = grade(task, traced, {"workdir": workdir})
+        self.assertTrue(passed, notes)
+        self.assertEqual(notes["hallucinated_paths"], [])
+        # A bare positive claim about a missing file still fails.
+        claimed = ("Grounded in src/App.tsx and package.json. "
+                   "Lockfile state lives in package-lock.json.")
+        passed, notes = grade(task, claimed, {"workdir": ""})
+        self.assertFalse(passed)
+        self.assertIn("package-lock.json", notes["hallucinated_paths"])
+
+    def test_route_order_insensitive_accepts_either_sequence(self) -> None:
+        # Concierge C1 defect fix: containment and required skills grade;
+        # sequence does not where the task cannot justify one.
+        grade = self.outcome["grade_route"]
+        task = {"expected": {"type": "route",
+                             "allowed": ["spelunk", "polish", "friction",
+                                         "proof", "roadtest"],
+                             "required": ["polish", "friction"],
+                             "order": ["spelunk", "polish", "friction",
+                                       "proof", "roadtest"],
+                             "order_insensitive": True,
+                             "max_len": 3}}
+        normalize = self.outcome["normalize_route"]
+        for chain in ("route: friction → polish",
+                      "route: polish → friction"):
+            with self.subTest(chain=chain):
+                route = normalize(chain + "\nAudit then refresh.")
+                self.assertTrue(grade(task, route, chain)[0])
+        missing = normalize("route: polish\nOnly visuals.")
+        passed, notes = grade(task, missing, "route: polish")
+        self.assertFalse(passed)
+        outsider = normalize("route: friction → backend\nScope drift.")
+        self.assertFalse(grade(task, outsider, "route: friction → backend")[0])
+
+    def test_referee_o1_contract_output_passes_and_stripped_fails(self) -> None:
+        # Marker-contract audit: referee O1 grades verdict/review type/
+        # override. An output following the skill contract must pass;
+        # the same output with those markers stripped must fail on
+        # exactly those gates (uses the real frozen task + fixture).
+        grade = self.outcome["grade_spelunk"]
+        tasks = json.loads((ROOT / "evals/outcomes/referee-tasks.json").read_text())
+        task = next(item for item in tasks if item["id"] == "O1")
+        good = ("review type: fresh-context\n"
+                "scope: 1 file, billing.py: checkout totaling plus admin path\n"
+                "\nverdict: request changes\n\n"
+                "| Sev | Location | Finding | Fix direction |\n"
+                "| major | billing.py | admin path lacks audit-log entry "
+                "| log admin identity and cap used |\n\n"
+                "intent: 2/3 criteria met: audit-log entry missing (see major)\n"
+                "not reviewed: none\n"
+                "override: human may overrule majors with reason; "
+                "blockers need re-review")
+        passed, notes = grade(task, good, {"workdir": ""})
+        self.assertTrue(passed, notes)
+        bad = good.replace("verdict: request changes", "summary: needs work")
+        bad = bad.replace("override: human may overrule majors with reason; "
+                          "blockers need re-review", "")
+        passed, notes = grade(task, bad, {"workdir": ""})
+        self.assertFalse(passed)
+        self.assertIn("verdict", notes["missing"])
+        self.assertIn("override", notes["missing"])
 
     def test_concierge_c1_contract_calibration(self) -> None:
         # Phase 4 confirmation task: calibrated with synthetic outputs only,
@@ -727,6 +892,113 @@ class GraderValidity(unittest.TestCase):
                 decisions + "\n## 2026-09-18 Redis cache layer [Active]\n- dup\n")
             with self.subTest(workspace="duplicate"):
                 self.assertFalse(all(run_checks()))
+
+
+class FrozenTaskPassability(unittest.TestCase):
+    """Every frozen outcome task must be passable by a contract-following
+    synthetic output. A task no honest output can pass is a class-C
+    task-design defect (the concierge C1 order-gate precedent): fix the
+    task, never the recorded tallies. A failure here means the task is
+    unpassable or this builder needs extension for a new shape; triage
+    manually, do not weaken the assertion."""
+
+    @classmethod
+    def setUpClass(cls) -> None:
+        cls.outcome = runpy.run_path(str(SCRIPTS / "eval-outcome"))
+
+    def _fixture_real_file(self, fixture):
+        base = ROOT / "benchmarks" / "fixtures" / fixture
+        for dirpath, _, fns in os.walk(base):
+            for fn in sorted(fns):
+                if fn.endswith((".py", ".tsx", ".ts", ".js", ".html", ".css", ".md")):
+                    return os.path.relpath(os.path.join(dirpath, fn), base)
+        return None
+
+    def _verify_obs(self, task):
+        return [{"cmd": v["cmd"], "exit": v.get("expect", 0),
+                 "expect": v.get("expect", 0)} for v in task.get("verify", [])]
+
+    def _base_obs(self, task):
+        return {"status": "ok", "verify": self._verify_obs(task),
+                "changed_files": [], "workdir": ""}
+
+    def test_all_frozen_tasks_pass_contract_following_output(self) -> None:
+        grade = self.outcome["grade"]
+        normalize = self.outcome["normalize_route"]
+        task_dir = ROOT / "evals" / "outcomes"
+        files = sorted(path for path in task_dir.glob("*-tasks.json"))
+        self.assertTrue(files)
+        total = 0
+        for path in files:
+            tasks = json.loads(path.read_text())
+            for task in tasks:
+                total += 1
+                exp = task["expected"]
+                label = f"{path.name} {task.get('id')}"
+                with self.subTest(task=label):
+                    if isinstance(exp, list):
+                        raw = "route: direct\nTrivial fix, no skill needed."
+                        passed, notes = grade(task, ["direct"], raw, self._base_obs(task))
+                    elif exp.get("type") == "route":
+                        order = exp.get("order", [])
+                        req = [s for s in order if s in exp.get("required", [])]
+                        req = req or sorted(exp.get("required", []))
+                        raw = "route: " + " \u2192 ".join(req) + "\nWhy sentence."
+                        passed, notes = grade(task, normalize(raw), raw, self._base_obs(task))
+                    elif exp.get("type") == "hotseat":
+                        raw = ("Aanya product lens likes X, worries Y, distrusts assumption A, "
+                               "asks Q, alternative Z, recommendation go. Kabir engineering lens "
+                               "adds assumption B. Meera UX lens adds assumption C. Arjun systems "
+                               "view ok. Naina security view ok. Moderator: strongest version "
+                               "kept. MVP: ship one flow. Kill criteria: kill if 2 weekly cohorts "
+                               "churn. Minority view kept.")
+                        passed, notes = grade(task, None, raw, self._base_obs(task))
+                    elif exp.get("type") == "spelunk":
+                        parts = list(exp.get("must_contain", []))
+                        parts += [g[0] for g in exp.get("must_contain_any", [])]
+                        if task.get("fixture"):
+                            real = self._fixture_real_file(task["fixture"])
+                            if real:
+                                parts.append(real)
+                        raw = " ".join(parts) + ". Grounded in the copy."
+                        passed, notes = grade(task, None, raw, self._base_obs(task))
+                    elif exp.get("type") == "pilot":
+                        parts = list(exp.get("must_contain", []))
+                        parts += [g[0] for g in exp.get("must_contain_any", [])]
+                        raw = " ".join(parts) + " verified via the runner, verif block below."
+                        obs = self._base_obs(task)
+                        scope = exp.get("scope", [])
+                        if scope:
+                            first = scope[0]
+                            tail = first if "." in first.rstrip("/").split("/")[-1] \
+                                else first.rstrip("/") + "/touched.py"
+                            obs["changed_files"] = [tail]
+                        passed, notes = grade(task, None, raw, obs)
+                    elif exp.get("type") == "blueprint":
+                        real = self._fixture_real_file(task["fixture"])
+                        mmd = ("graph TD\nA[App] --> B[Store]\n%% grounded in "
+                               + (real or "App.tsx") + "\n")
+                        obs = self._base_obs(task)
+                        obs["artifacts"] = {"docs/architecture/a.mmd": mmd}
+                        raw = " ".join(exp.get("must_contain", [])) + " component view grounded."
+                        passed, notes = grade(task, None, raw, obs)
+                    elif exp.get("type") in ("polish", "friction", "ditto", "frontpage"):
+                        fixture = task["fixture"]
+                        arts = {}
+                        for rel in exp.get("tokens_unchanged", []) + exp.get("files_unchanged", []):
+                            arts[rel] = (ROOT / "benchmarks" / "fixtures" / fixture / rel).read_text()
+                        need = list(exp.get("require_present", []))
+                        need += [g[0] for g in exp.get("require_present_any", [])]
+                        arts["out.html"] = " ".join(need) + " grounded work."
+                        raw = (" ".join(exp.get("must_contain", [])) + " "
+                               + " ".join(g[0] for g in exp.get("must_contain_any", [])) + " done.")
+                        obs = self._base_obs(task)
+                        obs["artifacts"] = arts
+                        passed, notes = grade(task, None, raw, obs)
+                    else:
+                        self.fail(f"{label}: unknown grader type")
+                    self.assertTrue(passed, f"{label}: {notes}")
+        self.assertGreaterEqual(total, 87, f"expected at least 87 tasks, saw {total}")
 
 
 class RunnerPlumbing(unittest.TestCase):

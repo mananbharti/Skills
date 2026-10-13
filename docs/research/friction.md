@@ -1,22 +1,64 @@
-# friction — research provenance
+# friction: individual upgrade research
 
-## Sources that materially changed the skill
+Research/authoring date: 2026-10-14. Read the current skill, all bundled resources,
+existing workflow scenarios and frozen outcome protocol before editing.
+Historical outcome files remain intact. New workflow cases are authored, not agent-executed.
 
-| Source | Key lesson | Why it matters | Where encoded |
-| --- | --- | --- | --- |
-| Agentic Usability Heuristics (2025/2026) | Traditional UI heuristics are insufficient for AI agents. Evaluation must include execution trajectories, not just static screens. | Adds a dedicated AI/Agentic UX section to the usability checklist. | references/usability-checklist.md |
-| Human-in-the-loop Evaluation Patterns | Users abandon agents that fail silently or get stuck in loops without an escalation path. | Enforces checking for "Graceful Degradation / Escalation" paths in AI UX. | references/usability-checklist.md |
-| System Status Visibility (Agentic) | Raw tool-call JSON or massive chain-of-thought dumps destroy usability. Status must be translated to human-readable audit trails. | Adds constraints for "Planning Visibility" and plain-language "Audit Trails". | references/usability-checklist.md |
-| v1 campaign audit, Phase 12 (2026-09-14) | Tool fallback scattered, healthy-flow honesty unstated — headless runs could invent walk evidence, clean flows invited padded findings | Tool selection/fallback section (walk → static + unverified ladder), no-findings stop condition (cite walks, never invent) | SKILL.md (Tool selection/fallback, Stop conditions) |
+## Baseline and narrow decision
 
-## Key new intelligence encoded
+The existing methodology remains useful. The missing failure branches are encoded in `skills/friction/references/recovery-journeys.md` and a short conditional entrypoint pointer.
+The previous maintainer ledger contained unattributed generalizations about 2026 agents.
+Those entries are replaced here; they are not treated as measured evidence.
 
-1. **AI/Agentic UX Dimension** — explicitly expands the usability audit to cover the unique friction points introduced by AI interfaces (transparency, escalation, and planning visibility).
-2. **Planning Visibility** — requires AI systems to surface their intended execution plan before taking action, allowing users to intercept destructive errors.
-3. **Graceful Degradation** — treats the absence of a clear human escalation path as a UX failure, acknowledging that AI loops will eventually get stuck.
+## Source-to-decision trace
 
-## Fast-moving items
+| Source/access | Adopted decision | Rejected overreach / limitation |
+| --- | --- | --- |
+| [Understanding Redundant Entry](https://www.w3.org/WAI/WCAG22/Understanding/redundant-entry.html); read 2026-10-14; WCAG 2.2 explanatory guidance; no conformance claim adopted | Test entered-value preservation and recovery in the relevant process. | Does not require saving sensitive data persistently in all forms. |
+| [Offline data](https://web.dev/learn/pwa/offline-data); read 2026-10-14; Living tutorial with IndexedDB examples; not a required library | Distinguish local storage from remote confirmation; test failed storage and privacy boundaries. | Its example can insert duplicate rows if repeated; it is not a synchronization/conflict protocol. |
 
-| Topic | Source/version/date |
+All sources are primary documentation or upstream implementation. Upstream moving
+branch inspection supports a mechanism, not the version installed in a user project.
+No source assets/code were copied into the runtime package.
+
+## Fifteen distinct failure situations
+
+These are **local test hypotheses**, not measured prevalence or observed agent failures.
+Source-supported mechanism is identified above; each concrete project situation still
+needs its own fixture and execution. The list guides selective testing, not a mandatory checklist.
+
+1. Timed-out save shown as confirmed.
+2. Retry creates repeated purchase.
+3. Offline draft confused with server state.
+4. Validation erases entered fields.
+5. Session expiry loses recoverable draft.
+6. Logout exposes prior user draft.
+7. Workspace switch reveals prior tenant cache.
+8. Storage quota failure hidden from user.
+9. Reconnect overwrites newer work.
+10. Mobile keyboard covers next step.
+11. Back navigation destroys progress.
+12. Error copy offers unsafe repeated submit.
+13. Audit-only task changes production policy.
+14. Static inspection called novice walk.
+15. Conversion gain invented from one internal walkthrough.
+
+## Preserved and rejected material
+
+Preserved the operating modes, evidence ladder, narrow scope and existing handoffs.
+Rejected blanket tool/framework mandates and unmeasured superiority claims.
+Conditional references keep specialized detail out of ordinary entrypoint context.
+Authored cases use the existing Setup/Task/D#/R# protocol; static shape checks do
+not grade their behavior. Existing outcome task/rubric freezes were not retuned.
+
+## Verification and remaining evidence
+
+Local command and observed outcome records are in `docs/upgrade/building-experience.json` (friction row).
+No paid or live agent CLI was invoked. Local fixture/helper checks do not establish
+comparative agent benefit, target host installation, production safety or physical-device coverage.
+
+## Verification 2026-10-14
+
+| Basis | Outcome |
 | --- | --- |
-| AI Usability Heuristics | 2026 updates to Nielsen's heuristics for agentic systems |
+| W3C WCAG 2.2 SC 3.3.8 + F109; fetched 2026-10-14 | Paste-blocking in auth set as blocker; Knight case kept analogical, not encoded as UX precedent. |

@@ -82,7 +82,7 @@ fiber, Actix/Axum.
 
 ```bash
 # Top churn:
-git log --format=format: --name-only since="6 months ago" \
+git log --format=format: --name-only --since="6 months ago" \
   | grep -v '^$' | sort | uniq -c | sort -rg | head -10
 ```
 

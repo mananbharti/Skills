@@ -1,0 +1,85 @@
+{
+  "schema": "independent-followthrough/1",
+  "entries": [
+    {
+      "reviewed_at_utc": "2026-10-13T19:44:14.600947+00:00",
+      "original_review_sha256": "f9a2d64b5cef67998de80cd908aad7db4a02d3d37f0e249f2b8644d0441b504b",
+      "original_preserved": true,
+      "source_sha256": {
+        "skills/handsfree/references/decision-policy.md": "ce870f0cf07158644e9d58dcaf6118e9d9ded6cffebe26953938749cb89419d9",
+        "skills/concierge/SKILL.md": "93a2a20d7d70e2122153560a1a8bdbff7cb0757df8a7936d7376f5618cdc9a2c",
+        "skills/roadtest/references/evidence-bundle.md": "ce7eead3c3c14038690d398f70a1c6a025047c7f1028ae510a1a2c2fa2327914",
+        "scripts/test-upgrade": "e8a714d3aef8e1953356ec3aa741dcebdc14d5b75608b318b637b716aecf09d2"
+      },
+      "findings": [
+        {
+          "id": "IR-3",
+          "status": "resolved",
+          "evidence": "Decision policy now classifies approved local security work AUTO + CHECKPOINT and applies existing authorization before the most restrictive remaining class. Host denials remain binding.",
+          "validation": "Static instruction reconciliation; no new behavioral trial."
+        },
+        {
+          "id": "IR-4",
+          "status": "resolved",
+          "evidence": "Capability probe uses task-appropriate permitted page only when browser work is needed; unsupported schemes and denied-file workarounds explicitly forbidden.",
+          "validation": "Static instruction reconciliation with observed browser protocol policy; browser availability not re-probed."
+        },
+        {
+          "id": "IR-5",
+          "status": "resolved",
+          "evidence": "HTTP assertion may pass with response evidence and no screenshot, while visual/interaction/responsive claims remain unverified without corresponding capture. Deliberate network denials are judged against contract.",
+          "validation": "Static per-capability evidence reconciliation."
+        },
+        {
+          "id": "IR-6",
+          "status": "resolved",
+          "evidence": "Coverage-floor fixture now creates known skill and patches both ROOT and SCENARIOS to controlled tempfile; loader reaches floor assertion.",
+          "validation": "test-upgrade rerun: 11 tests pass, exit 0."
+        }
+      ],
+      "commands": [
+        {
+          "command": [
+            "scripts/test-upgrade"
+          ],
+          "cwd": "/Users/uday/Skills",
+          "exit_code": 0,
+          "stdout": "O1 baseline t1: PASS route=['direct'] (0.1s)\nO1 treatment t1: PASS route=['direct'] (0.1s)\nwrote /var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/tmpa3_o2_os/20261014-011410-073327000-outcome-concierge-fake.json (resumed-skipped: 0)\nO1 baseline: pass=1.00 mean_len=1.00\nO1 treatment: pass=1.00 mean_len=1.00\nOK: 267 trigger labels have no contradictory normalized prompts\n",
+          "stderr": "test_default_treatment_loads_entrypoint_and_defers_references (__main__.ContextIntegrity.test_default_treatment_loads_entrypoint_and_defers_references) ... ok\ntest_eager_policy_is_explicit_and_retains_legacy_context (__main__.ContextIntegrity.test_eager_policy_is_explicit_and_retains_legacy_context) ... ok\ntest_resume_refuses_changed_package_runner_and_reference_policy (__main__.ContextIntegrity.test_resume_refuses_changed_package_runner_and_reference_policy) ... --resume-from identity mismatch: provenance.skill_package differs \u2014 refusing (source preserved, nothing written)\n--resume-from identity mismatch: runner implementation differs \u2014 refusing (source preserved, nothing written)\n--resume-from identity mismatch: settings.reference_policy differs \u2014 refusing (source preserved, nothing written)\n--resume-from identity mismatch: provenance.checkers differs \u2014 refusing (source preserved, nothing written)\n--resume-from identity mismatch: provenance.fixtures differs \u2014 refusing (source preserved, nothing written)\nok\ntest_expected_network_rejection_is_a_contract_check (__main__.DomainHelpers.test_expected_network_rejection_is_a_contract_check) ... ok\ntest_inventory_excludes_generated_vendor_and_cache_noise_consistently (__main__.DomainHelpers.test_inventory_excludes_generated_vendor_and_cache_noise_consistently) ... ok\ntest_zero_delta_is_never_a_performance_improvement (__main__.DomainHelpers.test_zero_delta_is_never_a_performance_improvement) ... ok\ntest_copy_validation_rejects_missing_resource_and_bad_helper_syntax (__main__.PackageIntegrity.test_copy_validation_rejects_missing_resource_and_bad_helper_syntax) ... ok\ntest_symlink_cannot_make_a_package_depend_on_external_file (__main__.PackageIntegrity.test_symlink_cannot_make_a_package_depend_on_external_file) ... ok\ntest_contradictory_labels_are_rejected_with_normalization (__main__.RoutingContracts.test_contradictory_labels_are_rejected_with_normalization) ... ok\ntest_repository_trigger_labels_are_consistent (__main__.RoutingContracts.test_repository_trigger_labels_are_consistent) ... ok\ntest_workflow_coverage_floor_rejects_undercovered_skill (__main__.RoutingContracts.test_workflow_coverage_floor_rejects_undercovered_skill) ... ok\n\n----------------------------------------------------------------------\nRan 11 tests in 0.781s\n\nOK\n"
+        },
+        {
+          "command": [
+            "scripts/validate-skills"
+          ],
+          "cwd": "/Users/uday/Skills",
+          "exit_code": 0,
+          "stdout": "INFO: skills-ref unavailable; local strict validation completed\nOK: 28 frontmatter blocks are strict and spec-shaped\nOK: 28 self-contained skills satisfy the repository contract\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "scripts/check-names"
+          ],
+          "cwd": "/Users/uday/Skills",
+          "exit_code": 0,
+          "stdout": "OK: names follow the single-word system\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "scripts/check-links"
+          ],
+          "cwd": "/Users/uday/Skills",
+          "exit_code": 0,
+          "stdout": "OK: all bundled paths and inline local Markdown file targets exist\n",
+          "stderr": ""
+        }
+      ],
+      "remaining_limits": [
+        "No paid CLI/adapters or spend-enabling keys used.",
+        "Four prior forward trials not repeated. Polish rendering and browser interaction remain unverified.",
+        "These corrections do not establish controlled comparative lift, native host activation or cross-model compatibility."
+      ]
+    }
+  ]
+}

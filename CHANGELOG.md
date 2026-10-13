@@ -5,6 +5,30 @@ All notable changes to this project are documented here. Format follows
 
 ## [Unreleased]
 
+### Failure-first implementation upgrade (2026-10-14)
+
+- Preserved the frozen 28 names and historical outcome records. Audited each
+  package individually, repaired proportionality/authority/evidence conflicts,
+  and added conditional payment, workload, UX, readiness and recovery guidance.
+- Fixed eager outcome reference loading and unsafe experiment resume identity;
+  new schema `outcome/6` records on-demand/eager policy, package/checker/fixture
+  identity and initial context. Older records are not rewritten or pooled.
+- Added contradictory-trigger rejection, 267 authored trigger cases and 324
+  workflow scenarios (54 fixture-backed), with a ten-case floor per skill.
+  The 87 frozen outcome task contracts are unchanged.
+- Ran 45 existing and 12 new local regression tests, all passing. Verified
+  public full-bundle installation with CLI 1.7.2 and each final local package
+  individually, including all resource bytes and helper executable bits.
+- Retained exploratory tasks for all 28, independent static review and six
+  resolved findings. Three local correction demonstrations and two offline/game
+  state models have replay commands and preserved failing seeds. These are not
+  controlled agent comparisons or compatibility proof.
+- Added a machine-readable/readable 28-row ledger, capability ownership matrix,
+  evidence-scoped gallery, recipes, onboarding study/launch drafts and release
+  readiness report. Source breadth, native activation, browser/device/deployment
+  evidence and causal skill lift remain incomplete. No paid CLI, external post,
+  deployment or release was performed; no comparative marketing claim added.
+
 ### All-Muse-Spark evaluation campaign, Batch A + routing smoke (2026-09-20/21)
 
 - Ran 80 evaluated-model calls on pinned

@@ -1,0 +1,22 @@
+{
+  "date": "2026-10-14",
+  "source": "https://github.com/psf/requests",
+  "commit": "611c6162cbc4ac2020a2f91c7cfa4f3abf9bbb60",
+  "scope": "read-only first-party inventory; no downloaded code executed",
+  "command": "inventory <pinned Requests checkout> --json",
+  "exit": 0,
+  "inventory": {
+    "target": "/private/tmp/skills-unfamiliar-requests",
+    "manifests": "pyproject.toml setup.py ",
+    "files_by_ext": "  37 py\n  16 rst\n  13 md\n  10 yml\n   5 png\n   4 key\n   4 cnf\n   3 pem\n   3 csr\n   2 yaml",
+    "largest_files": "    3094 ./tests/test_requests.py\n    1184 ./src/requests/models.py\n    1155 ./src/requests/utils.py\n    1013 ./tests/test_utils.py\n     920 ./src/requests/sessions.py\n     748 ./src/requests/adapters.py\n     625 ./src/requests/cookies.py\n     428 ./tests/test_lowlevel.py\n     385 ./docs/conf.py\n     354 ./src/requests/auth.py",
+    "debt_markers": "   3 ./src/requests/auth.py\n   2 ./src/requests/models.py\n   2 ./src/requests/_types.py\n   1 ./tests/test_utils.py\n   1 ./tests/test_testserver.py\n   1 ./tests/test_requests.py\n   1 ./src/requests/hooks.py\n   1 ./src/requests/adapters.py",
+    "test_files": "11",
+    "source_files": "27",
+    "generated_vendor_dirs": "",
+    "minified_bundles": "0",
+    "git_churn_top": "   1 tox.ini\n   1 tests/utils.py\n   1 tests/testserver/server.py\n   1 tests/testserver/__init__.py\n   1 tests/test_utils.py\n   1 tests/test_testserver.py\n   1 tests/test_structures.py\n   1 tests/test_requests.py"
+  },
+  "stderr": "",
+  "behavioral_effectiveness": "UNVERIFIED; independent mapping task recorded separately"
+}

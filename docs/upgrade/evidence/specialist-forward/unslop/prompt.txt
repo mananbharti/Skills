@@ -1,0 +1,2 @@
+Simplify accidental complexity preserving legacy export bytes and behavior; baseline and post checks.
+Constraints: safe local owned workspace only; do not modify source fixture/skill, use paid agents, publish, deploy, or mutate real services. Exploratory observation only, no controlled comparative proof.

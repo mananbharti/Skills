@@ -1,0 +1,10 @@
+Review type: independent bounded source review within specialist agent; no author commentary or patch. A historical diff/baseline and consumers are unavailable, so criterion3 “no other behavior changes” cannot be adjudicated fully. Coverage: billing.py entire file + brief.md; source search; three local pure examples. No production/runtime integration, history or tests supplied.
+
+Verdict: request changes for missing admin override/audit behavior in the supplied implementation scope.
+
+| Severity | Location | Finding / intent consequence | Fix direction |
+| --- | --- | --- | --- |
+| Major | billing.py:4–7; brief.md:4 | Criterion2 requires admin override with audit-log entry, but supplied total exposes only user_cap and fixed10% discount; file contains neither admin authorization nor audit emission. Source-only scope cannot exclude an external wrapper, which was not supplied. | Provide actual override enforcement and audit boundary or missing wrapper/caller evidence; protect permitted override + denied non-admin + emitted audit in tests. |
+| Major | billing.py:6 | Negative user_cap makes d negative; local $100 example returns$110, a surcharge rather than a discount cap. Whether callers sanitize is unknown because none supplied. | Validate cap range at owning boundary (finite0..1) or document/enforce a prevalidated input contract, then test invalid caps and permitted cases. |
+
+Intent1 is partially evidenced: default cap parameter15% and min enforce an upper bound on the currently fixed10% discount; supplied5% cap yields95. There is no requested-discount input, so adjustable discount policy beyond fixed10% remains unclear. Criterion2 missing in reviewed file; criterion3 unverified due to missing before-code/diff. tax refactor comment signals unrelated change but actual prior behavior is absent, so no invented tax regression finding. User-cap mutability alone does not prove privilege bypass; authorization boundary/callers need evidence. Scope verdict does not certify unreviewed application behavior.

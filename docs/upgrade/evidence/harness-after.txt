@@ -1,0 +1,28 @@
+test_default_treatment_loads_entrypoint_and_defers_references (__main__.ContextIntegrity.test_default_treatment_loads_entrypoint_and_defers_references) ... ok
+test_eager_policy_is_explicit_and_retains_legacy_context (__main__.ContextIntegrity.test_eager_policy_is_explicit_and_retains_legacy_context) ... ok
+test_resume_refuses_changed_package_runner_and_reference_policy (__main__.ContextIntegrity.test_resume_refuses_changed_package_runner_and_reference_policy) ... O1 baseline t1: PASS route=['direct'] (0.1s)
+O1 treatment t1: PASS route=['direct'] (0.1s)
+--resume-from identity mismatch: provenance.skill_package differs — refusing (source preserved, nothing written)
+--resume-from identity mismatch: runner implementation differs — refusing (source preserved, nothing written)
+--resume-from identity mismatch: settings.reference_policy differs — refusing (source preserved, nothing written)
+--resume-from identity mismatch: provenance.checkers differs — refusing (source preserved, nothing written)
+--resume-from identity mismatch: provenance.fixtures differs — refusing (source preserved, nothing written)
+ok
+test_expected_network_rejection_is_a_contract_check (__main__.DomainHelpers.test_expected_network_rejection_is_a_contract_check) ... ok
+test_inventory_excludes_generated_vendor_and_cache_noise_consistently (__main__.DomainHelpers.test_inventory_excludes_generated_vendor_and_cache_noise_consistently) ... ok
+test_zero_delta_is_never_a_performance_improvement (__main__.DomainHelpers.test_zero_delta_is_never_a_performance_improvement) ... ok
+test_copy_validation_rejects_missing_resource_and_bad_helper_syntax (__main__.PackageIntegrity.test_copy_validation_rejects_missing_resource_and_bad_helper_syntax) ... ok
+test_symlink_cannot_make_a_package_depend_on_external_file (__main__.PackageIntegrity.test_symlink_cannot_make_a_package_depend_on_external_file) ... ok
+test_live_adapter_refuses_before_invocation_without_human_keys (__main__.PaidDefaultDeny.test_live_adapter_refuses_before_invocation_without_human_keys) ... ok
+test_contradictory_labels_are_rejected_with_normalization (__main__.RoutingContracts.test_contradictory_labels_are_rejected_with_normalization) ... ok
+test_repository_trigger_labels_are_consistent (__main__.RoutingContracts.test_repository_trigger_labels_are_consistent) ... ok
+test_workflow_coverage_floor_rejects_undercovered_skill (__main__.RoutingContracts.test_workflow_coverage_floor_rejects_undercovered_skill) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.883s
+
+OK
+wrote /var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/tmp2r7_eub_/20261014-011615-055631000-outcome-concierge-fake.json (resumed-skipped: 0)
+O1 baseline: pass=1.00 mean_len=1.00
+O1 treatment: pass=1.00 mean_len=1.00
+OK: 267 trigger labels have no contradictory normalized prompts

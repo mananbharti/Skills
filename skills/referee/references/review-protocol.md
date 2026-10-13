@@ -23,12 +23,16 @@ For each changed boundary, identify only applicable items:
 | Async or retry path | idempotency, timeout, cancellation, duplicate effects, observability |
 | Configuration | defaults, overrides, secrets handling, manifests, safe fallback |
 | Dependency upgrade | lockfile, supported range, generated code, breaking behavior |
+| Dependency/build artifacts | release artifact vs tagged source provenance (tarball-only payloads survive diff review) |
 
 ## Evidence policy
 
 State fact when source, diff, test, or reproduction demonstrates it. State
 inference when evidence supports but does not prove it. State unknown when the
-needed caller, runtime, or configuration is unavailable. Severity follows
+needed caller, runtime, or configuration is unavailable. For UI-changing diffs,
+require a demo/screenshot or mark the visual outcome explicitly unverified:
+code reading cannot show user impact. Keep evidence demands proportionate:
+trivial diffs get fast verdicts, not bureaucracy. Severity follows
 consequence and confidence together: a high-consequence possibility can merit
 investigation, but should name confirmation needed.
 

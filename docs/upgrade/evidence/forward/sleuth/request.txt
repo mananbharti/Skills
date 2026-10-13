@@ -1,0 +1,1 @@
+After I read a stored value once, writing a replacement sometimes leaves readers seeing the old value. Find and fix the cause; verify the fix and retain evidence.

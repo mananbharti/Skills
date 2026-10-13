@@ -1,0 +1,14 @@
+$ ['python3', 'model.py']
+exit: 0
+stdout:
+{
+  "basis": "synthetic assumptions, not measured capacity",
+  "read_average_inflight": 1.6,
+  "existing_backlog_growth_jobs_s": 5,
+  "existing_recovery_seconds": null,
+  "candidate_ideal_recovery_seconds": 600.0,
+  "minimum_drain_for_1800s": 25.0,
+  "generator_started_fraction": 0.6
+}
+
+stderr:

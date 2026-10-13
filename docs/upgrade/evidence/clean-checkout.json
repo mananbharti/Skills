@@ -1,0 +1,132 @@
+{
+  "schema": "clean-checkout/1",
+  "candidate_commit": "c86c38e3c5b87627074a467e000030f23ef942b8",
+  "client_date": "2026-10-14",
+  "checked_at_utc": "2026-10-13T20:03:56.230963+00:00",
+  "method": "local clone --no-hardlinks of committed branch; disposable copy; no model/remote service calls",
+  "checks": [
+    {
+      "command": [
+        "scripts/validate-skills"
+      ],
+      "exit_code": 0,
+      "stdout": "INFO: skills-ref unavailable; local strict validation completed\nOK: 28 frontmatter blocks are strict and spec-shaped\nOK: 28 self-contained skills satisfy the repository contract\n",
+      "stderr": "",
+      "status": "PASS"
+    },
+    {
+      "command": [
+        "scripts/check-names"
+      ],
+      "exit_code": 0,
+      "stdout": "OK: names follow the single-word system\n",
+      "stderr": "",
+      "status": "PASS"
+    },
+    {
+      "command": [
+        "scripts/check-links"
+      ],
+      "exit_code": 0,
+      "stdout": "OK: all bundled paths and inline local Markdown file targets exist\n",
+      "stderr": "",
+      "status": "PASS"
+    },
+    {
+      "command": [
+        "scripts/check-claims"
+      ],
+      "exit_code": 0,
+      "stdout": "OK: 31 claim row(s) well-formed\n",
+      "stderr": "",
+      "status": "PASS"
+    },
+    {
+      "command": [
+        "scripts/check-readme-sync"
+      ],
+      "exit_code": 0,
+      "stdout": "OK: README names all 28 skills, count current, install present\n",
+      "stderr": "",
+      "status": "PASS"
+    },
+    {
+      "command": [
+        "scripts/test-regressions"
+      ],
+      "exit_code": 0,
+      "stdout": "O1 baseline t1: PASS route=['direct'] (0.1s)\nO1 treatment t1: PASS route=['direct'] (0.1s)\nwrote /var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/outcome-confirm-rpw0heff/20261014-013349-994483000-outcome-concierge-fake.json (resumed-skipped: 0)\nO1 baseline: pass=1.00 mean_len=1.00\nO1 treatment: pass=1.00 mean_len=1.00\nC1 baseline t1: PASS route=['direct'] (0.1s)\nC1 treatment t1: PASS route=['direct'] (0.1s)\nwrote /var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/outcome-confirm-rpw0heff/20261014-013350-084413000-outcome-concierge-fake.json (resumed-skipped: 0)\nC1 baseline: pass=1.00 mean_len=1.00\nC1 treatment: pass=1.00 mean_len=1.00\nO1 baseline t1: PASS route=['direct'] (0.1s)\nO1 treatment t1: PASS route=['direct'] (0.1s)\nO1 treatment t2: PASS route=['direct'] (0.1s)\nO1 baseline t2: PASS route=['direct'] (0.1s)\nwrote /var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/outcome-order-619sgiqe/20261014-013350-406962000-outcome-concierge-fake.json (resumed-skipped: 0)\nO1 baseline: pass=1.00 mean_len=1.00\nO1 treatment: pass=1.00 mean_len=1.00\nwrote /var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/outcome-order-619sgiqe/20261014-013350-478534000-outcome-concierge-fake.json (resumed-skipped: 4)\nO1 baseline: pass=1.00 mean_len=1.00\nO1 treatment: pass=1.00 mean_len=1.00\nO1 baseline t1: PASS route=['direct'] (0.1s)\nO1 treatment t1: PASS route=['direct'] (0.1s)\nwrote /var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/outcome-combine-8ij1wx4n/20261014-013350-552918000-outcome-concierge-fake.json (resumed-skipped: 0)\nO1 baseline: pass=1.00 mean_len=1.00\nO1 treatment: pass=1.00 mean_len=1.00\nO1 treatment t2: PASS route=['direct'] (0.1s)\nO1 baseline t2: PASS route=['direct'] (0.1s)\nwrote /var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/outcome-combine-8ij1wx4n/20261014-013350-624196000-outcome-concierge-fake.json (resumed-skipped: 2)\nO1 baseline: pass=1.00 mean_len=1.00\nO1 treatment: pass=1.00 mean_len=1.00\nO1 baseline t1: PASS route=['direct'] (0.1s)\nO1 treatment t1: PASS route=['direct'] (0.1s)\nwrote /var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/outcome-mismatch-mi612lei/20261014-013350-841210000-outcome-concierge-fake.json (resumed-skipped: 0)\nO1 baseline: pass=1.00 mean_len=1.00\nO1 treatment: pass=1.00 mean_len=1.00\nC1 baseline t1: PASS route=['direct'] (0.1s)\nC1 treatment t1: PASS route=['direct'] (0.1s)\nwrote /var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/outcome-task-ei9206j_/20261014-013351-185817000-outcome-concierge-fake.json (resumed-skipped: 0)\nC1 baseline: pass=1.00 mean_len=1.00\nC1 treatment: pass=1.00 mean_len=1.00\n",
+      "stderr": "test_every_declared_workflow_fixture_copies (__main__.EvaluationRegressions.test_every_declared_workflow_fixture_copies) ... ok\ntest_invalid_cli_selections_fail_before_agent_invocation (__main__.EvaluationRegressions.test_invalid_cli_selections_fail_before_agent_invocation) ... ok\ntest_outcome_accepts_single_file_fixture_and_ignores_artifact_directories (__main__.EvaluationRegressions.test_outcome_accepts_single_file_fixture_and_ignores_artifact_directories) ... ok\ntest_outcome_artifacts_cannot_follow_external_symlinks (__main__.EvaluationRegressions.test_outcome_artifacts_cannot_follow_external_symlinks) ... ok\ntest_outcome_containment_detects_changes_to_already_dirty_files (__main__.EvaluationRegressions.test_outcome_containment_detects_changes_to_already_dirty_files) ... ok\ntest_outcome_requires_complete_successful_evidence (__main__.EvaluationRegressions.test_outcome_requires_complete_successful_evidence) ... ok\ntest_outcome_setup_failure_cleans_workspace (__main__.EvaluationRegressions.test_outcome_setup_failure_cleans_workspace) ... ok\ntest_outcome_task_contracts_stay_valid (__main__.EvaluationRegressions.test_outcome_task_contracts_stay_valid) ... ok\ntest_outcome_validator_rejects_missing_fixture_without_side_effects (__main__.EvaluationRegressions.test_outcome_validator_rejects_missing_fixture_without_side_effects) ... ok\ntest_stall_guard_preserves_failed_trial (__main__.EvaluationRegressions.test_stall_guard_preserves_failed_trial) ... ABORT: 1 consecutive bad observations; partial results: /var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/outcome-results-pbidzwoc/20261014-013347-556412000-outcome-concierge-fake.json\nok\ntest_treatment_receives_executable_skill_helpers (__main__.EvaluationRegressions.test_treatment_receives_executable_skill_helpers) ... ok\ntest_trigger_chain_accuracy_and_handsfree (__main__.EvaluationRegressions.test_trigger_chain_accuracy_and_handsfree) ... ok\ntest_trigger_observe_cleans_owned_workdir (__main__.EvaluationRegressions.test_trigger_observe_cleans_owned_workdir) ... ok\ntest_workflow_empty_suite_and_failed_setup_do_not_pass_or_leak (__main__.EvaluationRegressions.test_workflow_empty_suite_and_failed_setup_do_not_pass_or_leak) ... ok\ntest_workflow_rejects_external_artifact_symlinks (__main__.EvaluationRegressions.test_workflow_rejects_external_artifact_symlinks) ... ok\ntest_workflow_validator_rejects_missing_fixture (__main__.EvaluationRegressions.test_workflow_validator_rejects_missing_fixture) ... ok\ntest_blueprint_deliverable_matrix (__main__.GraderValidity.test_blueprint_deliverable_matrix) ... ok\ntest_concierge_c1_contract_calibration (__main__.GraderValidity.test_concierge_c1_contract_calibration) ... ok\ntest_handsfree_c1_contract_calibration (__main__.GraderValidity.test_handsfree_c1_contract_calibration) ... ok\ntest_hotseat_structure_proxies (__main__.GraderValidity.test_hotseat_structure_proxies) ... ok\ntest_pilot_matrix_and_wording_penalty (__main__.GraderValidity.test_pilot_matrix_and_wording_penalty) ... ok\ntest_polish_artifact_matrix (__main__.GraderValidity.test_polish_artifact_matrix) ... ok\ntest_recall_c1_contract_calibration (__main__.GraderValidity.test_recall_c1_contract_calibration) ... ok\ntest_route_good_and_bad_chains (__main__.GraderValidity.test_route_good_and_bad_chains) ... ok\ntest_spelunk_c1_contract_calibration (__main__.GraderValidity.test_spelunk_c1_contract_calibration) ... ok\ntest_spelunk_fact_matrix_and_negation_brittleness (__main__.GraderValidity.test_spelunk_fact_matrix_and_negation_brittleness) ... ok\ntest_spelunk_strips_harness_path_residue (__main__.GraderValidity.test_spelunk_strips_harness_path_residue) ... ok\ntest_handsfree_docstring_contract (__main__.HelperRegressions.test_handsfree_docstring_contract) ... ok\ntest_inventory_json_escapes_target_path (__main__.HelperRegressions.test_inventory_json_escapes_target_path) ... ok\ntest_measure_report_exit_contract (__main__.HelperRegressions.test_measure_report_exit_contract) ... ok\ntest_measure_report_rejects_nonfinite_numbers (__main__.HelperRegressions.test_measure_report_rejects_nonfinite_numbers) ... ok\ntest_test_matrix_rejects_empty_dimension (__main__.HelperRegressions.test_test_matrix_rejects_empty_dimension) ... ok\ntest_confirm_only_tasks_excluded_from_sweeps (__main__.RunnerPlumbing.test_confirm_only_tasks_excluded_from_sweeps) ... no tasks for this selection\nok\ntest_dry_runs_accept_model_without_invocation (__main__.RunnerPlumbing.test_dry_runs_accept_model_without_invocation) ... ok\ntest_isolation_env_is_documented_and_scoped (__main__.RunnerPlumbing.test_isolation_env_is_documented_and_scoped) ... ok\ntest_opencode_model_flag_forwarding (__main__.RunnerPlumbing.test_opencode_model_flag_forwarding) ... ok\ntest_outcome_order_counterbalance_and_resume (__main__.RunnerPlumbing.test_outcome_order_counterbalance_and_resume) ... ok\ntest_outcome_resume_combines_and_summarizes (__main__.RunnerPlumbing.test_outcome_resume_combines_and_summarizes) ... ok\ntest_outcome_resume_refuses_version_and_identity_mismatch (__main__.RunnerPlumbing.test_outcome_resume_refuses_version_and_identity_mismatch) ... --resume-from schema is 'outcome/2'; this runner writes outcome/6 \u2014 refusing to mix versions (historical results are preserved, never rewritten)\n--resume-from identity mismatch: skill is 'pilot', requested 'concierge'; settings.timeout_default differs; settings.order differs; settings.reference_policy differs; grader_version differs; model differs; task_contracts differ; runner implementation differs; provenance.skill_package differs; provenance.checkers differs; provenance.fixtures differs; provenance.treatment_context_sha256 differs; provenance.agent_version differs \u2014 refusing (source preserved, nothing written)\nok\ntest_outcome_resume_rejects_order_and_duplicate_mismatch (__main__.RunnerPlumbing.test_outcome_resume_rejects_order_and_duplicate_mismatch) ... --resume-from identity mismatch: settings.order differs \u2014 refusing (source preserved, nothing written)\n--resume-from source contains duplicate trial identities (task, condition, trial) \u2014 refusing (source preserved, nothing written)\nok\ntest_provenance_untracked_digest (__main__.RunnerPlumbing.test_provenance_untracked_digest) ... ok\ntest_task_filter_selects_single_confirmation_task (__main__.RunnerPlumbing.test_task_filter_selects_single_confirmation_task) ... unknown task 'Z9' for skill concierge\ntask 'O1' is not held-out; refusing --heldout combo\nok\ntest_claim_validator_rejects_missing_evidence_path (__main__.ValidatorRegressions.test_claim_validator_rejects_missing_evidence_path) ... ok\ntest_skill_validator_rejects_em_dash_without_ripgrep (__main__.ValidatorRegressions.test_skill_validator_rejects_em_dash_without_ripgrep) ... ok\ntest_skill_validator_rejects_orphaned_resource (__main__.ValidatorRegressions.test_skill_validator_rejects_orphaned_resource) ... ok\n\n----------------------------------------------------------------------\nRan 45 tests in 9.655s\n\nOK\n",
+      "status": "PASS"
+    },
+    {
+      "command": [
+        "scripts/test-upgrade"
+      ],
+      "exit_code": 0,
+      "stdout": "O1 baseline t1: PASS route=['direct'] (0.1s)\nO1 treatment t1: PASS route=['direct'] (0.1s)\nwrote /var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/tmpkuipe2d_/20261014-013346-491283000-outcome-concierge-fake.json (resumed-skipped: 0)\nO1 baseline: pass=1.00 mean_len=1.00\nO1 treatment: pass=1.00 mean_len=1.00\nOK: 267 trigger labels have no contradictory normalized prompts\n",
+      "stderr": "test_default_treatment_loads_entrypoint_and_defers_references (__main__.ContextIntegrity.test_default_treatment_loads_entrypoint_and_defers_references) ... ok\ntest_eager_policy_is_explicit_and_retains_legacy_context (__main__.ContextIntegrity.test_eager_policy_is_explicit_and_retains_legacy_context) ... ok\ntest_resume_refuses_changed_package_runner_and_reference_policy (__main__.ContextIntegrity.test_resume_refuses_changed_package_runner_and_reference_policy) ... --resume-from identity mismatch: provenance.skill_package differs \u2014 refusing (source preserved, nothing written)\n--resume-from identity mismatch: runner implementation differs \u2014 refusing (source preserved, nothing written)\n--resume-from identity mismatch: settings.reference_policy differs \u2014 refusing (source preserved, nothing written)\n--resume-from identity mismatch: provenance.checkers differs \u2014 refusing (source preserved, nothing written)\n--resume-from identity mismatch: provenance.fixtures differs \u2014 refusing (source preserved, nothing written)\nok\ntest_expected_network_rejection_is_a_contract_check (__main__.DomainHelpers.test_expected_network_rejection_is_a_contract_check) ... ok\ntest_inventory_excludes_generated_vendor_and_cache_noise_consistently (__main__.DomainHelpers.test_inventory_excludes_generated_vendor_and_cache_noise_consistently) ... ok\ntest_zero_delta_is_never_a_performance_improvement (__main__.DomainHelpers.test_zero_delta_is_never_a_performance_improvement) ... ok\ntest_copy_validation_rejects_missing_resource_and_bad_helper_syntax (__main__.PackageIntegrity.test_copy_validation_rejects_missing_resource_and_bad_helper_syntax) ... ok\ntest_symlink_cannot_make_a_package_depend_on_external_file (__main__.PackageIntegrity.test_symlink_cannot_make_a_package_depend_on_external_file) ... ok\ntest_live_adapter_refuses_before_invocation_without_human_keys (__main__.PaidDefaultDeny.test_live_adapter_refuses_before_invocation_without_human_keys) ... ok\ntest_contradictory_labels_are_rejected_with_normalization (__main__.RoutingContracts.test_contradictory_labels_are_rejected_with_normalization) ... ok\ntest_repository_trigger_labels_are_consistent (__main__.RoutingContracts.test_repository_trigger_labels_are_consistent) ... ok\ntest_workflow_coverage_floor_rejects_undercovered_skill (__main__.RoutingContracts.test_workflow_coverage_floor_rejects_undercovered_skill) ... ok\n\n----------------------------------------------------------------------\nRan 12 tests in 1.825s\n\nOK\n",
+      "status": "PASS"
+    },
+    {
+      "command": [
+        "scripts/run-evals"
+      ],
+      "exit_code": 0,
+      "stdout": "OK: 267 trigger cases well-formed across all suites (measurement: scripts/eval-trigger)\nOK: 324 workflow scenarios well-formed across 28 skills; 54 fixture-backed\nOK: 87 outcome tasks well-formed across 28 skills\nOK: 267 trigger labels have no contradictory normalized prompts\n",
+      "stderr": "",
+      "status": "PASS"
+    },
+    {
+      "command": [
+        "scripts/check-packages"
+      ],
+      "exit_code": 0,
+      "stdout": "PASS: backend\nPASS: blueprint\nPASS: cleared\nPASS: concierge\nPASS: distill\nPASS: ditto\nPASS: findable\nPASS: friction\nPASS: frontpage\nPASS: frugal\nPASS: handsfree\nPASS: harden\nPASS: headroom\nPASS: hotpath\nPASS: hotseat\nPASS: janitor\nPASS: masterplan\nPASS: pilot\nPASS: polish\nPASS: proof\nPASS: recall\nPASS: referee\nPASS: roadtest\nPASS: runway\nPASS: scout\nPASS: sleuth\nPASS: spelunk\nPASS: unslop\nPASS: 28 isolated packages; host behavior UNVERIFIED\n",
+      "stderr": "",
+      "status": "PASS"
+    },
+    {
+      "command": [
+        "scripts/check-demos"
+      ],
+      "exit_code": 0,
+      "stdout": "PASS: sleuth: seed 2 assertions fail; corrected 3 tests pass\nPASS: harden: seed 4 assertions fail; corrected 5 tests pass\nPASS: backend: seed 8 assertions fail; corrected 8 tests pass\n",
+      "stderr": "",
+      "status": "PASS"
+    },
+    {
+      "command": [
+        "scripts/test-archetypes"
+      ],
+      "exit_code": 0,
+      "stdout": "PASS: mobile-outbox: seed 2 assertion failures; corrected 2 pass\nPASS: game-input: seed 4 assertion failures; corrected 4 pass\n",
+      "stderr": "",
+      "status": "PASS"
+    },
+    {
+      "command": [
+        "scripts/build-docs"
+      ],
+      "exit_code": 0,
+      "stdout": "OK: wrote docs/skills/INDEX.md (28 skills)\n",
+      "stderr": "",
+      "status": "PASS"
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--exit-code",
+        "--",
+        "docs/skills/INDEX.md"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "status": "PASS"
+    }
+  ],
+  "final_copy_git_status": "",
+  "status": "PASS"
+}

@@ -23,9 +23,8 @@ git rev-list --objects --all |
 
 ```bash
 git branch -vv                             # tracking + stale
-git branch --merged main                   # deletable candidates
-git for-each-ref --sort=-committerdate refs/heads/
-  --format='%(refname:short) %(committerdate:relative)'   # ages
+git branch --merged <verified-base>        # candidates only; verify base first
+git for-each-ref --sort=-committerdate --format='%(refname:short) %(committerdate:relative)' refs/heads/   # ages
 git tag --sort=-creatordate | head         # release reality
 ```
 

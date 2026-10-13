@@ -1,0 +1,13 @@
+{
+  "skill": {
+    "SKILL.md": "89f619be6ec22e45a1835c1c8438205864f4b18c86e7a6e56c0f3ec9ec7caaec",
+    "references/adverse-conditions.md": "fdd5e731f91cfa344e34e4fbf375a22c93874accceaff5f627c7a096cc61c687",
+    "references/evidence-bundle.md": "d477d94daf5d0acab9fc6c88b5b6aa8cca4d84a5dd03bfe80de8c1247495f065",
+    "references/research.md": "b4ffc0ba7f3d9d9f01004600bcbb1e5777874a21096759355f2ac9daf799e601",
+    "scripts/test-matrix": "7e79b1beca82b56d87616f18efb031e93c768335aae19b1657e190755ef035f2"
+  },
+  "fixture": {
+    "app.js": "d24f681c5b80f3f7a4df1e7319d15b0d54a8d1376302dc5ee8eac061c49f2af7",
+    "index.html": "5fd71b20c7d10685e5691f7f840bdcdf0e986ee010417d546bd0cf330a7e2626"
+  }
+}

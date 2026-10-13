@@ -1,0 +1,2 @@
+Owned tiny Git repo: committed text, unrelated user edits, separate task edit. Stage task only, leave user edit unstaged; no push.
+Constraints: safe local owned workspace only; do not modify source fixture/skill, use paid agents, publish, deploy, or mutate real services. Exploratory observation only, no controlled comparative proof.

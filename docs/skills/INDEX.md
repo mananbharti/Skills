@@ -18,15 +18,15 @@
 
 - **`recall`**: Maintains compact project memory as verified facts, decisions, current state, unresolved issues, and lessons with source and freshness metadata. Use for long-running work, context resets, handoffs, or when the user asks what was decided or what remains.
 
-- **`pilot`**: Implements an approved plan one coherent slice at a time with fresh inspection, risk-appropriate verification, diff review, and clean handoff state. Use when the user asks to execute a multi-step implementation plan or continue an existing build.
+- **`pilot`**: Implements an approved plan one coherent slice at a time with fresh inspection, risk-appropriate verification, per-slice diff inspection, and clean handoff state. Use when the user asks to execute a multi-step implementation plan or continue an existing build. Not a standalone change reviewer; use `referee` for that.
 
-- **`backend`**: Design, change, debug, or review server-side behavior when an API, database, authentication or authorization path, background job, webhook, external dependency, migration, cache, concurrency invariant, or production reliability concern is in scope. Use this skill for backend work in any stack; inspect the repository before choosing framework-specific patterns.
+- **`backend`**: Design, change, debug, or inspect server-side behavior when an API, database, authentication or authorization path, background job, webhook, external dependency, migration, cache, concurrency invariant, or production reliability concern is in scope. Use this skill for backend work in any stack; inspect the repository before choosing framework-specific patterns.
 
 - **`blueprint`**: Documents observed or proposed software architecture with evidence-backed context, container, component, dynamic, data-flow, and deployment views. Use when the user needs architecture diagrams, onboarding material, trust boundaries, or a design view before a major change.
 
 - **`headroom`**: Plans capacity, performance, and resilience from measured or explicitly estimated demand. Use for scalability decisions, growth planning, service targets, bottleneck forecasts, queue or cache sizing, and Now/Next/Scale plans. Do not use to debug a known slow path or implement a feature.
 
-- **`polish`**: Refines a product interface while preserving its visual language, improving hierarchy, typography, spacing, density, states, responsiveness, keyboard use, focus, motion, and accessibility. Use when the user asks to make an existing web or app interface look intentional and professional.
+- **`polish`**: Refines a product interface while preserving its visual language, improving hierarchy, typography, spacing, density, states, responsiveness, keyboard use, focus, motion, and accessibility. Use when the user asks to make an existing web or app interface look intentional and professional. To recreate a reference screenshot, URL, or design export instead, use `ditto`.
 
 - **`friction`**: Diagnoses and improves usability by walking real user tasks, finding hesitation, backtracking, errors, recovery gaps, accessibility barriers, and inefficient paths. Use for UX audits, onboarding, forms, navigation, error messages, or confusing flows.
 

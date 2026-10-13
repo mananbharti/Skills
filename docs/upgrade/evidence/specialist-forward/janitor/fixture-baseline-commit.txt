@@ -1,0 +1,8 @@
+$ ['git', '-c', 'user.name=Local Fixture', '-c', 'user.email=fixture@example.invalid', 'commit', '-m', 'fixture: initial text']
+exit: 0
+stdout:
+[main (root-commit) fd14c7b] fixture: initial text
+ 1 file changed, 40 insertions(+)
+ create mode 100644 notes.txt
+
+stderr:

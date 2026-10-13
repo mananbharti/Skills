@@ -1,0 +1,6 @@
+$ ['python3', '-c', 'import shutil; print({"mmdc":shutil.which("mmdc"),"browser":"local route blocked, no render attempted"})']
+exit: 0
+stdout:
+{'mmdc': None, 'browser': 'local route blocked, no render attempted'}
+
+stderr:

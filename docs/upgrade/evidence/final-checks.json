@@ -1,0 +1,137 @@
+{
+  "started_at_utc": "2026-10-13T19:58:45.621452+00:00",
+  "checks": [
+    {
+      "command": [
+        "scripts/validate-skills"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "evidence": "docs/upgrade/evidence/final-checks/validate-skills.json"
+    },
+    {
+      "command": [
+        "scripts/check-names"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "evidence": "docs/upgrade/evidence/final-checks/check-names.json"
+    },
+    {
+      "command": [
+        "scripts/check-links"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "evidence": "docs/upgrade/evidence/final-checks/check-links.json"
+    },
+    {
+      "command": [
+        "scripts/validate-frontmatter"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "evidence": "docs/upgrade/evidence/final-checks/validate-frontmatter.json"
+    },
+    {
+      "command": [
+        "scripts/check-claims"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "evidence": "docs/upgrade/evidence/final-checks/check-claims.json"
+    },
+    {
+      "command": [
+        "scripts/check-readme-sync"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "evidence": "docs/upgrade/evidence/final-checks/check-readme-sync.json"
+    },
+    {
+      "command": [
+        "scripts/test-regressions"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "evidence": "docs/upgrade/evidence/final-checks/test-regressions.json"
+    },
+    {
+      "command": [
+        "scripts/test-upgrade"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "evidence": "docs/upgrade/evidence/final-checks/test-upgrade.json"
+    },
+    {
+      "command": [
+        "scripts/check-packages"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "evidence": "docs/upgrade/evidence/final-checks/check-packages.json"
+    },
+    {
+      "command": [
+        "scripts/check-demos"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "evidence": "docs/upgrade/evidence/final-checks/check-demos.json"
+    },
+    {
+      "command": [
+        "scripts/test-archetypes"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "evidence": "docs/upgrade/evidence/final-checks/test-archetypes.json"
+    },
+    {
+      "command": [
+        "scripts/run-evals"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "evidence": "docs/upgrade/evidence/final-checks/run-evals.json"
+    },
+    {
+      "command": [
+        "scripts/check-context"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "evidence": "docs/upgrade/evidence/final-checks/check-context.json"
+    },
+    {
+      "command": [
+        "skills/frugal/scripts/cost-report.py",
+        "--self-test"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "evidence": "docs/upgrade/evidence/final-checks/cost-report.py-self-test.json"
+    },
+    {
+      "command": [
+        "skills/runway/scripts/check-receipt.py",
+        "--self-test"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "evidence": "docs/upgrade/evidence/final-checks/check-receipt.py-self-test.json"
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "status": "PASS",
+      "evidence": "docs/upgrade/evidence/final-checks/diff-check.json"
+    }
+  ]
+}

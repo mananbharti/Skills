@@ -1,0 +1,12 @@
+{
+  "command": [
+    "node",
+    "--test",
+    "test.mjs"
+  ],
+  "exit": 1,
+  "stdout": "\u2716 unknown acknowledgment retains persisted operation for restart/retry (2.613791ms)\n\u2716 retry uses stable business identity after server commits but ack is lost (1.019209ms)\n\u2139 tests 2\n\u2139 suites 0\n\u2139 pass 0\n\u2139 fail 2\n\u2139 cancelled 0\n\u2139 skipped 0\n\u2139 todo 0\n\u2139 duration_ms 45.6675\n\n\u2716 failing tests:\n\ntest at test.mjs:20:1\n\u2716 unknown acknowledgment retains persisted operation for restart/retry (2.613791ms)\n  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n  \n  0 !== 1\n  \n      at TestContext.<anonymous> (file:///Users/uday/Skills/benchmarks/fixtures/mobile-outbox/test.mjs:23:10)\n      at async Test.run (node:internal/test_runner/test:1113:7)\n      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {\n    generatedMessage: true,\n    code: 'ERR_ASSERTION',\n    actual: 0,\n    expected: 1,\n    operator: 'strictEqual',\n    diff: 'simple'\n  }\n\ntest at test.mjs:27:1\n\u2716 retry uses stable business identity after server commits but ack is lost (1.019209ms)\n  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n  + actual - expected\n  \n    [\n  +   'op-1-attempt'\n  -   'op-1',\n  -   'op-1'\n    ]\n  \n      at TestContext.<anonymous> (file:///Users/uday/Skills/benchmarks/fixtures/mobile-outbox/test.mjs:37:10)\n      at async Test.run (node:internal/test_runner/test:1113:7)\n      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {\n    generatedMessage: true,\n    code: 'ERR_ASSERTION',\n    actual: [ 'op-1-attempt' ],\n    expected: [ 'op-1', 'op-1' ],\n    operator: 'deepStrictEqual',\n    diff: 'simple'\n  }\n",
+  "stderr": "",
+  "runtime": "v24.11.0",
+  "status": "EXPECTED_FAIL; local model only"
+}

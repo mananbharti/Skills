@@ -31,8 +31,8 @@ def main():
         print("test-matrix: no viewports given", file=sys.stderr)
         return 2
 
-    matrix = [{"path": p, "viewport": v, "checks": ["render", "console-clean",
-               "network-clean", "interaction-works"] +
+    matrix = [{"path": p, "viewport": v, "checks": ["render", "console-assessed",
+               "network-matches-contract", "interaction-works"] +
                (STATE_CHECKS if a.states else [])}
               for p in paths for v in viewports]
 

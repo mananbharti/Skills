@@ -1,0 +1,13 @@
+{
+  "command": [
+    "skills/runway/scripts/check-receipt.py",
+    "--self-test"
+  ],
+  "exit_code": 0,
+  "stdout": "PASS: CLI zero, stale fingerprint, failed/missing smoke and malformed receipts rejected\n",
+  "stderr": "",
+  "status": "PASS",
+  "started_at_utc": "2026-10-13T19:58:45.621452+00:00",
+  "client_date": "2026-10-14",
+  "scope": "local deterministic check; no causal effectiveness/native compatibility inference"
+}

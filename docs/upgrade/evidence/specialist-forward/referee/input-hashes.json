@@ -1,0 +1,12 @@
+{
+  "skill": {
+    "SKILL.md": "fbaa810170c47ba051eefd55cf5637d49aa3c795b9ebe84a53e65ea6c310b301",
+    "references/finding-format.md": "257ffc415cc57f1fbfc5ac38c7d5baf97fc534dea5fbc6bf97f36572f8a79cf0",
+    "references/research.md": "ecbd6be3b6b6ed4cf25ea016dbe9d744580c0bf6ae9694519a6cda31d5f225c2",
+    "references/review-protocol.md": "7c7de63eca81e845aa0fc664e2fad2142fe9b3d6ff6ae5215cbda93567a7e2cd"
+  },
+  "fixture": {
+    "billing.py": "31e4271455028c3f2746eeb04429b2c71aa378406344c346f5d144f44d3fd2af",
+    "brief.md": "612d95fd35025837280b8ba630b21e5da74a2c4e51f51a8b2b01106848d507f5"
+  }
+}

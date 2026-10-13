@@ -25,9 +25,9 @@ to every entry: file:line or it isn't a finding.
 - **Duplicated logic**: the same transformation in several files;
   consolidate toward one home.
 - **Premature / Zombie abstractions**: base classes with one subclass,
-  strategy patterns with one strategy, "flexible" config for one use. AI
-  agents often hallucinate these layers from their 2015-era training bias.
-  Inline them; add abstraction when the second real case appears.
+  strategy patterns with one strategy, "flexible" config for one use.
+  Inspect actual costs and extension constraints before inlining; an interface
+  can deliberately isolate an external service even with one implementation.
 - **Needless indirection**: wrapper-of-wrapper calls, event buses for
   two listeners, "managers" that manage nothing. Flatten.
 - **Giant utility files**: `utils.ts` as a landfill; split by domain or
@@ -36,7 +36,9 @@ to every entry: file:line or it isn't a finding.
 ## Dead weight (usually Medium)
 
 - **Dead code**: unreachable branches, functions nothing calls
-  (verified by search, not vibes), feature-flag remnants.
+  (verified by search, not vibes), feature-flag remnants. Dormant code
+  re-arms on deploys: Knight Capital's unused router function sat live
+  since 2005 until a 2012 deploy triggered it (>$460M).
 - **Abandoned files**: `new_version_final_v2.ts`, half-migrated
   modules, `old/` directories that linger.
 - **Unused dependencies**: imports gone, packages remain (check the

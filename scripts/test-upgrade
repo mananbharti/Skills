@@ -1,0 +1,367 @@
+#!/usr/bin/env python3
+"""Focused evaluation integrity regressions; local fake agents only."""
+import json
+import os
+import re
+import runpy
+import subprocess
+import sys
+import tempfile
+import unittest
+from pathlib import Path
+from unittest.mock import patch
+
+sys.dont_write_bytecode = True
+ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT / "scripts"))
+
+
+class ContextIntegrity(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.runner = runpy.run_path(str(ROOT / "scripts/eval-outcome"))
+
+    def test_default_treatment_loads_entrypoint_and_defers_references(self):
+        context = self.runner["skill_context"]
+        with tempfile.TemporaryDirectory() as raw:
+            skill = Path(raw) / "skills/example"
+            (skill / "references").mkdir(parents=True)
+            (skill / "SKILL.md").write_text("---\nname: example\n---\n# Workflow\n")
+            (skill / "references/research.md").write_text("PROVENANCE_ONLY_SENTINEL")
+            with patch.dict(context.__globals__, ROOT=raw):
+                text = context("example")
+                self.assertIn("# Workflow", text)
+                self.assertNotIn("PROVENANCE_ONLY_SENTINEL", text)
+                self.assertIn(".eval-skill/example", text)
+
+    def test_eager_policy_is_explicit_and_retains_legacy_context(self):
+        context = self.runner["skill_context"]
+        with tempfile.TemporaryDirectory() as raw:
+            skill = Path(raw) / "skills/example"
+            (skill / "references").mkdir(parents=True)
+            (skill / "SKILL.md").write_text("---\nname: example\n---\n# Workflow\n")
+            (skill / "references/research.md").write_text("LEGACY_SENTINEL")
+            with patch.dict(context.__globals__, ROOT=raw):
+                self.assertIn("LEGACY_SENTINEL", context("example", "eager"))
+
+    def test_resume_refuses_changed_package_runner_and_reference_policy(self):
+        main = self.runner["main"]
+        task = {"id": "O1", "request": "Route this", "heldout": False,
+                "expected": ["direct"]}
+        fake = {"status": "ok", "output": "route: direct", "duration": 0.1}
+        with tempfile.TemporaryDirectory() as raw:
+            common = dict(RESULTS=raw, AGENTS={"fake": {"bin": sys.executable}},
+                          load_tasks=lambda *_: [task],
+                          observe=lambda *_a, **_k: dict(fake))
+            argv = ["eval-outcome", "--skill", "concierge", "--agent", "fake", "--trials", "1"]
+            with patch.dict(main.__globals__, **common), patch.object(sys, "argv", argv):
+                self.assertEqual(main(), 0)
+            original = next(Path(raw).glob("*.json"))
+            source = original.read_bytes()
+            for mutation in ("package", "runner", "policy", "checker", "fixture"):
+                with self.subTest(mutation=mutation):
+                    record = json.loads(source)
+                    if mutation == "package":
+                        record["provenance"]["skill_package"]["digest"] = "changed"
+                    elif mutation == "runner":
+                        record["runner_sha256"] = "changed"
+                    elif mutation == "policy":
+                        record["provenance"]["settings"]["reference_policy"] = "eager"
+                    elif mutation == "checker":
+                        record["provenance"]["checkers"]["digest"] = "changed"
+                    else:
+                        record["provenance"]["fixtures"] = {"other": {"digest": "changed"}}
+                    altered = Path(raw) / (mutation + ".json")
+                    altered.write_text(json.dumps(record))
+                    with patch.dict(main.__globals__, **common), patch.object(
+                        sys, "argv", argv + ["--resume-from", str(altered)]
+                    ):
+                        self.assertEqual(main(), 2)
+                    self.assertEqual(original.read_bytes(), source)
+            self.assertEqual(len(list(Path(raw).glob("*-outcome-*.json"))), 1)
+
+
+class RoutingContracts(unittest.TestCase):
+    def test_contradictory_labels_are_rejected_with_normalization(self):
+        check = runpy.run_path(str(ROOT / "scripts/check-trigger-contracts"))["contradictions"]
+        cases = [{"utterance": "  FIX  checkout", "expected": "sleuth", "suite": "a"},
+                 {"utterance": "fix checkout", "expected": "backend", "suite": "b"}]
+        self.assertEqual(len(check(cases)), 1)
+        cases[1]["expected"] = "sleuth"
+        self.assertEqual(check(cases), [])
+
+    def test_repository_trigger_labels_are_consistent(self):
+        checker = runpy.run_path(str(ROOT / "scripts/check-trigger-contracts"))
+        self.assertEqual(checker["main"](), 0)
+
+    def test_workflow_coverage_floor_rejects_undercovered_skill(self):
+        loader = runpy.run_path(str(ROOT / "scripts/eval-workflow"))["load_scenarios"]
+        with tempfile.TemporaryDirectory() as raw:
+            scenarios = Path(raw)
+            (scenarios / "skills/concierge").mkdir(parents=True)
+            (scenarios / "concierge.md").write_text(
+                "## concierge\n### C1 short task\n- Setup: a local repo\n"
+                "- Task: choose an owner\n- D1: clear owner\n")
+            with patch.dict(loader.__globals__, SCENARIOS=scenarios, ROOT=scenarios):
+                _, errors = loader()
+            self.assertTrue(any("concierge: only 1" in error for error in errors))
+
+
+class PackageIntegrity(unittest.TestCase):
+    def test_symlink_cannot_make_a_package_depend_on_external_file(self):
+        manifest = runpy.run_path(str(ROOT / "scripts/check-packages"))["package_manifest"]
+        with tempfile.TemporaryDirectory() as raw:
+            root = Path(raw)
+            package = root / "package"
+            package.mkdir()
+            outside = root / "outside.txt"
+            outside.write_text("not bundled")
+            (package / "leak.txt").symlink_to(outside)
+            with self.assertRaisesRegex(ValueError, "symlink"):
+                manifest(package)
+
+    def test_copy_validation_rejects_missing_resource_and_bad_helper_syntax(self):
+        inspect = runpy.run_path(str(ROOT / "scripts/check-packages"))["inspect_package"]
+        with tempfile.TemporaryDirectory() as raw:
+            package = Path(raw)
+            (package / "SKILL.md").write_text("See references/needed.md\n")
+            with self.assertRaisesRegex(ValueError, "missing resource"):
+                inspect(package)
+            (package / "SKILL.md").write_text("Run scripts/helper\n")
+            (package / "scripts").mkdir()
+            helper = package / "scripts/helper"
+            helper.write_text("#!/usr/bin/env python3\nif broken\n")
+            helper.chmod(0o755)
+            with self.assertRaises(SyntaxError):
+                inspect(package)
+
+
+class DomainHelpers(unittest.TestCase):
+    def test_zero_delta_is_never_a_performance_improvement(self):
+        result = subprocess.run([str(ROOT / "skills/hotpath/scripts/measure-report"),
+                                 "--baseline", "100", "--after", "100", "--threshold", "0",
+                                 "--conditions", "identical workload", "--json"],
+                                capture_output=True, text=True)
+        self.assertEqual(result.returncode, 1, result.stderr)
+        document = json.loads(result.stdout)
+        self.assertFalse(document["significant"])
+        self.assertTrue(document["verdict"].startswith("NOISE"))
+
+    def test_expected_network_rejection_is_a_contract_check(self):
+        result = subprocess.run([str(ROOT / "skills/roadtest/scripts/test-matrix"),
+                                 "--paths", "denied-tenant", "--viewports", "390", "--json"],
+                                capture_output=True, text=True, check=True)
+        checks = json.loads(result.stdout)["matrix"][0]["checks"]
+        self.assertIn("network-matches-contract", checks)
+        self.assertNotIn("network-2xx", checks)
+        self.assertNotIn("network-clean", checks)
+
+    def test_inventory_excludes_generated_vendor_and_cache_noise_consistently(self):
+        with tempfile.TemporaryDirectory() as raw:
+            root = Path(raw)
+            (root / "main.py").write_text("# TODO first-party\n")
+            (root / "test_main.py").write_text("assert True\n")
+            for folder in ("vendor", "generated", "__pycache__", "build", "dist", ".venv", "node_modules"):
+                target = root / folder
+                target.mkdir()
+                (target / "noise.py").write_text("# TODO excluded-noise\n" * 20)
+                (target / "test_noise.py").write_text("# TODO excluded-noise\n")
+            result = subprocess.run([str(ROOT / "skills/spelunk/scripts/inventory"), raw, "--json"],
+                                    capture_output=True, text=True, check=True)
+            document = json.loads(result.stdout)
+            self.assertEqual(document["source_files"], "1")
+            self.assertEqual(document["test_files"], "1")
+            self.assertNotIn("noise.py", document["largest_files"])
+            self.assertNotIn("noise.py", document["debt_markers"])
+
+
+class NoLiftValidityFloors(unittest.TestCase):
+    # NO LIFT repair guards: the marker discipline that the outcome
+    # analysis depends on must survive future skill edits. These assert
+    # instruction presence, not agent behavior.
+    def test_distill_marker_floor_and_auth_bites_rule(self):
+        text = (ROOT / "skills/distill/SKILL.md").read_text(encoding="utf-8")
+        self.assertIn("Marker floor", text)
+        self.assertIn("Non-goals", text)
+        self.assertIn("A1:", text)
+        self.assertIn("Auth-bites rule", text)
+
+    def test_masterplan_slice_vocabulary_and_path_labels(self):
+        text = (ROOT / "skills/masterplan/SKILL.md").read_text(encoding="utf-8")
+        self.assertIn("Slice N:", text)
+        self.assertIn("existing/read", text)
+        self.assertIn("proposed/new", text)
+        self.assertIn("to-discover", text)
+        self.assertIn("docs/plans/<slug>.md", text)
+
+    def test_pilot_denial_safe_config_and_report_token(self):
+        text = (ROOT / "skills/pilot/SKILL.md").read_text(encoding="utf-8")
+        self.assertIn("denial-safe", text)
+        self.assertIn("verified", text.lower())
+
+
+class MixedValidityFloors(unittest.TestCase):
+    # Mixed-verdict repair guards: marker and task-contract discipline
+    # the outcome analysis depends on must survive future edits.
+    def test_recall_memory_marker_for_read_only_catch_up(self):
+        text = (ROOT / "skills/recall/SKILL.md").read_text(encoding="utf-8")
+        self.assertIn("memory:", text)
+        self.assertIn("recall:", text)
+        self.assertIn("Never emit", text)
+
+    def test_proof_literal_boundary_token_rule(self):
+        text = (ROOT / "skills/proof/SKILL.md").read_text(encoding="utf-8")
+        self.assertIn("literal singular word `boundary`", text)
+        self.assertIn("starting", text)
+
+    def test_spelunk_denial_safe_discovery(self):
+        text = (ROOT / "skills/spelunk/SKILL.md").read_text(encoding="utf-8")
+        self.assertIn("denial-safe", text)
+
+    def test_concierge_c1_is_order_insensitive(self):
+        tasks = json.loads((ROOT / "evals/outcomes/concierge-tasks.json").read_text())
+        task = next(item for item in tasks if item["id"] == "C1")
+        self.assertTrue(task["expected"].get("order_insensitive"))
+        self.assertIn("polish", task["expected"]["required"])
+        self.assertIn("friction", task["expected"]["required"])
+
+    def test_referee_override_rule_in_skill_contract(self):
+        text = (ROOT / "skills/referee/SKILL.md").read_text(encoding="utf-8")
+        self.assertIn("Override rule", text)
+        self.assertIn("override:", text)
+
+
+class TriggerDiscipline(unittest.TestCase):
+    # Word ownership in always-on descriptions: "review" belongs to
+    # referee (pilot inspects per-slice diffs, backend inspects server
+    # behavior); reference-recreation pointers belong to ditto. Guards
+    # the false-trigger audit's two genuine findings.
+    def _description(self, slug):
+        text = (ROOT / "skills" / slug / "SKILL.md").read_text(encoding="utf-8")
+        match = re.search(r"^description:\s*(.*)$", text, re.M)
+        self.assertIsNotNone(match, slug)
+        return match.group(1)
+
+    def test_review_belongs_to_referee(self):
+        pilot = self._description("pilot")
+        self.assertNotIn("diff review", pilot)
+        self.assertIn("referee", pilot)
+        backend = self._description("backend")
+        self.assertNotIn("review", backend)
+        referee = self._description("referee")
+        self.assertIn("diffs", referee)
+
+    def test_reference_recreation_points_to_ditto(self):
+        polish = self._description("polish")
+        self.assertIn("ditto", polish)
+        ditto = self._description("ditto")
+        self.assertIn("screenshots", ditto)
+
+
+class ResearchAnchors(unittest.TestCase):
+    # Primary-source encodes from the 2026-10-14 verification pass.
+    # Each asserts the anchor that carries the sourced decision; sources:
+    # W3C WCAG 2.2 (2.5.8, 3.3.8+F109), web.dev INP/LCP, EARS (Mavin),
+    # SEC 2013-222 (Knight), Playwright locators, git-bisect manual.
+    def _skill(self, *parts):
+        return (ROOT / "skills" / Path(*parts)).read_text(encoding="utf-8")
+
+    def test_distill_ears_where_and_if_then(self):
+        text = self._skill("distill", "SKILL.md")
+        self.assertIn("Where <feature is included>", text)
+        self.assertIn("If <failure>, then the system shall", text)
+
+    def test_referee_single_verdict_ladder(self):
+        text = self._skill("referee", "SKILL.md")
+        self.assertEqual(text.count("- **request changes**:"), 1)
+
+    def test_hotseat_horizon_is_labeled_default(self):
+        text = self._skill("hotseat", "SKILL.md")
+        self.assertIn("default horizon", text)
+
+    def test_ditto_semantics_and_legal_caution(self):
+        text = self._skill("ditto", "SKILL.md")
+        self.assertIn("**semantics**", text)
+        self.assertIn("unconfirmed legal risk", text)
+        self.assertIn("shadow", text)
+
+    def test_polish_thresholds_and_target_size(self):
+        skill = self._skill("polish", "SKILL.md")
+        self.assertIn("200ms", skill)
+        self.assertIn("2.5s", skill)
+        self.assertIn("75th percentile", skill)
+        self.assertNotRegex(skill, r"CLS\s*[<≤]\s*[\d.]+")
+        audit = self._skill("polish", "references", "audit.md")
+        flat = re.sub(r"\s+", " ", audit)
+        self.assertIn("24 by 24", flat)
+        self.assertIn("2.5.8", audit)
+
+    def test_friction_paste_blocking_is_blocker(self):
+        text = self._skill("friction", "references", "usability-checklist.md")
+        self.assertIn("F109", text)
+        self.assertIn("blocker", text)
+
+    def test_hotpath_percentile_targets_and_phases(self):
+        text = self._skill("hotpath", "SKILL.md")
+        self.assertIn("percentile and device", text)
+        self.assertIn("presentation delay", text)
+
+    def test_roadtest_strictness_and_interaction_floor(self):
+        text = self._skill("roadtest", "SKILL.md")
+        self.assertIn("Strict mode", text)
+        self.assertIn("shadow", text)
+        self.assertIn("Interaction floor", text)
+
+    def test_proof_and_sleuth_bisect_contract(self):
+        self.assertIn("125", self._skill("proof", "references", "result-semantics.md"))
+        techniques = self._skill("sleuth", "references", "techniques.md")
+        self.assertIn("125", techniques)
+        self.assertIn("Knight Capital", techniques)
+
+    def test_handsfree_alert_stop_and_cleared_rows(self):
+        policy = self._skill("handsfree", "references", "decision-policy.md")
+        self.assertIn("unacknowledged automated alert", policy)
+        dims = self._skill("cleared", "references", "gate-dimensions.md")
+        self.assertIn("Deploy controls", dims)
+        self.assertIn("Incident response", dims)
+
+    def test_concierge_no_unsourced_claim_and_guarded_probe(self):
+        text = self._skill("concierge", "SKILL.md")
+        self.assertNotIn("Research shows", text)
+        self.assertIn("command -v gh", text)
+
+    def test_expand_contract_slices_have_owners(self):
+        protocol = self._skill("masterplan", "references", "planning-protocol.md")
+        self.assertIn("contract (removal) phase is its own owned", protocol)
+        template = self._skill("masterplan", "references", "plan-template.md")
+        self.assertIn("Coexistence:", template)
+        release = self._skill("runway", "references", "release-protocol.md")
+        self.assertIn("contract-phase evidence", release)
+
+    def test_supply_chain_provenance_and_review_demo(self):
+        harden = self._skill("harden", "SKILL.md")
+        self.assertIn("tagged source", harden)
+        protocol = self._skill("referee", "references", "review-protocol.md")
+        self.assertIn("demo/screenshot or mark", protocol)
+        self.assertIn("tarball-only payloads", protocol)
+
+    def test_canonical_signal_order_and_dead_code_cost(self):
+        seo = self._skill("findable", "references", "seo-checklist.md")
+        self.assertIn("then rel=canonical, then sitemap", seo)
+        catalog = self._skill("unslop", "references", "slop-catalog.md")
+        self.assertIn("Knight Capital", catalog)
+
+
+class PaidDefaultDeny(unittest.TestCase):
+    def test_live_adapter_refuses_before_invocation_without_human_keys(self):
+        # Remove any inherited authorization; never manufacture either key.
+        env = {key: value for key, value in os.environ.items() if key != "ALLOW_PAID_AGENT"}
+        result = subprocess.run([str(ROOT / "scripts/eval-outcome"), "--skill",
+                                 "concierge", "--agent", "codex", "--trials", "1"],
+                                cwd=ROOT, env=env, capture_output=True, text=True)
+        self.assertEqual(result.returncode, 4, result.stdout + result.stderr)
+        self.assertIn("Nothing was invoked; no results were written", result.stderr)
+
+
+if __name__ == "__main__":
+    unittest.main(verbosity=2)

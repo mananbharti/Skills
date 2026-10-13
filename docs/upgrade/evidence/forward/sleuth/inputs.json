@@ -1,0 +1,11 @@
+{
+  "skill_sha256": {
+    "skills/sleuth/SKILL.md": "0a4d9dfed0d0e99115d7714b1a8dbfa58d26d72d57db17a0a75636f691c35f65",
+    "skills/sleuth/references/research.md": "92a2be30cade79169cbefc211eac21144bfa148bd12cac5b6d28f2fcbff45288",
+    "skills/sleuth/references/techniques.md": "7b70a1b42637b2712edf678fcddf842099bc837d5612d63eca1751a6afb231db"
+  },
+  "fixture_sha256": {
+    "benchmarks/fixtures/sleuth-cache/cache.py": "9936c1e3fb77e0c89a5460616a04de6432a80ad9f4e09b45a0e284a91cbe259c"
+  },
+  "trial": "exploratory in-session forward trial; not controlled comparison"
+}

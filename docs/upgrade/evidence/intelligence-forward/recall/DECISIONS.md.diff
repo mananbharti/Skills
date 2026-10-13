@@ -1,0 +1,15 @@
+--- before/DECISIONS.md
++++ after/DECISIONS.md
+@@ -1,4 +1,12 @@
+ # Decisions (newest first)
++
++## [Active] 2026-10-14: PostgreSQL next migration target; SQLite remains live
++- Decision/source: explicit user decision in this task; PostgreSQL is the next migration target.
++- Why: the user selected that target; additional business rationale was not supplied.
++- Consequence: plan and verify the migration on a copy before any live cutover; SQLite remains the live system until verification succeeds.
++- Supersedes: the 2026-09-01 rejection of PostgreSQL as a future target only. The historical SQLite-for-now decision and its rationale remain below; continued live SQLite is still applicable.
++- Safe next action: inspect current schema and migration/test tooling, then design a reversible copy-based migration and data-integrity/rollback checks. No live migration is authorized here.
++- Revisit when: migration verification succeeds or the user changes the target; verification criteria must be made concrete before cutover.
+ 
+ ## 2026-09-01 SQLite for now [Active]
+ - Why: single-box deploy, no concurrency needs.

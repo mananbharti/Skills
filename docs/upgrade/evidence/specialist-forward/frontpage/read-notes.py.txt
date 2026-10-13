@@ -1,0 +1,39 @@
+1: """Tiny notes CLI. Stdlib only. Usage: python3 notes.py [--help | add TEXT | list]."""
+2: import argparse
+3: import json
+4: import os
+5: 
+6: STORE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "notes.json")
+7: 
+8: 
+9: def _load():
+10:     if not os.path.exists(STORE):
+11:         return []
+12:     with open(STORE) as f:
+13:         return json.load(f)
+14: 
+15: 
+16: def _save(notes):
+17:     with open(STORE, "w") as f:
+18:         json.dump(notes, f)
+19: 
+20: 
+21: def main(argv=None):
+22:     ap = argparse.ArgumentParser(description="Tiny file-backed notes CLI.")
+23:     ap.add_argument("action", nargs="?", default="list", help="add or list")
+24:     ap.add_argument("text", nargs="?", default="", help="note text for add")
+25:     args = ap.parse_args(argv)
+26:     if args.action == "add":
+27:         notes = _load()
+28:         notes.append(args.text)
+29:         _save(notes)
+30:         print(f"added note #{len(notes)}")
+31:     elif args.action == "list":
+32:         for i, note in enumerate(_load(), 1):
+33:             print(f"{i}. {note}")
+34:     else:
+35:         ap.error(f"unknown action {args.action!r}")
+36: 
+37: 
+38: if __name__ == "__main__":
+39:     main()

@@ -1,0 +1,103 @@
+test_default_treatment_loads_entrypoint_and_defers_references (__main__.ContextIntegrity.test_default_treatment_loads_entrypoint_and_defers_references) ... FAIL
+test_eager_policy_is_explicit_and_retains_legacy_context (__main__.ContextIntegrity.test_eager_policy_is_explicit_and_retains_legacy_context) ... ERROR
+test_resume_refuses_changed_package_runner_and_reference_policy (__main__.ContextIntegrity.test_resume_refuses_changed_package_runner_and_reference_policy) ... O1 baseline t1: PASS route=['direct'] (0.1s)
+O1 treatment t1: PASS route=['direct'] (0.1s)
+
+  test_resume_refuses_changed_package_runner_and_reference_policy (__main__.ContextIntegrity.test_resume_refuses_changed_package_runner_and_reference_policy) (mutation='package') ... FAIL
+  test_resume_refuses_changed_package_runner_and_reference_policy (__main__.ContextIntegrity.test_resume_refuses_changed_package_runner_and_reference_policy) (mutation='runner') ... FAIL
+  test_resume_refuses_changed_package_runner_and_reference_policy (__main__.ContextIntegrity.test_resume_refuses_changed_package_runner_and_reference_policy) (mutation='policy') ... FAIL
+  test_resume_refuses_changed_package_runner_and_reference_policy (__main__.ContextIntegrity.test_resume_refuses_changed_package_runner_and_reference_policy) (mutation='checker') ... ERROR
+  test_resume_refuses_changed_package_runner_and_reference_policy (__main__.ContextIntegrity.test_resume_refuses_changed_package_runner_and_reference_policy) (mutation='fixture') ... FAIL
+test_resume_refuses_changed_package_runner_and_reference_policy (__main__.ContextIntegrity.test_resume_refuses_changed_package_runner_and_reference_policy) ... FAIL
+
+======================================================================
+ERROR: test_eager_policy_is_explicit_and_retains_legacy_context (__main__.ContextIntegrity.test_eager_policy_is_explicit_and_retains_legacy_context)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/uday/Skills/scripts/test-upgrade", line 42, in test_eager_policy_is_explicit_and_retains_legacy_context
+    self.assertIn("LEGACY_SENTINEL", context("example", "eager"))
+                                     ~~~~~~~^^^^^^^^^^^^^^^^^^^^
+TypeError: skill_context() takes 1 positional argument but 2 were given
+
+======================================================================
+ERROR: test_resume_refuses_changed_package_runner_and_reference_policy (__main__.ContextIntegrity.test_resume_refuses_changed_package_runner_and_reference_policy) (mutation='checker')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/uday/Skills/scripts/test-upgrade", line 68, in test_resume_refuses_changed_package_runner_and_reference_policy
+    record["provenance"]["checkers"]["digest"] = "changed"
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+KeyError: 'checkers'
+
+======================================================================
+FAIL: test_default_treatment_loads_entrypoint_and_defers_references (__main__.ContextIntegrity.test_default_treatment_loads_entrypoint_and_defers_references)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/uday/Skills/scripts/test-upgrade", line 31, in test_default_treatment_loads_entrypoint_and_defers_references
+    self.assertNotIn("PROVENANCE_ONLY_SENTINEL", text)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'PROVENANCE_ONLY_SENTINEL' unexpectedly found in '# example SKILL.md\n# Workflow\n\n\n# example references/research.md\nPROVENANCE_ONLY_SENTINEL'
+
+======================================================================
+FAIL: test_resume_refuses_changed_package_runner_and_reference_policy (__main__.ContextIntegrity.test_resume_refuses_changed_package_runner_and_reference_policy) (mutation='package')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/uday/Skills/scripts/test-upgrade", line 76, in test_resume_refuses_changed_package_runner_and_reference_policy
+    self.assertEqual(main(), 2)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^
+AssertionError: 0 != 2
+
+======================================================================
+FAIL: test_resume_refuses_changed_package_runner_and_reference_policy (__main__.ContextIntegrity.test_resume_refuses_changed_package_runner_and_reference_policy) (mutation='runner')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/uday/Skills/scripts/test-upgrade", line 76, in test_resume_refuses_changed_package_runner_and_reference_policy
+    self.assertEqual(main(), 2)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^
+AssertionError: 0 != 2
+
+======================================================================
+FAIL: test_resume_refuses_changed_package_runner_and_reference_policy (__main__.ContextIntegrity.test_resume_refuses_changed_package_runner_and_reference_policy) (mutation='policy')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/uday/Skills/scripts/test-upgrade", line 76, in test_resume_refuses_changed_package_runner_and_reference_policy
+    self.assertEqual(main(), 2)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^
+AssertionError: 0 != 2
+
+======================================================================
+FAIL: test_resume_refuses_changed_package_runner_and_reference_policy (__main__.ContextIntegrity.test_resume_refuses_changed_package_runner_and_reference_policy) (mutation='fixture')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/uday/Skills/scripts/test-upgrade", line 76, in test_resume_refuses_changed_package_runner_and_reference_policy
+    self.assertEqual(main(), 2)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^
+AssertionError: 0 != 2
+
+======================================================================
+FAIL: test_resume_refuses_changed_package_runner_and_reference_policy (__main__.ContextIntegrity.test_resume_refuses_changed_package_runner_and_reference_policy)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/uday/Skills/scripts/test-upgrade", line 78, in test_resume_refuses_changed_package_runner_and_reference_policy
+    self.assertEqual(len(list(Path(raw).glob("*-outcome-*.json"))), 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 5 != 1
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.336s
+
+FAILED (failures=6, errors=2)
+wrote /var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/tmp9mc8sa84/20261014-005332-413216000-outcome-concierge-fake.json (resumed-skipped: 0)
+O1 baseline: pass=1.00 mean_len=1.00
+O1 treatment: pass=1.00 mean_len=1.00
+wrote /var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/tmp9mc8sa84/20261014-005332-478523000-outcome-concierge-fake.json (resumed-skipped: 2)
+O1 baseline: pass=1.00 mean_len=1.00
+O1 treatment: pass=1.00 mean_len=1.00
+wrote /var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/tmp9mc8sa84/20261014-005332-542725000-outcome-concierge-fake.json (resumed-skipped: 2)
+O1 baseline: pass=1.00 mean_len=1.00
+O1 treatment: pass=1.00 mean_len=1.00
+wrote /var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/tmp9mc8sa84/20261014-005332-609063000-outcome-concierge-fake.json (resumed-skipped: 2)
+O1 baseline: pass=1.00 mean_len=1.00
+O1 treatment: pass=1.00 mean_len=1.00
+wrote /var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/tmp9mc8sa84/20261014-005332-671708000-outcome-concierge-fake.json (resumed-skipped: 2)
+O1 baseline: pass=1.00 mean_len=1.00
+O1 treatment: pass=1.00 mean_len=1.00

@@ -1,0 +1,22 @@
+1: {
+2:   "name": "taskboard",
+3:   "version": "0.4.1",
+4:   "private": true,
+5:   "scripts": {
+6:     "dev": "vite",
+7:     "build": "tsc -b && vite build",
+8:     "test": "vitest run"
+9:   },
+10:   "dependencies": {
+11:     "react": "^18.3.1",
+12:     "react-dom": "^18.3.1",
+13:     "axios": "^1.7.0",
+14:     "moment": "^2.30.1",
+15:     "lodash": "^4.17.21"
+16:   },
+17:   "devDependencies": {
+18:     "typescript": "^5.5.0",
+19:     "vite": "^5.4.0",
+20:     "vitest": "^2.0.0"
+21:   }
+22: }

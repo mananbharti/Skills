@@ -125,12 +125,16 @@
   if (window.mermaid) {
     mermaid.initialize({
       startOnLoad: true,
+      securityLevel: 'strict',
       theme: document.documentElement.classList.contains('dark') ? 'dark' : 'default'
     });
   } else {
     document.querySelectorAll('pre.mermaid').forEach((el, i) => {
-      if (i === 0) el.innerHTML =
-        '⚠ diagrams need network for Mermaid: read the .mmd sources instead';
+      if (i === 0) {
+        const notice = document.createElement('p');
+        notice.textContent = 'Diagrams need network for Mermaid: the source below remains readable.';
+        el.before(notice);
+      }
     });
   }
 

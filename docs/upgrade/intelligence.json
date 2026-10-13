@@ -1,0 +1,976 @@
+{
+  "schema_version": 1,
+  "checked_on": "2026-10-14",
+  "scope": "intelligence",
+  "skills": [
+    {
+      "skill": "concierge",
+      "before": "Router has direct/none rows and a loop ceiling, but initial workflow still inventories first, dates imply freshness, user messages lose authority, and auth/money topics imply gates.",
+      "changes": "Choose direct/none before discovery; restore current human authority; scope freshness to candidate/environment; handoff carries typed fields; repeat identity survives renaming; risk follows action.",
+      "why": "C6/C8/C9/C10 expose unnecessary work, stale verdict reuse, and loops without requiring another orchestrator.",
+      "files": [
+        "skills/concierge/SKILL.md",
+        "skills/concierge/references/routing.md",
+        "skills/concierge/references/research.md",
+        "docs/research/concierge.md",
+        "evals/workflow/scenarios/concierge.md"
+      ],
+      "tests": [
+        {
+          "kind": "scenario_spec",
+          "path": "evals/workflow/scenarios/concierge.md",
+          "count": 11,
+          "status": "AUTHORED_NOT_EXECUTED"
+        },
+        {
+          "kind": "repository_deterministic",
+          "commands": [
+            "scripts/validate-skills",
+            "scripts/check-names",
+            "scripts/check-links",
+            "scripts/eval-workflow --check"
+          ],
+          "status": "PASS",
+          "scope": "shared-tree snapshot: 28 skill contracts; 262 workflow cases/28 skills; no behavior proof"
+        }
+      ],
+      "outcome": "Instruction defects narrowed; live task effect UNVERIFIED",
+      "limitations": [
+        "No independent live comparison",
+        "Eight-to-fifteen sources per skill and issue triangulation incomplete",
+        "Synthetic advanced cases not all materialized",
+        "No cross-host behavior proof"
+      ],
+      "source_access": [
+        {
+          "url": "https://agentskills.io/specification",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "Living specification; update date not exposed",
+          "scope": "current fetched text",
+          "limitation": "No behavioral efficacy guarantee"
+        },
+        {
+          "url": "https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "2025-09-29",
+          "scope": "web article",
+          "limitation": "Vendor report, not a universal optimum"
+        },
+        {
+          "url": "https://arxiv.org/abs/2602.12670",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "2026-02-13; revised 2026-06-14",
+          "scope": "arXiv 2602.12670 v4",
+          "limitation": "Aggregate results do not establish this skill lift"
+        },
+        {
+          "url": "https://modelcontextprotocol.io/docs/2025-11-25/tutorials/security/security_best_practices",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "Versioned docs 2025-11-25; publication not exposed",
+          "scope": "2025-11-25 redirected tutorial",
+          "limitation": "Not a blanket authority ranking for connector contents"
+        },
+        {
+          "url": "https://www.reddit.com/r/ClaudeAI/comments/1usls7m/anyone_else_has_a_graveyard_of_claude_code_skills/",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "Relative age only; exact date unverified",
+          "scope": "fetched post and one visible reply",
+          "limitation": "Selection bias; not measured activation evidence"
+        }
+      ],
+      "eval_status": "UNVERIFIED",
+      "historical_evidence": {
+        "path": "docs/benchmarks/concierge.md",
+        "interpretation": "MIXED historical routing; later C1 order contract contradicted audit-before-polish and remains defective-task evidence.",
+        "unchanged": true
+      },
+      "capability_ownership": {
+        "primary": [
+          "routing",
+          "onboarding"
+        ],
+        "conditional": "Specialists own implementation; direct/none are supported outcomes; no cross-runtime activation guarantee."
+      },
+      "cost": {
+        "added_context": "Conditional references plus narrow entrypoint edits",
+        "token_delta": "UNKNOWN",
+        "paid_agent_runs": 0,
+        "helper": "none added",
+        "entrypoint_bytes_before": 12214,
+        "entrypoint_bytes_after": 13040,
+        "entrypoint_byte_delta": 826,
+        "measurement": "DERIVED UTF-8 bytes from HEAD and current file; not token or runtime cost"
+      }
+    },
+    {
+      "skill": "handsfree",
+      "before": "Four action classes and checkpoints are valuable; ASK ONCE and batch wording can re-ask granted actions or imply unanswered gates proceed; dirty branch language suggests isolation.",
+      "changes": "Match exact prior action/target grant before asking; dependent work waits for grant; concrete preparation precedes approval; scoped dirty protection; denial and owned-process recovery.",
+      "why": "HF6/HF8 distinguish repeated approval from absent approval; HF7 targets known secret-read derail without bypass.",
+      "files": [
+        "skills/handsfree/SKILL.md",
+        "skills/handsfree/references/host-permissions.md",
+        "skills/handsfree/references/research.md",
+        "docs/research/handsfree.md",
+        "evals/workflow/scenarios/handsfree.md"
+      ],
+      "tests": [
+        {
+          "kind": "scenario_spec",
+          "path": "evals/workflow/scenarios/handsfree.md",
+          "count": 10,
+          "status": "AUTHORED_NOT_EXECUTED"
+        },
+        {
+          "kind": "repository_deterministic",
+          "commands": [
+            "scripts/validate-skills",
+            "scripts/check-names",
+            "scripts/check-links",
+            "scripts/eval-workflow --check"
+          ],
+          "status": "PASS",
+          "scope": "shared-tree snapshot: 28 skill contracts; 262 workflow cases/28 skills; no behavior proof"
+        }
+      ],
+      "outcome": "Instruction defects narrowed; live task effect UNVERIFIED",
+      "limitations": [
+        "No independent live comparison",
+        "Eight-to-fifteen sources per skill and issue triangulation incomplete",
+        "Synthetic advanced cases not all materialized",
+        "No cross-host behavior proof"
+      ],
+      "source_access": [
+        {
+          "url": "https://code.claude.com/docs/en/security",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "Living docs; update date not exposed",
+          "scope": "current fetched docs; host version not pinned",
+          "limitation": "No cross-host permission guarantee"
+        },
+        {
+          "url": "https://git-scm.com/docs/git-status",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "Living manual; update not assigned here",
+          "scope": "current fetched manual; local git version not pinned",
+          "limitation": "A branch name alone does not isolate dirty state"
+        },
+        {
+          "url": "https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "2025-11-26",
+          "scope": "reported Claude Agent SDK setup",
+          "limitation": "Specific setup, not mandatory per-step ceremony"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/obra/superpowers/main/skills/executing-plans/SKILL.md",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "Update date not exposed; fetched 2026-10-14",
+          "scope": "main branch, unpinned",
+          "limitation": "Sibling dependencies conflict with standalone bundle contract"
+        },
+        {
+          "url": "https://arxiv.org/abs/2603.15401",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "2026-03-16",
+          "scope": "arXiv 2603.15401 v1",
+          "limitation": "External benchmark does not prove this bundle improved"
+        }
+      ],
+      "eval_status": "UNVERIFIED",
+      "historical_evidence": {
+        "path": "docs/benchmarks/handsfree.md",
+        "interpretation": "Original case-sensitive grader defect preserved; revised easy-task ties do not show reduced interruptions or improved gate recall.",
+        "unchanged": true
+      },
+      "capability_ownership": {
+        "primary": [
+          "autonomy",
+          "permission handling"
+        ],
+        "conditional": "Host native controls remain authoritative; user-requested exact authorized actions proceed, missing authority gates."
+      },
+      "cost": {
+        "added_context": "Conditional references plus narrow entrypoint edits",
+        "token_delta": "UNKNOWN",
+        "paid_agent_runs": 0,
+        "helper": "none added",
+        "entrypoint_bytes_before": 11757,
+        "entrypoint_bytes_after": 12411,
+        "entrypoint_byte_delta": 654,
+        "measurement": "DERIVED UTF-8 bytes from HEAD and current file; not token or runtime cost"
+      }
+    },
+    {
+      "skill": "hotseat",
+      "before": "Independent lens packet, option discipline and bounded rounds are useful; mandatory two corrections and numerical kill criteria incentivize fabricated objections; premortem example fabricates rates.",
+      "changes": "Permit evidence-supported zero corrections; owner-grounded thresholds or discriminating qualitative observation; label future failures hypothetical; preserve seven lenses without compulsory deployment.",
+      "why": "HS3/HS5/HS6 test useful decisions instead of objection counts and arbitrary precision.",
+      "files": [
+        "skills/hotseat/SKILL.md",
+        "skills/hotseat/references/personas.md",
+        "skills/hotseat/references/research.md",
+        "docs/research/hotseat.md",
+        "evals/workflow/scenarios/hotseat.md"
+      ],
+      "tests": [
+        {
+          "kind": "scenario_spec",
+          "path": "evals/workflow/scenarios/hotseat.md",
+          "count": 11,
+          "status": "AUTHORED_NOT_EXECUTED"
+        },
+        {
+          "kind": "repository_deterministic",
+          "commands": [
+            "scripts/validate-skills",
+            "scripts/check-names",
+            "scripts/check-links",
+            "scripts/eval-workflow --check"
+          ],
+          "status": "PASS",
+          "scope": "shared-tree snapshot: 28 skill contracts; 262 workflow cases/28 skills; no behavior proof"
+        }
+      ],
+      "outcome": "Instruction defects narrowed; live task effect UNVERIFIED",
+      "limitations": [
+        "No independent live comparison",
+        "Eight-to-fifteen sources per skill and issue triangulation incomplete",
+        "Synthetic advanced cases not all materialized",
+        "No cross-host behavior proof"
+      ],
+      "source_access": [
+        {
+          "url": "https://arxiv.org/abs/2305.14325",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "2023-05-23",
+          "scope": "arXiv 2305.14325 v1",
+          "limitation": "Does not validate seven fictional product personas"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/obra/superpowers/main/skills/brainstorming/SKILL.md",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "Update date not exposed; fetched 2026-10-14",
+          "scope": "main branch, unpinned",
+          "limitation": "Broad trigger/approval gate is not adopted"
+        },
+        {
+          "url": "https://arxiv.org/abs/2602.12670",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "2026-02-13; revised 2026-06-14",
+          "scope": "arXiv 2602.12670 v4",
+          "limitation": "Aggregate results do not establish this skill lift"
+        },
+        {
+          "url": "https://code.claude.com/docs/en/security",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "Living docs; update date not exposed",
+          "scope": "current fetched docs; host version not pinned",
+          "limitation": "No cross-host permission guarantee"
+        },
+        {
+          "url": "https://www.reddit.com/r/ClaudeAI/comments/1usls7m/anyone_else_has_a_graveyard_of_claude_code_skills/",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "Relative age only; exact date unverified",
+          "scope": "fetched post and one visible reply",
+          "limitation": "Selection bias; not measured activation evidence"
+        }
+      ],
+      "eval_status": "UNVERIFIED",
+      "historical_evidence": {
+        "path": "docs/benchmarks/hotseat.md",
+        "interpretation": "Historical PROVEN LIFT label is untouched and scoped to its old debate/decision-marker tasks; new calibration behavior has no comparative run.",
+        "unchanged": true
+      },
+      "capability_ownership": {
+        "primary": [
+          "ideation",
+          "product decision critique"
+        ],
+        "conditional": "Not customer research, market validation or legal review; actual independent agents are an optional authorized enhancement."
+      },
+      "cost": {
+        "added_context": "Conditional references plus narrow entrypoint edits",
+        "token_delta": "UNKNOWN",
+        "paid_agent_runs": 0,
+        "helper": "none added",
+        "entrypoint_bytes_before": 15046,
+        "entrypoint_bytes_after": 15222,
+        "entrypoint_byte_delta": 176,
+        "measurement": "DERIVED UTF-8 bytes from HEAD and current file; not token or runtime cost"
+      }
+    },
+    {
+      "skill": "spelunk",
+      "before": "Question-led mapping, trace-first discovery and inventory exist; scanner excludes .venv in one section but counts/scans it elsewhere; dynamic/generated ownership needs sharper evidence.",
+      "changes": "Consistent scanner exclusions for cache/vendor/generated trees; current-source check on memory; conditional runtime registration/source-generator ownership evidence.",
+      "why": "SP9 deterministic reproduction shows baseline six sources versus one first-party source; SP6/SP7 prevent owner assignment from name matches.",
+      "files": [
+        "skills/spelunk/SKILL.md",
+        "skills/spelunk/references/evidence-protocol.md",
+        "skills/spelunk/references/research.md",
+        "docs/research/spelunk.md",
+        "evals/workflow/scenarios/spelunk.md",
+        "skills/spelunk/scripts/inventory",
+        "skills/spelunk/references/discovery-map.md"
+      ],
+      "tests": [
+        {
+          "kind": "scenario_spec",
+          "path": "evals/workflow/scenarios/spelunk.md",
+          "count": 10,
+          "status": "AUTHORED_NOT_EXECUTED"
+        },
+        {
+          "kind": "deterministic_helper",
+          "command": "python3 /private/tmp/intelligence_verify.py",
+          "status": "PASS",
+          "limitation": "temporary verification script; structure/inventory only"
+        },
+        {
+          "kind": "repository_deterministic",
+          "commands": [
+            "scripts/validate-skills",
+            "scripts/check-names",
+            "scripts/check-links",
+            "scripts/eval-workflow --check"
+          ],
+          "status": "PASS",
+          "scope": "shared-tree snapshot: 28 skill contracts; 262 workflow cases/28 skills; no behavior proof"
+        },
+        {
+          "kind": "durable_helper_regression",
+          "command": "scripts/test-upgrade",
+          "status": "PASS",
+          "scope": "inventory: first-party source/test count + exclusion from largest/debt output; not navigation accuracy or agent outcome proof"
+        }
+      ],
+      "outcome": "Instruction defects narrowed; live task effect UNVERIFIED",
+      "limitations": [
+        "No independent live comparison",
+        "Eight-to-fifteen sources per skill and issue triangulation incomplete",
+        "Synthetic advanced cases not all materialized",
+        "No cross-host behavior proof"
+      ],
+      "source_access": [
+        {
+          "url": "https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "2025-09-29",
+          "scope": "web article",
+          "limitation": "Vendor report, not a universal optimum"
+        },
+        {
+          "url": "https://git-scm.com/docs/git-status",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "Living manual; update not assigned here",
+          "scope": "current fetched manual; local git version not pinned",
+          "limitation": "A branch name alone does not isolate dirty state"
+        },
+        {
+          "url": "https://arxiv.org/abs/2603.15401",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "2026-03-16",
+          "scope": "arXiv 2603.15401 v1",
+          "limitation": "External benchmark does not prove this bundle improved"
+        },
+        {
+          "url": "https://code.claude.com/docs/en/security",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "Living docs; update date not exposed",
+          "scope": "current fetched docs; host version not pinned",
+          "limitation": "No cross-host permission guarantee"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/obra/superpowers/main/skills/writing-plans/SKILL.md",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "Update date not exposed; fetched 2026-10-14",
+          "scope": "main branch, unpinned",
+          "limitation": "Instructions inspected, efficacy not executed"
+        }
+      ],
+      "eval_status": "UNVERIFIED",
+      "historical_evidence": {
+        "path": "docs/benchmarks/spelunk.md",
+        "interpretation": "MIXED plus later grader-dominated negated-path artifacts are preserved; mapping efficiency remains unknown.",
+        "unchanged": true
+      },
+      "capability_ownership": {
+        "primary": [
+          "repository discovery",
+          "impact mapping"
+        ],
+        "conditional": "Static path maps do not prove runtime edges; dynamic execution and external services remain conditional."
+      },
+      "cost": {
+        "added_context": "Conditional references plus narrow entrypoint edits",
+        "token_delta": "UNKNOWN",
+        "paid_agent_runs": 0,
+        "helper": "existing dependency-light helper only",
+        "entrypoint_bytes_before": 9706,
+        "entrypoint_bytes_after": 9766,
+        "entrypoint_byte_delta": 60,
+        "measurement": "DERIVED UTF-8 bytes from HEAD and current file; not token or runtime cost"
+      }
+    },
+    {
+      "skill": "scout",
+      "before": "Installed evidence/source ladder and offline mode work conceptually; MCP transport receives blanket Tier 1 trust and notes collapse installed/deployed/target versions.",
+      "changes": "Rank content by provenance rather than transport; distinguish three versions and local wrappers; preserve denied/paywalled claims and update-date unknowns; structural validation limits.",
+      "why": "SC6\u2013SC10 make apparent authoritative evidence falsifiable at the actual version/environment boundary.",
+      "files": [
+        "skills/scout/SKILL.md",
+        "skills/scout/references/source-ladder.md",
+        "skills/scout/references/research-protocol.md",
+        "skills/scout/references/research.md",
+        "docs/research/scout.md",
+        "evals/workflow/scenarios/scout.md"
+      ],
+      "tests": [
+        {
+          "kind": "scenario_spec",
+          "path": "evals/workflow/scenarios/scout.md",
+          "count": 10,
+          "status": "AUTHORED_NOT_EXECUTED"
+        },
+        {
+          "kind": "deterministic_helper",
+          "command": "python3 /private/tmp/intelligence_verify.py",
+          "status": "PASS",
+          "limitation": "temporary verification script; structure/inventory only"
+        },
+        {
+          "kind": "repository_deterministic",
+          "commands": [
+            "scripts/validate-skills",
+            "scripts/check-names",
+            "scripts/check-links",
+            "scripts/eval-workflow --check"
+          ],
+          "status": "PASS",
+          "scope": "shared-tree snapshot: 28 skill contracts; 262 workflow cases/28 skills; no behavior proof"
+        }
+      ],
+      "outcome": "Instruction defects narrowed; live task effect UNVERIFIED",
+      "limitations": [
+        "No independent live comparison",
+        "Eight-to-fifteen sources per skill and issue triangulation incomplete",
+        "Synthetic advanced cases not all materialized",
+        "No cross-host behavior proof"
+      ],
+      "source_access": [
+        {
+          "url": "https://modelcontextprotocol.io/docs/2025-11-25/tutorials/security/security_best_practices",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "Versioned docs 2025-11-25; publication not exposed",
+          "scope": "2025-11-25 redirected tutorial",
+          "limitation": "Not a blanket authority ranking for connector contents"
+        },
+        {
+          "url": "https://arxiv.org/abs/2603.15401",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "2026-03-16",
+          "scope": "arXiv 2603.15401 v1",
+          "limitation": "External benchmark does not prove this bundle improved"
+        },
+        {
+          "url": "https://agentskills.io/specification",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "Living specification; update date not exposed",
+          "scope": "current fetched text",
+          "limitation": "No behavioral efficacy guarantee"
+        },
+        {
+          "url": "https://code.claude.com/docs/en/security",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "Living docs; update date not exposed",
+          "scope": "current fetched docs; host version not pinned",
+          "limitation": "No cross-host permission guarantee"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/obra/superpowers/main/skills/writing-plans/SKILL.md",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "Update date not exposed; fetched 2026-10-14",
+          "scope": "main branch, unpinned",
+          "limitation": "Instructions inspected, efficacy not executed"
+        }
+      ],
+      "eval_status": "UNVERIFIED",
+      "historical_evidence": {
+        "path": "docs/benchmarks/scout.md",
+        "interpretation": "MIXED adjudicated signal depends on old path/negation/artifact grader limitations; no new uplift claim.",
+        "unchanged": true
+      },
+      "capability_ownership": {
+        "primary": [
+          "technical research",
+          "research freshness"
+        ],
+        "conditional": "Network/access scope bounds source availability; transport and note shape do not establish factual truth."
+      },
+      "cost": {
+        "added_context": "Conditional references plus narrow entrypoint edits",
+        "token_delta": "UNKNOWN",
+        "paid_agent_runs": 0,
+        "helper": "none added",
+        "entrypoint_bytes_before": 10922,
+        "entrypoint_bytes_after": 10922,
+        "entrypoint_byte_delta": 0,
+        "measurement": "DERIVED UTF-8 bytes from HEAD and current file; not token or runtime cost"
+      }
+    },
+    {
+      "skill": "distill",
+      "before": "Materiality test and repository grounding are sound; mandatory critique/confirmation can block authorized work; nontrivial compact output can omit boundaries and ownership.",
+      "changes": "Optional critique by decision intent; respect implementation authorization; risk-bearing feature minimum preserves non-goals/A assumptions and actor/resource denial oracle.",
+      "why": "Historical O1 misses non-goal/assumption markers; heldout login misses boundaries/auth; new DI6 acceptance targets tenant behavior instead of adding document length.",
+      "files": [
+        "skills/distill/SKILL.md",
+        "skills/distill/references/brief-template.md",
+        "skills/distill/references/research.md",
+        "docs/research/distill.md",
+        "evals/workflow/scenarios/distill.md"
+      ],
+      "tests": [
+        {
+          "kind": "scenario_spec",
+          "path": "evals/workflow/scenarios/distill.md",
+          "count": 10,
+          "status": "AUTHORED_NOT_EXECUTED"
+        },
+        {
+          "kind": "repository_deterministic",
+          "commands": [
+            "scripts/validate-skills",
+            "scripts/check-names",
+            "scripts/check-links",
+            "scripts/eval-workflow --check"
+          ],
+          "status": "PASS",
+          "scope": "shared-tree snapshot: 28 skill contracts; 262 workflow cases/28 skills; no behavior proof"
+        }
+      ],
+      "outcome": "Instruction defects narrowed; live task effect UNVERIFIED",
+      "limitations": [
+        "No independent live comparison",
+        "Eight-to-fifteen sources per skill and issue triangulation incomplete",
+        "Synthetic advanced cases not all materialized",
+        "No cross-host behavior proof"
+      ],
+      "source_access": [
+        {
+          "url": "https://cucumber.io/docs/bdd/better-gherkin/",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "Living docs; update date not exposed",
+          "scope": "current fetched documentation",
+          "limitation": "Syntax cannot resolve stakeholder disagreement"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/obra/superpowers/main/skills/brainstorming/SKILL.md",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "Update date not exposed; fetched 2026-10-14",
+          "scope": "main branch, unpinned",
+          "limitation": "Broad trigger/approval gate is not adopted"
+        },
+        {
+          "url": "https://arxiv.org/abs/2603.15401",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "2026-03-16",
+          "scope": "arXiv 2603.15401 v1",
+          "limitation": "External benchmark does not prove this bundle improved"
+        },
+        {
+          "url": "https://code.claude.com/docs/en/security",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "Living docs; update date not exposed",
+          "scope": "current fetched docs; host version not pinned",
+          "limitation": "No cross-host permission guarantee"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/obra/superpowers/main/skills/writing-plans/SKILL.md",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "Update date not exposed; fetched 2026-10-14",
+          "scope": "main branch, unpinned",
+          "limitation": "Instructions inspected, efficacy not executed"
+        }
+      ],
+      "eval_status": "UNVERIFIED",
+      "historical_evidence": {
+        "path": "docs/benchmarks/distill.md",
+        "interpretation": "NO LIFT: O1 treatment marker miss, O2 ceiling tie, O3 both miss required boundaries/auth. Small marker tasks do not measure downstream implementation success.",
+        "unchanged": true
+      },
+      "capability_ownership": {
+        "primary": [
+          "requirements",
+          "acceptance criteria"
+        ],
+        "conditional": "Product choices remain with human; architect/implementation handled by appropriate owner only when necessary."
+      },
+      "cost": {
+        "added_context": "Conditional references plus narrow entrypoint edits",
+        "token_delta": "UNKNOWN",
+        "paid_agent_runs": 0,
+        "helper": "none added",
+        "entrypoint_bytes_before": 10222,
+        "entrypoint_bytes_after": 10554,
+        "entrypoint_byte_delta": 332,
+        "measurement": "DERIVED UTF-8 bytes from HEAD and current file; not token or runtime cost"
+      }
+    },
+    {
+      "skill": "masterplan",
+      "before": "Slice contracts, invariants and uncertainty-first are valuable; paths must all preexist; absence of unknowns is called dishonest; fixed minimum slices produces ceremony.",
+      "changes": "Existing/read versus proposed/new versus discovery; no artificial uncertainty/count minimum; criterion-to-slice coverage and honest data restoration boundary.",
+      "why": "Historical false-positive proposed/self-authored paths are separate from real slice-vocabulary misses; new MP6/MP7 target planning contradictions without changing frozen grading.",
+      "files": [
+        "skills/masterplan/SKILL.md",
+        "skills/masterplan/references/planning-protocol.md",
+        "skills/masterplan/references/plan-template.md",
+        "skills/masterplan/references/research.md",
+        "docs/research/masterplan.md",
+        "evals/workflow/scenarios/masterplan.md"
+      ],
+      "tests": [
+        {
+          "kind": "scenario_spec",
+          "path": "evals/workflow/scenarios/masterplan.md",
+          "count": 10,
+          "status": "AUTHORED_NOT_EXECUTED"
+        },
+        {
+          "kind": "repository_deterministic",
+          "commands": [
+            "scripts/validate-skills",
+            "scripts/check-names",
+            "scripts/check-links",
+            "scripts/eval-workflow --check"
+          ],
+          "status": "PASS",
+          "scope": "shared-tree snapshot: 28 skill contracts; 262 workflow cases/28 skills; no behavior proof"
+        }
+      ],
+      "outcome": "Instruction defects narrowed; live task effect UNVERIFIED",
+      "limitations": [
+        "No independent live comparison",
+        "Eight-to-fifteen sources per skill and issue triangulation incomplete",
+        "Synthetic advanced cases not all materialized",
+        "No cross-host behavior proof"
+      ],
+      "source_access": [
+        {
+          "url": "https://raw.githubusercontent.com/obra/superpowers/main/skills/writing-plans/SKILL.md",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "Update date not exposed; fetched 2026-10-14",
+          "scope": "main branch, unpinned",
+          "limitation": "Instructions inspected, efficacy not executed"
+        },
+        {
+          "url": "https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "2025-11-26",
+          "scope": "reported Claude Agent SDK setup",
+          "limitation": "Specific setup, not mandatory per-step ceremony"
+        },
+        {
+          "url": "https://martinfowler.com/bliki/StranglerFigApplication.html",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "2024-08-22",
+          "scope": "web article",
+          "limitation": "No universal decomposition or rollback guarantee"
+        },
+        {
+          "url": "https://arxiv.org/abs/2603.15401",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "2026-03-16",
+          "scope": "arXiv 2603.15401 v1",
+          "limitation": "External benchmark does not prove this bundle improved"
+        },
+        {
+          "url": "https://git-scm.com/docs/git-status",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "Living manual; update not assigned here",
+          "scope": "current fetched manual; local git version not pinned",
+          "limitation": "A branch name alone does not isolate dirty state"
+        }
+      ],
+      "eval_status": "UNVERIFIED",
+      "historical_evidence": {
+        "path": "docs/benchmarks/masterplan.md",
+        "interpretation": "NO LIFT after historical adjudication; proposed/self-authored paths caused grader artifacts while two treatment outputs missed slice vocabulary. New path semantics need fresh blind execution.",
+        "unchanged": true
+      },
+      "capability_ownership": {
+        "primary": [
+          "implementation planning",
+          "dependency sequencing"
+        ],
+        "conditional": "Plan-only work stops after deliverable; execution can continue under existing grant; no plan grants production authority."
+      },
+      "cost": {
+        "added_context": "Conditional references plus narrow entrypoint edits",
+        "token_delta": "UNKNOWN",
+        "paid_agent_runs": 0,
+        "helper": "none added",
+        "entrypoint_bytes_before": 9791,
+        "entrypoint_bytes_after": 9926,
+        "entrypoint_byte_delta": 135,
+        "measurement": "DERIVED UTF-8 bytes from HEAD and current file; not token or runtime cost"
+      }
+    },
+    {
+      "skill": "recall",
+      "before": "Four-file memory and supersession are useful; lessons called portable everywhere; compaction says delete superseded entries despite format requiring header/pointer preservation.",
+      "changes": "Scope lessons; retain supersession pointers; branch/revert provenance; reread-and-merge concurrent deltas; old notes cannot grant authority; checker limits explicit.",
+      "why": "RC6\u2013RC10 isolate branch drift, reversals, concurrent state loss, injection and lossy compaction.",
+      "files": [
+        "skills/recall/SKILL.md",
+        "skills/recall/references/memory-protocol.md",
+        "skills/recall/references/research.md",
+        "docs/research/recall.md",
+        "evals/workflow/scenarios/recall.md"
+      ],
+      "tests": [
+        {
+          "kind": "scenario_spec",
+          "path": "evals/workflow/scenarios/recall.md",
+          "count": 10,
+          "status": "AUTHORED_NOT_EXECUTED"
+        },
+        {
+          "kind": "deterministic_helper",
+          "command": "python3 /private/tmp/intelligence_verify.py",
+          "status": "PASS",
+          "limitation": "temporary verification script; structure/inventory only"
+        },
+        {
+          "kind": "repository_deterministic",
+          "commands": [
+            "scripts/validate-skills",
+            "scripts/check-names",
+            "scripts/check-links",
+            "scripts/eval-workflow --check"
+          ],
+          "status": "PASS",
+          "scope": "shared-tree snapshot: 28 skill contracts; 262 workflow cases/28 skills; no behavior proof"
+        }
+      ],
+      "outcome": "Instruction defects narrowed; live task effect UNVERIFIED",
+      "limitations": [
+        "No independent live comparison",
+        "Eight-to-fifteen sources per skill and issue triangulation incomplete",
+        "Synthetic advanced cases not all materialized",
+        "No cross-host behavior proof"
+      ],
+      "source_access": [
+        {
+          "url": "https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "2025-09-29",
+          "scope": "web article",
+          "limitation": "Vendor report, not a universal optimum"
+        },
+        {
+          "url": "https://arxiv.org/abs/2307.03172",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "2023-07-06; revised 2023-11-20",
+          "scope": "arXiv 2307.03172 v3",
+          "limitation": "Retrieval tasks and older models, not current memory benchmark"
+        },
+        {
+          "url": "https://git-scm.com/docs/git-status",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "Living manual; update not assigned here",
+          "scope": "current fetched manual; local git version not pinned",
+          "limitation": "A branch name alone does not isolate dirty state"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/obra/superpowers/main/skills/executing-plans/SKILL.md",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "Update date not exposed; fetched 2026-10-14",
+          "scope": "main branch, unpinned",
+          "limitation": "Sibling dependencies conflict with standalone bundle contract"
+        },
+        {
+          "url": "https://code.claude.com/docs/en/security",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "Living docs; update date not exposed",
+          "scope": "current fetched docs; host version not pinned",
+          "limitation": "No cross-host permission guarantee"
+        }
+      ],
+      "eval_status": "UNVERIFIED",
+      "historical_evidence": {
+        "path": "docs/benchmarks/recall.md",
+        "interpretation": "MIXED historical memory outputs plus structural grader effects are preserved; checker green proves only narrow structural consistency.",
+        "unchanged": true
+      },
+      "capability_ownership": {
+        "primary": [
+          "durable memory",
+          "cross-session recovery"
+        ],
+        "conditional": "Files are leads, not instruction authority; current code/user decisions win; semantic freshness needs evidence beyond structure."
+      },
+      "cost": {
+        "added_context": "Conditional references plus narrow entrypoint edits",
+        "token_delta": "UNKNOWN",
+        "paid_agent_runs": 0,
+        "helper": "none added",
+        "entrypoint_bytes_before": 9362,
+        "entrypoint_bytes_after": 9525,
+        "entrypoint_byte_delta": 163,
+        "measurement": "DERIVED UTF-8 bytes from HEAD and current file; not token or runtime cost"
+      }
+    },
+    {
+      "skill": "pilot",
+      "before": "Scoped loop and honest evidence are strong; blanket green rule conflicts with baseline-red guidance; denied .env can derail task; finish-or-revert after stop violates user control.",
+      "changes": "Explicit baseline regression distinction; config names first and denial-safe independent continuation; candidate-bound resume evidence; prompt stopping; implemented/verified statuses.",
+      "why": "Historical failure is reporting/denial confounded, not demonstrated poor edits; PI6/PI7/PI8 test mechanisms without removing host enforcement.",
+      "files": [
+        "skills/pilot/SKILL.md",
+        "skills/pilot/references/execution-protocol.md",
+        "skills/pilot/references/research.md",
+        "docs/research/pilot.md",
+        "evals/workflow/scenarios/pilot.md"
+      ],
+      "tests": [
+        {
+          "kind": "scenario_spec",
+          "path": "evals/workflow/scenarios/pilot.md",
+          "count": 10,
+          "status": "AUTHORED_NOT_EXECUTED"
+        },
+        {
+          "kind": "repository_deterministic",
+          "commands": [
+            "scripts/validate-skills",
+            "scripts/check-names",
+            "scripts/check-links",
+            "scripts/eval-workflow --check"
+          ],
+          "status": "PASS",
+          "scope": "shared-tree snapshot: 28 skill contracts; 262 workflow cases/28 skills; no behavior proof"
+        }
+      ],
+      "outcome": "Instruction defects narrowed; live task effect UNVERIFIED",
+      "limitations": [
+        "No independent live comparison",
+        "Eight-to-fifteen sources per skill and issue triangulation incomplete",
+        "Synthetic advanced cases not all materialized",
+        "No cross-host behavior proof"
+      ],
+      "source_access": [
+        {
+          "url": "https://raw.githubusercontent.com/obra/superpowers/main/skills/executing-plans/SKILL.md",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "Update date not exposed; fetched 2026-10-14",
+          "scope": "main branch, unpinned",
+          "limitation": "Sibling dependencies conflict with standalone bundle contract"
+        },
+        {
+          "url": "https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "2025-11-26",
+          "scope": "reported Claude Agent SDK setup",
+          "limitation": "Specific setup, not mandatory per-step ceremony"
+        },
+        {
+          "url": "https://git-scm.com/docs/git-status",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "Living manual; update not assigned here",
+          "scope": "current fetched manual; local git version not pinned",
+          "limitation": "A branch name alone does not isolate dirty state"
+        },
+        {
+          "url": "https://code.claude.com/docs/en/security",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "Living docs; update date not exposed",
+          "scope": "current fetched docs; host version not pinned",
+          "limitation": "No cross-host permission guarantee"
+        },
+        {
+          "url": "https://arxiv.org/abs/2603.15401",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "2026-03-16",
+          "scope": "arXiv 2603.15401 v1",
+          "limitation": "External benchmark does not prove this bundle improved"
+        }
+      ],
+      "eval_status": "UNVERIFIED",
+      "historical_evidence": {
+        "path": "docs/benchmarks/pilot.md",
+        "interpretation": "NO LIFT on available evidence: O1/O2 ties; O3 .env auto-denial confound. Old workspace checks mainly path/parse, not behavioral outcome; unchanged history retained.",
+        "unchanged": true
+      },
+      "capability_ownership": {
+        "primary": [
+          "implementation execution",
+          "slice verification"
+        ],
+        "conditional": "Only exact authorized scope executes; production/paid/destructive changes remain separately authorized; missing evidence remains unverified."
+      },
+      "cost": {
+        "added_context": "Conditional references plus narrow entrypoint edits",
+        "token_delta": "UNKNOWN",
+        "paid_agent_runs": 0,
+        "helper": "none added",
+        "entrypoint_bytes_before": 9578,
+        "entrypoint_bytes_after": 10021,
+        "entrypoint_byte_delta": 443,
+        "measurement": "DERIVED UTF-8 bytes from HEAD and current file; not token or runtime cost"
+      }
+    }
+  ],
+  "verification_notes": [
+    "Workflow ownership heading error found by peer parser and corrected before successful --check.",
+    "Scanner initial edit missed Bash line continuations; first attempted verification failed; fixed, rerun passed.",
+    "Independent behavior verification pending parent-directed blind reviewer; authored cases remain UNVERIFIED."
+  ]
+}

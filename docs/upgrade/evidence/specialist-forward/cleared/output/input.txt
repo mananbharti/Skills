@@ -1,0 +1,1 @@
+Tenant authorization candidate: build/tests reported green, no negative tenant journey or rollback evidence. Scoped verdict and next check; no deploy.

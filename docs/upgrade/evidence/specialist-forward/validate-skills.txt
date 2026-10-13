@@ -1,0 +1,5 @@
+$ scripts/validate-skills
+exit: 0
+INFO: skills-ref unavailable; local strict validation completed
+OK: 28 frontmatter blocks are strict and spec-shaped
+OK: 28 self-contained skills satisfy the repository contract

@@ -1,0 +1,10 @@
+{
+  "skill": {
+    "SKILL.md": "fff8cd068f47c7d24eeef22531d78e880d2f6bd217bf38d59b03712959ddc283",
+    "references/budget-protocol.md": "223d7ad5f491f90b01561c88b10d092a153f543482b37408647c95d51083bf7a",
+    "references/measurement.md": "14f6aa1eae6617710e48cd3180da9dea46e70355013718be2a491741eb395cc0",
+    "references/research.md": "574e94bb36fe7505893db7e1c3c02a1351d11326f684bb4ab8a7aab6b675ef29",
+    "scripts/cost-report.py": "7e49421cfda6736769ffbd46f4ef5bf64d027a56c6f0413386655245660d8f18"
+  },
+  "fixture": {}
+}

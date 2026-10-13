@@ -1,0 +1,14 @@
+{
+  "skill": {
+    "SKILL.md": "674452a01c0fa9d8403f7cc794138f2379529bf3cf8b9adfa16b20d75546a99c",
+    "references/cleanup-protocol.md": "428c37d763c3873392a5ed73efa9ff44891f2b8dd2681cd1959119c05d13adf2",
+    "references/research.md": "82862b97414ec65cdef2e99f5592305107b727bfc92467cc55d86b28d546e166",
+    "references/slop-catalog.md": "272170c8270f0a223dc8d9671f19eec457bc2041d7bf9f0c408bf93b9ef757c9"
+  },
+  "fixture": {
+    "shop.py": "393658eed7e73de05a00e4089e4fc46f84aeaa327b3b33438360f221b2a8bf72",
+    "tests/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tests/test_shop.py": "4df7c3498515cba0cd69d36b02f9cd41b5527c9ec4461ced00c76a51edc79384",
+    "utils.py": "63d0c86e4407bbb9a0677bbe812d30ccee0c485d262d52eb36d9b54721bc7579"
+  }
+}

@@ -64,6 +64,9 @@ flow, and the classic tell.
 - Reflow at 320px width without 2-D scroll (1.4.10); consistent help and
   identification across pages (3.2.6).
 - Accessible authentication: no cognitive-test-only login (3.3.8).
+  Blocking paste into login/OTP fields fails 3.3.8 (failure F109):
+  paste and password-manager fill are named sufficient mechanisms, so
+  paste-blocking is a blocker, not a minor.
 - Status messages announced without stealing focus (4.1.3).
 - Run axe when available for the mechanical floor; judge the rest by hand.
 

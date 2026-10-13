@@ -1,0 +1,2 @@
+Add meaningful total regression. Test additions only; preserve existing tests and report actual red/green.
+Constraints: safe local owned workspace only; do not modify source fixture/skill, use paid agents, publish, deploy, or mutate real services. Exploratory observation only, no controlled comparative proof.

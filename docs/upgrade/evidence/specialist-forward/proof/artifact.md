@@ -1,0 +1,5 @@
+Behavior: percentage discount is applied once to the whole cart. Risk: a customer receives the wrong charged amount. Boundary: real pure total function, existing stdlib unittest runner; no mock or new framework. Oracle: $20 book + two $5 pens = $30 subtotal; 10% discount => $27.00. Fixture is a fresh in-memory list; observable return asserted.
+
+Baseline: 3 existing tests passed. After adding tests/test_discount.py: runner exited1; 4 ran, 1 assertion failure, existing 3 remain green. Actual returned24.3 differs from27.0, exposing two discount multiplications. App code and existing tests are byte-identical to originals; no implementation fix made.
+
+Failure sensitivity is established by the actual known-broken function (not an import/setup failure). This is a red regression deliverable, not a passing change. Green after a correct fix remains unverified because fixes were forbidden. Empty/zero-discount behavior is covered by preserved tests; input validation and payment integration remain outside this pure calculation boundary. Next owner: billing maintainer/sleuth for a separately authorized fix.

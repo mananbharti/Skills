@@ -1,0 +1,11 @@
+{
+  "command": [
+    "python3",
+    "check_static.py"
+  ],
+  "cwd": "/private/tmp/skills-forward/polish",
+  "time_utc": "2026-10-13T19:37:14.828992+00:00",
+  "exit_code": 0,
+  "stdout": "text/surface: computed sRGB contrast 15.903:1\nmuted/surface: computed sRGB contrast 5.934:1\nprimary/surface: computed sRGB contrast 4.548:1\nStatic checks passed: token bytes, visible data, existing action, viewport and structural semantics. Rendering and keyboard UNVERIFIED.\n",
+  "stderr": ""
+}

@@ -1,0 +1,9 @@
+--- before/PROJECT_CONTEXT.md
++++ after/PROJECT_CONTEXT.md
+@@ -6,3 +6,6 @@
+ 
+ ## Conventions
+ - Fixtures live in `benchmarks/fixtures/<skill>/`
++
++## Database constraint
++- Explicit user statement (2026-10-14): SQLite remains the live system until a verified migration. Future target decision: DECISIONS.md, 2026-10-14 PostgreSQL.

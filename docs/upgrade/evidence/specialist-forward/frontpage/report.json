@@ -1,0 +1,14 @@
+{
+  "skill": "frontpage",
+  "observation_type": "independent exploratory forward run; not controlled comparative proof",
+  "observed_at": "2026-10-13T19:46:15.154239+00:00",
+  "status": "tested-docs",
+  "artifact": "artifact.md",
+  "commands": "commands.jsonl",
+  "workspace": "/private/tmp/skills-forward/specialists/frontpage",
+  "gaps": [
+    "Original pip install unexecuted; only current local Python/runtime tested; no package publication or broader support evidence."
+  ],
+  "raw_prompt_scope": "prompt.txt carries the assigned task and safety boundary; scenario inputs only for plan-only cases.",
+  "source_skill_hashes": "input-hashes.json, active copied package snapshot"
+}

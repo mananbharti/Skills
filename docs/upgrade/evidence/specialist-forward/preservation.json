@@ -1,0 +1,32 @@
+{
+  "blueprint": {
+    "repository_fixture_matches_copied_input": true
+  },
+  "friction": {
+    "repository_fixture_matches_copied_input": true
+  },
+  "ditto": {
+    "repository_fixture_matches_copied_input": true
+  },
+  "proof": {
+    "repository_fixture_matches_copied_input": true
+  },
+  "roadtest": {
+    "repository_fixture_matches_copied_input": true
+  },
+  "hotpath": {
+    "repository_fixture_matches_copied_input": true
+  },
+  "referee": {
+    "repository_fixture_matches_copied_input": true
+  },
+  "unslop": {
+    "repository_fixture_matches_copied_input": true
+  },
+  "frontpage": {
+    "repository_fixture_matches_copied_input": true
+  },
+  "findable": {
+    "repository_fixture_matches_copied_input": true
+  }
+}

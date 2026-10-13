@@ -1,0 +1,36 @@
+1: <!doctype html>
+2: <html>
+3: <head>
+4: <meta charset="utf-8">
+5: <title>Sign up</title>
+6: <style>
+7:   * { margin: 0; box-sizing: border-box; }
+8:   body { font-family: Arial; background: #f4f5f7; padding: 40px; }
+9:   form { background: white; max-width: 420px; margin: 0 auto; padding: 32px; border-radius: 8px; }
+10:   input { display: block; width: 100%; padding: 10px; margin: 12px 0; border: 1px solid #ccc; border-radius: 6px; }
+11:   button { background: #2f6fed; color: white; border: none; padding: 10px 18px; border-radius: 6px; cursor: pointer; }
+12:   .error { color: #d64545; margin: 12px 0; }
+13:   .danger-zone { max-width: 420px; margin: 24px auto; background: white; padding: 32px; border-radius: 8px; }
+14: </style>
+15: </head>
+16: <body>
+17:   <form action="/signup" method="post">
+18:     <h1>Create your account</h1>
+19:     <input type="email" name="email" placeholder="Email">
+20:     <input type="password" name="password" placeholder="Password">
+21:     <div class="error">Something went wrong</div>
+22:     <button type="submit">Submit</button>
+23:   </form>
+24:   <div class="danger-zone">
+25:     <h2>Delete account</h2>
+26:     <p>Type DELETE to confirm. This permanently removes all projects and cannot be undone.</p>
+27:     <input type="text" id="confirm-delete" placeholder="Type DELETE">
+28:     <button id="delete-btn" disabled>Delete my account</button>
+29:   </div>
+30:   <script>
+31:     const box = document.getElementById('confirm-delete');
+32:     const btn = document.getElementById('delete-btn');
+33:     box.addEventListener('input', () => { btn.disabled = box.value !== 'DELETE'; });
+34:   </script>
+35: </body>
+36: </html>

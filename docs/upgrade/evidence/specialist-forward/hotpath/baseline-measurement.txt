@@ -1,0 +1,64 @@
+$ ['python3', 'measure.py']
+exit: 0
+stdout:
+{
+  "runtime": "3.14.6 (main, Jun 10 2026, 10:03:53) [Clang 21.0.0 (clang-2100.0.123.102)]",
+  "platform": "macOS-27.0.1-arm64-arm-64bit-Mach-O",
+  "workload": "synthetic10000-lines8-skus quantities1..3; catalog fixture8 rows; no network/concurrency",
+  "warmups": 5,
+  "samples_ms": [
+    2.052041,
+    2.040125,
+    2.042375,
+    2.084458,
+    2.066,
+    2.066166,
+    2.070125,
+    2.095458,
+    2.096167,
+    2.073333,
+    2.083333,
+    2.100375,
+    2.080917,
+    2.085875,
+    2.092542,
+    2.109375,
+    2.091916,
+    2.089959,
+    2.089125,
+    2.078292,
+    2.086,
+    2.09525,
+    2.089625,
+    2.057625,
+    2.057666,
+    2.067416,
+    2.040792,
+    2.062,
+    2.046083,
+    2.053084,
+    2.058041
+  ],
+  "p50_ms": 2.078292,
+  "p95_ms": 2.100375,
+  "range_ms": [
+    2.040125,
+    2.109375
+  ],
+  "result": 502403.25,
+  "catalog_examinations": 45000
+}
+         10003 function calls in 0.003 seconds
+
+   Ordered by: cumulative time
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.001    0.001    0.003    0.003 /private/tmp/skills-forward/specialists/hotpath/work/orders.py:34(totals)
+    10000    0.002    0.000    0.002    0.000 /private/tmp/skills-forward/specialists/hotpath/work/orders.py:22(lookup)
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+        1    0.000    0.000    0.000    0.000 {built-in method builtins.round}
+
+
+
+
+stderr:

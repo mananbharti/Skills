@@ -1,3 +1,8 @@
+Current access pass: 2026-10-14. Publication dates and versions below remain
+source claims, not inferred from access date. Previously cited sources not
+listed in the current pass are preserved historical provenance, not newly
+verified. No agent-effectiveness or compatibility claim follows from this ledger.
+
 # sleuth research ledger
 
 ## Source 1
@@ -95,3 +100,105 @@ None.
 Reverify when:
 Repository history, test determinism, or relevant deployment/configuration
 history changes.
+
+## Current decision and source records
+
+Changed artifacts: `SKILL.md` (hypotheses/failure handling) and `techniques.md` (exception/trace interpretation)
+
+Behavior changed: Separate failed intervention from rejected prediction; runtime-specific exception order; competing hypotheses only when plausible; observable traces without hidden reasoning.
+
+Title: Effective Troubleshooting
+
+Author / Organization: Google SRE
+
+Publication date: 2016
+
+Version: SRE book chapter
+
+URL: https://sre.google/sre-book/effective-troubleshooting/
+
+Source type: official docs
+
+What it establishes:
+Hypothesis-driven observation supports diagnosis, not guaranteed causation.
+
+What this skill adopts:
+Apply the current decision above at the affected boundary; preserve existing
+workflow when evidence does not justify change.
+
+What it does NOT establish:
+It does not prove this skill improves an agent or validate an unobserved runtime.
+
+Numbers taken from source:
+Only version identifiers; no comparative measurement.
+
+Reverify when:
+The source, installed version, affected contract or tool capability changes.
+
+Access: fetched 2026-10-14; source-specific breadth and live evaluations remain
+pending. Offline fallback: inspect available code/configuration and label
+source-sensitive behavior unverified.
+
+Title: traceback
+
+Author / Organization: Python Software Foundation
+
+Publication date: living; retrieved 2026-10-14
+
+Version: 3.15 documentation; target runtime must be detected
+
+URL: https://docs.python.org/3/library/traceback.html
+
+Source type: official docs
+
+What it establishes:
+Exception chains and frame order are runtime-specific.
+
+What this skill adopts:
+Apply the current decision above at the affected boundary; preserve existing
+workflow when evidence does not justify change.
+
+What it does NOT establish:
+It does not prove this skill improves an agent or validate an unobserved runtime.
+
+Numbers taken from source:
+Only version identifiers; no comparative measurement.
+
+Reverify when:
+The source, installed version, affected contract or tool capability changes.
+
+Access: fetched 2026-10-14; source-specific breadth and live evaluations remain
+pending. Offline fallback: inspect available code/configuration and label
+source-sensitive behavior unverified.
+
+Title: Signals
+
+Author / Organization: OpenTelemetry
+
+Publication date: living; date not established
+
+Version: current concepts documentation
+
+URL: https://opentelemetry.io/docs/concepts/signals/
+
+Source type: official docs
+
+What it establishes:
+Traces, logs and metrics are complementary observations.
+
+What this skill adopts:
+Apply the current decision above at the affected boundary; preserve existing
+workflow when evidence does not justify change.
+
+What it does NOT establish:
+It does not prove this skill improves an agent or validate an unobserved runtime.
+
+Numbers taken from source:
+Only version identifiers; no comparative measurement.
+
+Reverify when:
+The source, installed version, affected contract or tool capability changes.
+
+Access: fetched 2026-10-14; source-specific breadth and live evaluations remain
+pending. Offline fallback: inspect available code/configuration and label
+source-sensitive behavior unverified.

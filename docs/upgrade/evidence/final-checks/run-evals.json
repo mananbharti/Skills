@@ -1,0 +1,12 @@
+{
+  "command": [
+    "scripts/run-evals"
+  ],
+  "exit_code": 0,
+  "stdout": "OK: 267 trigger cases well-formed across all suites (measurement: scripts/eval-trigger)\nOK: 324 workflow scenarios well-formed across 28 skills; 54 fixture-backed\nOK: 87 outcome tasks well-formed across 28 skills\nOK: 267 trigger labels have no contradictory normalized prompts\n",
+  "stderr": "",
+  "status": "PASS",
+  "started_at_utc": "2026-10-13T19:58:45.621452+00:00",
+  "client_date": "2026-10-14",
+  "scope": "local deterministic check; no causal effectiveness/native compatibility inference"
+}

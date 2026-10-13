@@ -1,0 +1,3 @@
+$ scripts/check-links
+exit: 0
+OK: all bundled paths and inline local Markdown file targets exist

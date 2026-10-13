@@ -1,0 +1,1 @@
+Our team needs invitation links that work once, expire after 24 hours, and only join the inviting team. Keep a compact actionable brief; use a configurable invite email transport because ours is not chosen. Local implementation is authorized; actual emails are not.

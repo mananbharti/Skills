@@ -1,0 +1,6 @@
+$ ['python3', '/private/tmp/skills-forward/specialists/frugal/skill/scripts/cost-report.py', 'unknown.json']
+exit: 0
+stdout:
+{"unit": "tokens", "attempts": 2, "tasks": 1, "correct_tasks": 1, "known_cost": 20, "total_cost": null, "cost_per_correct_task": null, "limitation": "Acceptance and usage are supplied evidence; this script does not establish their truth."}
+
+stderr:

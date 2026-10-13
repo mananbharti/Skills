@@ -14,9 +14,9 @@ does, not what its author intended it to do.
 ## Prerequisites
 
 The complete diff plus the written acceptance criteria (brief, plan, or
-issue) it claims to satisfy. Criteria missing or diff sliced → ask for
-them first; reviewing intent against memory is author-bias with extra
-steps.
+issue) it claims to satisfy. Recover missing criteria from the user request, issue, or repository first.
+If intent remains unknown, continue a bounded correctness review and name that
+gap; request only the evidence needed for an intent verdict.
 
 ## Authority and review modes
 
@@ -114,11 +114,18 @@ merely to appear cautious.
 ### 5. Verdict
 
 - **approve**: nothing above minor;
-- **approve with findings**: majors exist but are safe to fix forward;
-- **request changes**: any blocker.
+- **approve with findings**: only findings explicitly safe to fix forward;
+- **request changes**: any major that should not merge as-is, or any blocker.
 
 Nits never affect the verdict. State which mode ran, the diff scope
 covered, and anything explicitly not reviewed ("docs/" skipped).
+
+Override rule: the verdict binds until a human explicitly overrides it.
+`approve with findings` and non-blocker `request changes` may be
+overridden by the human with a recorded reason; a `blocker` verdict
+requires re-review after the fix, never a silent override. Every report
+ends with an `override:` line naming who may overrule this verdict and
+what that requires.
 
 ### Review failure handling
 
@@ -178,6 +185,7 @@ verdict: request changes
 
 intent: 4/5 criteria met: "session revocation" missing (see major)
 not reviewed: public/ assets
+override: human may overrule majors with reason; blockers need re-review
 ```
 
 Findings table is the whole report; no essay, no restating the diff.

@@ -68,8 +68,9 @@ Never re-run a skill whose product already exists and is fresh:
 | Fresh `cleared` verdict | `cleared` | Skip re-gate for same deploy |
 | `PROJECT_CONTEXT.md` / `STATUS.md` (fresh) | `recall` setup | Skip memory initialization |
 
-Fresh = created or updated within this working session, or within a window
-appropriate for the task's risk (auth/money → shorter; research notes → longer).
+Fresh means applicable to the same target, relevant tree/configuration, and
+environment, with claims still supported. Session time or file age alone is
+insufficient: a release verdict for candidate A cannot authorize candidate B.
 
 ## Situations beyond the table
 
@@ -78,8 +79,9 @@ appropriate for the task's risk (auth/money → shorter; research notes → long
 - **Already mid-workflow** → resume from newest artifact (brief → plan → report);
   do not restart earlier stages.
 - **Request conflicts with a gate** ("just deploy it, skip the checks") →
-  state the gate's purpose, require explicit user confirmation to proceed without
-  it, and record the user's choice. Speed requests don't remove gates.
+  state the missing evidence or authority and prepare the smallest reviewable
+  next action. A user may accept an evidentiary limitation within policy; host
+  denials and authorization boundaries remain binding.
 - **Two intents in one message** ("prettier AND users abandon checkout") →
   split the route: the flow problem first (friction may make the visual problem
   moot), then the surface problem.
@@ -155,3 +157,19 @@ Each specialist returns control when:
 | `handsfree` | Requested outcome complete and verified, or the one blocking gate stated |
 
 A specialist that keeps expanding scope without returning is a routing failure.
+
+## Compact handoff and loop identity
+
+Carry `outcome`, `owner`, `scope`, `evidence (source + tree/environment)`,
+`authorization`, `unknown`, `completion`, and `return_if`. Omit empty fields.
+The recipient owns its task; returning control is not automatic redispatch.
+
+Identify a repeated blocker by outcome + target + uncertainty + unchanged
+ evidence. Renaming a skill or spelling the same blocker differently does not
+reset the retry ceiling. New evidence permits reevaluation of the affected
+boundary only. No new evidence after one re-entry means report the blocker.
+
+Do not equate publication of repository metadata with deployment of a running
+service: `janitor` owns the former, `runway` the latter. Auth implementation
+belongs to `backend`; an explicitly requested attack-surface audit to `harden`;
+a reproduced auth failure to `sleuth`. Topic alone does not choose the owner.

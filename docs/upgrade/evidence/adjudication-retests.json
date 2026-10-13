@@ -1,0 +1,44 @@
+[
+  {
+    "skill": "sleuth",
+    "command": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-m",
+      "unittest",
+      "-v",
+      "test_cache"
+    ],
+    "exit": 0,
+    "stdout": "",
+    "stderr": "test_missing_and_falsey (test_cache.Regression.test_missing_and_falsey) ... ok\ntest_read_replace_read (test_cache.Regression.test_read_replace_read) ... ok\ntest_unwarmed_and_other_keys (test_cache.Regression.test_unwarmed_and_other_keys) ... ok\n\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n",
+    "scope": "retained artifact retested independently on disposable copy; no provider/production proof"
+  },
+  {
+    "skill": "harden",
+    "command": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-m",
+      "unittest",
+      "-v",
+      "test_notes"
+    ],
+    "exit": 0,
+    "stdout": "",
+    "stderr": "test_configuration (test_notes.Boundary.test_configuration) ... ok\ntest_delete_injection (test_notes.Boundary.test_delete_injection) ... ok\ntest_delete_scope (test_notes.Boundary.test_delete_scope) ... ok\ntest_injection (test_notes.Boundary.test_injection) ... ok\ntest_owner_reads (test_notes.Boundary.test_owner_reads) ... ok\n\n----------------------------------------------------------------------\nRan 5 tests in 0.001s\n\nOK\n",
+    "scope": "retained artifact retested independently on disposable copy; no provider/production proof"
+  },
+  {
+    "skill": "backend",
+    "command": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-m",
+      "unittest",
+      "-v",
+      "test_payment"
+    ],
+    "exit": 0,
+    "stdout": "",
+    "stderr": "test_atomic_failure_then_retry (test_payment.Boundaries.test_atomic_failure_then_retry) ... ok\ntest_invalid_state_and_reused_identity (test_payment.Boundaries.test_invalid_state_and_reused_identity) ... ok\ntest_missing_order (test_payment.Boundaries.test_missing_order) ... ok\ntest_out_of_order_refund_retry (test_payment.Boundaries.test_out_of_order_refund_retry) ... ok\ntest_outer_transaction_owned_by_caller (test_payment.Boundaries.test_outer_transaction_owned_by_caller) ... ok\ntest_retries_and_distinct_events (test_payment.Boundaries.test_retries_and_distinct_events) ... ok\ntest_stale_pending_then_refund (test_payment.Boundaries.test_stale_pending_then_refund) ... ok\ntest_wrong_tenant (test_payment.Boundaries.test_wrong_tenant) ... ok\n\n----------------------------------------------------------------------\nRan 8 tests in 0.001s\n\nOK\n",
+    "scope": "retained artifact retested independently on disposable copy; no provider/production proof"
+  }
+]

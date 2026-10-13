@@ -1,0 +1,1 @@
+Original decision-history body preserved byte-for-byte as an unchanged suffix; old rationale and historical choice remain. LEARNINGS unchanged. No migration ran.

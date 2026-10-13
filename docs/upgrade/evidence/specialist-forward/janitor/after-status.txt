@@ -1,0 +1,7 @@
+$ ['git', 'status', '--short']
+exit: 0
+stdout:
+MM notes.txt
+?? action-record.md
+
+stderr:

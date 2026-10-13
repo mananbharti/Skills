@@ -121,7 +121,9 @@ accepted rate minus completed rate = backlog growth rate
 These are planning approximations, not queue proofs. They do not replace tail
 latency, dependency behavior, or representative testing. For a queue,
 distinguish accepted, processed, retried, delayed, dead-lettered, and discarded
-work. A stable average can hide a burst above drain rate.
+work. A stable average can hide a burst above drain rate. Read
+[workload experiments](references/workload-experiments.md) when comparing
+load-test results, predicting backlog recovery, or relying on autoscaling.
 
 ### Find the constraint that fails first
 
@@ -273,6 +275,9 @@ horizon; evidence ledger; scenarios and arithmetic; bottleneck/failure analysis;
 Now/Next/Scale table; "do not build today" list; telemetry and verification
 plan; owners; risks; and open questions. Write `docs/design/<slug>.md` only
 when asked for a durable artifact or when the decision guides later work.
+
+For a bounded planning exercise, use `assets/capacity-case.json`; all inputs
+are synthetic assumptions and must remain labeled as such.
 
 ## References and research basis
 

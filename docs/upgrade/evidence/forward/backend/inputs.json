@@ -1,0 +1,13 @@
+{
+  "skill_sha256": {
+    "skills/backend/SKILL.md": "72ee43dc170864f5696236babb7f9f70c847efdcd677547ef5c7a58359406dae",
+    "skills/backend/references/checklists.md": "94bb9b245f04694c4c7eb211d1d6f98eee41f6a6a3f89c4434b91499dbdd9aa2",
+    "skills/backend/references/boundary-cases.md": "5da1ff45c8013ba75b09eaf93fc9d7f8b36c8f826f7e44f79a2c9ec722a6da09",
+    "skills/backend/references/research.md": "cabfcc53d80131f6dee3d50faf926e74feb2e3a4411e0722ab9b1b814e0e1f5d",
+    "skills/backend/assets/payment-demo.py": "5593ce2f2bd68c94e0036c14eb6e68fd3b176a08b91934683d772690c88f11a7"
+  },
+  "fixture_sha256": {
+    "skills/backend/assets/payment-demo.py": "5593ce2f2bd68c94e0036c14eb6e68fd3b176a08b91934683d772690c88f11a7"
+  },
+  "trial": "exploratory in-session forward trial; not controlled comparison"
+}

@@ -99,10 +99,12 @@ Small batches, each independently verifiable and revertable:
 1. one category or one module per batch: never "the whole cleanup";
 2. behavior-preserving only: no feature changes, no "while I'm here"
    improvements smuggled in (note them, do them as their own batch);
-3. after each batch: tests → diff review (`referee` discipline) →
-   relevant browser check → commit;
-4. delete more than you write. Good detox output is usually net-negative
-   in lines.
+3. after each batch: affected checks → diff review (`referee` discipline) →
+   relevant browser check when available → a recoverable checkpoint;
+   commit only when authorized and stage only this batch's changes, preserving
+   the user's pre-existing index and worktree edits;
+4. report line delta without making it a gate. A safe extraction or new
+   characterization can add lines while reducing change risk.
 
 Use this change order unless repository evidence makes another order safer:
 
@@ -146,8 +148,7 @@ when that distinction cannot be made.
 
 ## Rules
 
-- **The baseline never regresses.** Tests green at every commit; any red
-  → revert the batch, not the baseline. **Beware the Refactor Loop of Death:** cleaning up code without a baseline test results in a pristine, syntactically perfect codebase that does absolutely nothing correctly. No tests = no detox.
+- **Protect the observed baseline.** Stop on a new failure and isolate this batch. An already-failing unrelated suite does not forbid a bounded cleanup when unchanged failures and the affected behavior are evidenced separately. If attribution is impossible, defer. Characterization may be a contract fixture or reproducible flow; a formal suite is useful, not the only possible signal.
 - **Generated-looking UI slop** (banned patterns, decorative junk) →
   route to `polish`; structural code slop is yours.
 - **Unused dependencies**: remove only when nothing imports them
@@ -168,8 +169,9 @@ when that distinction cannot be made.
 
 - Baseline captured (test/build/flow evidence) before batch 1.
 - Every finding has file:line evidence; no vibes-based "this smells".
-- Every batch: green tests + diff-reviewed + (UI) browser-checked
-  before the next.
+- Every batch: affected behavior evidenced + diff-reviewed + applicable UI
+  observations before dependent work; distinguish unchanged baseline failures
+  and unavailable browser checks from new regressions.
 - Net line delta and per-batch diffs available in the report.
 - Zero behavior changes: if any happened accidentally, disclosed and
   reverted.

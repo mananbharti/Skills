@@ -72,6 +72,9 @@ Write a small charter before opening the browser:
 | Boundaries | viewport, browser, network/dependency condition where relevant |
 | Evidence | screenshot/assertion, console/network, persisted outcome |
 | Risk and owner | why this path was selected and who owns a failure |
+| Interaction floor | at least one real click/tap/keypress per path: pages with no
+interactions report no INP, so a charter without interactions cannot
+claim responsiveness evidence |
 
 Prioritize a few independent journeys over a long click list. A route smoke
 test is not a checkout, onboarding, admin authorization, or recovery journey.
@@ -105,13 +108,21 @@ with a real session. For each path:
     re-walk;
 12. repeat until the path passes or is reported failing.
 
+For connection loss, reconnect, touch, or incomplete browser evidence, read
+[adverse browser conditions](references/adverse-conditions.md). Select those
+conditions from the journey contract; do not run every condition by default.
+
 ## Browser-specific investigation rules
 
 Use semantic/user-facing locators first: role plus accessible name, visible
 label, and stable test ID where the project defines one. A locator found by
 guessing a DOM shape is not evidence of a user-operable interface. If the
 accessible name is missing or unstable, log the problem and only use a temporary
-fallback with that limitation visible.
+fallback with that limitation visible. Strict mode throws on multiple
+matches: a silently `.first()`-resolved locator is the Silent
+Self-Healing this skill bans, so capture strict violations as findings.
+XPath cannot pierce shadow roots; long CSS/XPath chains are unstable by
+construction and forbidden as primary locators.
 
 For every failure, capture the smallest reproducible sequence, current URL,
 viewport, browser/version if available, relevant console/network lines,

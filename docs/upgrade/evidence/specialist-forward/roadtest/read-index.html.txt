@@ -1,0 +1,20 @@
+1: <!doctype html>
+2: <html>
+3: <head>
+4: <meta charset="utf-8">
+5: <title>Shop — login</title>
+6: </head>
+7: <body>
+8:   <h1>Shop login</h1>
+9:   <form action="/login" method="post">
+10:     <label for="email">Email</label>
+11:     <input id="email" type="email" name="email">
+12:     <label for="password">Password</label>
+13:     <input id="password" type="password" name="password">
+14:     <button id="login-btn">Log in</button>
+15:   </form>
+16:   <p><a href="/missing-page">Order history</a></p>
+17:   <button id="checkout-btn">Check out</button>
+18:   <script src="app.js"></script>
+19: </body>
+20: </html>

@@ -1,0 +1,7 @@
+Primary reader: newcomer trying add/list locally. README rewritten around one-file Python CLI and exercised commands. Claims audit: add/list + file path from notes.py and executed examples; stdlib imports observed; no package declaration is supplied. Removed unproven10000 users, testimonials, build/coverage badges, Rust performance, SSO/audit/AI features and nonexistent contribution/docs links. No substitute numbers or compatibility claims invented.
+
+Original quickstart audit: notespro executable absent. pip install notespro-3000 deliberately unexecuted because no distribution declaration, network access or provenance exists; failure to verify old install is recorded, not silently called working. No registry request or downloaded code ran.
+
+New README bash snippets extracted from the saved text and run verbatim in owned temporary copy via exercise_readme.py: --help exit0; add hello => added note#1 exit0; list =>1. hello exit0. Default action lists same note. Unknown action returns argparse exit2; no product fix. notes.json state preserved in command log; excluded from published output to avoid confusing clone startup. Single notes.py link exists, no external links. Runtime Python3.14.6/macOS in probe; version support beyond this local run unknown.
+
+Limitations preserve actual semantics: JSON beside source, no atomic writes/locking or corruption recovery, no edit/delete/auth/sync or supplied test/benchmark/distribution. README changes only; source identical. Repeated quickstart in existing store appends rather than resetting, stated explicitly.

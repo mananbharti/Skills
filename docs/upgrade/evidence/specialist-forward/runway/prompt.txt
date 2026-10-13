@@ -1,0 +1,2 @@
+CLI exit0, target serving old fingerprint, expected new. Evidence-backed verdict and safe next step; no URL fetch or deployment claim.
+Constraints: safe local owned workspace only; do not modify source fixture/skill, use paid agents, publish, deploy, or mutate real services. Exploratory observation only, no controlled comparative proof.

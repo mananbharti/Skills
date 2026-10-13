@@ -1,0 +1,15 @@
+$ ['python3', '-m', 'unittest', 'discover', '-s', 'tests', '-v']
+exit: 0
+stdout:
+DEBUG total= 30.0
+DEBUG total= 0
+
+stderr:
+test_legacy_export_format (test_shop.TestShop.test_legacy_export_format) ... ok
+test_totals (test_shop.TestShop.test_totals) ... ok
+test_totals_empty (test_shop.TestShop.test_totals_empty) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.000s
+
+OK

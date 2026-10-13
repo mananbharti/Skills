@@ -1,20 +1,68 @@
-# headroom — research provenance
+# headroom: individual upgrade research
 
-## Sources that materially changed the skill
+Research/authoring date: 2026-10-14. Read the current skill, all bundled resources,
+existing workflow scenarios and frozen outcome protocol before editing.
+Historical outcome files remain intact. New workflow cases are authored, not agent-executed.
 
-| Source | Key lesson | Why it matters | Where encoded |
-| --- | --- | --- | --- |
-| Agentic Scaling / Orchestration (2025/2026) | The "god agent" is dead, but splitting agents into true microservices prematurely is a costly anti-pattern. Orchestrated execution graphs (modular monoliths) are preferred. | Adds the "Premature Microservices" warning specifically for agentic workflows to the scaling dimensions. | references/dimensions.md |
-| Team Topologies for AI | AI does not replace the need for stream-aligned stewardship; it amplifies it. Architecture must prioritize human observability and "Bounded Agency". | Encodes Bounded Agency and Team Topologies as core scaling dimensions. | references/dimensions.md |
-| v1 campaign audit, Phase 10 (2026-09-14) | Tail latency, cache-failure modes, and queue economics named nowhere — p50-only latency, hit-rate-only caching, purpose-only queues | Tail-latency bullet (what dominates p99 for this workload), cache failure-mode design (cold start, stampede, outage fallback), queue economics (lag alarms, DLQ retention, retention pricing) | references/dimensions.md (Load shape, Operability, Coordination) |
+## Baseline and narrow decision
 
-## Key new intelligence encoded
+The existing methodology remains useful. The missing failure branches are encoded in `skills/headroom/references/workload-experiments.md` and a short conditional entrypoint pointer.
+The previous maintainer ledger contained unattributed generalizations about 2026 agents.
+Those entries are replaced here; they are not treated as measured evidence.
 
-1. **The "Premature Microservices" Trap for Agents** — explicitly warns against distributing agentic workflows too early, favoring orchestrated modular monoliths until operational contention demands independent scaling.
-2. **Bounded Agency & Stewardship** — frames AI agent system design not as full autonomy, but as "bounded agency" where human stream-aligned teams retain stewardship and require architectural interfaces to monitor and control the agent.
+## Source-to-decision trace
 
-## Fast-moving items
+| Source/access | Adopted decision | Rejected overreach / limitation |
+| --- | --- | --- |
+| [Horizontal Pod Autoscaling](https://kubernetes.io/docs/concepts/workloads/autoscaling/horizontal-pod-autoscale/); read 2026-10-14; Living docs; no controller version adopted | Model ready-capacity delay and downstream caps when Kubernetes is present. | Does not require Kubernetes or a universal utilization target. |
+| [Replica calculator implementation](https://raw.githubusercontent.com/kubernetes/kubernetes/master/pkg/controller/podautoscaler/replica_calculator.go); read 2026-10-14; Moving master branch; not a deployed controller version | A desired replica count is not immediate usable capacity. | Does not predict this application's throughput. |
+| [Open and closed models](https://grafana.com/docs/k6/latest/using-k6/scenarios/concepts/open-vs-closed/); read 2026-10-14; Living docs; no installed k6 version adopted | Match workload model to arrival contract; retain offered and dropped demand. | Does not make open load universally preferable for fixed-user journeys. |
 
-| Topic | Source/version/date |
+All sources are primary documentation or upstream implementation. Upstream moving
+branch inspection supports a mechanism, not the version installed in a user project.
+No source assets/code were copied into the runtime package.
+
+## Fifteen distinct failure situations
+
+These are **local test hypotheses**, not measured prevalence or observed agent failures.
+Source-supported mechanism is identified above; each concrete project situation still
+needs its own fixture and execution. The list guides selective testing, not a mandatory checklist.
+
+1. Closed load model hides overload by slowing arrivals.
+2. Dropped generator iterations omitted.
+3. CPU average hides expensive export class.
+4. Single tenant burst starves other tenants.
+5. Retry fanout exceeds provider quota.
+6. Consumers drain no faster than arrivals.
+7. Queue depth used without age/deadline.
+8. Ready-capacity lag omitted during peak.
+9. Missing autoscaler metrics assumed zero need.
+10. New replicas exhaust DB pool.
+11. Primary writes scaled by adding read replicas.
+12. Cache hit average hides critical miss route.
+13. RTO claim omits restore duration.
+14. Scenario estimate reported as measured throughput.
+15. Service split prescribed without bottleneck evidence.
+
+## Preserved and rejected material
+
+Preserved the operating modes, evidence ladder, narrow scope and existing handoffs.
+Rejected blanket tool/framework mandates and unmeasured superiority claims.
+Conditional references keep specialized detail out of ordinary entrypoint context.
+Authored cases use the existing Setup/Task/D#/R# protocol; static shape checks do
+not grade their behavior. Existing outcome task/rubric freezes were not retuned.
+
+## Verification and remaining evidence
+
+Local command and observed outcome records are in `docs/upgrade/building-experience.json` (headroom row).
+No paid or live agent CLI was invoked. Local fixture/helper checks do not establish
+comparative agent benefit, target host installation, production safety or physical-device coverage.
+
+Source access limitation: AWS queue-backlog URL redirected to a page with no extracted body.
+It was not used to substantiate new arithmetic or timing claims.
+
+## Verification 2026-10-14
+
+| Basis | Outcome |
 | --- | --- |
-| Agent execution frameworks | LangGraph / Microsoft Agent Framework (2025/2026 patterns) |
+| k6 open/closed-model + HPA algorithm docs; in-session re-check 2026-10-13 | Existing workload/trigger/reversibility guidance confirmed; no behavior change. |

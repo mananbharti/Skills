@@ -5,8 +5,8 @@ description: Challenges a consequential product, architecture, or feature decisi
 
 # hotseat: put the idea in the hot seat
 
-One LLM asked "is my idea good?" will say yes. This skill replaces that
-reflex with structured disagreement: seven specialists argue the idea from
+A product critique can collapse into agreement without examining assumptions.
+This skill uses structured disagreement: seven specialists argue the idea from
 seven angles **before seeing each other's opinions**, then a moderator
 synthesizes what survives.
 
@@ -151,10 +151,13 @@ it. Stop when another exchange would repeat positions rather than add evidence.
 
 1. Announce: "It is now 18 months in the future and this product has failed.
    The failure was real and significant. Your job is to explain why."
+   (18 months is a default horizon, not a method requirement: move it to
+   the decision's real horizon when that is known.)
 2. Each persona generates, *in silence and independently*, 3–5 specific
-   failure causes using past tense ("the onboarding converted at 8% because
-   users didn't understand X until step 4, by which time 80% had left").
-3. Collect and group. Prioritize by: (a) probability and (b) kill severity.
+   failure causes using past tense ("users could not explain the value before the paid signup step").
+   Treat these as hypothetical causes, never measured outcomes.
+3. Collect and group. Prioritize consequence and evidence gap; probability
+   estimates need a stated basis and remain hypotheses.
 4. For each top-3 failure cause: name a concrete mitigating action to take now.
 
 Pre-mortem surfaces risks that debate suppresses because the "we can handle
@@ -169,7 +172,7 @@ A moderator (not any persona) synthesizes: decisions, not a transcript:
    kill / major variants) as rows, each persona's one-line verdict as
    columns. Qualitative verdicts only: no scores, no votes, no weighting
    (voting collapses disagreement: see rejected ideas in the research note);
-3. **Assumption register**: ranked by kill probability: assumption →
+3. **Assumption register**: ranked by consequence and evidence gap (no invented probabilities): assumption →
    who distrust it → what would resolve it → urgency (test before build /
    test in build / monitor post-launch);
 4. **Rejected assumptions** (with who rejected them and why);
@@ -181,9 +184,10 @@ A moderator (not any persona) synthesizes: decisions, not a transcript:
 7. **Product + technical decisions** to lock now;
 8. **MVP cut line**: what survives in the smallest shippable version,
    what waits;
-9. **Kill criteria**: what observable outcome after build would prove this
-   wrong (must be specific and falsifiable: not "low engagement" but "DAU/MAU
-   below 0.15 after 4 weeks with 200 active users");
+9. **Kill/pivot/continue criteria**: observation, test window, and ensuing
+   decision. Numeric thresholds need owner-supplied economics or observed
+   baseline; otherwise use a concrete discriminating observation and mark
+   the threshold undecided;
 10. **Top 3–5 risks**: each with a mitigation and its second-order effect.
 
 ### 6. Convert critique into a decision experiment
@@ -250,14 +254,14 @@ the directional decision rule and ask the owner to set the boundary.
 
 - Every round-1 verdict is self-contained (zero references to other
   personas: check before revealing).
-- The synthesis names at least **2 rejected or corrected assumptions**.
-  If it can't, the debate was theater: run a sharper round 2 or say
-  honestly that the idea survived unchallenged.
+- The synthesis records supported corrections or unresolved assumptions.
+  Zero corrections is valid when evidence supports the proposal; never
+  fabricate two objections to satisfy a count.
 - The synthesis carries a decision matrix (options × one-line verdicts,
   no scores) and a minority-objections section: or states explicitly why
   the latter is empty.
-- Kill criteria are specific and falsifiable: not "if users don't adopt it"
-  but a concrete metric with a threshold and timeframe.
+- Decision criteria are specific and falsifiable. Distinguish owner-approved
+  thresholds from proposed experiments; an unsupported number is not evidence.
 - No more than 2 discussion rounds total.
 - Synthesis is decision-oriented: a reader can act on it without re-reading
   the debate.
@@ -268,7 +272,7 @@ the directional decision rule and ask the owner to set the boundary.
 
 ## Stop conditions
 
-- Synthesis delivered and user's reaction captured → offer `distill` to
+- Synthesis delivered → optionally offer `distill` to
   convert surviving idea into a brief, then stop.
 - User kills the idea → record why in the artifact, stop.
 - User redirects mid-debate → follow the redirect; do not finish theater.

@@ -1,0 +1,38 @@
+{
+  "skill": "recall",
+  "prompt": "Remember my decision: PostgreSQL is our next migration target, but SQLite remains the live system until a verified migration. Do not rewrite the decision history. Record the consequence and safe next action.",
+  "package_sha256": "e2545f9bc857232cf1d0fd38b6c0d15771358c402893b7da4a073b82aaf88f10",
+  "hash_method": "sha256 of sorted package-relative path + NUL + file sha256 + newline records",
+  "package_files": [
+    {
+      "path": "SKILL.md",
+      "sha256": "ea0ae1bdb67a593b573fa8027119bc69a10a39ba8d2d026f43952cd6f3155374"
+    },
+    {
+      "path": "references/file-formats.md",
+      "sha256": "153eac4b0fbc3373d92fb34582d83fefca58ccbda13dfcde74ed134f2fb99926"
+    },
+    {
+      "path": "references/memory-protocol.md",
+      "sha256": "0be7bc14722dbcad4391af65c82a771860877f6e4bfee60a85b4de9c347de60c"
+    },
+    {
+      "path": "references/research.md",
+      "sha256": "b5b45714143bcf645c1a6f9ff398fa10286c2217e640a75f2680fa0d36379575"
+    },
+    {
+      "path": "scripts/check-memory",
+      "sha256": "6c1a0acf18626d6fddee20ac7740258256878aed571e2e9a7e27e9e3729585fe"
+    }
+  ],
+  "loaded_resources": [
+    "SKILL.md",
+    "references/file-formats.md",
+    "references/memory-protocol.md"
+  ],
+  "observation_class": "exploratory native in-session observation; not controlled comparative evidence",
+  "limits": [
+    "Same agent/session; no independent replicate or comparator; root adjudicates.",
+    "Live SQLite is an explicit user statement, not independently checked against a running database. Earlier fixture status is stale and not revalidated."
+  ]
+}

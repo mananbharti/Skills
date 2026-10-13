@@ -1,0 +1,1 @@
+CLI exit0, target serving old fingerprint, expected new. Evidence-backed verdict and safe next step; no URL fetch or deployment claim.

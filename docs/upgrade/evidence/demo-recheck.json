@@ -1,0 +1,96 @@
+{
+  "kind": "local fixture behavior, not controlled agent comparison",
+  "python": "3.14.6",
+  "cases": [
+    {
+      "skill": "sleuth",
+      "runs": [
+        {
+          "condition": "seed",
+          "exit": 1,
+          "expected_exit": 1,
+          "pass": true,
+          "stdout": "",
+          "stderr": "test_missing_and_falsey (test_cache.Regression.test_missing_and_falsey) ... FAIL\ntest_read_replace_read (test_cache.Regression.test_read_replace_read) ... FAIL\ntest_unwarmed_and_other_keys (test_cache.Regression.test_unwarmed_and_other_keys) ... ok\n\n======================================================================\nFAIL: test_missing_and_falsey (test_cache.Regression.test_missing_and_falsey)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/skills-demo-eu2r62pu/test_cache.py\", line 15, in test_missing_and_falsey\n    c.set('x',1); c.get('x'); c.set('x',None); self.assertIsNone(c.get('x'))\n                                               ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^\nAssertionError: 1 is not None\n\n======================================================================\nFAIL: test_read_replace_read (test_cache.Regression.test_read_replace_read)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/skills-demo-eu2r62pu/test_cache.py\", line 8, in test_read_replace_read\n    self.assertEqual(c.get('x'),'new')\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^\nAssertionError: 'old' != 'new'\n- old\n+ new\n\n\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nFAILED (failures=2)\n",
+          "workspace_hashes": {
+            "cache.py": "9936c1e3fb77e0c89a5460616a04de6432a80ad9f4e09b45a0e284a91cbe259c",
+            "test_cache.py": "3d94721bc30f96758f3c935189332bb388d9d61de8b594722ddd8c64a240e1f6"
+          }
+        },
+        {
+          "condition": "corrected",
+          "exit": 0,
+          "expected_exit": 0,
+          "pass": true,
+          "stdout": "",
+          "stderr": "test_missing_and_falsey (test_cache.Regression.test_missing_and_falsey) ... ok\ntest_read_replace_read (test_cache.Regression.test_read_replace_read) ... ok\ntest_unwarmed_and_other_keys (test_cache.Regression.test_unwarmed_and_other_keys) ... ok\n\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n",
+          "workspace_hashes": {
+            "cache.py": "11f5c2b50c0682b970f12599064be08767669fc34dbd3368ca6042f544d8b81b",
+            "test_cache.py": "3d94721bc30f96758f3c935189332bb388d9d61de8b594722ddd8c64a240e1f6"
+          }
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "skill": "harden",
+      "runs": [
+        {
+          "condition": "seed",
+          "exit": 1,
+          "expected_exit": 1,
+          "pass": true,
+          "stdout": "",
+          "stderr": "test_configuration (test_notes.Boundary.test_configuration) ... FAIL\ntest_delete_injection (test_notes.Boundary.test_delete_injection) ... FAIL\ntest_delete_scope (test_notes.Boundary.test_delete_scope) ... FAIL\ntest_injection (test_notes.Boundary.test_injection) ... FAIL\ntest_owner_reads (test_notes.Boundary.test_owner_reads) ... ok\n\n======================================================================\nFAIL: test_configuration (test_notes.Boundary.test_configuration)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/skills-demo-h78dycxi/test_notes.py\", line 24, in test_configuration\n    with self.assertRaises(RuntimeError): notes.get_secret()\n         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: RuntimeError not raised\n\n======================================================================\nFAIL: test_delete_injection (test_notes.Boundary.test_delete_injection)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/skills-demo-h78dycxi/test_notes.py\", line 20, in test_delete_injection\n    self.assertFalse(notes.delete_note('amy','1 OR 1=1'))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not false\n\n======================================================================\nFAIL: test_delete_scope (test_notes.Boundary.test_delete_scope)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/skills-demo-h78dycxi/test_notes.py\", line 14, in test_delete_scope\n    self.assertFalse(notes.delete_note('bob',1))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not false\n\n======================================================================\nFAIL: test_injection (test_notes.Boundary.test_injection)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/skills-demo-h78dycxi/test_notes.py\", line 11, in test_injection\n    self.assertEqual(notes.get_note('amy', '1 OR 1=1'),[])\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Lists differ: [(1, 'amy', 'amy private'), (2, 'bob', 'bob private')] != []\n\nFirst list contains 2 additional elements.\nFirst extra element 0:\n(1, 'amy', 'amy private')\n\n- [(1, 'amy', 'amy private'), (2, 'bob', 'bob private')]\n+ []\n\n----------------------------------------------------------------------\nRan 5 tests in 0.002s\n\nFAILED (failures=4)\n",
+          "workspace_hashes": {
+            "notes.py": "ae673d3d5da86a73836f805f78756c9b10d210d46d994133447445a0ab0228f8",
+            "test_notes.py": "4ac3527fc122aa080f97288e91ae98ee7fae7175f56fb67483a9f2ecc9b9b786"
+          }
+        },
+        {
+          "condition": "corrected",
+          "exit": 0,
+          "expected_exit": 0,
+          "pass": true,
+          "stdout": "",
+          "stderr": "test_configuration (test_notes.Boundary.test_configuration) ... ok\ntest_delete_injection (test_notes.Boundary.test_delete_injection) ... ok\ntest_delete_scope (test_notes.Boundary.test_delete_scope) ... ok\ntest_injection (test_notes.Boundary.test_injection) ... ok\ntest_owner_reads (test_notes.Boundary.test_owner_reads) ... ok\n\n----------------------------------------------------------------------\nRan 5 tests in 0.001s\n\nOK\n",
+          "workspace_hashes": {
+            "notes.py": "708f5fa1ef5dcd4ec0d623fcb3204c22a7058bd9c680f8b7448ffd1bd09b6523",
+            "test_notes.py": "4ac3527fc122aa080f97288e91ae98ee7fae7175f56fb67483a9f2ecc9b9b786"
+          }
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "skill": "backend",
+      "runs": [
+        {
+          "condition": "seed",
+          "exit": 1,
+          "expected_exit": 1,
+          "pass": true,
+          "stdout": "",
+          "stderr": "test_atomic_failure_then_retry (test_payment.Boundaries.test_atomic_failure_then_retry) ... FAIL\ntest_invalid_state_and_reused_identity (test_payment.Boundaries.test_invalid_state_and_reused_identity) ... FAIL\ntest_missing_order (test_payment.Boundaries.test_missing_order) ... FAIL\ntest_out_of_order_refund_retry (test_payment.Boundaries.test_out_of_order_refund_retry) ... FAIL\ntest_outer_transaction_owned_by_caller (test_payment.Boundaries.test_outer_transaction_owned_by_caller) ... FAIL\ntest_retries_and_distinct_events (test_payment.Boundaries.test_retries_and_distinct_events) ... FAIL\ntest_stale_pending_then_refund (test_payment.Boundaries.test_stale_pending_then_refund) ... FAIL\ntest_wrong_tenant (test_payment.Boundaries.test_wrong_tenant) ... FAIL\n\n======================================================================\nFAIL: test_atomic_failure_then_retry (test_payment.Boundaries.test_atomic_failure_then_retry)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/skills-demo-kh3nfe44/test_payment.py\", line 41, in test_atomic_failure_then_retry\n    self.assertEqual(self.state(),'pending'); self.assertEqual(self.count('receipts'),0)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'paid' != 'pending'\n- paid\n+ pending\n\n\n======================================================================\nFAIL: test_invalid_state_and_reused_identity (test_payment.Boundaries.test_invalid_state_and_reused_identity)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/skills-demo-kh3nfe44/test_payment.py\", line 34, in test_invalid_state_and_reused_identity\n    with self.assertRaises(ValueError): p.apply_event(self.db,event(state='unknown'))\n         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^\nAssertionError: ValueError not raised\n\n======================================================================\nFAIL: test_missing_order (test_payment.Boundaries.test_missing_order)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/skills-demo-kh3nfe44/test_payment.py\", line 25, in test_missing_order\n    with self.assertRaises(LookupError): p.apply_event(self.db,event(order='missing'))\n         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^\nAssertionError: LookupError not raised\n\n======================================================================\nFAIL: test_out_of_order_refund_retry (test_payment.Boundaries.test_out_of_order_refund_retry)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/skills-demo-kh3nfe44/test_payment.py\", line 29, in test_out_of_order_refund_retry\n    with self.assertRaises(ValueError): p.apply_event(self.db,refund)\n         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^\nAssertionError: ValueError not raised\n\n======================================================================\nFAIL: test_outer_transaction_owned_by_caller (test_payment.Boundaries.test_outer_transaction_owned_by_caller)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/skills-demo-kh3nfe44/test_payment.py\", line 46, in test_outer_transaction_owned_by_caller\n    self.assertEqual(self.state(),'pending'); self.assertEqual(self.count('receipts'),0)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'paid' != 'pending'\n- paid\n+ pending\n\n\n======================================================================\nFAIL: test_retries_and_distinct_events (test_payment.Boundaries.test_retries_and_distinct_events)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/skills-demo-kh3nfe44/test_payment.py\", line 13, in test_retries_and_distinct_events\n    self.assertEqual(self.count('fulfillments'),1)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 2 != 1\n\n======================================================================\nFAIL: test_stale_pending_then_refund (test_payment.Boundaries.test_stale_pending_then_refund)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/skills-demo-kh3nfe44/test_payment.py\", line 17, in test_stale_pending_then_refund\n    self.assertEqual(self.state(),'paid')\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'pending' != 'paid'\n- pending\n+ paid\n\n\n======================================================================\nFAIL: test_wrong_tenant (test_payment.Boundaries.test_wrong_tenant)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/skills-demo-kh3nfe44/test_payment.py\", line 22, in test_wrong_tenant\n    with self.assertRaises(PermissionError): p.apply_event(self.db,event(tenant='beta'))\n         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\nAssertionError: PermissionError not raised\n\n----------------------------------------------------------------------\nRan 8 tests in 0.002s\n\nFAILED (failures=8)\n",
+          "workspace_hashes": {
+            "payment-demo.py": "5593ce2f2bd68c94e0036c14eb6e68fd3b176a08b91934683d772690c88f11a7",
+            "test_payment.py": "324b1bd6c27ea7271010d81cf017d87b5c0196dcf49c489cf411b176ccda40d5"
+          }
+        },
+        {
+          "condition": "corrected",
+          "exit": 0,
+          "expected_exit": 0,
+          "pass": true,
+          "stdout": "",
+          "stderr": "test_atomic_failure_then_retry (test_payment.Boundaries.test_atomic_failure_then_retry) ... ok\ntest_invalid_state_and_reused_identity (test_payment.Boundaries.test_invalid_state_and_reused_identity) ... ok\ntest_missing_order (test_payment.Boundaries.test_missing_order) ... ok\ntest_out_of_order_refund_retry (test_payment.Boundaries.test_out_of_order_refund_retry) ... ok\ntest_outer_transaction_owned_by_caller (test_payment.Boundaries.test_outer_transaction_owned_by_caller) ... ok\ntest_retries_and_distinct_events (test_payment.Boundaries.test_retries_and_distinct_events) ... ok\ntest_stale_pending_then_refund (test_payment.Boundaries.test_stale_pending_then_refund) ... ok\ntest_wrong_tenant (test_payment.Boundaries.test_wrong_tenant) ... ok\n\n----------------------------------------------------------------------\nRan 8 tests in 0.001s\n\nOK\n",
+          "workspace_hashes": {
+            "payment-demo.py": "ed15177baf3d39b1860ebb1a250c65ba959ab69f1760f6fac3514821477f866f",
+            "test_payment.py": "324b1bd6c27ea7271010d81cf017d87b5c0196dcf49c489cf411b176ccda40d5"
+          }
+        }
+      ],
+      "status": "PASS"
+    }
+  ]
+}

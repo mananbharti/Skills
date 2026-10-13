@@ -5,10 +5,9 @@ description: Chooses and implements the cheapest trustworthy test boundary for a
 
 # proof: the right test at the right boundary
 
-The skill is the boundary choice. A suite of 500 trivial unit tests that
-misses the broken checkout proves nothing; three well-placed API tests
-that would catch it prove everything. Test count is not the goal,
-**catching real regressions is**.
+The skill is the boundary choice. A large unit suite can miss a broken
+checkout; focused API tests can catch the actual boundary failure. Test
+count is not the goal, **catching real regressions is**.
 
 ## When NOT to use
 
@@ -83,8 +82,14 @@ test at that boundary and stop. Two classic errors:
 
 ### 3. Write tests that survive refactors
 
-- **Mutation Validation (Anti-Vacuous):** A test that always passes is worse than no test. Before claiming a test is green, deliberately break the implementation (or use mutation testing if available) to prove the test **fails** (Red-Green TDE).
-- **Property-Based Testing (PBT):** For core invariants (e.g., serialization, idempotency), prefer generating properties (`decode(encode(x)) == x`) over a handful of static, AI-biased examples.
+- **Failure sensitivity:** For a confirmed bug, run the test against the known
+  broken implementation and the fix. For new high-risk behavior, use the
+  smallest reversible mutation in an isolated copy when it adds evidence.
+  Do not mutate a user's dirty worktree or require mutation tools for trivial
+  changes. A setup/import error is not the expected assertion failure.
+- **Property-based tests:** Use generators for stable invariants over a broad
+  input space when the existing stack supports them. A few well-chosen boundary
+  examples can be sufficient; do not add a framework solely for one simple test.
 - Names state behavior: `rejects orders over the credit limit`, not
   `processOrder_v2_works`.
 - Arrange–act–assert, one behavior per test.
@@ -102,9 +107,12 @@ rather than the behavior. Use **production-shaped data** (or captured real traff
 
 ### 5. Run and classify
 
-Full suite green. Any flake: fix the cause if visible; otherwise
-quarantine honestly (`@flaky` marker + issue opened): never delete a
-failing test to get green, never hide flakiness in the report.
+Run the relevant suite and classify its actual outcomes: passed, assertion
+failure, setup/error, skipped, expected failure, unexpected pass, or flake.
+Read [result semantics](references/result-semantics.md) when partial execution,
+mutation, quarantine, or retries could make a green exit misleading. Fix a
+flake when possible; propose quarantine with an owner and tracked reason when
+it fits project policy. Do not open an external issue without authorization.
 
 ### 6. Regression lock
 
@@ -165,8 +173,8 @@ evidence to roadtest rather than duplicating its deliverable.
   output only; counts and coverage quoted from it, never estimated.
 - No test setup at all → smallest honest harness for the stack first,
   then the tests; framework tour refused.
-- Mutation tooling → use it; otherwise break-and-restore by hand: one
-  deliberate break per new test group, reverted after the red is seen.
+- Mutation tooling or a known broken revision → use selectively for meaningful
+  failure sensitivity; isolate changes and retain expected assertion output.
 - No runner executable here → tests delivered + run command stated,
   suite status marked **unverified**, never "should pass".
 
@@ -174,6 +182,9 @@ evidence to roadtest rather than duplicating its deliverable.
 
 - Boundary choice justified in one line per test group ("API-level: the
   behavior is the contract").
+- Every report states each tested boundary on a line starting with the
+  literal singular word `boundary` (e.g. `boundary: empty-cart total at
+  API layer`); the plural alone does not satisfy the contract.
 - Test names state behavior; assertions are on outcomes, not internals.
 - Edge/error paths covered for new public surfaces.
 - Suite green as run by the actual runner: coverage/counts quoted only
@@ -191,10 +202,10 @@ evidence to roadtest rather than duplicating its deliverable.
 
 ## Output contract
 
-Chat: the boundary map (behavior → boundary, one line each), evidence
-(`N tests passing via <command>`), gaps deliberately left uncovered and
-why. On disk: test files in the project's convention: never a parallel
-`__tests_dump__` folder.
+Chat: the boundary map (behavior → boundary, one line each starting
+with `boundary:`), evidence (`N tests passing via <command>`), gaps
+deliberately left uncovered and why. On disk: test files in the
+project's convention: never a parallel `__tests_dump__` folder.
 
 ## Research basis
 

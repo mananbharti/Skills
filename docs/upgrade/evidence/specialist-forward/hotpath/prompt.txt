@@ -1,0 +1,2 @@
+Improve expensive order projection preserving outputs; measure work/latency and keep/revert limits.
+Constraints: safe local owned workspace only; do not modify source fixture/skill, use paid agents, publish, deploy, or mutate real services. Exploratory observation only, no controlled comparative proof.

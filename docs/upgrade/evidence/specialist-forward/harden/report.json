@@ -1,0 +1,14 @@
+{
+  "skill": "harden",
+  "observation_type": "independent exploratory forward run; not controlled comparative proof",
+  "observed_at": "2026-10-13T19:40:17.955173+00:00",
+  "status": "triage-only",
+  "artifact": "artifact.md",
+  "commands": "commands.jsonl",
+  "workspace": "/private/tmp/skills-forward/specialists/harden",
+  "gaps": [
+    "Hypothetical inputs only; advisories, exact versions, reachability, CI and runtime exposure unverified."
+  ],
+  "raw_prompt_scope": "prompt.txt carries the assigned task and safety boundary; scenario inputs only for plan-only cases.",
+  "source_skill_hashes": "input-hashes.json, active copied package snapshot"
+}

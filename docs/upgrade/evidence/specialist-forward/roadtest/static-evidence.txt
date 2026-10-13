@@ -1,0 +1,16 @@
+$ ['rg', '-n', 'checkout|alert|console|Promise|login|history', 'index.html', 'app.js']
+exit: 0
+stdout:
+app.js:2:document.getElementById("checkout-btn").addEventListener("click", () => {
+app.js:3:  // BUG: checkout reports success while the charge never fires.
+app.js:4:  console.error("checkout: charge not submitted, showing success anyway");
+app.js:5:  alert("Order placed!");
+app.js:9:Promise.reject(new Error("session prefetch failed"));
+index.html:5:<title>Shop — login</title>
+index.html:8:  <h1>Shop login</h1>
+index.html:9:  <form action="/login" method="post">
+index.html:14:    <button id="login-btn">Log in</button>
+index.html:16:  <p><a href="/missing-page">Order history</a></p>
+index.html:17:  <button id="checkout-btn">Check out</button>
+
+stderr:

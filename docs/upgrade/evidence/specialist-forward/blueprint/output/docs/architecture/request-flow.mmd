@@ -1,0 +1,25 @@
+sequenceDiagram
+    participant UI as App.tsx browser component
+    participant Wiring as Runtime route wiring unknown
+    participant API as api/orders.ts router
+    participant Store as Module-local orders array
+    participant Row as OrderRow
+    UI->>Wiring: Implemented GET /api/orders with example bearer header
+    Note over Wiring,API: Router mounting, Express install, body parsing and auth enforcement not supplied
+    Wiring-->>API: Mapping unknown, not runtime-verified
+    API->>Store: Implemented read
+    Store-->>API: Current in-process orders
+    API-->>UI: Implemented JSON handler; actual response path unknown
+    UI->>UI: Implemented setOrders and stats aggregation
+    UI->>Row: Implemented filtered order props
+    Note over UI: Fetch rejection clears loading; no visible error
+    Note over UI: submitNewOrder defined but no form or call site in rendered JSX
+    UI->>Wiring: Defined POST call, not awaited
+    UI->>UI: Defined optimistic local append before response
+    Wiring-->>API: POST mapping unknown
+    alt customer empty or total negative
+        API->>API: Implemented return false, no error response sent
+    else accepted by basic checks
+        API->>Store: Implemented push payload
+        API-->>UI: Implemented JSON ok response
+    end

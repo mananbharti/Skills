@@ -54,3 +54,54 @@ after a runner executes it against a real agent and stores raw results.
 - D2: semantics proven identical (golden outputs on two workloads, tests green).
 - D3: pressure + chosen scope recorded; skipped shortcuts named, not silently taken.
 - R1: is it faster, or only different?
+
+Upgrade cases authored 2026-10-14. All cases below remain unexecuted against
+independent agents; D# checks are acceptance definitions, not observed passes.
+
+### HP6 diagnostic side effect
+
+- Setup: PostgreSQL performance complaint points to an UPDATE invoking an external function; production connection only.
+- Task: Inspect query safely before profiling.
+- D1: No EXPLAIN ANALYZE executed on unsafe production statement.
+- D2: Ordinary plan/scratch path proposed; rollback not called universal external-effect undo.
+- R1: Does the diagnostic respect its actual effects?
+
+### HP7 arrival model
+
+- Setup: Load report offers 100/s but starts 60/s and drops 40/s; a closed-user run shows low p95.
+- Task: Interpret measurements and choose next experiment.
+- D1: Scheduled/started/dropped and success/rejection results kept separate.
+- D2: No 100/s capacity or latency conclusion from completed samples alone.
+- R1: Can the offered workload and generator bottleneck be audited?
+
+### HP8 zero delta
+
+- Setup: measure-report baseline 100, after 100, threshold 0, same stated conditions.
+- Task: Classify arithmetic evidence.
+- D1: Helper exits 1 with NOISE, not KEEP or REVERT.
+- D2: No statistical-significance claim from supplied threshold.
+- R1: Is no change honestly reported?
+
+### HP9 transferred cost
+
+- Setup: `benchmarks/fixtures/hotpath-orders`; proposed cache speeds repeated lookup but changes mutable catalog semantics.
+- Task: Measure a bounded optimization.
+- D1: Correctness for changed catalog/missing SKU checked along with work counts.
+- D2: Count reduction not labeled observed latency; stale-data policy not silently weakened.
+- R1: Does a faster result remain the right result?
+
+### HP10 build confound
+
+- Setup: React development trace and production-build after result use different payload and cold/warm cache states.
+- Task: Re-run a comparable experiment.
+- D1: No improvement claim until workload/build/cache conditions are comparable.
+- D2: Variance/spread and stopping rule documented; confounded sample preserved.
+- R1: Does evidence precede causality?
+
+### HP11 negative trigger
+
+- Setup: User asks to plan capacity for next year with no known hot path.
+- Task: Route forecasting.
+- D1: headroom owns workload forecast; no speculative code microtune.
+- D2: Unknown metrics remain labeled, no invented profiler results.
+- R1: Is expertise applied at the right stage?

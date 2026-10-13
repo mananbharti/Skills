@@ -1,0 +1,51 @@
+--- /Users/uday/Skills/benchmarks/fixtures/harden-notes/notes.py
++++ /private/tmp/skills-forward/harden/notes.py
+@@ -1,15 +1,10 @@
+ """Tiny notes app. Stdlib only (sqlite3, in-memory — no stray files).
+ 
+-Seeded exposures for harden drills:
+-  V1  get_note builds SQL from strings (injectable id parameter).
+-  V2  SECRET hardcoded (must move to the environment).
+-  V3  delete_note takes an owner but never enforces it (IDOR).
++Owner-scoped reads/deletes; configuration supplied through the environment.
+ """
+ 
+ import os
+ import sqlite3
+-
+-SECRET = "[redacted synthetic seed]"
+ 
+ _CON = None
+ 
+@@ -25,7 +20,10 @@
+ 
+ 
+ def get_secret():
+-    return SECRET
++    secret = os.environ.get("NOTES_SECRET")
++    if not secret:
++        raise RuntimeError("NOTES_SECRET must be configured")
++    return secret
+ 
+ 
+ def seed():
+@@ -41,14 +39,15 @@
+ def get_note(username, note_id):
+     con = _db()
+     rows = con.execute(
+-        f"SELECT id, owner, body FROM notes WHERE owner='{username}'"
+-        f" AND id={note_id}"
++        "SELECT id, owner, body FROM notes WHERE owner=? AND id=?",
++        (username, note_id),
+     ).fetchall()
+     return rows
+ 
+ 
+ def delete_note(username, note_id):
+     con = _db()
+-    con.execute(f"DELETE FROM notes WHERE id={note_id}")
++    cursor = con.execute("DELETE FROM notes WHERE owner=? AND id=?",
++                         (username, note_id))
+     con.commit()
+-    return True
++    return cursor.rowcount == 1

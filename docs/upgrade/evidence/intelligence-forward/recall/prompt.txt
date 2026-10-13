@@ -1,0 +1,1 @@
+Remember my decision: PostgreSQL is our next migration target, but SQLite remains the live system until a verified migration. Do not rewrite the decision history. Record the consequence and safe next action.

@@ -35,3 +35,16 @@ Needs user action: [the smallest host-native approval or configuration step].
 A skill may explain the host's native approval-memory mechanism once. It must
 not edit host security settings, click approval controls on the user's behalf,
 or disguise a denied action as another command.
+
+## Denial recovery without widening permission
+
+A denied secret-file read is not a reason to abandon unrelated local edits.
+If the task needs configuration names only, inspect an authorized example file,
+types, or variable references; leave values unread. Explain the resulting gap.
+If the denied data is necessary, preserve the blocker and await the host-native
+decision. Do not retry via another reader, encoding, path, or subprocess.
+
+A tool timeout differs from denial. Record whether the owned process is still
+running, stop only that owned process when appropriate, and choose a bounded
+retry with a changed diagnostic. Do not kill unrelated user processes or start
+multiple servers to evade a hung check. Unknown spend/process bounds are a gate.

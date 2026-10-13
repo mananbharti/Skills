@@ -1,0 +1,20 @@
+$ ['python3', 'compare.py', '../original/reference.html']
+exit: 0
+stdout:
+{
+  "comparison_rung": "static source only",
+  "source_buttons": 1,
+  "target_buttons": 1,
+  "source_links": 5,
+  "target_links": 5,
+  "target_local_assets": [
+    "assets/logo.svg",
+    "assets/hero.svg"
+  ],
+  "base_grid": "3columns",
+  "base_h1": "40px",
+  "source_scripts": "removed, not copied",
+  "browser_fidelity": "unverified"
+}
+
+stderr:

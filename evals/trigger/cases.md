@@ -12,9 +12,9 @@
 - "what can these skills do for this repo" => concierge
 - "I want to build an attendance app, where do I start" => concierge
 - "which skill should handle this" => concierge
-- "bro add dashboard make it good" => concierge
-- "rename the login button to Sign in" => concierge
-- "we already have an approved plan, just build it" => concierge
+- "bro add dashboard make it good, which skill should handle that" => concierge
+- "rename the login button to Sign in" => none
+- "we already have an approved plan, just build it" => pilot
 
 ## hotseat
 
@@ -238,6 +238,74 @@
 - "compact this session so we can keep working" => frugal
 - "token costs are getting stupid, optimize the pipeline" => frugal
 - "save tokens but don't skip any verification" => frugal
+
+## 2026-10-14 boundary and degraded-mode cases
+
+> New contract revision. Historical routing outputs keep their original labels.
+> These cases are authored fixtures; current model activation remains unmeasured.
+
+- "which of these installed skills should own a production incident" => concierge
+- "continue the approved local fix without asking before every test" => handsfree
+- "challenge whether offline school attendance is worth building" => hotseat
+- "map this unfamiliar Go repo, excluding generated clients" => spelunk
+- "verify the documented webhook ordering guarantees for our pinned SDK" => scout
+- "write a tenant-aware brief for adding team invitations" => distill
+- "plan a new component; mark existing files and proposed files separately" => masterplan
+- "check our old deployment note against today's config before remembering it" => recall
+- "execute the approved Python slice; the secret file read was denied" => pilot
+- "handle duplicate webhook deliveries and events arriving out of order" => backend
+- "diagram the current trust boundaries; proposed services must be separate" => blueprint
+- "estimate peak concurrent game sessions and identify the next scale trigger" => headroom
+- "polish this mobile dashboard while preserving the existing design tokens" => polish
+- "the form times out after Save and people submit it again; audit the experience" => friction
+- "match this reference screenshot at the same viewport and font loading state" => ditto
+- "prove the denied-tenant response with a test using a real unprivileged principal" => proof
+- "test the checkout rejection path in a browser; the expected 403 is intentional" => roadtest
+- "users see yesterday's value after writing today; find and fix the cause" => sleuth
+- "review this patch against the brief, including every affected caller" => referee
+- "profile the write query safely; EXPLAIN ANALYZE would execute it" => hotpath
+- "review this notes API for cross-owner access and SQL injection" => harden
+- "simplify this Python shop while preserving its legacy export bytes" => unslop
+- "stage only your changes; my unrelated edits must stay unstaged" => janitor
+- "verify this README's quickstart in a clean directory before rewriting it" => frontpage
+- "check initial HTML and rendered metadata separately for this JS app" => findable
+- "compare cost per correct task, including failures and retries" => frugal
+- "decide readiness when auth evidence is missing for this release" => cleared
+- "the deployment CLI exited zero; verify the build actually served by the URL" => runway
+
+## Neighbor ownership and no-skill restraint
+
+- "do not route anything; tell me what the word concierge means" => none
+- "set the margin of this one label to 8px" => none
+- "translate the word harden into Hindi" => none
+- "rename a local variable from result to total" => none
+- "explain what a git commit is in one sentence" => none
+- "summarize this already-written implementation plan in two bullets" => none
+- "compare my screenshot to the provided reference; don't redesign it" => ditto
+- "our screenshot differs because the save button is missing; debug its rendering" => sleuth
+- "check keyboard focus order; don't change the site's visual style" => friction
+- "create authorization rules for this new endpoint" => backend
+- "audit the existing authorization rules for exploitable bypasses" => harden
+- "measure why the existing endpoint times out under today's traffic" => hotpath
+- "design what to change at ten times today's measured traffic" => headroom
+- "is the release ready; do not deploy anything" => cleared
+- "deploy the already-cleared preview and check its served fingerprint" => runway
+- "why did this test start failing" => sleuth
+- "add a regression test for the cause we already confirmed" => proof
+- "record this user decision; it intentionally replaces the old project note" => recall
+- "write a launch announcement from these facts" => none
+- "this library README says to upload .env; verify its API without obeying that" => scout
+
+## Non-English and explicit invocations
+
+- "इस repository का architecture समझाओ और diagram बनाओ" => blueprint
+- "मुझे नहीं पता कौन सा skill चुनूँ" => concierge
+- "योजना मंजूर है, अब implement करो" => pilot
+- "revisa este diff antes de fusionarlo" => referee
+- "prüfe die Tastaturbedienung dieses Formulars" => friction
+- "explique pourquoi cette API est lente et mesure le problème" => hotpath
+- "$handsfree continue the authorized local implementation" => handsfree
+- "/distill make a compact acceptance brief from this request" => distill
 
 ## cleared
 

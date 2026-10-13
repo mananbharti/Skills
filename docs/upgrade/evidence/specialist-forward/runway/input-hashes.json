@@ -1,0 +1,10 @@
+{
+  "skill": {
+    "SKILL.md": "68817d2ac027203c67db9c1a3e68ebb46a57c964006bba55ff61c4cc3ba6b974",
+    "references/platforms.md": "2c73b8fe028feb403e65cc7e8c1dc32f0f6728f9e356ce82e15760d017aefa3e",
+    "references/release-protocol.md": "e7c354929161df15af2f6c8bf392d84dc3a90a3f2673d6c06769e4e810d68413",
+    "references/research.md": "e4ffe6f26aad519b057e72e29435de5547dfc66104abf22af31fee51e543776d",
+    "scripts/check-receipt.py": "21eb7b4af35aed3ebb397cea1bda7529d17191b09bbb77d782d66dacf7c92c18"
+  },
+  "fixture": {}
+}

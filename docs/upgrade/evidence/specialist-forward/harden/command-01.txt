@@ -1,0 +1,7 @@
+$ ['python3', '-c', 'from pathlib import Path; print(Path("input.txt").read_text())']
+exit: 0
+stdout:
+Hypothetical scanner marks every outdated dependency Critical with no reachable path: evidence-based triage, no guarantee.
+
+
+stderr:

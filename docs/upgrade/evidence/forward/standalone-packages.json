@@ -1,0 +1,675 @@
+{
+  "schema": "packages/1",
+  "date": "2026-10-13T19:40:28.162599+00:00",
+  "platform": "darwin",
+  "python": "3.14.6",
+  "kind": "standalone-copy",
+  "runtime_activation": "UNVERIFIED",
+  "skills": [
+    {
+      "skill": "backend",
+      "status": "PASS",
+      "files": 5,
+      "manifest": {
+        "SKILL.md": {
+          "sha256": "72ee43dc170864f5696236babb7f9f70c847efdcd677547ef5c7a58359406dae",
+          "executable": false
+        },
+        "assets/payment-demo.py": {
+          "sha256": "5593ce2f2bd68c94e0036c14eb6e68fd3b176a08b91934683d772690c88f11a7",
+          "executable": false
+        },
+        "references/boundary-cases.md": {
+          "sha256": "5da1ff45c8013ba75b09eaf93fc9d7f8b36c8f826f7e44f79a2c9ec722a6da09",
+          "executable": false
+        },
+        "references/checklists.md": {
+          "sha256": "94bb9b245f04694c4c7eb211d1d6f98eee41f6a6a3f89c4434b91499dbdd9aa2",
+          "executable": false
+        },
+        "references/research.md": {
+          "sha256": "cabfcc53d80131f6dee3d50faf926e74feb2e3a4411e0722ab9b1b814e0e1f5d",
+          "executable": false
+        }
+      }
+    },
+    {
+      "skill": "blueprint",
+      "status": "PASS",
+      "files": 6,
+      "manifest": {
+        "SKILL.md": {
+          "sha256": "355f8119554b338753aabefa295fdd21f25313a86df3358c8baf5c77824f145f",
+          "executable": false
+        },
+        "assets/template.html": {
+          "sha256": "31531dbe5376dccb407b7955719de04d460c32228d8d22c70c1fa50a8ad16ed4",
+          "executable": false
+        },
+        "references/diagram-guide.md": {
+          "sha256": "f78ef3c13db0ec61415052fbb669bcdd3202f7e82c4c0a3a4b546f5593b24031",
+          "executable": false
+        },
+        "references/rendering.md": {
+          "sha256": "251c2ef90e764ccb245d04a5c1d2fcbe6574f6501569202a4116bed13fcebd23",
+          "executable": false
+        },
+        "references/research.md": {
+          "sha256": "3783c2319b41cf851a3653018f643fda66aa5a66d4d3d557c23964807b1d0ee0",
+          "executable": false
+        },
+        "scripts/validate-mermaid": {
+          "sha256": "cc48c624c8e296493f480cfdfdadf612a207886261191052529261e90ac340aa",
+          "executable": true
+        }
+      }
+    },
+    {
+      "skill": "cleared",
+      "status": "PASS",
+      "files": 3,
+      "manifest": {
+        "SKILL.md": {
+          "sha256": "50770aa9657979f1a6f85056869da2df2b5da76640be683ffb73b956a0d54544",
+          "executable": false
+        },
+        "references/gate-dimensions.md": {
+          "sha256": "26b60b26bc24e44a287d50682aec230f41d9d69843d5a79b1afc9df630237fa1",
+          "executable": false
+        },
+        "references/research.md": {
+          "sha256": "d6b8aa7674f279c62b636aa7c568511ff0cf5112fea64ba0d09bb84e913ee375",
+          "executable": false
+        }
+      }
+    },
+    {
+      "skill": "concierge",
+      "status": "PASS",
+      "files": 4,
+      "manifest": {
+        "SKILL.md": {
+          "sha256": "aa616800bb969c29df3f8462d512adb89123d72313527399b852d5f8af7c09c5",
+          "executable": false
+        },
+        "references/capability-degradation.md": {
+          "sha256": "58a598205207aa410a68d39a1b4be79c2da288d4419b55b5428768edb032543c",
+          "executable": false
+        },
+        "references/research.md": {
+          "sha256": "a5ae7112700b0ce400f7370afcf005cfb338eab89c22dc0f91e47da6200a1181",
+          "executable": false
+        },
+        "references/routing.md": {
+          "sha256": "31fbb020af0853816f3cfcf2a53794b27caac790b400118f60a45921fe1f1047",
+          "executable": false
+        }
+      }
+    },
+    {
+      "skill": "distill",
+      "status": "PASS",
+      "files": 3,
+      "manifest": {
+        "SKILL.md": {
+          "sha256": "7200b99ad03827aedcb08f545c777e1dfa0f674dccab8c4322de4c6ae05c09e0",
+          "executable": false
+        },
+        "references/brief-template.md": {
+          "sha256": "38a75c0c936904ba9025ce517193f1638b0f58508817c24c0c91728661e06649",
+          "executable": false
+        },
+        "references/research.md": {
+          "sha256": "1ba59ff61723eb4204fd5d713fc0c0d5114502dbc425fa3aa5299f3a900f74cf",
+          "executable": false
+        }
+      }
+    },
+    {
+      "skill": "ditto",
+      "status": "PASS",
+      "files": 4,
+      "manifest": {
+        "SKILL.md": {
+          "sha256": "c3283b357b779e79dbcc75d531c7d408c4304cf050a3eaec843febceb0e9d014",
+          "executable": false
+        },
+        "references/comparison-controls.md": {
+          "sha256": "aa19ba823450d44f139b1dfc164cfd06c8c7ee0b1272a65231de9133c0699b4c",
+          "executable": false
+        },
+        "references/research.md": {
+          "sha256": "48f04e0b097d91c0cb9375ac8ba615fc5bcfff14600b677e288f1af9b63ee538",
+          "executable": false
+        },
+        "references/sourcing-rules.md": {
+          "sha256": "5d97069fb162f2e50b659f3855fe983ab570c9324b57985ade4abaaafe6672f8",
+          "executable": false
+        }
+      }
+    },
+    {
+      "skill": "findable",
+      "status": "PASS",
+      "files": 3,
+      "manifest": {
+        "SKILL.md": {
+          "sha256": "f53024511dc1131f327c1cd90fb4ecbf7517c098f19d5365d89ed7c0732a1a40",
+          "executable": false
+        },
+        "references/research.md": {
+          "sha256": "ff65db6d18426abd48b7017599244e17f1a44a7af6cbc669ce4af615cb98329d",
+          "executable": false
+        },
+        "references/seo-checklist.md": {
+          "sha256": "75f54435c17fc6c76ac3909dbea2b8fad6303e6f3111d2ed78e82d17c342e0c1",
+          "executable": false
+        }
+      }
+    },
+    {
+      "skill": "friction",
+      "status": "PASS",
+      "files": 4,
+      "manifest": {
+        "SKILL.md": {
+          "sha256": "68a37d0a7caded8fc54bb01689b0642e2b0f291cfddb99f4af2ffd9cd2376aa9",
+          "executable": false
+        },
+        "references/recovery-journeys.md": {
+          "sha256": "1579bdd38873bbcde00e7ca04920cca431bf0e600ee749c6c24a4cd6b711d508",
+          "executable": false
+        },
+        "references/research.md": {
+          "sha256": "852daabc5330e2126cab946af387cfce01b3468eea63d650f854cfdb671564a8",
+          "executable": false
+        },
+        "references/usability-checklist.md": {
+          "sha256": "3ddf5c528ade67ddc76cc16988b6b85c0faabfc4210e054c0c86694699677cc4",
+          "executable": false
+        }
+      }
+    },
+    {
+      "skill": "frontpage",
+      "status": "PASS",
+      "files": 3,
+      "manifest": {
+        "SKILL.md": {
+          "sha256": "7567b60ebf44c8e16fef581cc1aa74c7e739171141bacd791a875027b557b52b",
+          "executable": false
+        },
+        "references/readme-blueprint.md": {
+          "sha256": "b15f04fe0942bf6c6d72fce7dcc30eec9023f67fb0d51b07502e83d8ae49cc39",
+          "executable": false
+        },
+        "references/research.md": {
+          "sha256": "d24fd8bba935aba9a7017c70bdad85b44277ee72e566520417cc22512d85b197",
+          "executable": false
+        }
+      }
+    },
+    {
+      "skill": "frugal",
+      "status": "PASS",
+      "files": 5,
+      "manifest": {
+        "SKILL.md": {
+          "sha256": "fff8cd068f47c7d24eeef22531d78e880d2f6bd217bf38d59b03712959ddc283",
+          "executable": false
+        },
+        "references/budget-protocol.md": {
+          "sha256": "223d7ad5f491f90b01561c88b10d092a153f543482b37408647c95d51083bf7a",
+          "executable": false
+        },
+        "references/measurement.md": {
+          "sha256": "14f6aa1eae6617710e48cd3180da9dea46e70355013718be2a491741eb395cc0",
+          "executable": false
+        },
+        "references/research.md": {
+          "sha256": "574e94bb36fe7505893db7e1c3c02a1351d11326f684bb4ab8a7aab6b675ef29",
+          "executable": false
+        },
+        "scripts/cost-report.py": {
+          "sha256": "7e49421cfda6736769ffbd46f4ef5bf64d027a56c6f0413386655245660d8f18",
+          "executable": true
+        }
+      }
+    },
+    {
+      "skill": "handsfree",
+      "status": "PASS",
+      "files": 5,
+      "manifest": {
+        "SKILL.md": {
+          "sha256": "e1f5faa4d703df87ed0be85e22a2050ab8ccbb12e2556172ab7b5213d1e5a6e9",
+          "executable": false
+        },
+        "references/decision-policy.md": {
+          "sha256": "c1be2d4b2df96b28a71674bfa334e3488a4be164184fc9a970dec656b081a050",
+          "executable": false
+        },
+        "references/execution-record.md": {
+          "sha256": "cb615cb8a2487d4a6c5bde9b2e0336d90c330f929b1fc0313f394b3128031be6",
+          "executable": false
+        },
+        "references/host-permissions.md": {
+          "sha256": "ffbda24addf4c3c9fa176fa7dbc478c90942258f9905f8c46aa2d8a32e7069a2",
+          "executable": false
+        },
+        "references/research.md": {
+          "sha256": "4a6d0e75024108635b6886b00c21e2f57062d1c68a6b70d442e30e521e4946bf",
+          "executable": false
+        }
+      }
+    },
+    {
+      "skill": "harden",
+      "status": "PASS",
+      "files": 3,
+      "manifest": {
+        "SKILL.md": {
+          "sha256": "4d526443b4787b7611c58254c57130929fbd8bea2017974e2eccc72302641c38",
+          "executable": false
+        },
+        "references/attack-surface.md": {
+          "sha256": "1b7a57746ff714f46bc4fb2284f745f7e8a8c90aac68541adf0c5cd98b216959",
+          "executable": false
+        },
+        "references/research.md": {
+          "sha256": "b96d888cae4b0c135bd7486f6dee91fb281959ee0b096c50af6e652b3fed6d6c",
+          "executable": false
+        }
+      }
+    },
+    {
+      "skill": "headroom",
+      "status": "PASS",
+      "files": 5,
+      "manifest": {
+        "SKILL.md": {
+          "sha256": "bdcb9f57d9d0d6a6f7f081c5e35bb5fc67dab5f454d3dbca2f61fc624b1f91f5",
+          "executable": false
+        },
+        "assets/capacity-case.json": {
+          "sha256": "a354f593310e7dd4884636066c1c39423d245a5fa08ec270083e5570b36f82ab",
+          "executable": false
+        },
+        "references/dimensions.md": {
+          "sha256": "2ef5e8733394d458bcb8a9e0f2decfd7f2ae83f01441ebc652621867fd43f848",
+          "executable": false
+        },
+        "references/research.md": {
+          "sha256": "95ebafa5f32b61d573eace48d8e83e7f1dfddbc4040aae591aebf94b16950b52",
+          "executable": false
+        },
+        "references/workload-experiments.md": {
+          "sha256": "a9f970ae712f20e9a09d51bb7b8da7785e929a5d21d5c25be9738ae8eb8e5a86",
+          "executable": false
+        }
+      }
+    },
+    {
+      "skill": "hotpath",
+      "status": "PASS",
+      "files": 5,
+      "manifest": {
+        "SKILL.md": {
+          "sha256": "7dcdb2f97017a608d9df946bbb4648f632f8012a6d5b764148c55dd684e232dd",
+          "executable": false
+        },
+        "references/experiment-hazards.md": {
+          "sha256": "87fcd264e4f542ebc66b429dd00b7316953b097f74b4de84fa25d777aae99f44",
+          "executable": false
+        },
+        "references/measurement.md": {
+          "sha256": "f8789646b4fdfc4374a73954cde87e7802ed65350ec2b3e8eb8a8d055f3b7032",
+          "executable": false
+        },
+        "references/research.md": {
+          "sha256": "cbb62e357b69e38dfc80133a5984700ab8311543ca74225e77a976b077db67cf",
+          "executable": false
+        },
+        "scripts/measure-report": {
+          "sha256": "1bd180a19069cfbf505acefbe860215e675e0483376eb4a37dccb0100833f06c",
+          "executable": true
+        }
+      }
+    },
+    {
+      "skill": "hotseat",
+      "status": "PASS",
+      "files": 3,
+      "manifest": {
+        "SKILL.md": {
+          "sha256": "60152e35bf17e3a2c3837f75777922f5a469f61a946cb18e40fce6468f9fe916",
+          "executable": false
+        },
+        "references/personas.md": {
+          "sha256": "e8a7552a159f8f185f133e1824eef4860f19d1ba86298f87dcef7fffa3dfed47",
+          "executable": false
+        },
+        "references/research.md": {
+          "sha256": "509c2c5f2b015185dd0e95ebf9515f9042e7259e43100de9330c843d6ba404f4",
+          "executable": false
+        }
+      }
+    },
+    {
+      "skill": "janitor",
+      "status": "PASS",
+      "files": 4,
+      "manifest": {
+        "SKILL.md": {
+          "sha256": "3172d1170c9122fc3cfb7ad818cebe3a75dc0aef30072ba9492b8a8089e4f984",
+          "executable": false
+        },
+        "references/hygiene-checklists.md": {
+          "sha256": "ecdeae900ff2dd3399ab97a0a8a1eef800b06007b368d8194098cfb719163c4b",
+          "executable": false
+        },
+        "references/maintenance-protocol.md": {
+          "sha256": "4b6b1b6cd6aedb9de68466b2d437008724d0dab688ab27cc823f46de5c829944",
+          "executable": false
+        },
+        "references/research.md": {
+          "sha256": "6c0624dc92865f30045ae6af916a94c38d75cbdbf4e9f31f7d22b1fcf4558469",
+          "executable": false
+        }
+      }
+    },
+    {
+      "skill": "masterplan",
+      "status": "PASS",
+      "files": 4,
+      "manifest": {
+        "SKILL.md": {
+          "sha256": "8673479b3f93a834fbb64abfd2e96752f7c519e5dd02483a4fea290722ceac68",
+          "executable": false
+        },
+        "references/plan-template.md": {
+          "sha256": "1aa79a8c364914ea2046f2e8f2f01d9153552babdc9d490c1bb125681794b24e",
+          "executable": false
+        },
+        "references/planning-protocol.md": {
+          "sha256": "6971e5c331ca12339f07635445a4f199e0843319dfc6649ace2f80cb97216e03",
+          "executable": false
+        },
+        "references/research.md": {
+          "sha256": "5c7f5447b775026a733f26c654f3e95bc8e0002f7f0f2a0a7430d8809db3fe8a",
+          "executable": false
+        }
+      }
+    },
+    {
+      "skill": "pilot",
+      "status": "PASS",
+      "files": 4,
+      "manifest": {
+        "SKILL.md": {
+          "sha256": "21555321544934428981f934456694c61f5b73507e6096b9a11c39380cd0969d",
+          "executable": false
+        },
+        "references/completion-gate.md": {
+          "sha256": "9a64b7779349f38bbf477d29b9189c9fe25f6245e5e4dd6dd8a48585f4e7069d",
+          "executable": false
+        },
+        "references/execution-protocol.md": {
+          "sha256": "5fc843a6526e2711d4ee87b7081589d6fe7ae88376b663339ef6c60ca2ebff7b",
+          "executable": false
+        },
+        "references/research.md": {
+          "sha256": "92dd7d5685802aac225d5d6fbe0d02efb901bf3fbbb80d16d38f1df9856d8981",
+          "executable": false
+        }
+      }
+    },
+    {
+      "skill": "polish",
+      "status": "PASS",
+      "files": 4,
+      "manifest": {
+        "SKILL.md": {
+          "sha256": "1a9152f6517f038f4d9050c21680d3043b4e7b500c68334b5b6c5252e0a46564",
+          "executable": false
+        },
+        "references/audit.md": {
+          "sha256": "4075fa32870e668118d83588a38bbf291fa2de3cc283f0c042edd3e768890763",
+          "executable": false
+        },
+        "references/rendered-evidence.md": {
+          "sha256": "5ea8271a5891a8f9dfd560594ac34d9f9a39c92f98f70ef49be0a6d9fa5edd94",
+          "executable": false
+        },
+        "references/research.md": {
+          "sha256": "04e1ce0e1fa78d4d393c20c6e57f146cc6d8088041b7f889de8cf74a607bf416",
+          "executable": false
+        }
+      }
+    },
+    {
+      "skill": "proof",
+      "status": "PASS",
+      "files": 4,
+      "manifest": {
+        "SKILL.md": {
+          "sha256": "a77dcafa1482686e596a693b2e12020cf4b65b38c3470045cbc4ff341ccd181b",
+          "executable": false
+        },
+        "references/boundary-picker.md": {
+          "sha256": "b8cc0b44904eb244af4252770e54c6b53f72d6af35af7bb3e8cd2f17fdf11096",
+          "executable": false
+        },
+        "references/research.md": {
+          "sha256": "1dd0462f1db096dc145a65cf7279e008699830b15cd0efc5202cb8df8db3eb45",
+          "executable": false
+        },
+        "references/result-semantics.md": {
+          "sha256": "09e69e5ea2c497855b85d5763d58613f68771f834b2e53e255c785b9d83d2122",
+          "executable": false
+        }
+      }
+    },
+    {
+      "skill": "recall",
+      "status": "PASS",
+      "files": 5,
+      "manifest": {
+        "SKILL.md": {
+          "sha256": "ea0ae1bdb67a593b573fa8027119bc69a10a39ba8d2d026f43952cd6f3155374",
+          "executable": false
+        },
+        "references/file-formats.md": {
+          "sha256": "153eac4b0fbc3373d92fb34582d83fefca58ccbda13dfcde74ed134f2fb99926",
+          "executable": false
+        },
+        "references/memory-protocol.md": {
+          "sha256": "0be7bc14722dbcad4391af65c82a771860877f6e4bfee60a85b4de9c347de60c",
+          "executable": false
+        },
+        "references/research.md": {
+          "sha256": "b5b45714143bcf645c1a6f9ff398fa10286c2217e640a75f2680fa0d36379575",
+          "executable": false
+        },
+        "scripts/check-memory": {
+          "sha256": "6c1a0acf18626d6fddee20ac7740258256878aed571e2e9a7e27e9e3729585fe",
+          "executable": true
+        }
+      }
+    },
+    {
+      "skill": "referee",
+      "status": "PASS",
+      "files": 4,
+      "manifest": {
+        "SKILL.md": {
+          "sha256": "fbaa810170c47ba051eefd55cf5637d49aa3c795b9ebe84a53e65ea6c310b301",
+          "executable": false
+        },
+        "references/finding-format.md": {
+          "sha256": "257ffc415cc57f1fbfc5ac38c7d5baf97fc534dea5fbc6bf97f36572f8a79cf0",
+          "executable": false
+        },
+        "references/research.md": {
+          "sha256": "ecbd6be3b6b6ed4cf25ea016dbe9d744580c0bf6ae9694519a6cda31d5f225c2",
+          "executable": false
+        },
+        "references/review-protocol.md": {
+          "sha256": "7c7de63eca81e845aa0fc664e2fad2142fe9b3d6ff6ae5215cbda93567a7e2cd",
+          "executable": false
+        }
+      }
+    },
+    {
+      "skill": "roadtest",
+      "status": "PASS",
+      "files": 5,
+      "manifest": {
+        "SKILL.md": {
+          "sha256": "89f619be6ec22e45a1835c1c8438205864f4b18c86e7a6e56c0f3ec9ec7caaec",
+          "executable": false
+        },
+        "references/adverse-conditions.md": {
+          "sha256": "fdd5e731f91cfa344e34e4fbf375a22c93874accceaff5f627c7a096cc61c687",
+          "executable": false
+        },
+        "references/evidence-bundle.md": {
+          "sha256": "d477d94daf5d0acab9fc6c88b5b6aa8cca4d84a5dd03bfe80de8c1247495f065",
+          "executable": false
+        },
+        "references/research.md": {
+          "sha256": "b4ffc0ba7f3d9d9f01004600bcbb1e5777874a21096759355f2ac9daf799e601",
+          "executable": false
+        },
+        "scripts/test-matrix": {
+          "sha256": "7e79b1beca82b56d87616f18efb031e93c768335aae19b1657e190755ef035f2",
+          "executable": true
+        }
+      }
+    },
+    {
+      "skill": "runway",
+      "status": "PASS",
+      "files": 5,
+      "manifest": {
+        "SKILL.md": {
+          "sha256": "68817d2ac027203c67db9c1a3e68ebb46a57c964006bba55ff61c4cc3ba6b974",
+          "executable": false
+        },
+        "references/platforms.md": {
+          "sha256": "2c73b8fe028feb403e65cc7e8c1dc32f0f6728f9e356ce82e15760d017aefa3e",
+          "executable": false
+        },
+        "references/release-protocol.md": {
+          "sha256": "e7c354929161df15af2f6c8bf392d84dc3a90a3f2673d6c06769e4e810d68413",
+          "executable": false
+        },
+        "references/research.md": {
+          "sha256": "e4ffe6f26aad519b057e72e29435de5547dfc66104abf22af31fee51e543776d",
+          "executable": false
+        },
+        "scripts/check-receipt.py": {
+          "sha256": "21eb7b4af35aed3ebb397cea1bda7529d17191b09bbb77d782d66dacf7c92c18",
+          "executable": true
+        }
+      }
+    },
+    {
+      "skill": "scout",
+      "status": "PASS",
+      "files": 5,
+      "manifest": {
+        "SKILL.md": {
+          "sha256": "5e678d69e09df48d2eb84323f7a742f015aac7736a4cc8fbf316be19f0c1d160",
+          "executable": false
+        },
+        "references/research-protocol.md": {
+          "sha256": "adff44148f7fc0eee07766a17d1466d94166c9dd8b683f1c17568b0c20e3690a",
+          "executable": false
+        },
+        "references/research.md": {
+          "sha256": "a63ec29584b125f7811dda1b0fd3ce8af39dcd43d6aae9f361813dbfbd1af20b",
+          "executable": false
+        },
+        "references/source-ladder.md": {
+          "sha256": "7b03732abc8e3d6bab01e5d39d1d6edab408e01265736f87267a974db7e0236d",
+          "executable": false
+        },
+        "scripts/check-note": {
+          "sha256": "bede9b3316dec35b621fc64754d059958de3a9e53e39f5e13bd66d59f805ef09",
+          "executable": true
+        }
+      }
+    },
+    {
+      "skill": "sleuth",
+      "status": "PASS",
+      "files": 3,
+      "manifest": {
+        "SKILL.md": {
+          "sha256": "0a4d9dfed0d0e99115d7714b1a8dbfa58d26d72d57db17a0a75636f691c35f65",
+          "executable": false
+        },
+        "references/research.md": {
+          "sha256": "299f64f88e8d9b3e02c582078851e799a2090399b19e955b825de3cdd468d508",
+          "executable": false
+        },
+        "references/techniques.md": {
+          "sha256": "7b70a1b42637b2712edf678fcddf842099bc837d5612d63eca1751a6afb231db",
+          "executable": false
+        }
+      }
+    },
+    {
+      "skill": "spelunk",
+      "status": "PASS",
+      "files": 5,
+      "manifest": {
+        "SKILL.md": {
+          "sha256": "dfd6b96c987efd3c2e5177536fa6ae81614d19a5feead04ba04e5e922e82286e",
+          "executable": false
+        },
+        "references/discovery-map.md": {
+          "sha256": "cedd0d36fd2e6bca12ddeb6b62b359bcef3617de95591d8e50de67502728eea1",
+          "executable": false
+        },
+        "references/evidence-protocol.md": {
+          "sha256": "d99d5483285d45c4fbf2515a8e38459577cae6e113198ab2835001be0828f8fd",
+          "executable": false
+        },
+        "references/research.md": {
+          "sha256": "f4025641f4703c375c1aa84ae4f834c0741c553383be5e6460b59a5a6e950545",
+          "executable": false
+        },
+        "scripts/inventory": {
+          "sha256": "b27d16fa1fc0ec8cd5c14ac740654d5d43370044c0055922acb67ac7462b4420",
+          "executable": true
+        }
+      }
+    },
+    {
+      "skill": "unslop",
+      "status": "PASS",
+      "files": 4,
+      "manifest": {
+        "SKILL.md": {
+          "sha256": "74abe200cf746df439e1313d805b0b8cfc6f25bbb201d0e7f29573afb73c8287",
+          "executable": false
+        },
+        "references/cleanup-protocol.md": {
+          "sha256": "428c37d763c3873392a5ed73efa9ff44891f2b8dd2681cd1959119c05d13adf2",
+          "executable": false
+        },
+        "references/research.md": {
+          "sha256": "82862b97414ec65cdef2e99f5592305107b727bfc92467cc55d86b28d546e166",
+          "executable": false
+        },
+        "references/slop-catalog.md": {
+          "sha256": "272170c8270f0a223dc8d9671f19eec457bc2041d7bf9f0c408bf93b9ef757c9",
+          "executable": false
+        }
+      }
+    }
+  ],
+  "status": "PASS"
+}

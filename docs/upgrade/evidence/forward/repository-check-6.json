@@ -1,0 +1,12 @@
+{
+  "command": [
+    "python3",
+    "skills/frugal/scripts/cost-report.py",
+    "--self-test"
+  ],
+  "cwd": "/Users/uday/Skills",
+  "time_utc": "2026-10-13T19:40:28.271046+00:00",
+  "exit_code": 0,
+  "stdout": "PASS: failed attempts counted; zero success/missing usage undefined; invalid costs rejected\n",
+  "stderr": ""
+}

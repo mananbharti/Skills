@@ -1,0 +1,11 @@
+{
+  "skill": {
+    "SKILL.md": "7567b60ebf44c8e16fef581cc1aa74c7e739171141bacd791a875027b557b52b",
+    "references/readme-blueprint.md": "b15f04fe0942bf6c6d72fce7dcc30eec9023f67fb0d51b07502e83d8ae49cc39",
+    "references/research.md": "d24fd8bba935aba9a7017c70bdad85b44277ee72e566520417cc22512d85b197"
+  },
+  "fixture": {
+    "README.md": "d50688e07daaf9beccab19f197956d15a873a17419cbf698b8227e1cd1d16c97",
+    "notes.py": "15b5532aaceac1e1d4638359c35d398157ac127db42a41d295b439356eafe025"
+  }
+}

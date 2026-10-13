@@ -129,7 +129,7 @@ at the [research index](../research/README.md).
 
 ## Deterministic helpers
 
-Five skills currently justify a bundled helper:
+Eight skills currently justify a bundled helper:
 
 | Skill | Helper | Why code is better than eyeballing |
 | --- | --- | --- |
@@ -138,6 +138,9 @@ Five skills currently justify a bundled helper:
 | `blueprint` | `scripts/validate-mermaid` | catch common static Mermaid failures |
 | `roadtest` | `scripts/test-matrix` | generate paths × viewports × state checks before walking |
 | `hotpath` | `scripts/measure-report` | compute deltas and prevent sub-threshold gains becoming claims |
+| `scout` | `scripts/check-note` | catch missing structure/evidence markers without pretending to verify source truth |
+| `frugal` | `scripts/cost-report.py` | include failed attempts, preserve unknown usage and define cost per correct task |
+| `runway` | `scripts/check-receipt.py` | reject inconsistent sanitized release receipts; no live URL or authenticity proof |
 
 Other skills remain Markdown-only because a script would add machinery without
 improving reliability.
@@ -165,7 +168,8 @@ Two load-bearing paths were spot-checked during the productization pass:
 ## Assumptions
 
 - Installation continues to preserve each skill folder intact, as exercised by
-  the public skills CLI on 2026-09-14.
+  pinned skills CLI 1.7.2 on 2026-10-14; see current
+  [packaging observations](../compatibility.md). Host activation is separate.
 - Runtimes may differ in discovery, tool access, and invocation behavior; the
   architecture guarantees graceful methodology fallbacks, not identical UX.
 

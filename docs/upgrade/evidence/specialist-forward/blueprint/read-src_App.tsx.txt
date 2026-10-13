@@ -1,0 +1,152 @@
+1: // TaskBoard app — main component
+2: import React, { useEffect, useState } from "react";
+3: import axios from "axios";
+4: import moment from "moment";
+5: import { formatDate } from "./utils";
+6: import { OrderRow } from "./components/OrderList";
+7: 
+8: const API_KEY = "EXAMPLE_NOT_A_REAL_KEY_aaaabbbbccccddddeeeeffff00001111"; // hardcoded credential (fixture seed)
+9: 
+10: type Order = {
+11:   id: string;
+12:   customer: string;
+13:   total: number;
+14:   status: string;
+15:   createdAt: string;
+16: };
+17: 
+18: export default function App() {
+19:   const [orders, setOrders] = useState<any>(null);
+20:   const [tab, setTab] = useState("orders");
+21:   const [q, setQ] = useState("");
+22:   const [loading, setLoading] = useState(false);
+23:   const [stats, setStats] = useState<any>({});
+24:   const [raw, setRaw] = useState("");
+25: 
+26:   useEffect(() => {
+27:     setLoading(true);
+28:     axios
+29:       .get("/api/orders", { headers: { Authorization: `Bearer ${API_KEY}` } })
+30:       .then((res) => {
+31:         setOrders(res.data);
+32:         console.log("orders loaded", res.data);
+33:         // compute stats
+34:         const s: any = {};
+35:         res.data.forEach((o: any) => {
+36:           s[o.status] = (s[o.status] || 0) + 1;
+37:           s.total = (s.total || 0) + o.total;
+38:         });
+39:         setStats(s);
+40:         setLoading(false);
+41:       })
+42:       .catch(() => {
+43:         setLoading(false);
+44:       });
+45:     return () => {
+46:       // cleanup
+47:     };
+48:   }, []);
+49: 
+50:   const filtered = (orders || []).filter((o: Order) =>
+51:     q ? o.customer.toLowerCase().includes(q.toLowerCase()) : true
+52:   );
+53: 
+54:   function submitNewOrder(form: any) {
+55:     const payload: any = {
+56:       id: "ord_" + Math.random().toString(36).slice(2),
+57:       customer: form.customer,
+58:       total: form.total,
+59:       status: "pending",
+60:       createdAt: new Date().toISOString(),
+61:     };
+62:     if (payload.customer == null || payload.customer == "") {
+63:       return false;
+64:     }
+65:     try {
+66:       axios.post("/api/orders", payload);
+67:       setOrders([...(orders || []), payload]);
+68:       return true;
+69:     } catch (e) {
+70:       return false;
+71:     }
+72:   }
+73: 
+74:   function exportCsv(rows: any) {
+75:     const header = "id,customer,total,status,createdAt";
+76:     const lines = rows.map((r: any) =>
+77:       [r.id, r.customer, r.total, r.status, r.createdAt].join(",")
+78:     );
+79:     const blob = new Blob([header + "\n" + lines.join("\n")], {
+80:       type: "text/csv",
+81:     });
+82:     const a = document.createElement("a");
+83:     a.href = URL.createObjectURL(blob);
+84:     a.download = "orders.csv";
+85:     a.click();
+86:   }
+87: 
+88:   return (
+89:     <div className="app">
+90:       <header className="header">
+91:         <h1>TaskBoard</h1>
+92:         <nav>
+93:           {["orders", "stats", "settings"].map((t) => (
+94:             <button key={t} className={t === tab ? "active" : ""} onClick={() => setTab(t)}>
+95:               {t}
+96:             </button>
+97:           ))}
+98:         </nav>
+99:       </header>
+100:       {tab === "orders" && (
+101:         <section>
+102:           <input
+103:             placeholder="Search customers..."
+104:             value={q}
+105:             onChange={(e) => setQ(e.target.value)}
+106:           />
+107:           <button onClick={() => exportCsv(filtered)}>Export CSV</button>
+108:           {loading ? (
+109:             <div className="spinner" />
+110:           ) : (
+111:             <table>
+112:               <thead>
+113:                 <tr>
+114:                   <th>Customer</th>
+115:                   <th>Total</th>
+116:                   <th>Status</th>
+117:                   <th>Date</th>
+118:                 </tr>
+119:               </thead>
+120:               <tbody>
+121:                 {filtered.map((o: any) => (
+122:                   <OrderRow key={o.id} order={o} fmt={moment} fmt2={formatDate} />
+123:                 ))}
+124:               </tbody>
+125:             </table>
+126:           )}
+127:         </section>
+128:       )}
+129:       {tab === "stats" && (
+130:         <section>
+131:           <div className="cards">
+132:             {Object.entries(stats)
+133:               .filter(([k]) => k !== "total")
+134:               .map(([k, v]: any) => (
+135:                 <div className="card" key={k}>
+136:                   <h3>{k}</h3>
+137:                   <p>{v as any}</p>
+138:                 </div>
+139:               ))}
+140:           </div>
+141:           <textarea value={raw} onChange={(e) => setRaw(e.target.value)} />
+142:         </section>
+143:       )}
+144:       {tab === "settings" && (
+145:         <section>
+146:           <h2>Settings</h2>
+147:           <p>Nothing here yet.</p>
+148:         </section>
+149:       )}
+150:     </div>
+151:   );
+152: }

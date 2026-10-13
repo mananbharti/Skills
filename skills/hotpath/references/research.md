@@ -1,95 +1,92 @@
 # hotpath research ledger
 
+Accessed 2026-10-14. Sources below were inspected in this upgrade; moving
+documentation/branches are not evidence of installed versions or host compatibility.
+No numerical default, empirical prevalence, or comparative lift is adopted.
+
 ## Source 1
 
-Title: Benchmarking
-
-Author / Organization: Go project
-
-Publication date: Living documentation
-
-Version: Current documentation
-
-URL: https://pkg.go.dev/testing#hdr-Benchmarks
-
-Source type: official docs
-
-What it establishes:
-Benchmarking requires repeatable workloads and reports measured execution behavior.
-
-What this skill adopts:
-Define metric and workload, control noise, compare equivalent conditions, and keep only demonstrated improvements.
-
-What it does NOT establish:
-It does not prescribe a universal sample count, warmup count, or acceptable regression threshold.
-
-Numbers taken from source:
-No numerical threshold is adopted.
-
-Reverify when:
-The project benchmark framework or workload changes.
-
-## Query-plan evidence
-
-Title: Using EXPLAIN
+Title: EXPLAIN
 
 Author / Organization: PostgreSQL Global Development Group
 
-Publication date: 2026
+Publication date: Not verified; living documentation/source accessed 2026-10-14
 
-Version: PostgreSQL 18 documentation
+Version: Page identifies PostgreSQL 18; verify target DB version
 
-URL: https://www.postgresql.org/docs/current/using-explain.html
-
-Source type: official docs
-
-What it establishes:
-EXPLAIN exposes planned query operations and estimates; estimates can differ
-with data statistics and platform conditions, and plan cost omits some elapsed
-time contributors.
-
-What this skill adopts:
-Inspect actual query behavior with representative parameters and data, compare
-estimated/actual rows where available, and avoid presenting planner cost as an
-end-to-end latency measurement.
-
-What it does NOT establish:
-It does not make every sequential scan wrong or prescribe an index for a query.
-
-Numbers taken from source:
-No cost, row-count, or timing default is adopted.
-
-Reverify when:
-Database version, schema, statistics, workload, or query parameters change.
-
-## Interaction responsiveness
-
-Title: Optimize Interaction to Next Paint
-
-Author / Organization: web.dev
-
-Publication date: 2026
-
-Version: Current article
-
-URL: https://web.dev/articles/optimize-inp
+URL: https://www.postgresql.org/docs/current/sql-explain.html
 
 Source type: official docs
 
 What it establishes:
-Interaction responsiveness depends on input delay, processing, and presentation
-delay, and needs context-specific measurement.
+ANALYZE executes statements, including their effects.
 
 What this skill adopts:
-Inspect interaction traces and long tasks rather than inferring UI performance
-from load time or a single framework operation.
+Inspect side effects and prefer safe scratch execution or ordinary planning.
 
 What it does NOT establish:
-It does not prove field responsiveness from one local trace or choose a
-framework-specific fix.
+Rollback does not guarantee every external/nontransactional effect is reversible.
 
 Numbers taken from source:
-No numerical target is adopted.
+None. Version identifiers describe source scope, not measurements.
 
 Reverify when:
-The interaction path, device class, or measurement methodology changes.
+The target installed version, protocol, runtime, standard or relevant behavior changes.
+
+## Source 2
+
+Title: Open and closed models
+
+Author / Organization: Grafana Labs
+
+Publication date: Not verified; living documentation/source accessed 2026-10-14
+
+Version: Living docs; no installed generator version adopted
+
+URL: https://grafana.com/docs/k6/latest/using-k6/scenarios/concepts/open-vs-closed/
+
+Source type: official docs
+
+What it establishes:
+Completion-coupled iterations can reduce load as response time grows.
+
+What this skill adopts:
+Retain offered load and result classes when interpreting latency.
+
+What it does NOT establish:
+Does not choose a universal load model.
+
+Numbers taken from source:
+None. Version identifiers describe source scope, not measurements.
+
+Reverify when:
+The target installed version, protocol, runtime, standard or relevant behavior changes.
+
+## Source 3
+
+Title: Constant arrival executor implementation
+
+Author / Organization: Grafana Labs
+
+Publication date: Not verified; living documentation/source accessed 2026-10-14
+
+Version: Moving master branch; not a pinned tested generator
+
+URL: https://raw.githubusercontent.com/grafana/k6/master/lib/executor/constant_arrival_rate.go
+
+Source type: implementation evidence
+
+What it establishes:
+Executor records dropped iterations when scheduled work cannot start.
+
+What this skill adopts:
+Check generator capacity alongside target capacity.
+
+What it does NOT establish:
+Does not establish application latency or comparative skill lift.
+
+Numbers taken from source:
+None. Version identifiers describe source scope, not measurements.
+
+Reverify when:
+The target installed version, protocol, runtime, standard or relevant behavior changes.

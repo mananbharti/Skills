@@ -122,7 +122,9 @@ the stricter class.
 ### 5. Preserve dirty state
 
 Uncommitted user changes and in-progress edits are not yours to absorb.
-Work around them (new branch, stash discipline, scoped diffs); never
+Work around them with scoped diffs or an isolated checkout. A new branch does
+not isolate uncommitted files; stash/restore needs evidence it preserves user
+state and is necessary. Never
 overwrite, rebase, or "clean up" user state as a side effect.
 
 ### 6. Bounded retries, no loops
@@ -137,10 +139,18 @@ or recovery approach. Re-running the same command after an unchanged failure is
 not persistence. Read [references/execution-record.md](references/execution-record.md)
 when a retry, state mismatch, or host denial needs a recovery record.
 
-### 7. Batch the gates
+### 7. Reuse authorization, then batch remaining gates
+
+Check whether the human already authorized the exact target, action, impact,
+and spend bound. If so, proceed within host permissions; the ASK ONCE category
+is not a requirement to ask twice. A generic "finish it" does not name a new
+production target or authorize a database reset. A narrower host grant does
+not expand the human request. Prepare the concrete action and available
+verification before requesting any remaining approval.
 
 If several ASK ONCE items exist, ask them in **one** compact question with
-a recommended default for each, then proceed without re-asking. While
+a recommended default for each. Proceed on dependent work only after the
+answer grants it; silence or elapsed time is not approval. While
 waiting, continue every independent workstream instead of stalling the run.
 
 ### 8. Detect the host; never fight it

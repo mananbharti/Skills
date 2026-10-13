@@ -1,0 +1,12 @@
+{
+  "command": [
+    "scripts/validate-skills"
+  ],
+  "exit_code": 0,
+  "stdout": "INFO: skills-ref unavailable; local strict validation completed\nOK: 28 frontmatter blocks are strict and spec-shaped\nOK: 28 self-contained skills satisfy the repository contract\n",
+  "stderr": "",
+  "status": "PASS",
+  "started_at_utc": "2026-10-13T19:58:45.621452+00:00",
+  "client_date": "2026-10-14",
+  "scope": "local deterministic check; no causal effectiveness/native compatibility inference"
+}

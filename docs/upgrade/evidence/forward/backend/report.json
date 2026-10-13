@@ -1,0 +1,14 @@
+{
+  "mode": "async integration with local data/ownership invariants",
+  "stack": "Python stdlib + SQLite; synthetic preauthenticated event boundary; caller-owned connection.",
+  "contract": "Accepted synthetic states pending -> paid -> refunded. Late pending and paid after refund are unchanged. Refund before payment is retryable and unconsumed. Event IDs bind immutable fields; fulfilled order IDs uniquely constrain effects. Target order must exist and persisted tenant must match event tenant.",
+  "fix": "SAVEPOINT couples receipt, conditional transition and fulfillment; failures roll back event work, and any outer transaction remains caller-owned.",
+  "verification": "8 boundary tests; all 8 fail before and pass after. Demo changes from pending/2 fulfillments to paid/1. Triggered effect failure rolls back receipt/state and retry succeeds.",
+  "recovery": "Only copied scratch schema changed. Discard scratch DB to revert; existing persisted DB migration is not implemented. Refund is local state only, not an external refund.",
+  "limitations": [
+    "Provider signature/authentication intentionally a trusted precondition, not implemented or verified.",
+    "Model has no amount/currency/provider-account fields; production reconciliation and multi-provider scope are unverified.",
+    "Concurrent connections/processes and external fulfillment delivery remain unverified.",
+    "A valid refund requires retry after a paid event; no durable reconciliation queue is implemented."
+  ]
+}

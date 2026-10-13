@@ -1,0 +1,14 @@
+{
+  "command": [
+    "python3",
+    "-m",
+    "unittest",
+    "-v",
+    "test_payment"
+  ],
+  "cwd": "/private/tmp/skills-forward/backend",
+  "time_utc": "2026-10-13T19:36:13.357255+00:00",
+  "exit_code": 0,
+  "stdout": "",
+  "stderr": "test_atomic_failure_then_retry (test_payment.Boundaries.test_atomic_failure_then_retry) ... ok\ntest_invalid_state_and_reused_identity (test_payment.Boundaries.test_invalid_state_and_reused_identity) ... ok\ntest_missing_order (test_payment.Boundaries.test_missing_order) ... ok\ntest_out_of_order_refund_retry (test_payment.Boundaries.test_out_of_order_refund_retry) ... ok\ntest_outer_transaction_owned_by_caller (test_payment.Boundaries.test_outer_transaction_owned_by_caller) ... ok\ntest_retries_and_distinct_events (test_payment.Boundaries.test_retries_and_distinct_events) ... ok\ntest_stale_pending_then_refund (test_payment.Boundaries.test_stale_pending_then_refund) ... ok\ntest_wrong_tenant (test_payment.Boundaries.test_wrong_tenant) ... ok\n\n----------------------------------------------------------------------\nRan 8 tests in 0.001s\n\nOK\n"
+}

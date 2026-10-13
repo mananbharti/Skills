@@ -119,9 +119,9 @@ defer, not a candidate to summarize from memory.
   extracting fields: a local script is deterministic and costs ~one
   call; an LLM reasoning over raw data costs hundreds of thousands of
   tokens and makes mistakes.
-- **Cheaper models for mechanical passes**: only when it doesn't
-  increase retries; a doubled retry count erases the saving and adds
-  latency. Verify with a small sample before committing a workflow.
+- **Cheaper execution paths**: use only authorized, available tools/models.
+  Compare total cost and latency including retries; do not assume a model
+  label or smaller prompt implies lower cost. No paid experiment is implied.
 - **Stable evidence records**: retain file paths, symbols, commands, hashes,
   and source dates rather than re-pasting whole artifacts. A pointer is useful
   only when the recipient can actually access the target.
@@ -207,6 +207,18 @@ and the quality-gate confirmation (what still passes). Compacted
 handoffs follow `recall`'s session-delta format. A measured experiment also
 states comparison scope, changed variable, telemetry source, retries, outcome,
 and whether the result is adopted or rejected.
+
+
+## Optional deterministic measurement helper
+
+Use `scripts/cost-report.py` only when observed attempt records exist. Run
+`python3 <skill-folder>/scripts/cost-report.py attempts.json`; input is a list
+of objects with `task`, `unit` (tokens/USD/bytes/seconds), `cost` (observed
+nonnegative number or null), and `correct` (independent acceptance boolean).
+It includes failures/retries, rejects mixed units and duplicate success, and
+leaves cost per correct task undefined when usage or successes are missing.
+`--self-test` exercises arithmetic and invalid records without paid calls.
+The helper cannot prove acceptance, usage truth or comparison equivalence.
 
 ## Research basis
 

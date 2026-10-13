@@ -5,7 +5,7 @@ Same task, same agent/model/tools/environment; the only intended
 difference is whether the skill's runtime files are in context.
 Baseline gets the skill catalog (names + descriptions — exactly what a
 runtime shows); treatment additionally gets the skill's SKILL.md body
-plus its references. Deterministic grading first; raw outputs preserved
+with references available on demand in the copied package. Deterministic grading first; raw outputs preserved
 including failures. Results: evals/results/<ts>-outcome-<skill>-<agent>.json
 (gitignored).
 
@@ -32,7 +32,7 @@ from eval_isolation import (
 RESULTS = os.path.join(ROOT, "evals", "results")
 RESULTS_TMP = os.path.join(RESULTS, "tmp")
 
-SCHEMA = "outcome/5"
+SCHEMA = "outcome/6"
 # GRADER_VERSION tracks grading-semantics changes. v3 added workspace_pass /
 # format_pass notes (objective correctness vs skill-format adherence) without
 # changing overall pass semantics. v4 narrows the workdir-path strip so
@@ -89,8 +89,10 @@ def catalog():
     return skills
 
 
-def skill_context(slug):
-    """SKILL.md body + references for the treatment condition."""
+def skill_context(slug, reference_policy="on-demand"):
+    """Entrypoint by default; explicit eager policy reproduces old context loading."""
+    if reference_policy not in ("on-demand", "eager"):
+        raise ValueError("unknown reference policy")
     base = os.path.join(ROOT, "skills", slug)
     parts = []
     with open(os.path.join(base, "SKILL.md"), encoding="utf-8") as f:
@@ -98,11 +100,14 @@ def skill_context(slug):
     body = re.sub(r"\A---\n.*?\n---\n", "", text, count=1, flags=re.S)
     parts.append(f"# {slug} SKILL.md\n{body}")
     refdir = os.path.join(base, "references")
-    if os.path.isdir(refdir):
+    if reference_policy == "eager" and os.path.isdir(refdir):
         for fn in sorted(os.listdir(refdir)):
             if fn.endswith(".md"):
                 with open(os.path.join(refdir, fn), encoding="utf-8") as f:
                     parts.append(f"# {slug} references/{fn}\n{f.read()}")
+    if reference_policy == "on-demand":
+        parts.append(f"Read task-relevant references or helpers from .eval-skill/{slug}/ "
+                     "only when needed; the complete package is available locally.")
     return "\n\n".join(parts)
 
 
@@ -231,8 +236,15 @@ def grade_route(task, route, raw):
     route_set = set(route)
     outside = sorted(route_set - allowed - {"direct", "none"})
     ordered = [s for s in route if s in allowed]
-    order_ok = ordered == sorted(ordered, key=lambda s: exp["order"].index(s)) \
-        if all(s in exp.get("order", []) for s in ordered) else True
+    # order_insensitive drops the sequence assertion where the task cannot
+    # justify one (concierge C1: audit-before-fix and fix-before-audit are
+    # both defensible for a combined refresh-plus-flow task). Containment,
+    # required skills, and length still grade.
+    if exp.get("order_insensitive"):
+        order_ok = True
+    else:
+        order_ok = ordered == sorted(ordered, key=lambda s: exp["order"].index(s)) \
+            if all(s in exp.get("order", []) for s in ordered) else True
     ok = (not outside and required <= route_set and order_ok
           and len(route) <= exp.get("max_len", 6))
     return ok, {"route": route, "outside": outside, "order_ok": order_ok}
@@ -309,28 +321,71 @@ def grade_blueprint(task, raw, obs):
     failed_checks = [c["cmd"] for c in checks if c["exit"] != c.get("expect", 0)]
     body = "\n".join(artifacts[p] for p in mmds)
     known = fixture_files(task["fixture"]) if task.get("fixture") else []
+    quoted = _fixture_quoted_strings(task["fixture"]) if task.get("fixture") else set()
+    output_prefixes = ("docs/plans/", "docs/briefs/", "docs/research/")
+    lines = (body + "\n" + raw).splitlines()
     hallucinated = []
     checked = 0
-    for tok in set(PATH_RE.findall(body)):
-        tok = tok.lstrip("./")
+    for raw_tok in set(PATH_RE.findall(body)):
+        # Strip only a literal "./" prefix; lstrip("./") mangles
+        # dotfiles (".gitignore" -> "gitignore") into hallucinations.
+        tok = raw_tok[2:] if raw_tok.startswith("./") else raw_tok
         if not tok:
             continue
+        if raw_tok.startswith(".") and "/" not in raw_tok:
+            continue
+        if tok.startswith(output_prefixes) or tok == "docs/plans":
+            continue
+        if tok in quoted:
+            continue
+        if "/" not in tok and tok.lower() in _TECH_NAMES:
+            continue
         checked += 1
+        claimed = False
+        for line in lines:
+            low_line = line.lower()
+            low_tok = tok.lower()
+            start = 0
+            while True:
+                idx = low_line.find(low_tok, start)
+                if idx < 0:
+                    break
+                if (not _NEG_RE.search(low_line[max(0, idx - 60):idx])
+                        and not _is_probe_occurrence(line, idx)):
+                    claimed = True
+                    break
+                start = idx + len(low_tok)
+            if claimed:
+                break
+        if not claimed:
+            continue
         if not any(f == tok or f.endswith("/" + tok) for f in known):
             hallucinated.append(tok)
     low = (body + "\n" + raw).lower()
     must = [m.lower() for m in exp.get("must_contain", [])]
     missing = [m for m in must if m not in low]
     # Invented-infrastructure check: fixtures with no infra files of their own
-    # must not sprout managed services. Word-boundary match on service names.
+    # must not sprout managed services. An absence denial ("no redis here")
+    # is not invention: flag only non-negated occurrences.
     suspect_infra = []
     if exp.get("forbid_infra"):
         infra_words = ["kafka", "kubernetes", "k8s", "redis", "cdn", "postgres",
                        "mysql", "mongodb", "rabbitmq", "elasticsearch", "docker",
                        "terraform", "nginx", "envoy", "istio", "prometheus",
                        "grafana", "replica", "shard", "queue"]
-        suspect_infra = sorted(w for w in infra_words
-                               if re.search(r"\b" + w + r"s?\b", low))
+        found = set()
+        for w in infra_words:
+            pat = re.compile(r"\b" + w + r"s?\b")
+            start = 0
+            while True:
+                m = pat.search(low, start)
+                if not m:
+                    break
+                if not _NEG_RE.search(low[max(0, m.start() - 60):m.start()]):
+                    found.add(w)
+                    break
+                start = m.end()
+        suspect_infra = sorted(found)
     ok = (not over and not failed_checks and not hallucinated and not missing
           and not suspect_infra)
     workspace_pass = (not over and not failed_checks and not hallucinated
@@ -430,6 +485,41 @@ def grade_pilot(task, raw, obs):
 
 PATH_RE = re.compile(r"[\w\-./]*\.(?:ts|tsx|js|jsx|json|html|css|py|txt|md|toml|yaml|yml|lock|env|gitignore|sh|sqlite|db)\b")
 
+# Negation cues that turn a path/token mention into an absence denial
+# ("no X in the copy"), not an existence claim. Shared by the
+# hallucinated-path and contaminant gates.
+_NEG_RE = re.compile(r"\b(no|not|without|missing|never|neither|nor|absent|avoid|excluding|none|nonexistent)\b")
+
+# Bare technology names that collide with PATH_RE (Next.js ends in .js)
+# but are library mentions, never file claims. Lowercase, slash-free
+# tokens only; a real fixture file with such a name still passes on
+# the basename rule, so this only rescues would-be false flags.
+_TECH_NAMES = frozenset({
+    "next.js", "vue.js", "node.js", "react.js", "express.js", "d3.js",
+    "three.js", "chart.js", "ember.js", "backbone.js", "nuxt.js",
+    "gatsby.js", "jquery.js", "svelte.js", "alpine.js", "meteor.js",
+    "mithril.js", "knockout.js",
+})
+
+_PROBE_LINE_RE = re.compile(r"(?:ls|cat|stat|head|tail|file|find)\b|test\s+-")
+
+
+def _is_probe_occurrence(line, idx):
+    """True when the token at idx is a shell-probe argument, not a claim.
+
+    Covers backticked commands (`ls X`), shell-prompt lines, and lines
+    starting with an inspection command. Case-sensitive on purpose:
+    prose starting with capital "Test" is not a shell command.
+    """
+    if line[:idx].count("`") % 2 == 1:
+        return True
+    stripped = line.strip()
+    if stripped[:1] in ("$", ">", "#"):
+        return True
+    if _PROBE_LINE_RE.match(stripped):
+        return True
+    return False
+
 
 def fixture_files(name):
     out = []
@@ -439,6 +529,30 @@ def fixture_files(name):
             full = os.path.join(dirpath, fn)
             out.append(os.path.relpath(full, base))
     return out
+
+
+def _fixture_quoted_strings(fixture):
+    """Path-like tokens appearing verbatim in fixture file text.
+
+    A connection string naming a database file that is not itself a
+    tracked file is a quote, not an existence claim.
+    """
+    quoted = set()
+    base = os.path.join(ROOT, "benchmarks", "fixtures", fixture)
+    for dirpath, _, filenames in os.walk(base):
+        for fn in filenames:
+            try:
+                with open(os.path.join(dirpath, fn), encoding="utf-8",
+                          errors="replace") as handle:
+                    text = handle.read()
+            except OSError:
+                continue
+            for raw_tok in set(PATH_RE.findall(text)):
+                tok = raw_tok[2:] if raw_tok.startswith("./") else raw_tok
+                if tok:
+                    quoted.add(tok)
+                    quoted.add(os.path.basename(tok))
+    return quoted
 
 
 def grade_spelunk(task, raw, obs=None):
@@ -452,7 +566,21 @@ def grade_spelunk(task, raw, obs=None):
     missing = [m for m in must if m not in low]
     missing_groups = [g for g in exp.get("must_contain_any", [])
                       if not any(alt.lower() in low for alt in g)]
-    contaminants = [c for c in exp.get("must_not", []) if c.lower() in low]
+    # Negation-aware contaminant gate: an absence denial ("no Dockerfile
+    # in the copy") is honest scoping, not forbidden-scope smuggling. A
+    # contaminant counts only with at least one non-negated occurrence.
+    contaminants = []
+    for cand in exp.get("must_not", []):
+        low_c = cand.lower()
+        start = 0
+        while True:
+            idx = low.find(low_c, start)
+            if idx < 0:
+                break
+            if not _NEG_RE.search(low[max(0, idx - 60):idx]):
+                contaminants.append(cand)
+                break
+            start = idx + len(low_c)
     # Hallucinated-path grading needs a fixture ground truth. Chat-only
     # tasks (no fixture) would flag every filename mention — technology
     # names like "Next.js" match PATH_RE — as invented paths, so the
@@ -464,7 +592,10 @@ def grade_spelunk(task, raw, obs=None):
     # that) before any path-existence grading.
     wd = (obs or {}).get("workdir")
     if wd and wd in raw:
-        raw = raw.replace(wd, "")
+        # Remove the workdir plus any appended path components in one
+        # pass: a tool trace quoting <workdir>/tests/test_shop.py must
+        # not leave "/tests/test_shop.py" behind as a fake repo claim.
+        raw = re.sub(re.escape(wd) + r"(?:/[\w.\-]+)*", "", raw)
     # Harness plumbing is never a repo claim: strip the sandbox path even
     # when a tool trace appends a filename to it (e.g. a permission
     # auto-rejection quoting <workdir>/.env leaves "/.env" behind after a
@@ -474,18 +605,60 @@ def grade_spelunk(task, raw, obs=None):
     raw = re.sub(r"[\w./-]*evals/results/tmp/outcome-[0-9a-z_]+(?:/[\w.-]+)?", "", raw)
     hallucinated = []
     checked = 0
+    # Declared skill outputs are plans, not existence claims: the
+    # contracted output paths below are written by the agent as
+    # deliverables and must never count as invented fixture paths.
+    output_prefixes = ("docs/plans/", "docs/briefs/", "docs/research/")
+    # Fixture-quoted content is a quote, not a claim: a token that
+    # appears verbatim inside fixture file text (e.g. a connection
+    # string naming a database file that is not itself a tracked file)
+    # is excluded from hallucination grading.
+    quoted = set()
+    if known is not None:
+        quoted = _fixture_quoted_strings(task["fixture"])
+        lines = raw.splitlines()
     if known is not None:
         for raw_tok in set(PATH_RE.findall(raw)):
-            # Bare dotfile mentions (".env") are names, not path claims —
+            # Bare dotfile mentions (".env") are names, not path claims -
             # without this, any required finding about dotfiles false-fails.
             if raw_tok.startswith(".") and "/" not in raw_tok:
                 continue
             # Strip only a literal "./" prefix; lstrip("./") mangles
-            # dotfiles (".gitignore" → "gitignore") into hallucinations.
+            # dotfiles (".gitignore" -> "gitignore") into hallucinations.
             tok = raw_tok[2:] if raw_tok.startswith("./") else raw_tok
             if not tok:
                 continue
+            if tok.startswith(output_prefixes) or tok == "docs/plans":
+                continue
+            if tok in quoted:
+                continue
+            # Bare technology names (Next.js) are library mentions that
+            # collide with the path regex, never file claims.
+            if "/" not in tok and tok.lower() in _TECH_NAMES:
+                continue
             checked += 1
+            # An occurrence is an existence claim only when it is neither
+            # a negated absence denial ("no X in the copy") nor a shell
+            # probe (`ls X`, `test -f X`). A token counts as claimed with
+            # at least one claiming occurrence.
+            claimed = False
+            for line in lines:
+                low_line = line.lower()
+                low_tok = tok.lower()
+                start = 0
+                while True:
+                    idx = low_line.find(low_tok, start)
+                    if idx < 0:
+                        break
+                    if (not _NEG_RE.search(low_line[max(0, idx - 60):idx])
+                            and not _is_probe_occurrence(line, idx)):
+                        claimed = True
+                        break
+                    start = idx + len(low_tok)
+                if claimed:
+                    break
+            if not claimed:
+                continue
             if not any(f == tok or f.endswith("/" + tok)
                        or os.path.basename(f) == os.path.basename(tok) and
                        tok.count("/") == 0 for f in known):
@@ -705,6 +878,10 @@ def main():
                     help="model id passed to the agent CLI (e.g. "
                          "opencode/muse-spark-1.3-contributor-free); recorded in the "
                          "result JSON — results are model-scoped")
+    ap.add_argument("--reference-policy", choices=["on-demand", "eager"],
+                    default="on-demand",
+                    help="load only SKILL.md initially (default); eager includes all "
+                         "references to reproduce historical context loading")
     ap.add_argument("--timeout-override", type=int, default=None,
                     help="replace per-task timeouts (slow free models); "
                          "plumbing only — no grading gate changes; "
@@ -768,7 +945,7 @@ def main():
     commit = subprocess.run(["git", "rev-parse", "--short", "HEAD"], cwd=ROOT,
                             capture_output=True, text=True).stdout.strip()
     cat = catalog()
-    treat = skill_context(a.skill)
+    treat = skill_context(a.skill, a.reference_policy)
     if a.task:
         pool = load_tasks(a.skill, True) + load_tasks(a.skill, False)
         tasks = [t for t in pool if t.get("id") == a.task]
@@ -804,6 +981,10 @@ def main():
                "grader_version": GRADER_VERSION,
                "skill_package": dir_manifest(
                    os.path.join(ROOT, "skills", a.skill)),
+               "checkers": dir_manifest(os.path.join(ROOT, "scripts")),
+               "fixtures": {name: dir_manifest(os.path.join(ROOT, "benchmarks", "fixtures", name))
+                            for name in sorted({task["fixture"] for task in tasks if task.get("fixture")})},
+               "treatment_context_sha256": hashlib.sha256(treat.encode()).hexdigest(),
                "requested_model": a.model,
                "agent_version": aver,
                "settings": {
@@ -813,6 +994,7 @@ def main():
                    "max_consec": max_consec,
                    "order": a.order,
                    "task_filter": a.task,
+                   "reference_policy": a.reference_policy,
                },
                "isolation": isolation_record(a.agent),
                "started": time.strftime("%Y-%m-%dT%H:%M:%S"),
@@ -838,7 +1020,7 @@ def main():
             if prior.get(key) != rec[key]:
                 mismatches.append(f"{key} is {prior.get(key)!r}, requested {rec[key]!r}")
         prior_settings = (prior.get("provenance") or {}).get("settings") or {}
-        for key in ("timeout_default", "timeout_override", "order", "task_filter"):
+        for key in ("timeout_default", "timeout_override", "order", "task_filter", "reference_policy"):
             if prior_settings.get(key) != rec["provenance"]["settings"][key]:
                 mismatches.append(f"settings.{key} differs")
         if prior.get("grader_version") != GRADER_VERSION:
@@ -847,6 +1029,11 @@ def main():
             mismatches.append("model differs")
         if prior.get("task_contracts") != rec["task_contracts"]:
             mismatches.append("task_contracts differ")
+        if prior.get("runner_sha256") != rec["runner_sha256"]:
+            mismatches.append("runner implementation differs")
+        for key in ("skill_package", "checkers", "fixtures", "treatment_context_sha256", "agent_version"):
+            if (prior.get("provenance") or {}).get(key) != rec["provenance"][key]:
+                mismatches.append(f"provenance.{key} differs")
         if mismatches:
             print("--resume-from identity mismatch: " + "; ".join(mismatches) + " — "
                   "refusing (source preserved, nothing written)",
@@ -897,7 +1084,8 @@ def main():
                 to = (a.timeout_override if a.timeout_override
                       else task.get("timeout", a.timeout))
                 started = time.strftime("%Y-%m-%dT%H:%M:%S")
-                obs = observe(a.agent, build_prompt(task, cat, ctx), cfg, to,
+                prompt = build_prompt(task, cat, ctx)
+                obs = observe(a.agent, prompt, cfg, to,
                               model=a.model, fixture=task.get("fixture"),
                               verify=task.get("verify"),
                               artifacts=task.get("artifacts"),
@@ -909,6 +1097,7 @@ def main():
                                      "trial": t + 1, "pass": passed,
                                      "first": conds[0][0],
                                      "timeout_s": to, "started": started,
+                                     "prompt_chars": len(prompt),
                                      "notes": notes, "obs": obs})
                 consec_bad = consec_bad + 1 if obs.get("status") != "ok" else 0
                 abort = max_consec and consec_bad >= max_consec

@@ -1,0 +1,476 @@
+{
+  "schema_version": 1,
+  "scope": ["backend", "blueprint", "headroom", "polish", "friction", "ditto", "proof", "roadtest", "hotpath"],
+  "plan": [
+    {"files": "skills/<owned>/SKILL.md and relevant references", "change": "narrow evidence-backed boundary corrections; preserve existing methodology", "risk": "instruction changes need independent agent evaluation"},
+    {"files": "docs/research/<owned>.md and local research references", "change": "replace unsupported provenance with individually accessed sources and explicitly hypothetical failures", "risk": "moving upstream branches are not installed-version evidence"},
+    {"files": "evals/workflow/scenarios/<owned>.md", "change": "retain five existing cases, repair inaccurate acceptance rules, add at least five distinct domain cases", "risk": "authored scenarios are not executed behavioral coverage"},
+    {"files": "owned helper scripts and fixtures where justified", "change": "correct deterministic defects and run local acceptance checks", "risk": "local fixtures cannot establish comparative skill lift"}
+  ],
+  "decision": {"action": "edit owned packages", "reason": "specific missing failure branches and unsupported provenance observed during recon", "allowed_by_contract": true, "risk": "moderate instruction and low-risk local helper changes"},
+  "rows": [
+    {
+      "skill": "backend",
+      "before": "Existing retry/tenancy guidance did not distinguish provider event identity, business-effect identity, stale delivery, or RLS bypass test roles.",
+      "change": "Conditional payment/tenant boundary protocol plus synthetic seeded replay fixture; preserve existing stack-neutral workflow.",
+      "why": "Stripe duplicate/reordering semantics and PostgreSQL RLS role caveats change concrete verification choices.",
+      "files": [
+        "skills/backend/SKILL.md",
+        "skills/backend/references/",
+        "docs/research/backend.md",
+        "evals/workflow/scenarios/backend.md"
+      ],
+      "tests": [
+        {
+          "label": "payment seeded baseline",
+          "command": "python3 skills/backend/assets/payment-demo.py",
+          "workdir": "/Users/uday/Skills",
+          "chunk_id": "03db98",
+          "wall_time_seconds": 0.000005458,
+          "exit_code": 0,
+          "original_token_count": 8,
+          "output": "state: pending\nfulfillments: 2\n"
+        },
+        {
+          "command": "scripts/validate-skills; scripts/check-names; scripts/check-links",
+          "observed": "Each command executed separately; exits 0. skills-ref unavailable, local strict validator ran.",
+          "evidence_type": "deterministic structure, not agent behavior"
+        },
+        {
+          "command": "scoped load_scenarios() check",
+          "observed": "11 cases per owned scenario file; no scoped schema errors.",
+          "evidence_type": "authored scenario shape"
+        }
+      ],
+      "observed_outcome": "Seeded demo reproduces two fulfillments and stale pending final state; this is a deliberately failing fixture, not a corrected provider integration.",
+      "risks": [
+        "Fixture is intentionally unsafe and uses SQLite; cannot prove provider signature, PostgreSQL RLS, concurrency or live integration."
+      ],
+      "limits": [
+        "No live/paid agent CLI invoked; authored scenarios unexecuted against independent agent.",
+        "15 local failure hypotheses per research doc; no empirical prevalence or claimed highest-frequency ranking.",
+        "External source pages/branches are not installed-version or host compatibility evidence."
+      ],
+      "source_access": {
+        "date": "2026-10-14",
+        "status": "Primary documentation and relevant upstream implementation accessed; exact per-source scope in local research ledger",
+        "failed": []
+      },
+      "current_status": "IMPLEMENTED; deterministic package validation PASS; behavioral improvement UNVERIFIED",
+      "capability_ownership": "backend: effect and tenant invariants; harden: broader threat review; proof: regression boundary.",
+      "workflow_cases": 11,
+      "workflow_execution": "authored, ungraded, no new agent execution",
+      "historical_outcome": "Preserved; not replaced by these local checks"
+    },
+    {
+      "skill": "blueprint",
+      "before": "Entrypoint overstated heuristic validator; duplicated fallback/gates; CDN failure overwrote source; parser default was implicit.",
+      "change": "Clarify heuristic limits, remove duplicated sections, preserve offline source, set strict renderer explicitly; add conditional rendering/trust-edge protocol.",
+      "why": "Template source loss is deterministic; Mermaid strict setting constrains diagram markup/click behavior but does not sanitize arbitrary template HTML.",
+      "files": [
+        "skills/blueprint/SKILL.md",
+        "skills/blueprint/references/",
+        "docs/research/blueprint.md",
+        "evals/workflow/scenarios/blueprint.md"
+      ],
+      "tests": [
+        {
+          "command": "scripts/validate-skills; scripts/check-names; scripts/check-links",
+          "observed": "Each command executed separately; exits 0. skills-ref unavailable, local strict validator ran.",
+          "evidence_type": "deterministic structure, not agent behavior"
+        },
+        {
+          "command": "scoped load_scenarios() check",
+          "observed": "11 cases per owned scenario file; no scoped schema errors.",
+          "evidence_type": "authored scenario shape"
+        }
+      ],
+      "observed_outcome": "Mock-DOM execution preserves source offline and captures strict initialization; no real browser rendering or architectural accuracy claim.",
+      "risks": [
+        "CDN major is not an exact pin; mock DOM is not browser/render verification; heuristic still has false positives/negatives."
+      ],
+      "limits": [
+        "No live/paid agent CLI invoked; authored scenarios unexecuted against independent agent.",
+        "15 local failure hypotheses per research doc; no empirical prevalence or claimed highest-frequency ranking.",
+        "External source pages/branches are not installed-version or host compatibility evidence."
+      ],
+      "source_access": {
+        "date": "2026-10-14",
+        "status": "Primary documentation and relevant upstream implementation accessed; exact per-source scope in local research ledger",
+        "failed": [
+          "C4 review URL returned internal error; not used for new claim"
+        ]
+      },
+      "current_status": "IMPLEMENTED; deterministic package validation PASS; behavioral improvement UNVERIFIED",
+      "capability_ownership": "blueprint: source-backed architectural views; headroom: capacity decisions; harden: security audit.",
+      "workflow_cases": 11,
+      "workflow_execution": "authored, ungraded, no new agent execution",
+      "historical_outcome": "Preserved; not replaced by these local checks"
+    },
+    {
+      "skill": "headroom",
+      "before": "No independent-arrival versus completion-coupled load distinction; authored scenario demanded invented headroom multiplier.",
+      "change": "Conditional offered/accepted/completed/drop model, finite backlog drain condition, autoscaler readiness/metric caveats; synthetic workload case.",
+      "why": "k6 arrival model and Kubernetes implementation limit conclusions from low p95 or desired replica counts.",
+      "files": [
+        "skills/headroom/SKILL.md",
+        "skills/headroom/references/",
+        "docs/research/headroom.md",
+        "evals/workflow/scenarios/headroom.md"
+      ],
+      "tests": [
+        {
+          "command": "scripts/validate-skills; scripts/check-names; scripts/check-links",
+          "observed": "Each command executed separately; exits 0. skills-ref unavailable, local strict validator ran.",
+          "evidence_type": "deterministic structure, not agent behavior"
+        },
+        {
+          "command": "scoped load_scenarios() check",
+          "observed": "11 cases per owned scenario file; no scoped schema errors.",
+          "evidence_type": "authored scenario shape"
+        }
+      ],
+      "observed_outcome": "Synthetic arithmetic and discrete replay agree: current backlog grows 5 jobs/s; candidate steady-state drain is 600 seconds, excluding startup/retries/quotas.",
+      "risks": [
+        "All fixture rates assumed; not measured application capacity, price or tested cloud scaling."
+      ],
+      "limits": [
+        "No live/paid agent CLI invoked; authored scenarios unexecuted against independent agent.",
+        "15 local failure hypotheses per research doc; no empirical prevalence or claimed highest-frequency ranking.",
+        "External source pages/branches are not installed-version or host compatibility evidence."
+      ],
+      "source_access": {
+        "date": "2026-10-14",
+        "status": "Primary documentation and relevant upstream implementation accessed; exact per-source scope in local research ledger",
+        "failed": [
+          "AWS queue-backlog redirect yielded no body; not used for new claim"
+        ]
+      },
+      "current_status": "IMPLEMENTED; deterministic package validation PASS; behavioral improvement UNVERIFIED",
+      "capability_ownership": "headroom: workload forecast and architecture triggers; hotpath: measured path optimization.",
+      "workflow_cases": 11,
+      "workflow_execution": "authored, ungraded, no new agent execution",
+      "historical_outcome": "Preserved; not replaced by these local checks"
+    },
+    {
+      "skill": "polish",
+      "before": "Generic banned list demanded a second approval for explicitly requested reversible style; mobile/focus evidence limits incomplete.",
+      "change": "Honor requested visual style while testing barriers; conditional mobile-overlay/focus/capture evidence.",
+      "why": "User authority and concrete WCAG/APG focus evidence should govern style and verification.",
+      "files": [
+        "skills/polish/SKILL.md",
+        "skills/polish/references/",
+        "docs/research/polish.md",
+        "evals/workflow/scenarios/polish.md"
+      ],
+      "tests": [
+        {
+          "command": "scripts/validate-skills; scripts/check-names; scripts/check-links",
+          "observed": "Each command executed separately; exits 0. skills-ref unavailable, local strict validator ran.",
+          "evidence_type": "deterministic structure, not agent behavior"
+        },
+        {
+          "command": "scoped load_scenarios() check",
+          "observed": "11 cases per owned scenario file; no scoped schema errors.",
+          "evidence_type": "authored scenario shape"
+        }
+      ],
+      "observed_outcome": "Static package and scenario validation pass; visual/keyboard/physical-device/AT behavior remains unexecuted.",
+      "risks": [
+        "No rendered before/after images or conformance proof; visual benefit unverified."
+      ],
+      "limits": [
+        "No live/paid agent CLI invoked; authored scenarios unexecuted against independent agent.",
+        "15 local failure hypotheses per research doc; no empirical prevalence or claimed highest-frequency ranking.",
+        "External source pages/branches are not installed-version or host compatibility evidence."
+      ],
+      "source_access": {
+        "date": "2026-10-14",
+        "status": "Primary documentation and relevant upstream implementation accessed; exact per-source scope in local research ledger",
+        "failed": []
+      },
+      "current_status": "IMPLEMENTED; deterministic package validation PASS; behavioral improvement UNVERIFIED",
+      "capability_ownership": "polish: visual hierarchy/tokens/states; friction: task recovery; roadtest: executed browser evidence.",
+      "workflow_cases": 11,
+      "workflow_execution": "authored, ungraded, no new agent execution",
+      "historical_outcome": "Preserved; not replaced by these local checks"
+    },
+    {
+      "skill": "friction",
+      "before": "Task walks lacked explicit unknown-save outcome, offline durability and cross-identity draft privacy branches.",
+      "change": "Conditional interrupted-submit/reconnect/draft/re-entry/mobile recovery journeys with scoped persistence.",
+      "why": "WCAG redundant-entry and browser-storage examples support recovery choices, not blanket autosave.",
+      "files": [
+        "skills/friction/SKILL.md",
+        "skills/friction/references/",
+        "docs/research/friction.md",
+        "evals/workflow/scenarios/friction.md"
+      ],
+      "tests": [
+        {
+          "command": "scripts/validate-skills; scripts/check-names; scripts/check-links",
+          "observed": "Each command executed separately; exits 0. skills-ref unavailable, local strict validator ran.",
+          "evidence_type": "deterministic structure, not agent behavior"
+        },
+        {
+          "command": "scoped load_scenarios() check",
+          "observed": "11 cases per owned scenario file; no scoped schema errors.",
+          "evidence_type": "authored scenario shape"
+        }
+      ],
+      "observed_outcome": "Static package and scenario validation pass; no real user walkthrough, mobile keyboard, conversion or retention-policy experiment.",
+      "risks": [
+        "Product-specific draft and sensitive-data policies unresolved; improvements are test hypotheses."
+      ],
+      "limits": [
+        "No live/paid agent CLI invoked; authored scenarios unexecuted against independent agent.",
+        "15 local failure hypotheses per research doc; no empirical prevalence or claimed highest-frequency ranking.",
+        "External source pages/branches are not installed-version or host compatibility evidence."
+      ],
+      "source_access": {
+        "date": "2026-10-14",
+        "status": "Primary documentation and relevant upstream implementation accessed; exact per-source scope in local research ledger",
+        "failed": []
+      },
+      "current_status": "IMPLEMENTED; deterministic package validation PASS; behavioral improvement UNVERIFIED",
+      "capability_ownership": "friction: usability diagnosis/recovery feedback; backend: safe effects and tenant authority.",
+      "workflow_cases": 11,
+      "workflow_execution": "authored, ungraded, no new agent execution",
+      "historical_outcome": "Preserved; not replaced by these local checks"
+    },
+    {
+      "skill": "ditto",
+      "before": "Capture loop did not distinguish successful snapshot regeneration from independent fidelity comparison; old workflow forced two rounds.",
+      "change": "Controlled capture/masks/tolerance/baseline authorship protocol; stop when material mismatches resolved.",
+      "why": "Playwright docs and matcher implementation permit expected-artifact writes under update modes.",
+      "files": [
+        "skills/ditto/SKILL.md",
+        "skills/ditto/references/",
+        "docs/research/ditto.md",
+        "evals/workflow/scenarios/ditto.md"
+      ],
+      "tests": [
+        {
+          "command": "scripts/validate-skills; scripts/check-names; scripts/check-links",
+          "observed": "Each command executed separately; exits 0. skills-ref unavailable, local strict validator ran.",
+          "evidence_type": "deterministic structure, not agent behavior"
+        },
+        {
+          "command": "scoped load_scenarios() check",
+          "observed": "11 cases per owned scenario file; no scoped schema errors.",
+          "evidence_type": "authored scenario shape"
+        }
+      ],
+      "observed_outcome": "Static package and scenario validation pass; no generated screenshot or fidelity percentage.",
+      "risks": [
+        "Browser/platform/font and asset-rights variance remain; visual fidelity unexecuted."
+      ],
+      "limits": [
+        "No live/paid agent CLI invoked; authored scenarios unexecuted against independent agent.",
+        "15 local failure hypotheses per research doc; no empirical prevalence or claimed highest-frequency ranking.",
+        "External source pages/branches are not installed-version or host compatibility evidence."
+      ],
+      "source_access": {
+        "date": "2026-10-14",
+        "status": "Primary documentation and relevant upstream implementation accessed; exact per-source scope in local research ledger",
+        "failed": []
+      },
+      "current_status": "IMPLEMENTED; deterministic package validation PASS; behavioral improvement UNVERIFIED",
+      "capability_ownership": "ditto: reference reconstruction and mismatch ledger; polish: independent design improvement.",
+      "workflow_cases": 11,
+      "workflow_execution": "authored, ungraded, no new agent execution",
+      "historical_outcome": "Preserved; not replaced by these local checks"
+    },
+    {
+      "skill": "proof",
+      "before": "Blanket mutation/property requirements and suite-green phrasing obscured skips/setup errors/partial runs; migration table mandated down.",
+      "change": "Risk-selective isolated sensitivity probes; actual outcome classes and installed-version caution; approved recovery path.",
+      "why": "pytest strict/non-strict outcome implementation and seeded known bug show process green alone is inadequate.",
+      "files": [
+        "skills/proof/SKILL.md",
+        "skills/proof/references/",
+        "docs/research/proof.md",
+        "evals/workflow/scenarios/proof.md"
+      ],
+      "tests": [
+        {
+          "label": "proof existing runner baseline",
+          "command": "python3 -m unittest discover -s tests -v",
+          "workdir": "/Users/uday/Skills/benchmarks/fixtures/proof-cart",
+          "chunk_id": "ab63ae",
+          "wall_time_seconds": 0.000005625,
+          "exit_code": 0,
+          "original_token_count": 84,
+          "output": "test_add_and_remove (test_cart.TestCart.test_add_and_remove) ... ok\ntest_empty_cart_totals_zero (test_cart.TestCart.test_empty_cart_totals_zero) ... ok\ntest_total_without_discount (test_cart.TestCart.test_total_without_discount) ... ok\n\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n"
+        },
+        {
+          "command": "scripts/validate-skills; scripts/check-names; scripts/check-links",
+          "observed": "Each command executed separately; exits 0. skills-ref unavailable, local strict validator ran.",
+          "evidence_type": "deterministic structure, not agent behavior"
+        },
+        {
+          "command": "scoped load_scenarios() check",
+          "observed": "11 cases per owned scenario file; no scoped schema errors.",
+          "evidence_type": "authored scenario shape"
+        }
+      ],
+      "observed_outcome": "Existing seed suite passes 3 tests; isolated added regression yields assertion 24.3 != 27.0 with 4 tests/1 failure; isolated correction passes all 4.",
+      "risks": [
+        "Fixture experiment validates test sensitivity, not comparative skill lift; target runtimes and RLS engine untested."
+      ],
+      "limits": [
+        "No live/paid agent CLI invoked; authored scenarios unexecuted against independent agent.",
+        "15 local failure hypotheses per research doc; no empirical prevalence or claimed highest-frequency ranking.",
+        "External source pages/branches are not installed-version or host compatibility evidence."
+      ],
+      "source_access": {
+        "date": "2026-10-14",
+        "status": "Primary documentation and relevant upstream implementation accessed; exact per-source scope in local research ledger",
+        "failed": []
+      },
+      "current_status": "IMPLEMENTED; deterministic package validation PASS; behavioral improvement UNVERIFIED",
+      "capability_ownership": "proof: cheapest faithful test oracle; sleuth: root cause; roadtest: browser claims.",
+      "workflow_cases": 11,
+      "workflow_execution": "authored, ungraded, no new agent execution",
+      "historical_outcome": "Preserved; not replaced by these local checks"
+    },
+    {
+      "skill": "roadtest",
+      "before": "Generated console-clean/network-clean labels contradicted legitimate negative-path responses; evidence template mentioned forbidden XPath.",
+      "change": "Contract-aware generated matrix, sanitized-log wording, documented locator fallback; conditional offline/WebRTC/device/instrumentation limits.",
+      "why": "Expected rejection can pass while fake success fails; emulation has transport boundaries.",
+      "files": [
+        "skills/roadtest/SKILL.md",
+        "skills/roadtest/references/",
+        "docs/research/roadtest.md",
+        "evals/workflow/scenarios/roadtest.md"
+      ],
+      "tests": [
+        {
+          "label": "roadtest negative matrix",
+          "command": "skills/roadtest/scripts/test-matrix --paths 'invalid checkout' --viewports 390 --states --json",
+          "workdir": "/Users/uday/Skills",
+          "chunk_id": "2da5e8",
+          "wall_time_seconds": 0.000004375,
+          "exit_code": 0,
+          "original_token_count": 94,
+          "output": "{\n  \"matrix\": [\n    {\n      \"path\": \"invalid checkout\",\n      \"viewport\": \"390\",\n      \"checks\": [\n        \"render\",\n        \"console-assessed\",\n        \"network-matches-contract\",\n        \"interaction-works\",\n        \"empty-state\",\n        \"error-state\",\n        \"loading-visible\",\n        \"success-feedback\"\n      ]\n    }\n  ],\n  \"bundle\": \"docs/reports/roadtest-<slug>/\"\n}\n"
+        },
+        {
+          "command": "scripts/validate-skills; scripts/check-names; scripts/check-links",
+          "observed": "Each command executed separately; exits 0. skills-ref unavailable, local strict validator ran.",
+          "evidence_type": "deterministic structure, not agent behavior"
+        },
+        {
+          "command": "scoped load_scenarios() check",
+          "observed": "11 cases per owned scenario file; no scoped schema errors.",
+          "evidence_type": "authored scenario shape"
+        }
+      ],
+      "observed_outcome": "Matrix CLI emits console-assessed and network-matches-contract for invalid checkout; no actual browser journey.",
+      "risks": [
+        "Console/network/device checks unexecuted; generated matrix is a charter, not a result."
+      ],
+      "limits": [
+        "No live/paid agent CLI invoked; authored scenarios unexecuted against independent agent.",
+        "15 local failure hypotheses per research doc; no empirical prevalence or claimed highest-frequency ranking.",
+        "External source pages/branches are not installed-version or host compatibility evidence."
+      ],
+      "source_access": {
+        "date": "2026-10-14",
+        "status": "Primary documentation and relevant upstream implementation accessed; exact per-source scope in local research ledger",
+        "failed": []
+      },
+      "current_status": "IMPLEMENTED; deterministic package validation PASS; behavioral improvement UNVERIFIED",
+      "capability_ownership": "roadtest: executed rendered interaction/evidence; proof: logic tests; friction/polish: task/design diagnosis.",
+      "workflow_cases": 11,
+      "workflow_execution": "authored, ungraded, no new agent execution",
+      "historical_outcome": "Preserved; not replaced by these local checks"
+    },
+    {
+      "skill": "hotpath",
+      "before": "measure-report identical values at threshold zero emitted significant=true/REVERT; EXPLAIN ANALYZE and arrival-generator hazards under-specified.",
+      "change": "Zero delta always NOISE; conditional diagnostic effects/load-model/generator/threshold limits.",
+      "why": "Reproduced helper baseline defect; PostgreSQL execution semantics and k6 dropped iterations limit safe inference.",
+      "files": [
+        "skills/hotpath/SKILL.md",
+        "skills/hotpath/references/",
+        "docs/research/hotpath.md",
+        "evals/workflow/scenarios/hotpath.md"
+      ],
+      "tests": [
+        {
+          "label": "hotpath unchanged result",
+          "command": "skills/hotpath/scripts/measure-report --baseline 100 --after 100 --threshold 0 --conditions 'synthetic equal samples' --json",
+          "workdir": "/Users/uday/Skills",
+          "chunk_id": "770700",
+          "wall_time_seconds": 0.000005375,
+          "exit_code": 1,
+          "original_token_count": 71,
+          "output": "{\n  \"label\": \"measurement\",\n  \"unit\": \"ms\",\n  \"baseline\": 100.0,\n  \"after\": 100.0,\n  \"delta\": 0.0,\n  \"delta_percent\": 0.0,\n  \"conditions\": \"synthetic equal samples\",\n  \"threshold\": 0.0,\n  \"significant\": false,\n  \"verdict\": \"NOISE: below threshold, complexity cost not justified\"\n}\n"
+        },
+        {
+          "label": "hotpath improvement arithmetic",
+          "command": "skills/hotpath/scripts/measure-report --baseline 100 --after 80 --threshold 0.1 --conditions 'synthetic arithmetic input, not a benchmark' --json",
+          "workdir": "/Users/uday/Skills",
+          "chunk_id": "cb95cb",
+          "wall_time_seconds": 0.0000055,
+          "exit_code": 0,
+          "original_token_count": 64,
+          "output": "{\n  \"label\": \"measurement\",\n  \"unit\": \"ms\",\n  \"baseline\": 100.0,\n  \"after\": 80.0,\n  \"delta\": -20.0,\n  \"delta_percent\": -20.0,\n  \"conditions\": \"synthetic arithmetic input, not a benchmark\",\n  \"threshold\": 0.1,\n  \"significant\": true,\n  \"verdict\": \"KEEP\"\n}\n"
+        },
+        {
+          "label": "hotpath regression arithmetic",
+          "command": "skills/hotpath/scripts/measure-report --baseline 100 --after 120 --threshold 0.1 --conditions 'synthetic arithmetic input, not a benchmark' --json",
+          "workdir": "/Users/uday/Skills",
+          "chunk_id": "0c06a0",
+          "wall_time_seconds": 0.00000375,
+          "exit_code": 1,
+          "original_token_count": 64,
+          "output": "{\n  \"label\": \"measurement\",\n  \"unit\": \"ms\",\n  \"baseline\": 100.0,\n  \"after\": 120.0,\n  \"delta\": 20.0,\n  \"delta_percent\": 20.0,\n  \"conditions\": \"synthetic arithmetic input, not a benchmark\",\n  \"threshold\": 0.1,\n  \"significant\": true,\n  \"verdict\": \"REVERT\"\n}\n"
+        },
+        {
+          "label": "hotpath invalid input",
+          "command": "skills/hotpath/scripts/measure-report --baseline nan --after 10 --threshold 0.1 --conditions 'synthetic invalid input' --json",
+          "workdir": "/Users/uday/Skills",
+          "chunk_id": "6e41ba",
+          "wall_time_seconds": 0.000008041,
+          "exit_code": 2,
+          "original_token_count": 15,
+          "output": "measure-report: measurements and threshold must be finite\n"
+        },
+        {
+          "command": "scripts/validate-skills; scripts/check-names; scripts/check-links",
+          "observed": "Each command executed separately; exits 0. skills-ref unavailable, local strict validator ran.",
+          "evidence_type": "deterministic structure, not agent behavior"
+        },
+        {
+          "command": "scoped load_scenarios() check",
+          "observed": "11 cases per owned scenario file; no scoped schema errors.",
+          "evidence_type": "authored scenario shape"
+        }
+      ],
+      "observed_outcome": "Original helper: equal 100/100 threshold0 -> significant=true REVERT; changed helper -> significant=false NOISE. Improvement/regression/NaN CLI cases behave as expected.",
+      "risks": [
+        "Helper arithmetic is not statistical significance or causal inference; no application latency speedup measured."
+      ],
+      "limits": [
+        "No live/paid agent CLI invoked; authored scenarios unexecuted against independent agent.",
+        "15 local failure hypotheses per research doc; no empirical prevalence or claimed highest-frequency ranking.",
+        "External source pages/branches are not installed-version or host compatibility evidence."
+      ],
+      "source_access": {
+        "date": "2026-10-14",
+        "status": "Primary documentation and relevant upstream implementation accessed; exact per-source scope in local research ledger",
+        "failed": []
+      },
+      "current_status": "IMPLEMENTED; deterministic package validation PASS; behavioral improvement UNVERIFIED",
+      "capability_ownership": "hotpath: measured code performance; headroom: workload forecast; backend: correctness of persisted effects.",
+      "workflow_cases": 11,
+      "workflow_execution": "authored, ungraded, no new agent execution",
+      "historical_outcome": "Preserved; not replaced by these local checks"
+    }
+  ],
+  "required_validator_results": [{"name":"scripts/validate-skills","chunk_id":"3e571a","wall_time_seconds":1.674218542,"exit_code":0,"original_token_count":45,"output":"INFO: skills-ref unavailable; local strict validation completed\nOK: 28 frontmatter blocks are strict and spec-shaped\nOK: 28 self-contained skills satisfy the repository contract\n"},{"name":"scripts/check-names","chunk_id":"b4e49e","wall_time_seconds":0.210274875,"exit_code":0,"original_token_count":10,"output":"OK: names follow the single-word system\n"},{"name":"scripts/check-links","chunk_id":"36babd","wall_time_seconds":1.8926498330000001,"exit_code":0,"original_token_count":17,"output":"OK: all bundled paths and inline local Markdown file targets exist\n"},{"name":"scripts/eval-workflow --check","chunk_id":"983b88","wall_time_seconds":0.00000675,"exit_code":1,"original_token_count":1149,"output":"FAIL: /Users/uday/Skills/evals/workflow/scenarios/concierge.md:58: unknown skill 'Upgrade cases — 2026-10-14'\nFAIL: /Users/uday/Skills/evals/workflow/scenarios/distill.md:56: unknown skill 'Upgrade cases — 2026-10-14'\nFAIL: /Users/uday/Skills/evals/workflow/scenarios/handsfree.md:73: unknown skill 'Upgrade cases — 2026-10-14'\nFAIL: /Users/uday/Skills/evals/workflow/scenarios/masterplan.md:55: unknown skill 'Upgrade cases — 2026-10-14'\nFAIL: /Users/uday/Skills/evals/workflow/scenarios/pilot.md:56: unknown skill 'Upgrade cases — 2026-10-14'\nFAIL: /Users/uday/Skills/evals/workflow/scenarios/recall.md:57: unknown skill 'Upgrade cases — 2026-10-14'\nFAIL: /Users/uday/Skills/evals/workflow/scenarios/scout.md:56: unknown skill 'Upgrade cases — 2026-10-14'\nFAIL: /Users/uday/Skills/evals/workflow/scenarios/spelunk.md:55: unknown skill 'Upgrade cases — 2026-10-14'\nFAIL: evals/workflow/scenarios/concierge.md:63: scenario has no known skill\nFAIL: evals/workflow/scenarios/concierge.md:71: scenario has no known skill\nFAIL: evals/workflow/scenarios/concierge.md:79: scenario has no known skill\nFAIL: evals/workflow/scenarios/concierge.md:87: scenario has no known skill\nFAIL: evals/workflow/scenarios/concierge.md:95: scenario has no known skill\nFAIL: evals/workflow/scenarios/distill.md:61: scenario has no known skill\nFAIL: evals/workflow/scenarios/distill.md:69: scenario has no known skill\nFAIL: evals/workflow/scenarios/distill.md:77: scenario has no known skill\nFAIL: evals/workflow/scenarios/distill.md:85: scenario has no known skill\nFAIL: evals/workflow/scenarios/distill.md:93: scenario has no known skill\nFAIL: evals/workflow/scenarios/handsfree.md:78: scenario has no known skill\nFAIL: evals/workflow/scenarios/handsfree.md:86: scenario has no known skill\nFAIL: evals/workflow/scenarios/handsfree.md:94: scenario has no known skill\nFAIL: evals/workflow/scenarios/handsfree.md:102: scenario has no known skill\nFAIL: evals/workflow/scenarios/handsfree.md:110: scenario has no known skill\nFAIL: evals/workflow/scenarios/hotseat.md:8: scenario has no known skill\nFAIL: evals/workflow/scenarios/hotseat.md:16: scenario has no known skill\nFAIL: evals/workflow/scenarios/hotseat.md:24: scenario has no known skill\nFAIL: evals/workflow/scenarios/hotseat.md:32: scenario has no known skill\nFAIL: evals/workflow/scenarios/hotseat.md:40: scenario has no known skill\nFAIL: evals/workflow/scenarios/hotseat.md:48: scenario has no known skill\nFAIL: evals/workflow/scenarios/hotseat.md:56: scenario has no known skill\nFAIL: evals/workflow/scenarios/hotseat.md:64: scenario has no known skill\nFAIL: evals/workflow/scenarios/hotseat.md:72: scenario has no known skill\nFAIL: evals/workflow/scenarios/hotseat.md:80: scenario has no known skill\nFAIL: evals/workflow/scenarios/masterplan.md:60: scenario has no known skill\nFAIL: evals/workflow/scenarios/masterplan.md:68: scenario has no known skill\nFAIL: evals/workflow/scenarios/masterplan.md:76: scenario has no known skill\nFAIL: evals/workflow/scenarios/masterplan.md:84: scenario has no known skill\nFAIL: evals/workflow/scenarios/masterplan.md:92: scenario has no known skill\nFAIL: evals/workflow/scenarios/pilot.md:61: scenario has no known skill\nFAIL: evals/workflow/scenarios/pilot.md:69: scenario has no known skill\nFAIL: evals/workflow/scenarios/pilot.md:77: scenario has no known skill\nFAIL: evals/workflow/scenarios/pilot.md:85: scenario has no known skill\nFAIL: evals/workflow/scenarios/pilot.md:93: scenario has no known skill\nFAIL: evals/workflow/scenarios/recall.md:62: scenario has no known skill\nFAIL: evals/workflow/scenarios/recall.md:70: scenario has no known skill\nFAIL: evals/workflow/scenarios/recall.md:78: scenario has no known skill\nFAIL: evals/workflow/scenarios/recall.md:86: scenario has no known skill\nFAIL: evals/workflow/scenarios/recall.md:94: scenario has no known skill\nFAIL: evals/workflow/scenarios/scout.md:61: scenario has no known skill\nFAIL: evals/workflow/scenarios/scout.md:69: scenario has no known skill\nFAIL: evals/workflow/scenarios/scout.md:77: scenario has no known skill\nFAIL: evals/workflow/scenarios/scout.md:85: scenario has no known skill\nFAIL: evals/workflow/scenarios/scout.md:93: scenario has no known skill\nFAIL: evals/workflow/scenarios/spelunk.md:60: scenario has no known skill\nFAIL: evals/workflow/scenarios/spelunk.md:68: scenario has no known skill\nFAIL: evals/workflow/scenarios/spelunk.md:76: scenario has no known skill\nFAIL: evals/workflow/scenarios/spelunk.md:84: scenario has no known skill\nFAIL: evals/workflow/scenarios/spelunk.md:92: scenario has no known skill\n"}],
+  "verification_limits": "A shared-tree workflow --check initially failed on other owners' in-progress headings; this is retained as a failure, not overridden by scoped shape success. A custom runpy check initially needed scripts on sys.path and was rerun correctly."
+}

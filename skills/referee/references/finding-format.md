@@ -68,11 +68,10 @@ halves or delete it.
   taste loses to house style.
 - Names say what things are for; the complex part has the comment
   explaining *why* (not *what*).
-- Complexity proportionate: is there a simpler version that meets the
-  criteria? If yes, that's a major with a sketch.
+- Complexity proportionate: identify a concrete correctness or maintenance cost before assigning severity. A simpler alternative alone is a suggestion, not a major finding.
 
 **API/DB surface changes**
-- Breaking changes flagged and versioned; migration has a down-path.
+- Breaking changes flagged and versioned; migration has a compatible rollback or evidenced recovery/forward-fix plan. A destructive down migration is not automatically safe recovery.
 - **Context Verification:** If a signature changed, were all upstream callers verified/updated? Reviewing the signature change without searching the repo for callers is an invalid review.
 
 ## The empty review vs. LGTM Syndrome

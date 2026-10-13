@@ -1,0 +1,716 @@
+{
+  "schema": "packages/1",
+  "date": "2026-10-13T19:26:03.786016+00:00",
+  "platform": "darwin",
+  "python": "3.14.6",
+  "kind": "cli-local-source",
+  "runtime_activation": "UNVERIFIED",
+  "skills": [
+    {
+      "skill": "backend",
+      "status": "PASS",
+      "cli_exit": 0,
+      "cli_output": "\n\u2502\n\u25cf   codex  Agent detected \u2014 installing non-interactively\n\u001b[?25l\u2502\n\u25c7  Source: /var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/skills-packages-yiub4ils/source/backend\n\u001b[?25h\u001b[?25l\u2502\n\u25c7  Local path validated\n\u001b[?25h\u001b[?25l\u2502\n\u25c7  Found 1 skill\n\u001b[?25h\u2502\n\u25cf  Selected 1 skill: backend\n\n\u2502\n\u25c7  Installation Summary \u2500\u2500\u2500\u2500\u2500\u256e\n\u2502                            \u2502\n\u2502  ./.agents/skills/backend  \u2502\n\u2502    copy \u2192 Codex            \u2502\n\u2502                            \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\u001b[?25l\u2502\n\u25c7  Installation complete\n\u001b[?25h\n\u2502\n\u25c7  Installed 1 skill \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e\n\u2502                                \u2502\n\u2502  \u2713 backend (copied)            \u2502\n\u2502    \u2192 ./.agents/skills/backend  \u2502\n\u2502                                \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\n\u2502\n\u2514  Done!  Review skills before use; they run with full agent permissions.\n\n",
+      "files": 4,
+      "manifest": {
+        "SKILL.md": {
+          "sha256": "4fede7f8dde8d342c5ee6b5e3500928fc903a24b9c6c3242c1a049c8486a07f5",
+          "executable": false
+        },
+        "references/boundary-cases.md": {
+          "sha256": "5da1ff45c8013ba75b09eaf93fc9d7f8b36c8f826f7e44f79a2c9ec722a6da09",
+          "executable": false
+        },
+        "references/checklists.md": {
+          "sha256": "94bb9b245f04694c4c7eb211d1d6f98eee41f6a6a3f89c4434b91499dbdd9aa2",
+          "executable": false
+        },
+        "references/research.md": {
+          "sha256": "f07092ca7661e500315519c908d0377d50ff8838fa2b4a4295f6d6b1e5daea1b",
+          "executable": false
+        }
+      }
+    },
+    {
+      "skill": "blueprint",
+      "status": "PASS",
+      "cli_exit": 0,
+      "cli_output": "\n\u2502\n\u25cf   codex  Agent detected \u2014 installing non-interactively\n\u001b[?25l\u2502\n\u25c7  Source: /var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/skills-packages-yiub4ils/source/blueprint\n\u001b[?25h\u001b[?25l\u2502\n\u25c7  Local path validated\n\u001b[?25h\u001b[?25l\u2502\n\u25c7  Found 1 skill\n\u001b[?25h\u2502\n\u25cf  Selected 1 skill: blueprint\n\n\u2502\n\u25c7  Installation Summary \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e\n\u2502                              \u2502\n\u2502  ./.agents/skills/blueprint  \u2502\n\u2502    copy \u2192 Codex              \u2502\n\u2502                              \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\u001b[?25l\u2502\n\u25c7  Installation complete\n\u001b[?25h\n\u2502\n\u25c7  Installed 1 skill \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e\n\u2502                                  \u2502\n\u2502  \u2713 blueprint (copied)            \u2502\n\u2502    \u2192 ./.agents/skills/blueprint  \u2502\n\u2502                                  \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\n\u2502\n\u2514  Done!  Review skills before use; they run with full agent permissions.\n\n",
+      "files": 6,
+      "manifest": {
+        "SKILL.md": {
+          "sha256": "355f8119554b338753aabefa295fdd21f25313a86df3358c8baf5c77824f145f",
+          "executable": false
+        },
+        "assets/template.html": {
+          "sha256": "31531dbe5376dccb407b7955719de04d460c32228d8d22c70c1fa50a8ad16ed4",
+          "executable": false
+        },
+        "references/diagram-guide.md": {
+          "sha256": "f78ef3c13db0ec61415052fbb669bcdd3202f7e82c4c0a3a4b546f5593b24031",
+          "executable": false
+        },
+        "references/rendering.md": {
+          "sha256": "251c2ef90e764ccb245d04a5c1d2fcbe6574f6501569202a4116bed13fcebd23",
+          "executable": false
+        },
+        "references/research.md": {
+          "sha256": "972cba638a36052e16de6f111e9d906e50fea7bbb36f1eb4140c0c81f2b7be6b",
+          "executable": false
+        },
+        "scripts/validate-mermaid": {
+          "sha256": "cc48c624c8e296493f480cfdfdadf612a207886261191052529261e90ac340aa",
+          "executable": true
+        }
+      }
+    },
+    {
+      "skill": "cleared",
+      "status": "PASS",
+      "cli_exit": 0,
+      "cli_output": "\n\u2502\n\u25cf   codex  Agent detected \u2014 installing non-interactively\n\u001b[?25l\u2502\n\u25c7  Source: /var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/skills-packages-yiub4ils/source/cleared\n\u001b[?25h\u001b[?25l\u2502\n\u25c7  Local path validated\n\u001b[?25h\u001b[?25l\u2502\n\u25c7  Found 1 skill\n\u001b[?25h\u2502\n\u25cf  Selected 1 skill: cleared\n\n\u2502\n\u25c7  Installation Summary \u2500\u2500\u2500\u2500\u2500\u256e\n\u2502                            \u2502\n\u2502  ./.agents/skills/cleared  \u2502\n\u2502    copy \u2192 Codex            \u2502\n\u2502                            \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\u001b[?25l\u2502\n\u25c7  Installation complete\n\u001b[?25h\n\u2502\n\u25c7  Installed 1 skill \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e\n\u2502                                \u2502\n\u2502  \u2713 cleared (copied)            \u2502\n\u2502    \u2192 ./.agents/skills/cleared  \u2502\n\u2502                                \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\n\u2502\n\u2514  Done!  Review skills before use; they run with full agent permissions.\n\n",
+      "files": 3,
+      "manifest": {
+        "SKILL.md": {
+          "sha256": "fc4052c0b079283f52ec7df39ca8edf695df8c8a98b993e53a70b16618eb7fef",
+          "executable": false
+        },
+        "references/gate-dimensions.md": {
+          "sha256": "19791ff20bf60798884463ee89d4e560d659c30738a8872dfb2952a1ecf2f996",
+          "executable": false
+        },
+        "references/research.md": {
+          "sha256": "0b778a92665a586a076dc1e8b5948818e636937294f400b4b8bb8689989838ef",
+          "executable": false
+        }
+      }
+    },
+    {
+      "skill": "concierge",
+      "status": "PASS",
+      "cli_exit": 0,
+      "cli_output": "\n\u2502\n\u25cf   codex  Agent detected \u2014 installing non-interactively\n\u001b[?25l\u2502\n\u25c7  Source: /var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/skills-packages-yiub4ils/source/concierge\n\u001b[?25h\u001b[?25l\u2502\n\u25c7  Local path validated\n\u001b[?25h\u001b[?25l\u2502\n\u25c7  Found 1 skill\n\u001b[?25h\u2502\n\u25cf  Selected 1 skill: concierge\n\n\u2502\n\u25c7  Installation Summary \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e\n\u2502                              \u2502\n\u2502  ./.agents/skills/concierge  \u2502\n\u2502    copy \u2192 Codex              \u2502\n\u2502                              \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\u001b[?25l\u2502\n\u25c7  Installation complete\n\u001b[?25h\n\u2502\n\u25c7  Installed 1 skill \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e\n\u2502                                  \u2502\n\u2502  \u2713 concierge (copied)            \u2502\n\u2502    \u2192 ./.agents/skills/concierge  \u2502\n\u2502                                  \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\n\u2502\n\u2514  Done!  Review skills before use; they run with full agent permissions.\n\n",
+      "files": 4,
+      "manifest": {
+        "SKILL.md": {
+          "sha256": "260d513c0f66a901cf15e9a12315202484122156f0ae989fa75c249063fd1e5c",
+          "executable": false
+        },
+        "references/capability-degradation.md": {
+          "sha256": "58a598205207aa410a68d39a1b4be79c2da288d4419b55b5428768edb032543c",
+          "executable": false
+        },
+        "references/research.md": {
+          "sha256": "62bd176a4f3b7a8c4452d484649131d90b582ffa9ce865a0c28e59b0be0c2f1f",
+          "executable": false
+        },
+        "references/routing.md": {
+          "sha256": "31fbb020af0853816f3cfcf2a53794b27caac790b400118f60a45921fe1f1047",
+          "executable": false
+        }
+      }
+    },
+    {
+      "skill": "distill",
+      "status": "PASS",
+      "cli_exit": 0,
+      "cli_output": "\n\u2502\n\u25cf   codex  Agent detected \u2014 installing non-interactively\n\u001b[?25l\u2502\n\u25c7  Source: /var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/skills-packages-yiub4ils/source/distill\n\u001b[?25h\u001b[?25l\u2502\n\u25c7  Local path validated\n\u001b[?25h\u001b[?25l\u2502\n\u25c7  Found 1 skill\n\u001b[?25h\u2502\n\u25cf  Selected 1 skill: distill\n\n\u2502\n\u25c7  Installation Summary \u2500\u2500\u2500\u2500\u2500\u256e\n\u2502                            \u2502\n\u2502  ./.agents/skills/distill  \u2502\n\u2502    copy \u2192 Codex            \u2502\n\u2502                            \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\u001b[?25l\u2502\n\u25c7  Installation complete\n\u001b[?25h\n\u2502\n\u25c7  Installed 1 skill \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e\n\u2502                                \u2502\n\u2502  \u2713 distill (copied)            \u2502\n\u2502    \u2192 ./.agents/skills/distill  \u2502\n\u2502                                \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\n\u2502\n\u2514  Done!  Review skills before use; they run with full agent permissions.\n\n",
+      "files": 3,
+      "manifest": {
+        "SKILL.md": {
+          "sha256": "7200b99ad03827aedcb08f545c777e1dfa0f674dccab8c4322de4c6ae05c09e0",
+          "executable": false
+        },
+        "references/brief-template.md": {
+          "sha256": "38a75c0c936904ba9025ce517193f1638b0f58508817c24c0c91728661e06649",
+          "executable": false
+        },
+        "references/research.md": {
+          "sha256": "b987fda71471f9d476449b320954f22c21493a1c04b00112809e5a35ec0281b0",
+          "executable": false
+        }
+      }
+    },
+    {
+      "skill": "ditto",
+      "status": "PASS",
+      "cli_exit": 0,
+      "cli_output": "\n\u2502\n\u25cf   codex  Agent detected \u2014 installing non-interactively\n\u001b[?25l\u2502\n\u25c7  Source: /var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/skills-packages-yiub4ils/source/ditto\n\u001b[?25h\u001b[?25l\u2502\n\u25c7  Local path validated\n\u001b[?25h\u001b[?25l\u2502\n\u25c7  Found 1 skill\n\u001b[?25h\u2502\n\u25cf  Selected 1 skill: ditto\n\n\u2502\n\u25c7  Installation Summary \u2500\u2500\u2500\u256e\n\u2502                          \u2502\n\u2502  ./.agents/skills/ditto  \u2502\n\u2502    copy \u2192 Codex          \u2502\n\u2502                          \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\u001b[?25l\u2502\n\u25c7  Installation complete\n\u001b[?25h\n\u2502\n\u25c7  Installed 1 skill \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e\n\u2502                              \u2502\n\u2502  \u2713 ditto (copied)            \u2502\n\u2502    \u2192 ./.agents/skills/ditto  \u2502\n\u2502                              \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\n\u2502\n\u2514  Done!  Review skills before use; they run with full agent permissions.\n\n",
+      "files": 4,
+      "manifest": {
+        "SKILL.md": {
+          "sha256": "c3283b357b779e79dbcc75d531c7d408c4304cf050a3eaec843febceb0e9d014",
+          "executable": false
+        },
+        "references/comparison-controls.md": {
+          "sha256": "aa19ba823450d44f139b1dfc164cfd06c8c7ee0b1272a65231de9133c0699b4c",
+          "executable": false
+        },
+        "references/research.md": {
+          "sha256": "9d1d7a873b1971baa8c76528294f545b50c1be13e6a1387cdae98957aa15bd6b",
+          "executable": false
+        },
+        "references/sourcing-rules.md": {
+          "sha256": "5d97069fb162f2e50b659f3855fe983ab570c9324b57985ade4abaaafe6672f8",
+          "executable": false
+        }
+      }
+    },
+    {
+      "skill": "findable",
+      "status": "PASS",
+      "cli_exit": 0,
+      "cli_output": "\n\u2502\n\u25cf   codex  Agent detected \u2014 installing non-interactively\n\u001b[?25l\u2502\n\u25c7  Source: /var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/skills-packages-yiub4ils/source/findable\n\u001b[?25h\u001b[?25l\u2502\n\u25c7  Local path validated\n\u001b[?25h\u001b[?25l\u2502\n\u25c7  Found 1 skill\n\u001b[?25h\u2502\n\u25cf  Selected 1 skill: findable\n\n\u2502\n\u25c7  Installation Summary \u2500\u2500\u2500\u2500\u2500\u2500\u256e\n\u2502                             \u2502\n\u2502  ./.agents/skills/findable  \u2502\n\u2502    copy \u2192 Codex             \u2502\n\u2502                             \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\u001b[?25l\u2502\n\u25c7  Installation complete\n\u001b[?25h\n\u2502\n\u25c7  Installed 1 skill \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e\n\u2502                                 \u2502\n\u2502  \u2713 findable (copied)            \u2502\n\u2502    \u2192 ./.agents/skills/findable  \u2502\n\u2502                                 \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\n\u2502\n\u2514  Done!  Review skills before use; they run with full agent permissions.\n\n",
+      "files": 3,
+      "manifest": {
+        "SKILL.md": {
+          "sha256": "b04fa70dac147f22c5f4babe3f81dd0a383f72053b571144c4899b47100ba114",
+          "executable": false
+        },
+        "references/research.md": {
+          "sha256": "0733395881ef91b7ddec9a271d600609e5fd64c687ba4bec92cc37fb62faa28a",
+          "executable": false
+        },
+        "references/seo-checklist.md": {
+          "sha256": "eafe261ce1f77d9ace839bb8f4ec3dd518fdd34c57ecaa5ad5acc763a911675c",
+          "executable": false
+        }
+      }
+    },
+    {
+      "skill": "friction",
+      "status": "PASS",
+      "cli_exit": 0,
+      "cli_output": "\n\u2502\n\u25cf   codex  Agent detected \u2014 installing non-interactively\n\u001b[?25l\u2502\n\u25c7  Source: /var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/skills-packages-yiub4ils/source/friction\n\u001b[?25h\u001b[?25l\u2502\n\u25c7  Local path validated\n\u001b[?25h\u001b[?25l\u2502\n\u25c7  Found 1 skill\n\u001b[?25h\u2502\n\u25cf  Selected 1 skill: friction\n\n\u2502\n\u25c7  Installation Summary \u2500\u2500\u2500\u2500\u2500\u2500\u256e\n\u2502                             \u2502\n\u2502  ./.agents/skills/friction  \u2502\n\u2502    copy \u2192 Codex             \u2502\n\u2502                             \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\u001b[?25l\u2502\n\u25c7  Installation complete\n\u001b[?25h\n\u2502\n\u25c7  Installed 1 skill \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e\n\u2502                                 \u2502\n\u2502  \u2713 friction (copied)            \u2502\n\u2502    \u2192 ./.agents/skills/friction  \u2502\n\u2502                                 \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\n\u2502\n\u2514  Done!  Review skills before use; they run with full agent permissions.\n\n",
+      "files": 4,
+      "manifest": {
+        "SKILL.md": {
+          "sha256": "68a37d0a7caded8fc54bb01689b0642e2b0f291cfddb99f4af2ffd9cd2376aa9",
+          "executable": false
+        },
+        "references/recovery-journeys.md": {
+          "sha256": "1579bdd38873bbcde00e7ca04920cca431bf0e600ee749c6c24a4cd6b711d508",
+          "executable": false
+        },
+        "references/research.md": {
+          "sha256": "2e9f6ffce951b29f16dc526e64aa6f20e4d9a0079da2579739b473512bf35921",
+          "executable": false
+        },
+        "references/usability-checklist.md": {
+          "sha256": "3ddf5c528ade67ddc76cc16988b6b85c0faabfc4210e054c0c86694699677cc4",
+          "executable": false
+        }
+      }
+    },
+    {
+      "skill": "frontpage",
+      "status": "PASS",
+      "cli_exit": 0,
+      "cli_output": "\n\u2502\n\u25cf   codex  Agent detected \u2014 installing non-interactively\n\u001b[?25l\u2502\n\u25c7  Source: /var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/skills-packages-yiub4ils/source/frontpage\n\u001b[?25h\u001b[?25l\u2502\n\u25c7  Local path validated\n\u001b[?25h\u001b[?25l\u2502\n\u25c7  Found 1 skill\n\u001b[?25h\u2502\n\u25cf  Selected 1 skill: frontpage\n\n\u2502\n\u25c7  Installation Summary \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e\n\u2502                              \u2502\n\u2502  ./.agents/skills/frontpage  \u2502\n\u2502    copy \u2192 Codex              \u2502\n\u2502                              \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\u001b[?25l\u2502\n\u25c7  Installation complete\n\u001b[?25h\n\u2502\n\u25c7  Installed 1 skill \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e\n\u2502                                  \u2502\n\u2502  \u2713 frontpage (copied)            \u2502\n\u2502    \u2192 ./.agents/skills/frontpage  \u2502\n\u2502                                  \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\n\u2502\n\u2514  Done!  Review skills before use; they run with full agent permissions.\n\n",
+      "files": 3,
+      "manifest": {
+        "SKILL.md": {
+          "sha256": "28b93ceee4afa6f9115ec6d6d6963294b14d37726c87ab14c69fa86ac8241198",
+          "executable": false
+        },
+        "references/readme-blueprint.md": {
+          "sha256": "b15f04fe0942bf6c6d72fce7dcc30eec9023f67fb0d51b07502e83d8ae49cc39",
+          "executable": false
+        },
+        "references/research.md": {
+          "sha256": "209f531372152c571ebcfff4e55b5b4352c72586758eb7df21a56dedfd1ba127",
+          "executable": false
+        }
+      }
+    },
+    {
+      "skill": "frugal",
+      "status": "PASS",
+      "cli_exit": 0,
+      "cli_output": "\n\u2502\n\u25cf   codex  Agent detected \u2014 installing non-interactively\n\u001b[?25l\u2502\n\u25c7  Source: /var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/skills-packages-yiub4ils/source/frugal\n\u001b[?25h\u001b[?25l\u2502\n\u25c7  Local path validated\n\u001b[?25h\u001b[?25l\u2502\n\u25c7  Found 1 skill\n\u001b[?25h\u2502\n\u25cf  Selected 1 skill: frugal\n\n\u2502\n\u25c7  Installation Summary \u2500\u2500\u2500\u2500\u256e\n\u2502                           \u2502\n\u2502  ./.agents/skills/frugal  \u2502\n\u2502    copy \u2192 Codex           \u2502\n\u2502                           \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\u001b[?25l\u2502\n\u25c7  Installation complete\n\u001b[?25h\n\u2502\n\u25c7  Installed 1 skill \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e\n\u2502                               \u2502\n\u2502  \u2713 frugal (copied)            \u2502\n\u2502    \u2192 ./.agents/skills/frugal  \u2502\n\u2502                               \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\n\u2502\n\u2514  Done!  Review skills before use; they run with full agent permissions.\n\n",
+      "files": 4,
+      "manifest": {
+        "SKILL.md": {
+          "sha256": "011dce36957e628530523ae68d4e4ae514a5445d728e4af1ddb44490f6d66698",
+          "executable": false
+        },
+        "references/budget-protocol.md": {
+          "sha256": "223d7ad5f491f90b01561c88b10d092a153f543482b37408647c95d51083bf7a",
+          "executable": false
+        },
+        "references/measurement.md": {
+          "sha256": "14f6aa1eae6617710e48cd3180da9dea46e70355013718be2a491741eb395cc0",
+          "executable": false
+        },
+        "references/research.md": {
+          "sha256": "4412c5c956e39863937e6f78dad091fdab23d68c319ec0a0ac453aea57743214",
+          "executable": false
+        }
+      }
+    },
+    {
+      "skill": "handsfree",
+      "status": "PASS",
+      "cli_exit": 0,
+      "cli_output": "\n\u2502\n\u25cf   codex  Agent detected \u2014 installing non-interactively\n\u001b[?25l\u2502\n\u25c7  Source: /var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/skills-packages-yiub4ils/source/handsfree\n\u001b[?25h\u001b[?25l\u2502\n\u25c7  Local path validated\n\u001b[?25h\u001b[?25l\u2502\n\u25c7  Found 1 skill\n\u001b[?25h\u2502\n\u25cf  Selected 1 skill: handsfree\n\n\u2502\n\u25c7  Installation Summary \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e\n\u2502                              \u2502\n\u2502  ./.agents/skills/handsfree  \u2502\n\u2502    copy \u2192 Codex              \u2502\n\u2502                              \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\u001b[?25l\u2502\n\u25c7  Installation complete\n\u001b[?25h\n\u2502\n\u25c7  Installed 1 skill \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e\n\u2502                                  \u2502\n\u2502  \u2713 handsfree (copied)            \u2502\n\u2502    \u2192 ./.agents/skills/handsfree  \u2502\n\u2502                                  \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\n\u2502\n\u2514  Done!  Review skills before use; they run with full agent permissions.\n\n",
+      "files": 5,
+      "manifest": {
+        "SKILL.md": {
+          "sha256": "e1f5faa4d703df87ed0be85e22a2050ab8ccbb12e2556172ab7b5213d1e5a6e9",
+          "executable": false
+        },
+        "references/decision-policy.md": {
+          "sha256": "c1be2d4b2df96b28a71674bfa334e3488a4be164184fc9a970dec656b081a050",
+          "executable": false
+        },
+        "references/execution-record.md": {
+          "sha256": "cb615cb8a2487d4a6c5bde9b2e0336d90c330f929b1fc0313f394b3128031be6",
+          "executable": false
+        },
+        "references/host-permissions.md": {
+          "sha256": "ffbda24addf4c3c9fa176fa7dbc478c90942258f9905f8c46aa2d8a32e7069a2",
+          "executable": false
+        },
+        "references/research.md": {
+          "sha256": "36a794513d75dcfd7c40460212c3bb7baaa195b043ddcf543ae64a138d6a2406",
+          "executable": false
+        }
+      }
+    },
+    {
+      "skill": "harden",
+      "status": "PASS",
+      "cli_exit": 0,
+      "cli_output": "\n\u2502\n\u25cf   codex  Agent detected \u2014 installing non-interactively\n\u001b[?25l\u2502\n\u25c7  Source: /var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/skills-packages-yiub4ils/source/harden\n\u001b[?25h\u001b[?25l\u2502\n\u25c7  Local path validated\n\u001b[?25h\u001b[?25l\u2502\n\u25c7  Found 1 skill\n\u001b[?25h\u2502\n\u25cf  Selected 1 skill: harden\n\n\u2502\n\u25c7  Installation Summary \u2500\u2500\u2500\u2500\u256e\n\u2502                           \u2502\n\u2502  ./.agents/skills/harden  \u2502\n\u2502    copy \u2192 Codex           \u2502\n\u2502                           \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\u001b[?25l\u2502\n\u25c7  Installation complete\n\u001b[?25h\n\u2502\n\u25c7  Installed 1 skill \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e\n\u2502                               \u2502\n\u2502  \u2713 harden (copied)            \u2502\n\u2502    \u2192 ./.agents/skills/harden  \u2502\n\u2502                               \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\n\u2502\n\u2514  Done!  Review skills before use; they run with full agent permissions.\n\n",
+      "files": 3,
+      "manifest": {
+        "SKILL.md": {
+          "sha256": "4d526443b4787b7611c58254c57130929fbd8bea2017974e2eccc72302641c38",
+          "executable": false
+        },
+        "references/attack-surface.md": {
+          "sha256": "c9b9a2f910d469313924961a2e6de09e1669b527991cf2261d2a8d0901da7267",
+          "executable": false
+        },
+        "references/research.md": {
+          "sha256": "af4b25375f2ce8a25c45f6c5621733be53173ab7f5db6c5a534a77ac703a14f2",
+          "executable": false
+        }
+      }
+    },
+    {
+      "skill": "headroom",
+      "status": "PASS",
+      "cli_exit": 0,
+      "cli_output": "\n\u2502\n\u25cf   codex  Agent detected \u2014 installing non-interactively\n\u001b[?25l\u2502\n\u25c7  Source: /var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/skills-packages-yiub4ils/source/headroom\n\u001b[?25h\u001b[?25l\u2502\n\u25c7  Local path validated\n\u001b[?25h\u001b[?25l\u2502\n\u25c7  Found 1 skill\n\u001b[?25h\u2502\n\u25cf  Selected 1 skill: headroom\n\n\u2502\n\u25c7  Installation Summary \u2500\u2500\u2500\u2500\u2500\u2500\u256e\n\u2502                             \u2502\n\u2502  ./.agents/skills/headroom  \u2502\n\u2502    copy \u2192 Codex             \u2502\n\u2502                             \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\u001b[?25l\u2502\n\u25c7  Installation complete\n\u001b[?25h\n\u2502\n\u25c7  Installed 1 skill \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e\n\u2502                                 \u2502\n\u2502  \u2713 headroom (copied)            \u2502\n\u2502    \u2192 ./.agents/skills/headroom  \u2502\n\u2502                                 \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\n\u2502\n\u2514  Done!  Review skills before use; they run with full agent permissions.\n\n",
+      "files": 4,
+      "manifest": {
+        "SKILL.md": {
+          "sha256": "478e4824793ea2409053ffc02b99b3379aa961ebe3b8d9471300765f0eb1ede4",
+          "executable": false
+        },
+        "references/dimensions.md": {
+          "sha256": "2ef5e8733394d458bcb8a9e0f2decfd7f2ae83f01441ebc652621867fd43f848",
+          "executable": false
+        },
+        "references/research.md": {
+          "sha256": "0b4a461e0288cc41611183e0eccdf8b40dd9242b4d459187d5eac884d5e579ca",
+          "executable": false
+        },
+        "references/workload-experiments.md": {
+          "sha256": "a9f970ae712f20e9a09d51bb7b8da7785e929a5d21d5c25be9738ae8eb8e5a86",
+          "executable": false
+        }
+      }
+    },
+    {
+      "skill": "hotpath",
+      "status": "PASS",
+      "cli_exit": 0,
+      "cli_output": "\n\u2502\n\u25cf   codex  Agent detected \u2014 installing non-interactively\n\u001b[?25l\u2502\n\u25c7  Source: /var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/skills-packages-yiub4ils/source/hotpath\n\u001b[?25h\u001b[?25l\u2502\n\u25c7  Local path validated\n\u001b[?25h\u001b[?25l\u2502\n\u25c7  Found 1 skill\n\u001b[?25h\u2502\n\u25cf  Selected 1 skill: hotpath\n\n\u2502\n\u25c7  Installation Summary \u2500\u2500\u2500\u2500\u2500\u256e\n\u2502                            \u2502\n\u2502  ./.agents/skills/hotpath  \u2502\n\u2502    copy \u2192 Codex            \u2502\n\u2502                            \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\u001b[?25l\u2502\n\u25c7  Installation complete\n\u001b[?25h\n\u2502\n\u25c7  Installed 1 skill \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e\n\u2502                                \u2502\n\u2502  \u2713 hotpath (copied)            \u2502\n\u2502    \u2192 ./.agents/skills/hotpath  \u2502\n\u2502                                \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\n\u2502\n\u2514  Done!  Review skills before use; they run with full agent permissions.\n\n",
+      "files": 5,
+      "manifest": {
+        "SKILL.md": {
+          "sha256": "7dcdb2f97017a608d9df946bbb4648f632f8012a6d5b764148c55dd684e232dd",
+          "executable": false
+        },
+        "references/experiment-hazards.md": {
+          "sha256": "87fcd264e4f542ebc66b429dd00b7316953b097f74b4de84fa25d777aae99f44",
+          "executable": false
+        },
+        "references/measurement.md": {
+          "sha256": "f8789646b4fdfc4374a73954cde87e7802ed65350ec2b3e8eb8a8d055f3b7032",
+          "executable": false
+        },
+        "references/research.md": {
+          "sha256": "10743c25e3e721b3703d155978c5a90554ad6d7a5d1af3a65616ad896d72a39d",
+          "executable": false
+        },
+        "scripts/measure-report": {
+          "sha256": "1bd180a19069cfbf505acefbe860215e675e0483376eb4a37dccb0100833f06c",
+          "executable": true
+        }
+      }
+    },
+    {
+      "skill": "hotseat",
+      "status": "PASS",
+      "cli_exit": 0,
+      "cli_output": "\n\u2502\n\u25cf   codex  Agent detected \u2014 installing non-interactively\n\u001b[?25l\u2502\n\u25c7  Source: /var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/skills-packages-yiub4ils/source/hotseat\n\u001b[?25h\u001b[?25l\u2502\n\u25c7  Local path validated\n\u001b[?25h\u001b[?25l\u2502\n\u25c7  Found 1 skill\n\u001b[?25h\u2502\n\u25cf  Selected 1 skill: hotseat\n\n\u2502\n\u25c7  Installation Summary \u2500\u2500\u2500\u2500\u2500\u256e\n\u2502                            \u2502\n\u2502  ./.agents/skills/hotseat  \u2502\n\u2502    copy \u2192 Codex            \u2502\n\u2502                            \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\u001b[?25l\u2502\n\u25c7  Installation complete\n\u001b[?25h\n\u2502\n\u25c7  Installed 1 skill \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e\n\u2502                                \u2502\n\u2502  \u2713 hotseat (copied)            \u2502\n\u2502    \u2192 ./.agents/skills/hotseat  \u2502\n\u2502                                \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\n\u2502\n\u2514  Done!  Review skills before use; they run with full agent permissions.\n\n",
+      "files": 3,
+      "manifest": {
+        "SKILL.md": {
+          "sha256": "cd7a89f699d09cc56ef297a7f18db7fed8378541db5385ab5fb834be35fd47b5",
+          "executable": false
+        },
+        "references/personas.md": {
+          "sha256": "e8a7552a159f8f185f133e1824eef4860f19d1ba86298f87dcef7fffa3dfed47",
+          "executable": false
+        },
+        "references/research.md": {
+          "sha256": "2dc69e95a54513bf781da01cc02d29ec8d8a79a016bf4ffe9eb0f1673ba909b1",
+          "executable": false
+        }
+      }
+    },
+    {
+      "skill": "janitor",
+      "status": "PASS",
+      "cli_exit": 0,
+      "cli_output": "\n\u2502\n\u25cf   codex  Agent detected \u2014 installing non-interactively\n\u001b[?25l\u2502\n\u25c7  Source: /var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/skills-packages-yiub4ils/source/janitor\n\u001b[?25h\u001b[?25l\u2502\n\u25c7  Local path validated\n\u001b[?25h\u001b[?25l\u2502\n\u25c7  Found 1 skill\n\u001b[?25h\u2502\n\u25cf  Selected 1 skill: janitor\n\n\u2502\n\u25c7  Installation Summary \u2500\u2500\u2500\u2500\u2500\u256e\n\u2502                            \u2502\n\u2502  ./.agents/skills/janitor  \u2502\n\u2502    copy \u2192 Codex            \u2502\n\u2502                            \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\u001b[?25l\u2502\n\u25c7  Installation complete\n\u001b[?25h\n\u2502\n\u25c7  Installed 1 skill \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e\n\u2502                                \u2502\n\u2502  \u2713 janitor (copied)            \u2502\n\u2502    \u2192 ./.agents/skills/janitor  \u2502\n\u2502                                \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\n\u2502\n\u2514  Done!  Review skills before use; they run with full agent permissions.\n\n",
+      "files": 4,
+      "manifest": {
+        "SKILL.md": {
+          "sha256": "3172d1170c9122fc3cfb7ad818cebe3a75dc0aef30072ba9492b8a8089e4f984",
+          "executable": false
+        },
+        "references/hygiene-checklists.md": {
+          "sha256": "ecdeae900ff2dd3399ab97a0a8a1eef800b06007b368d8194098cfb719163c4b",
+          "executable": false
+        },
+        "references/maintenance-protocol.md": {
+          "sha256": "4b6b1b6cd6aedb9de68466b2d437008724d0dab688ab27cc823f46de5c829944",
+          "executable": false
+        },
+        "references/research.md": {
+          "sha256": "3c76cf58c96cd8a3ae2939d4e1c8f84b15141e8cdce5966b07c5b0f01d8da548",
+          "executable": false
+        }
+      }
+    },
+    {
+      "skill": "masterplan",
+      "status": "PASS",
+      "cli_exit": 0,
+      "cli_output": "\n\u2502\n\u25cf   codex  Agent detected \u2014 installing non-interactively\n\u001b[?25l\u2502\n\u25c7  Source: /var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/skills-packages-yiub4ils/source/masterplan\n\u001b[?25h\u001b[?25l\u2502\n\u25c7  Local path validated\n\u001b[?25h\u001b[?25l\u2502\n\u25c7  Found 1 skill\n\u001b[?25h\u2502\n\u25cf  Selected 1 skill: masterplan\n\n\u2502\n\u25c7  Installation Summary \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e\n\u2502                               \u2502\n\u2502  ./.agents/skills/masterplan  \u2502\n\u2502    copy \u2192 Codex               \u2502\n\u2502                               \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\u001b[?25l\u2502\n\u25c7  Installation complete\n\u001b[?25h\n\u2502\n\u25c7  Installed 1 skill \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e\n\u2502                                   \u2502\n\u2502  \u2713 masterplan (copied)            \u2502\n\u2502    \u2192 ./.agents/skills/masterplan  \u2502\n\u2502                                   \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\n\u2502\n\u2514  Done!  Review skills before use; they run with full agent permissions.\n\n",
+      "files": 4,
+      "manifest": {
+        "SKILL.md": {
+          "sha256": "cba6a7becf46875ea6a770a563195fa51078583f8292030fa5b8f7b58d645a0d",
+          "executable": false
+        },
+        "references/plan-template.md": {
+          "sha256": "1aa79a8c364914ea2046f2e8f2f01d9153552babdc9d490c1bb125681794b24e",
+          "executable": false
+        },
+        "references/planning-protocol.md": {
+          "sha256": "6971e5c331ca12339f07635445a4f199e0843319dfc6649ace2f80cb97216e03",
+          "executable": false
+        },
+        "references/research.md": {
+          "sha256": "292c265bcee73915def93e3b89f99f4f08fda64fca01cd0d11028c3be6f7a2a1",
+          "executable": false
+        }
+      }
+    },
+    {
+      "skill": "pilot",
+      "status": "PASS",
+      "cli_exit": 0,
+      "cli_output": "\n\u2502\n\u25cf   codex  Agent detected \u2014 installing non-interactively\n\u001b[?25l\u2502\n\u25c7  Source: /var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/skills-packages-yiub4ils/source/pilot\n\u001b[?25h\u001b[?25l\u2502\n\u25c7  Local path validated\n\u001b[?25h\u001b[?25l\u2502\n\u25c7  Found 1 skill\n\u001b[?25h\u2502\n\u25cf  Selected 1 skill: pilot\n\n\u2502\n\u25c7  Installation Summary \u2500\u2500\u2500\u256e\n\u2502                          \u2502\n\u2502  ./.agents/skills/pilot  \u2502\n\u2502    copy \u2192 Codex          \u2502\n\u2502                          \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\u001b[?25l\u2502\n\u25c7  Installation complete\n\u001b[?25h\n\u2502\n\u25c7  Installed 1 skill \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e\n\u2502                              \u2502\n\u2502  \u2713 pilot (copied)            \u2502\n\u2502    \u2192 ./.agents/skills/pilot  \u2502\n\u2502                              \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\n\u2502\n\u2514  Done!  Review skills before use; they run with full agent permissions.\n\n",
+      "files": 4,
+      "manifest": {
+        "SKILL.md": {
+          "sha256": "21555321544934428981f934456694c61f5b73507e6096b9a11c39380cd0969d",
+          "executable": false
+        },
+        "references/completion-gate.md": {
+          "sha256": "3d48bdc587db83688189c762cecfe2cd5344717a298fa9e2c35202a6dd577b02",
+          "executable": false
+        },
+        "references/execution-protocol.md": {
+          "sha256": "5fc843a6526e2711d4ee87b7081589d6fe7ae88376b663339ef6c60ca2ebff7b",
+          "executable": false
+        },
+        "references/research.md": {
+          "sha256": "45b138faea5ddc758de45f6af65d52aa752690b6cd7f178d2023af9f0d9e7020",
+          "executable": false
+        }
+      }
+    },
+    {
+      "skill": "polish",
+      "status": "PASS",
+      "cli_exit": 0,
+      "cli_output": "\n\u2502\n\u25cf   codex  Agent detected \u2014 installing non-interactively\n\u001b[?25l\u2502\n\u25c7  Source: /var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/skills-packages-yiub4ils/source/polish\n\u001b[?25h\u001b[?25l\u2502\n\u25c7  Local path validated\n\u001b[?25h\u001b[?25l\u2502\n\u25c7  Found 1 skill\n\u001b[?25h\u2502\n\u25cf  Selected 1 skill: polish\n\n\u2502\n\u25c7  Installation Summary \u2500\u2500\u2500\u2500\u256e\n\u2502                           \u2502\n\u2502  ./.agents/skills/polish  \u2502\n\u2502    copy \u2192 Codex           \u2502\n\u2502                           \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\u001b[?25l\u2502\n\u25c7  Installation complete\n\u001b[?25h\n\u2502\n\u25c7  Installed 1 skill \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e\n\u2502                               \u2502\n\u2502  \u2713 polish (copied)            \u2502\n\u2502    \u2192 ./.agents/skills/polish  \u2502\n\u2502                               \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\n\u2502\n\u2514  Done!  Review skills before use; they run with full agent permissions.\n\n",
+      "files": 4,
+      "manifest": {
+        "SKILL.md": {
+          "sha256": "1a9152f6517f038f4d9050c21680d3043b4e7b500c68334b5b6c5252e0a46564",
+          "executable": false
+        },
+        "references/audit.md": {
+          "sha256": "4075fa32870e668118d83588a38bbf291fa2de3cc283f0c042edd3e768890763",
+          "executable": false
+        },
+        "references/rendered-evidence.md": {
+          "sha256": "5ea8271a5891a8f9dfd560594ac34d9f9a39c92f98f70ef49be0a6d9fa5edd94",
+          "executable": false
+        },
+        "references/research.md": {
+          "sha256": "13f0d82105f9b38e56d7f8fc9158a968df5e7b74c320d00aa5a1461fb49d9faf",
+          "executable": false
+        }
+      }
+    },
+    {
+      "skill": "proof",
+      "status": "PASS",
+      "cli_exit": 0,
+      "cli_output": "\n\u2502\n\u25cf   codex  Agent detected \u2014 installing non-interactively\n\u001b[?25l\u2502\n\u25c7  Source: /var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/skills-packages-yiub4ils/source/proof\n\u001b[?25h\u001b[?25l\u2502\n\u25c7  Local path validated\n\u001b[?25h\u001b[?25l\u2502\n\u25c7  Found 1 skill\n\u001b[?25h\u2502\n\u25cf  Selected 1 skill: proof\n\n\u2502\n\u25c7  Installation Summary \u2500\u2500\u2500\u256e\n\u2502                          \u2502\n\u2502  ./.agents/skills/proof  \u2502\n\u2502    copy \u2192 Codex          \u2502\n\u2502                          \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\u001b[?25l\u2502\n\u25c7  Installation complete\n\u001b[?25h\n\u2502\n\u25c7  Installed 1 skill \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e\n\u2502                              \u2502\n\u2502  \u2713 proof (copied)            \u2502\n\u2502    \u2192 ./.agents/skills/proof  \u2502\n\u2502                              \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\n\u2502\n\u2514  Done!  Review skills before use; they run with full agent permissions.\n\n",
+      "files": 4,
+      "manifest": {
+        "SKILL.md": {
+          "sha256": "302bb070678545cdebca31c465a68dd29825c38da9d7c19347ce44cfa82ec474",
+          "executable": false
+        },
+        "references/boundary-picker.md": {
+          "sha256": "b8cc0b44904eb244af4252770e54c6b53f72d6af35af7bb3e8cd2f17fdf11096",
+          "executable": false
+        },
+        "references/research.md": {
+          "sha256": "f2e1a25d2d7123080b21856be6800bdd16925b39ad66393aac74d17535bfb457",
+          "executable": false
+        },
+        "references/result-semantics.md": {
+          "sha256": "09e69e5ea2c497855b85d5763d58613f68771f834b2e53e255c785b9d83d2122",
+          "executable": false
+        }
+      }
+    },
+    {
+      "skill": "recall",
+      "status": "PASS",
+      "cli_exit": 0,
+      "cli_output": "\n\u2502\n\u25cf   codex  Agent detected \u2014 installing non-interactively\n\u001b[?25l\u2502\n\u25c7  Source: /var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/skills-packages-yiub4ils/source/recall\n\u001b[?25h\u001b[?25l\u2502\n\u25c7  Local path validated\n\u001b[?25h\u001b[?25l\u2502\n\u25c7  Found 1 skill\n\u001b[?25h\u2502\n\u25cf  Selected 1 skill: recall\n\n\u2502\n\u25c7  Installation Summary \u2500\u2500\u2500\u2500\u256e\n\u2502                           \u2502\n\u2502  ./.agents/skills/recall  \u2502\n\u2502    copy \u2192 Codex           \u2502\n\u2502                           \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\u001b[?25l\u2502\n\u25c7  Installation complete\n\u001b[?25h\n\u2502\n\u25c7  Installed 1 skill \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e\n\u2502                               \u2502\n\u2502  \u2713 recall (copied)            \u2502\n\u2502    \u2192 ./.agents/skills/recall  \u2502\n\u2502                               \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\n\u2502\n\u2514  Done!  Review skills before use; they run with full agent permissions.\n\n",
+      "files": 5,
+      "manifest": {
+        "SKILL.md": {
+          "sha256": "ea0ae1bdb67a593b573fa8027119bc69a10a39ba8d2d026f43952cd6f3155374",
+          "executable": false
+        },
+        "references/file-formats.md": {
+          "sha256": "153eac4b0fbc3373d92fb34582d83fefca58ccbda13dfcde74ed134f2fb99926",
+          "executable": false
+        },
+        "references/memory-protocol.md": {
+          "sha256": "0be7bc14722dbcad4391af65c82a771860877f6e4bfee60a85b4de9c347de60c",
+          "executable": false
+        },
+        "references/research.md": {
+          "sha256": "ea2ae6d092022656fcdf00dc61bb7b30c766d24cf7c6c28c8218d398a95d0cbc",
+          "executable": false
+        },
+        "scripts/check-memory": {
+          "sha256": "6c1a0acf18626d6fddee20ac7740258256878aed571e2e9a7e27e9e3729585fe",
+          "executable": true
+        }
+      }
+    },
+    {
+      "skill": "referee",
+      "status": "PASS",
+      "cli_exit": 0,
+      "cli_output": "\n\u2502\n\u25cf   codex  Agent detected \u2014 installing non-interactively\n\u001b[?25l\u2502\n\u25c7  Source: /var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/skills-packages-yiub4ils/source/referee\n\u001b[?25h\u001b[?25l\u2502\n\u25c7  Local path validated\n\u001b[?25h\u001b[?25l\u2502\n\u25c7  Found 1 skill\n\u001b[?25h\u2502\n\u25cf  Selected 1 skill: referee\n\n\u2502\n\u25c7  Installation Summary \u2500\u2500\u2500\u2500\u2500\u256e\n\u2502                            \u2502\n\u2502  ./.agents/skills/referee  \u2502\n\u2502    copy \u2192 Codex            \u2502\n\u2502                            \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\u001b[?25l\u2502\n\u25c7  Installation complete\n\u001b[?25h\n\u2502\n\u25c7  Installed 1 skill \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e\n\u2502                                \u2502\n\u2502  \u2713 referee (copied)            \u2502\n\u2502    \u2192 ./.agents/skills/referee  \u2502\n\u2502                                \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\n\u2502\n\u2514  Done!  Review skills before use; they run with full agent permissions.\n\n",
+      "files": 4,
+      "manifest": {
+        "SKILL.md": {
+          "sha256": "fbaa810170c47ba051eefd55cf5637d49aa3c795b9ebe84a53e65ea6c310b301",
+          "executable": false
+        },
+        "references/finding-format.md": {
+          "sha256": "257ffc415cc57f1fbfc5ac38c7d5baf97fc534dea5fbc6bf97f36572f8a79cf0",
+          "executable": false
+        },
+        "references/research.md": {
+          "sha256": "2e298919e495274cbbfd8450ce8213dc821c943871c08dea7f8eae8e60e33d4b",
+          "executable": false
+        },
+        "references/review-protocol.md": {
+          "sha256": "7c7de63eca81e845aa0fc664e2fad2142fe9b3d6ff6ae5215cbda93567a7e2cd",
+          "executable": false
+        }
+      }
+    },
+    {
+      "skill": "roadtest",
+      "status": "PASS",
+      "cli_exit": 0,
+      "cli_output": "\n\u2502\n\u25cf   codex  Agent detected \u2014 installing non-interactively\n\u001b[?25l\u2502\n\u25c7  Source: /var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/skills-packages-yiub4ils/source/roadtest\n\u001b[?25h\u001b[?25l\u2502\n\u25c7  Local path validated\n\u001b[?25h\u001b[?25l\u2502\n\u25c7  Found 1 skill\n\u001b[?25h\u2502\n\u25cf  Selected 1 skill: roadtest\n\n\u2502\n\u25c7  Installation Summary \u2500\u2500\u2500\u2500\u2500\u2500\u256e\n\u2502                             \u2502\n\u2502  ./.agents/skills/roadtest  \u2502\n\u2502    copy \u2192 Codex             \u2502\n\u2502                             \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\u001b[?25l\u2502\n\u25c7  Installation complete\n\u001b[?25h\n\u2502\n\u25c7  Installed 1 skill \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e\n\u2502                                 \u2502\n\u2502  \u2713 roadtest (copied)            \u2502\n\u2502    \u2192 ./.agents/skills/roadtest  \u2502\n\u2502                                 \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\n\u2502\n\u2514  Done!  Review skills before use; they run with full agent permissions.\n\n",
+      "files": 5,
+      "manifest": {
+        "SKILL.md": {
+          "sha256": "89f619be6ec22e45a1835c1c8438205864f4b18c86e7a6e56c0f3ec9ec7caaec",
+          "executable": false
+        },
+        "references/adverse-conditions.md": {
+          "sha256": "fdd5e731f91cfa344e34e4fbf375a22c93874accceaff5f627c7a096cc61c687",
+          "executable": false
+        },
+        "references/evidence-bundle.md": {
+          "sha256": "d477d94daf5d0acab9fc6c88b5b6aa8cca4d84a5dd03bfe80de8c1247495f065",
+          "executable": false
+        },
+        "references/research.md": {
+          "sha256": "a1eacc5079eb268bffdbd9d709c33fd60cf6e4031e7661b1eabf37097395561e",
+          "executable": false
+        },
+        "scripts/test-matrix": {
+          "sha256": "7e79b1beca82b56d87616f18efb031e93c768335aae19b1657e190755ef035f2",
+          "executable": true
+        }
+      }
+    },
+    {
+      "skill": "runway",
+      "status": "PASS",
+      "cli_exit": 0,
+      "cli_output": "\n\u2502\n\u25cf   codex  Agent detected \u2014 installing non-interactively\n\u001b[?25l\u2502\n\u25c7  Source: /var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/skills-packages-yiub4ils/source/runway\n\u001b[?25h\u001b[?25l\u2502\n\u25c7  Local path validated\n\u001b[?25h\u001b[?25l\u2502\n\u25c7  Found 1 skill\n\u001b[?25h\u2502\n\u25cf  Selected 1 skill: runway\n\n\u2502\n\u25c7  Installation Summary \u2500\u2500\u2500\u2500\u256e\n\u2502                           \u2502\n\u2502  ./.agents/skills/runway  \u2502\n\u2502    copy \u2192 Codex           \u2502\n\u2502                           \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\u001b[?25l\u2502\n\u25c7  Installation complete\n\u001b[?25h\n\u2502\n\u25c7  Installed 1 skill \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e\n\u2502                               \u2502\n\u2502  \u2713 runway (copied)            \u2502\n\u2502    \u2192 ./.agents/skills/runway  \u2502\n\u2502                               \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\n\u2502\n\u2514  Done!  Review skills before use; they run with full agent permissions.\n\n",
+      "files": 4,
+      "manifest": {
+        "SKILL.md": {
+          "sha256": "4abd338ec53b3c820859a8c09ecf2bdfe0e3d51c490fd504882f70abb86d19dd",
+          "executable": false
+        },
+        "references/platforms.md": {
+          "sha256": "0be46bf61ca3da0b9ac35f57eb1027b661cbd917f562aa1c4914f05cc86ed5a4",
+          "executable": false
+        },
+        "references/release-protocol.md": {
+          "sha256": "3f7663813a99c380d95ee6cf54e1e300e82405f4fab2f02140124df9d1208bcc",
+          "executable": false
+        },
+        "references/research.md": {
+          "sha256": "0b1fd6aa9945ba64641546a5302c47ba5b18b2dae4fc15222eb16b2204ce9476",
+          "executable": false
+        }
+      }
+    },
+    {
+      "skill": "scout",
+      "status": "PASS",
+      "cli_exit": 0,
+      "cli_output": "\n\u2502\n\u25cf   codex  Agent detected \u2014 installing non-interactively\n\u001b[?25l\u2502\n\u25c7  Source: /var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/skills-packages-yiub4ils/source/scout\n\u001b[?25h\u001b[?25l\u2502\n\u25c7  Local path validated\n\u001b[?25h\u001b[?25l\u2502\n\u25c7  Found 1 skill\n\u001b[?25h\u2502\n\u25cf  Selected 1 skill: scout\n\n\u2502\n\u25c7  Installation Summary \u2500\u2500\u2500\u256e\n\u2502                          \u2502\n\u2502  ./.agents/skills/scout  \u2502\n\u2502    copy \u2192 Codex          \u2502\n\u2502                          \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\u001b[?25l\u2502\n\u25c7  Installation complete\n\u001b[?25h\n\u2502\n\u25c7  Installed 1 skill \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e\n\u2502                              \u2502\n\u2502  \u2713 scout (copied)            \u2502\n\u2502    \u2192 ./.agents/skills/scout  \u2502\n\u2502                              \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\n\u2502\n\u2514  Done!  Review skills before use; they run with full agent permissions.\n\n",
+      "files": 5,
+      "manifest": {
+        "SKILL.md": {
+          "sha256": "5e678d69e09df48d2eb84323f7a742f015aac7736a4cc8fbf316be19f0c1d160",
+          "executable": false
+        },
+        "references/research-protocol.md": {
+          "sha256": "adff44148f7fc0eee07766a17d1466d94166c9dd8b683f1c17568b0c20e3690a",
+          "executable": false
+        },
+        "references/research.md": {
+          "sha256": "cc7fc3fc569181d9fcf6c6178087b08b799fd93bb93277b355a83fca6733e2ae",
+          "executable": false
+        },
+        "references/source-ladder.md": {
+          "sha256": "7b03732abc8e3d6bab01e5d39d1d6edab408e01265736f87267a974db7e0236d",
+          "executable": false
+        },
+        "scripts/check-note": {
+          "sha256": "bede9b3316dec35b621fc64754d059958de3a9e53e39f5e13bd66d59f805ef09",
+          "executable": true
+        }
+      }
+    },
+    {
+      "skill": "sleuth",
+      "status": "PASS",
+      "cli_exit": 0,
+      "cli_output": "\n\u2502\n\u25cf   codex  Agent detected \u2014 installing non-interactively\n\u001b[?25l\u2502\n\u25c7  Source: /var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/skills-packages-yiub4ils/source/sleuth\n\u001b[?25h\u001b[?25l\u2502\n\u25c7  Local path validated\n\u001b[?25h\u001b[?25l\u2502\n\u25c7  Found 1 skill\n\u001b[?25h\u2502\n\u25cf  Selected 1 skill: sleuth\n\n\u2502\n\u25c7  Installation Summary \u2500\u2500\u2500\u2500\u256e\n\u2502                           \u2502\n\u2502  ./.agents/skills/sleuth  \u2502\n\u2502    copy \u2192 Codex           \u2502\n\u2502                           \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\u001b[?25l\u2502\n\u25c7  Installation complete\n\u001b[?25h\n\u2502\n\u25c7  Installed 1 skill \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e\n\u2502                               \u2502\n\u2502  \u2713 sleuth (copied)            \u2502\n\u2502    \u2192 ./.agents/skills/sleuth  \u2502\n\u2502                               \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\n\u2502\n\u2514  Done!  Review skills before use; they run with full agent permissions.\n\n",
+      "files": 3,
+      "manifest": {
+        "SKILL.md": {
+          "sha256": "0a4d9dfed0d0e99115d7714b1a8dbfa58d26d72d57db17a0a75636f691c35f65",
+          "executable": false
+        },
+        "references/research.md": {
+          "sha256": "75e664c918a805b8ed35939274499962acc49ed844487ed1ffba6d15bfaa608d",
+          "executable": false
+        },
+        "references/techniques.md": {
+          "sha256": "7b70a1b42637b2712edf678fcddf842099bc837d5612d63eca1751a6afb231db",
+          "executable": false
+        }
+      }
+    },
+    {
+      "skill": "spelunk",
+      "status": "PASS",
+      "cli_exit": 0,
+      "cli_output": "\n\u2502\n\u25cf   codex  Agent detected \u2014 installing non-interactively\n\u001b[?25l\u2502\n\u25c7  Source: /var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/skills-packages-yiub4ils/source/spelunk\n\u001b[?25h\u001b[?25l\u2502\n\u25c7  Local path validated\n\u001b[?25h\u001b[?25l\u2502\n\u25c7  Found 1 skill\n\u001b[?25h\u2502\n\u25cf  Selected 1 skill: spelunk\n\n\u2502\n\u25c7  Installation Summary \u2500\u2500\u2500\u2500\u2500\u256e\n\u2502                            \u2502\n\u2502  ./.agents/skills/spelunk  \u2502\n\u2502    copy \u2192 Codex            \u2502\n\u2502                            \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\u001b[?25l\u2502\n\u25c7  Installation complete\n\u001b[?25h\n\u2502\n\u25c7  Installed 1 skill \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e\n\u2502                                \u2502\n\u2502  \u2713 spelunk (copied)            \u2502\n\u2502    \u2192 ./.agents/skills/spelunk  \u2502\n\u2502                                \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\n\u2502\n\u2514  Done!  Review skills before use; they run with full agent permissions.\n\n",
+      "files": 5,
+      "manifest": {
+        "SKILL.md": {
+          "sha256": "dfd6b96c987efd3c2e5177536fa6ae81614d19a5feead04ba04e5e922e82286e",
+          "executable": false
+        },
+        "references/discovery-map.md": {
+          "sha256": "cedd0d36fd2e6bca12ddeb6b62b359bcef3617de95591d8e50de67502728eea1",
+          "executable": false
+        },
+        "references/evidence-protocol.md": {
+          "sha256": "f7bb2c918cccfc71bd9a2e8451b8a0dfd98f9e84135a4af67ed524de014fe191",
+          "executable": false
+        },
+        "references/research.md": {
+          "sha256": "4594bfe3abb1f8ab63a5da33930d75b7092370897ca2a1e5911eb83c10f376fd",
+          "executable": false
+        },
+        "scripts/inventory": {
+          "sha256": "da834ea1ab3e871162e8c69cee5e643d4a6198f7241d45a7e94adf2b6bcc68f9",
+          "executable": true
+        }
+      }
+    },
+    {
+      "skill": "unslop",
+      "status": "PASS",
+      "cli_exit": 0,
+      "cli_output": "\n\u2502\n\u25cf   codex  Agent detected \u2014 installing non-interactively\n\u001b[?25l\u2502\n\u25c7  Source: /var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/skills-packages-yiub4ils/source/unslop\n\u001b[?25h\u001b[?25l\u2502\n\u25c7  Local path validated\n\u001b[?25h\u001b[?25l\u2502\n\u25c7  Found 1 skill\n\u001b[?25h\u2502\n\u25cf  Selected 1 skill: unslop\n\n\u2502\n\u25c7  Installation Summary \u2500\u2500\u2500\u2500\u256e\n\u2502                           \u2502\n\u2502  ./.agents/skills/unslop  \u2502\n\u2502    copy \u2192 Codex           \u2502\n\u2502                           \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\u001b[?25l\u2502\n\u25c7  Installation complete\n\u001b[?25h\n\u2502\n\u25c7  Installed 1 skill \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e\n\u2502                               \u2502\n\u2502  \u2713 unslop (copied)            \u2502\n\u2502    \u2192 ./.agents/skills/unslop  \u2502\n\u2502                               \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\n\u2502\n\u2514  Done!  Review skills before use; they run with full agent permissions.\n\n",
+      "files": 4,
+      "manifest": {
+        "SKILL.md": {
+          "sha256": "674452a01c0fa9d8403f7cc794138f2379529bf3cf8b9adfa16b20d75546a99c",
+          "executable": false
+        },
+        "references/cleanup-protocol.md": {
+          "sha256": "428c37d763c3873392a5ed73efa9ff44891f2b8dd2681cd1959119c05d13adf2",
+          "executable": false
+        },
+        "references/research.md": {
+          "sha256": "31ac34012459b6fd08a82d154b9b57ac97cbcbc56601becd74048085f104781b",
+          "executable": false
+        },
+        "references/slop-catalog.md": {
+          "sha256": "272170c8270f0a223dc8d9671f19eec457bc2041d7bf9f0c408bf93b9ef757c9",
+          "executable": false
+        }
+      }
+    }
+  ],
+  "cli_version": "1.7.2",
+  "status": "PASS"
+}

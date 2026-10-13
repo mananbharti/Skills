@@ -1,0 +1,31 @@
+{
+  "skill": "concierge",
+  "prompt": "Which installed skill should handle changing one label margin from 8px to 12px? I know the file and line already.",
+  "package_sha256": "22eb52ef1f7e1eeda6f873c3239934c4a9017b458e2c1d9dcb5683beb09e6e6b",
+  "hash_method": "sha256 of sorted package-relative path + NUL + file sha256 + newline records",
+  "package_files": [
+    {
+      "path": "SKILL.md",
+      "sha256": "aa616800bb969c29df3f8462d512adb89123d72313527399b852d5f8af7c09c5"
+    },
+    {
+      "path": "references/capability-degradation.md",
+      "sha256": "58a598205207aa410a68d39a1b4be79c2da288d4419b55b5428768edb032543c"
+    },
+    {
+      "path": "references/research.md",
+      "sha256": "a5ae7112700b0ce400f7370afcf005cfb338eab89c22dc0f91e47da6200a1181"
+    },
+    {
+      "path": "references/routing.md",
+      "sha256": "31fbb020af0853816f3cfcf2a53794b27caac790b400118f60a45921fe1f1047"
+    }
+  ],
+  "loaded_resources": [
+    "SKILL.md"
+  ],
+  "observation_class": "exploratory native in-session observation; not controlled comparative evidence",
+  "limits": [
+    "Same agent/session; no independent replicate or comparator; root adjudicates."
+  ]
+}

@@ -1,0 +1,19 @@
+--- /Users/uday/Skills/benchmarks/fixtures/sleuth-cache/cache.py
++++ /private/tmp/skills-forward/sleuth/cache.py
+@@ -1,7 +1,6 @@
+ """Tiny read-through cache. Stdlib only.
+ 
+-Reads go stale after writes: `set` updates the store but never
+-invalidates the cached copy, so `get` keeps serving the old value.
++Writes invalidate the cached copy, preserving read-after-write behavior.
+ """
+ 
+ 
+@@ -14,6 +13,7 @@
+ 
+     def set(self, key, value):
+         self._store[key] = value
++        self._cache.pop(key, None)
+ 
+     def get(self, key):
+         if key in self._cache:

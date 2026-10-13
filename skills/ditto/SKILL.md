@@ -36,9 +36,11 @@ Build a reference ledger before implementation:
 
 Do not log in to a third-party product, bypass access, inspect private source,
 copy credentials, scrape proprietary assets, or reproduce copyrighted copy,
-logos, fonts, photography, or illustrations without authorization. Copying
-layout conventions is different from copying protected brand material. Use
-clearly labeled placeholders and licensed/local equivalents.
+logos, fonts, photography, or illustrations without authorization. Layout
+conventions may be reusable where the law allows, but that distinction is
+unconfirmed legal risk, not a settled rule: when in doubt, seek
+authorization. Use clearly labeled placeholders and licensed/local
+equivalents.
 
 ## Fidelity contract
 
@@ -93,7 +95,7 @@ source only shows one viewport (marked as inferred).
 
 ### 5. Compare: the loop that is the skill
 
-Fidelity is measured across nine dimensions via structural analysis (not just pixel matching, which fails across responsive viewports): **structure** (DOM/layout integrity), **geometry** (dimensions/alignment), **typography** (family, scale, weights), **color** (values mapped to tokens, contrast), **spacing** (rhythm), **assets** (images/icons: placeholders noted), **responsive** behavior, **interaction** (hover/focus where observable), **states** (empty/loading/error if the source shows them).
+Fidelity is measured across nine dimensions via structural analysis (not just pixel matching, which fails across responsive viewports): **structure** (DOM/layout integrity), **geometry** (dimensions/alignment), **typography** (family, scale, weights), **color** (values mapped to tokens, contrast), **spacing** (rhythm), **assets** (images/icons: placeholders noted), **responsive** behavior, **interaction** (hover/focus where observable), **states** (empty/loading/error if the source shows them). Ledger a tenth row, **semantics**: whether the result is operable by assistive technology, not just visually close. A role locator match is early feedback, never an accessibility audit; test IDs are resilient but not user-facing.
 
 1. Screenshot the implementation at the same viewport(s) as the source.
 2. Compare: side-by-side plus overlay/ablation pass; diff systematically
@@ -121,7 +123,9 @@ Test every observed interaction at the evidence rung available: navigation,
 controls, overlays, focus, hover, validation, loading, empty/error, and
 responsive rearrangement. When the source did not show a state, use the target
 project's established behavior or accessible native behavior and mark it
-inferred. Do not fabricate a complex animation, interaction model, or
+inferred. XPath cannot pierce shadow roots and long CSS/XPath chains are
+unstable by construction: prefer role, label, text, and test-ID locators,
+and mark any XPath/CSS fallback with its fragility. Do not fabricate a complex animation, interaction model, or
 data-loading choreography from static pixels.
 
 Keep a mismatch ledger across compare rounds:
@@ -135,6 +139,10 @@ Keep a mismatch ledger across compare rounds:
 Every accepted difference must have a reason and be rechecked for unintended
 effects. Fix structural mismatches before token/value mismatches, and both
 before rasterization/compression noise.
+
+For repeatable capture conditions and snapshot update decisions, read
+[comparison controls](references/comparison-controls.md). Updating the expected
+image records a new baseline; it does not prove fidelity.
 
 ## Failure handling and edge cases
 

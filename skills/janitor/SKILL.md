@@ -21,13 +21,14 @@ An audit is read-only by default. Creating a local branch, editing repository
 metadata, staging a change, committing, deleting a branch or tag, changing
 ignore behavior, rewriting history, pushing, or changing remote settings each
 have different authority. Do not treat "clean up the repo" as approval for
-any state change.
+unrelated state changes. Existing user authorization for a concrete reversible
+local change remains valid; do not ask again solely because this skill is loaded.
 
 | Class | Examples | Authority |
 | --- | --- | --- |
 | Observe | status, logs, refs, config, remote metadata read | in scope |
 | Propose | report, command preview, commit-message draft | in scope |
-| Reversible local change | edit ignore file, create local branch, stage approved file | confirm exact target when repository behavior changes |
+| Reversible local change | edit ignore file, create local branch, stage approved file | proceed when authorized scope covers target; otherwise preview |
 | Shared or destructive change | commit, push, delete refs, amend, rebase, remote settings, history surgery | explicit user authorization for exact operation |
 
 Before a non-observation action, record target, current state, command,
@@ -111,7 +112,7 @@ because all are staged.
 ## Anti-Patterns (The Banned List)
 
 - **Blind Squashing (Context Erasure)**: an agent taking 5 distinct architectural changes and squashing them into a single "it works now" commit. Commits must be atomic by concern.
-- **Orphaned Branch Sprawl**: an agent spinning up `agent-fix-1`, `agent-fix-2` to try things out and abandoning them. Unmerged experimental branches are litter; clean them up.
+- **Assumed disposable branches**: a name such as `agent-fix-1` does not prove abandonment. Inspect unique commits, ownership, upstream, and attached worktrees; propose candidates without deleting them from name or age alone.
 - **Commit Message Vibe Coding**: an agent writing a 500-word paragraph detailing exactly *what* lines changed (which `git show` already tells you) instead of explaining the *why* (the business intent or architectural reason).
 
 ## Safety rails

@@ -1,0 +1,1 @@
+These notes are private per owner. Review and fix local security problems in read/delete and configuration, with reproducible checks. No network or real credentials.

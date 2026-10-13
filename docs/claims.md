@@ -3,7 +3,7 @@
 Every public quantitative or compatibility statement must have a row here
 (schema: `shared/schemas/claim.md`). README facts are generated or
 validated against this file. CI (`scripts/check-claims`) blocks missing
-evidence for release-critical claims. Last swept: 2026-09-19.
+evidence for release-critical claims. Last registry update: 2026-10-14; historical verification dates retained.
 
 | id | statement | class | evidence | verified | reproduce | stale-if |
 |---|---|---|---|---|---|---|
@@ -15,7 +15,7 @@ evidence for release-critical claims. Last swept: 2026-09-19.
 | C-006 | Suite-wide outcome improvement across all 28 skills | UNVERIFIED | `docs/benchmarks/` (10/28 skill families executed including handsfree smoke; verdicts are skill-specific) | — | per-skill protocol in `evals/outcomes/` | all 28 skill families executed on the release matrix |
 | C-007 | Compatibility beyond Codex/OpenCode routing smoke | UNVERIFIED | `docs/compatibility.md` (Claude hangs, Cursor/Antigravity unavailable) | — | per-runtime harness | runtime availability changes |
 | C-008 | skills.sh badge resolves | UNVERIFIED | — (indexing/security review pending; badge must not ship broken) | — | install from skills.sh, confirm listing | listing appears |
-| C-009 | Context footprint: SKILL.md 319KB total, frontmatter ~1849 tok always-on | DERIVED | `scripts/check-context` (byte-estimate method stated in script) | 2026-09-18 | `scripts/check-context` | any skill edit |
+| C-009 | Context footprint: SKILL.md 333KB total, frontmatter ~1887 tok always-on | DERIVED | `scripts/check-context`, `docs/upgrade/evidence/context.json` (UTF-8 byte estimate; not tokenizer telemetry) | 2026-10-14 | `scripts/check-context` | any skill edit |
 | C-010 | `concierge` outcome evidence: MIXED (codex O1 treatment 4/4 vs baseline 1/4; O2/O3 no lift available) | MEASURED | `docs/benchmarks/concierge.md` trial table (raw traces gitignored in `evals/results/`) | 2026-09-14 | `scripts/eval-outcome --skill concierge --agent codex --trials 3` | model/agent version change |
 | C-011 | `hotseat` outcome evidence: PROVEN LIFT on debate-structure footprints (treatment 5/5 incl. held-out vs baseline 0/5; strong-critic baseline; ~2× output cost) | MEASURED | `docs/benchmarks/hotseat.md` trial table (raw traces gitignored in `evals/results/`) | 2026-09-14 | `scripts/eval-outcome --skill hotseat --agent codex --trials 2` | model/agent version change |
 | C-012 | `proof` outcome evidence: MIXED on opencode 1.18.30 (O1 treatment 2/2 vs baseline 0/2; O2 2/2 both; O3 0/1 both; no regressions) | MEASURED | `docs/benchmarks/proof.md` trial table (raw traces gitignored in `evals/results/`) | 2026-09-15 | `scripts/eval-outcome --skill proof --agent opencode --trials 1` (×2 rounds) + `--heldout` | model/agent version change |
@@ -36,6 +36,10 @@ evidence for release-critical claims. Last swept: 2026-09-19.
 | C-027 | Phase 5 Batch A post-exploratory validation: `recall` C1 0/5 vs 5/5 with workspace gates green in all 10 runs — MIXED, output-contract discipline lift only, 100% marker advantage | MEASURED | `docs/benchmarks/recall.md` post-exploratory validation section (raw traces gitignored in `evals/results/`) | 2026-09-21 | `scripts/eval-outcome --skill recall --agent opencode --model opencode/muse-spark-1.3-contributor-free --trials 5 --task C1` | model/agent or task/grader version change |
 | C-028 | Routing smoke on pinned model: 10/12 (precision/recall/F1 0.8333), confusions none→polish and handsfree→concierge; routing-given-metadata only, not native activation | MEASURED | `docs/benchmarks.md` campaign matrix + `evals/progress-ledger.json` phase6routing (raw record gitignored, retained locally, not a release file) | 2026-09-21 | `scripts/eval-trigger --agent opencode --model opencode/muse-spark-1.3-contributor-free --tier smoke --runs 1` | model/agent version change |
 
+
 Prohibited until a row above (or a new row with evidence) allows it:
 stars, installs, users, testimonials, benchmark wins, "works on X"
 compatibility, token-saving percentages.
+| C-029 | Public default-branch bundle install, skills CLI 1.7.2: 28 folders | MEASURED | `docs/upgrade/evidence/install-public.json` | 2026-10-14 | disposable project + pinned CLI all install | public source or CLI changes |
+| C-030 | Each of 28 local implementation packages installs alone with byte/executable preservation | MEASURED | `docs/upgrade/evidence/install-individual-final.json` | 2026-10-14 | scripts/check-packages with explicitly supplied pinned CLI | package or CLI changes |
+| C-031 | New upgrade skill lift and native host activation | UNVERIFIED | `docs/upgrade/ledger.json` | — | separate pinned authorized campaign | current-model campaign with independent acceptance evidence |

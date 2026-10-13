@@ -1,0 +1,13 @@
+$ ['python3', '-m', 'unittest', 'discover', '-s', 'tests', '-v']
+exit: 0
+stdout:
+
+stderr:
+test_add_and_remove (test_cart.TestCart.test_add_and_remove) ... ok
+test_empty_cart_totals_zero (test_cart.TestCart.test_empty_cart_totals_zero) ... ok
+test_total_without_discount (test_cart.TestCart.test_total_without_discount) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.000s
+
+OK

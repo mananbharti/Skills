@@ -1,0 +1,6 @@
+$ ['python3', 'characterize.py']
+exit: 0
+stdout:
+{"export_bytes_hex": ["76317c41317c2433302e3030", "76317c787c797c242d312e3235", "76317c7c24302e3030"], "notify_result": null, "notify_stdout": "", "totals": [{"input": [], "stdout": "DEBUG total= 0\n", "value": "$0.00"}, {"input": [{"price": 20.0, "qty": 1}, {"price": 5.0, "qty": 2}], "stdout": "DEBUG total= 30.0\n", "value": "$30.00"}, {"input": [{"price": 0.105, "qty": 1}], "stdout": "DEBUG total= 0.105\n", "value": "$0.10"}, {"input": [{"price": -1.25, "qty": 2}], "stdout": "DEBUG total= -2.5\n", "value": "$-2.50"}]}
+
+stderr:
