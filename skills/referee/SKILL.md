@@ -121,6 +121,13 @@ merely to appear cautious.
 Nits never affect the verdict. State which mode ran, the diff scope
 covered, and anything explicitly not reviewed ("docs/" skipped).
 
+Override rule: the verdict binds until a human explicitly overrides it.
+`approve with findings` and non-blocker `request changes` may be
+overridden by the human with a recorded reason; a `blocker` verdict
+requires re-review after the fix, never a silent override. Every report
+ends with an `override:` line naming who may overrule this verdict and
+what that requires.
+
 ### Review failure handling
 
 If a command, fixture, caller search, or environment is unavailable, record the
@@ -179,6 +186,7 @@ verdict: request changes
 
 intent: 4/5 criteria met: "session revocation" missing (see major)
 not reviewed: public/ assets
+override: human may overrule majors with reason; blockers need re-review
 ```
 
 Findings table is the whole report; no essay, no restating the diff.

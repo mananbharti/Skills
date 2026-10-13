@@ -224,6 +224,11 @@ class MixedValidityFloors(unittest.TestCase):
         self.assertIn("polish", task["expected"]["required"])
         self.assertIn("friction", task["expected"]["required"])
 
+    def test_referee_override_rule_in_skill_contract(self):
+        text = (ROOT / "skills/referee/SKILL.md").read_text(encoding="utf-8")
+        self.assertIn("Override rule", text)
+        self.assertIn("override:", text)
+
 
 class PaidDefaultDeny(unittest.TestCase):
     def test_live_adapter_refuses_before_invocation_without_human_keys(self):

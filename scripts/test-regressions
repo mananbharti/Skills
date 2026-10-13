@@ -724,6 +724,34 @@ class GraderValidity(unittest.TestCase):
         outsider = normalize("route: friction → backend\nScope drift.")
         self.assertFalse(grade(task, outsider, "route: friction → backend")[0])
 
+    def test_referee_o1_contract_output_passes_and_stripped_fails(self) -> None:
+        # Marker-contract audit: referee O1 grades verdict/review type/
+        # override. An output following the skill contract must pass;
+        # the same output with those markers stripped must fail on
+        # exactly those gates (uses the real frozen task + fixture).
+        grade = self.outcome["grade_spelunk"]
+        tasks = json.loads((ROOT / "evals/outcomes/referee-tasks.json").read_text())
+        task = next(item for item in tasks if item["id"] == "O1")
+        good = ("review type: fresh-context\n"
+                "scope: 1 file, billing.py: checkout totaling plus admin path\n"
+                "\nverdict: request changes\n\n"
+                "| Sev | Location | Finding | Fix direction |\n"
+                "| major | billing.py | admin path lacks audit-log entry "
+                "| log admin identity and cap used |\n\n"
+                "intent: 2/3 criteria met: audit-log entry missing (see major)\n"
+                "not reviewed: none\n"
+                "override: human may overrule majors with reason; "
+                "blockers need re-review")
+        passed, notes = grade(task, good, {"workdir": ""})
+        self.assertTrue(passed, notes)
+        bad = good.replace("verdict: request changes", "summary: needs work")
+        bad = bad.replace("override: human may overrule majors with reason; "
+                          "blockers need re-review", "")
+        passed, notes = grade(task, bad, {"workdir": ""})
+        self.assertFalse(passed)
+        self.assertIn("verdict", notes["missing"])
+        self.assertIn("override", notes["missing"])
+
     def test_concierge_c1_contract_calibration(self) -> None:
         # Phase 4 confirmation task: calibrated with synthetic outputs only,
         # no model. Guards the authored contract against typos as well.
