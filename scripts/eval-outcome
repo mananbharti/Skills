@@ -321,28 +321,71 @@ def grade_blueprint(task, raw, obs):
     failed_checks = [c["cmd"] for c in checks if c["exit"] != c.get("expect", 0)]
     body = "\n".join(artifacts[p] for p in mmds)
     known = fixture_files(task["fixture"]) if task.get("fixture") else []
+    quoted = _fixture_quoted_strings(task["fixture"]) if task.get("fixture") else set()
+    output_prefixes = ("docs/plans/", "docs/briefs/", "docs/research/")
+    lines = (body + "\n" + raw).splitlines()
     hallucinated = []
     checked = 0
-    for tok in set(PATH_RE.findall(body)):
-        tok = tok.lstrip("./")
+    for raw_tok in set(PATH_RE.findall(body)):
+        # Strip only a literal "./" prefix; lstrip("./") mangles
+        # dotfiles (".gitignore" -> "gitignore") into hallucinations.
+        tok = raw_tok[2:] if raw_tok.startswith("./") else raw_tok
         if not tok:
             continue
+        if raw_tok.startswith(".") and "/" not in raw_tok:
+            continue
+        if tok.startswith(output_prefixes) or tok == "docs/plans":
+            continue
+        if tok in quoted:
+            continue
+        if "/" not in tok and tok.lower() in _TECH_NAMES:
+            continue
         checked += 1
+        claimed = False
+        for line in lines:
+            low_line = line.lower()
+            low_tok = tok.lower()
+            start = 0
+            while True:
+                idx = low_line.find(low_tok, start)
+                if idx < 0:
+                    break
+                if (not _NEG_RE.search(low_line[max(0, idx - 60):idx])
+                        and not _is_probe_occurrence(line, idx)):
+                    claimed = True
+                    break
+                start = idx + len(low_tok)
+            if claimed:
+                break
+        if not claimed:
+            continue
         if not any(f == tok or f.endswith("/" + tok) for f in known):
             hallucinated.append(tok)
     low = (body + "\n" + raw).lower()
     must = [m.lower() for m in exp.get("must_contain", [])]
     missing = [m for m in must if m not in low]
     # Invented-infrastructure check: fixtures with no infra files of their own
-    # must not sprout managed services. Word-boundary match on service names.
+    # must not sprout managed services. An absence denial ("no redis here")
+    # is not invention: flag only non-negated occurrences.
     suspect_infra = []
     if exp.get("forbid_infra"):
         infra_words = ["kafka", "kubernetes", "k8s", "redis", "cdn", "postgres",
                        "mysql", "mongodb", "rabbitmq", "elasticsearch", "docker",
                        "terraform", "nginx", "envoy", "istio", "prometheus",
                        "grafana", "replica", "shard", "queue"]
-        suspect_infra = sorted(w for w in infra_words
-                               if re.search(r"\b" + w + r"s?\b", low))
+        found = set()
+        for w in infra_words:
+            pat = re.compile(r"\b" + w + r"s?\b")
+            start = 0
+            while True:
+                m = pat.search(low, start)
+                if not m:
+                    break
+                if not _NEG_RE.search(low[max(0, m.start() - 60):m.start()]):
+                    found.add(w)
+                    break
+                start = m.end()
+        suspect_infra = sorted(found)
     ok = (not over and not failed_checks and not hallucinated and not missing
           and not suspect_infra)
     workspace_pass = (not over and not failed_checks and not hallucinated
@@ -488,6 +531,30 @@ def fixture_files(name):
     return out
 
 
+def _fixture_quoted_strings(fixture):
+    """Path-like tokens appearing verbatim in fixture file text.
+
+    A connection string naming a database file that is not itself a
+    tracked file is a quote, not an existence claim.
+    """
+    quoted = set()
+    base = os.path.join(ROOT, "benchmarks", "fixtures", fixture)
+    for dirpath, _, filenames in os.walk(base):
+        for fn in filenames:
+            try:
+                with open(os.path.join(dirpath, fn), encoding="utf-8",
+                          errors="replace") as handle:
+                    text = handle.read()
+            except OSError:
+                continue
+            for raw_tok in set(PATH_RE.findall(text)):
+                tok = raw_tok[2:] if raw_tok.startswith("./") else raw_tok
+                if tok:
+                    quoted.add(tok)
+                    quoted.add(os.path.basename(tok))
+    return quoted
+
+
 def grade_spelunk(task, raw, obs=None):
     """Fact recall + contaminant + hallucinated-path check against the fixture.
 
@@ -548,20 +615,7 @@ def grade_spelunk(task, raw, obs=None):
     # is excluded from hallucination grading.
     quoted = set()
     if known is not None:
-        base = os.path.join(ROOT, "benchmarks", "fixtures", task["fixture"])
-        for dirpath, _, filenames in os.walk(base):
-            for fn in filenames:
-                try:
-                    with open(os.path.join(dirpath, fn), encoding="utf-8",
-                              errors="replace") as handle:
-                        text = handle.read()
-                except OSError:
-                    continue
-                for raw_tok in set(PATH_RE.findall(text)):
-                    tok = raw_tok[2:] if raw_tok.startswith("./") else raw_tok
-                    if tok:
-                        quoted.add(tok)
-                        quoted.add(os.path.basename(tok))
+        quoted = _fixture_quoted_strings(task["fixture"])
         lines = raw.splitlines()
     if known is not None:
         for raw_tok in set(PATH_RE.findall(raw)):
