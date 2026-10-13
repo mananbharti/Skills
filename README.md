@@ -12,7 +12,7 @@ Each package has a workflow and verification contract. The current upgrade
 repairs demonstrated gaps; cross-runtime behavior and comparative outcomes
 remain empirical questions. See the [28-row upgrade ledger](docs/upgrade-ledger.md).
 
-[![Install on skills.sh](https://img.shields.io/badge/skills.sh-28_skills-blue)](https://www.skills.sh/udaysharmadev/skills)
+[![Install on skills.sh](https://img.shields.io/badge/skills.sh-28_skills-blue?style=for-the-badge)](https://www.skills.sh/udaysharmadev/skills)
 
 ```bash
 npx skills add udaysharmadev/Skills --all
