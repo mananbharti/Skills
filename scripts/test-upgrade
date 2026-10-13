@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Focused evaluation integrity regressions; local fake agents only."""
 import json
+import os
 import runpy
 import subprocess
 import sys
@@ -92,6 +93,18 @@ class RoutingContracts(unittest.TestCase):
         checker = runpy.run_path(str(ROOT / "scripts/check-trigger-contracts"))
         self.assertEqual(checker["main"](), 0)
 
+    def test_workflow_coverage_floor_rejects_undercovered_skill(self):
+        loader = runpy.run_path(str(ROOT / "scripts/eval-workflow"))["load_scenarios"]
+        with tempfile.TemporaryDirectory() as raw:
+            scenarios = Path(raw)
+            (scenarios / "skills/concierge").mkdir(parents=True)
+            (scenarios / "concierge.md").write_text(
+                "## concierge\n### C1 short task\n- Setup: a local repo\n"
+                "- Task: choose an owner\n- D1: clear owner\n")
+            with patch.dict(loader.__globals__, SCENARIOS=scenarios, ROOT=scenarios):
+                _, errors = loader()
+            self.assertTrue(any("concierge: only 1" in error for error in errors))
+
 
 class PackageIntegrity(unittest.TestCase):
     def test_symlink_cannot_make_a_package_depend_on_external_file(self):
@@ -159,6 +172,17 @@ class DomainHelpers(unittest.TestCase):
             self.assertEqual(document["test_files"], "1")
             self.assertNotIn("noise.py", document["largest_files"])
             self.assertNotIn("noise.py", document["debt_markers"])
+
+
+class PaidDefaultDeny(unittest.TestCase):
+    def test_live_adapter_refuses_before_invocation_without_human_keys(self):
+        # Remove any inherited authorization; never manufacture either key.
+        env = {key: value for key, value in os.environ.items() if key != "ALLOW_PAID_AGENT"}
+        result = subprocess.run([str(ROOT / "scripts/eval-outcome"), "--skill",
+                                 "concierge", "--agent", "codex", "--trials", "1"],
+                                cwd=ROOT, env=env, capture_output=True, text=True)
+        self.assertEqual(result.returncode, 4, result.stdout + result.stderr)
+        self.assertIn("Nothing was invoked; no results were written", result.stderr)
 
 
 if __name__ == "__main__":

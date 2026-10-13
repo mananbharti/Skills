@@ -1,0 +1,13 @@
+{
+  "skill": {
+    "SKILL.md": "f53024511dc1131f327c1cd90fb4ecbf7517c098f19d5365d89ed7c0732a1a40",
+    "references/research.md": "ff65db6d18426abd48b7017599244e17f1a44a7af6cbc669ce4af615cb98329d",
+    "references/seo-checklist.md": "75f54435c17fc6c76ac3909dbea2b8fad6303e6f3111d2ed78e82d17c342e0c1"
+  },
+  "fixture": {
+    "about.html": "53a8d63ef9a31d429260fff19a165155955396dfe612571ee3c9381524ab39bf",
+    "index.html": "f0941a228285d74e87548d0b1e108bd7eb93e633825e2da39d187b9c551304f7",
+    "robots.txt": "331ea9090db0c9f6f597bd9840fd5b171830f6e0b3ba1cb24dfa91f0c95aedc1",
+    "sitemap.xml": "40172bab7b0bdb5f32c1398d3a485644bcdda412fdab79f947012d82650a36e7"
+  }
+}

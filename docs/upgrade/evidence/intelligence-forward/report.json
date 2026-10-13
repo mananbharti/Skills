@@ -1,0 +1,118 @@
+[
+  {
+    "task": "concierge",
+    "prompt_file": "docs/upgrade/evidence/intelligence-forward/concierge/prompt.txt",
+    "artifact": "docs/upgrade/evidence/intelligence-forward/concierge/artifact.md",
+    "commands": "docs/upgrade/evidence/intelligence-forward/concierge/commands.jsonl",
+    "metadata": "docs/upgrade/evidence/intelligence-forward/concierge/metadata.json",
+    "package_sha256": "22eb52ef1f7e1eeda6f873c3239934c4a9017b458e2c1d9dcb5683beb09e6e6b",
+    "status": "observation recorded; adjudication pending",
+    "limits": [
+      "Same agent/session; no independent replicate or comparator; root adjudicates."
+    ]
+  },
+  {
+    "task": "handsfree",
+    "prompt_file": "docs/upgrade/evidence/intelligence-forward/handsfree/prompt.txt",
+    "artifact": "docs/upgrade/evidence/intelligence-forward/handsfree/artifact.md",
+    "commands": "docs/upgrade/evidence/intelligence-forward/handsfree/commands.jsonl",
+    "metadata": "docs/upgrade/evidence/intelligence-forward/handsfree/metadata.json",
+    "package_sha256": "e281deaa3b58a946c9e53ab22757000bc281edd2a096720c077c1e372871ea70",
+    "status": "observation recorded; adjudication pending",
+    "limits": [
+      "Same agent/session; no independent replicate or comparator; root adjudicates.",
+      "No project tests, build, lint or typecheck command is defined in this source-only fixture. Runtime API behavior was not exercised."
+    ]
+  },
+  {
+    "task": "hotseat",
+    "prompt_file": "docs/upgrade/evidence/intelligence-forward/hotseat/prompt.txt",
+    "artifact": "docs/upgrade/evidence/intelligence-forward/hotseat/artifact.md",
+    "commands": "docs/upgrade/evidence/intelligence-forward/hotseat/commands.jsonl",
+    "metadata": "docs/upgrade/evidence/intelligence-forward/hotseat/metadata.json",
+    "package_sha256": "be0084007dde6e8f98925d6c7be2ff1ed7cff64179fbd0e012e5e156aaacbb8c",
+    "status": "observation recorded; adjudication pending",
+    "limits": [
+      "Same agent/session; no independent replicate or comparator; root adjudicates.",
+      "Direct conditional challenge; no full hotseat panel or independently scoped persona agents were performed. No user research was collected."
+    ]
+  },
+  {
+    "task": "spelunk",
+    "prompt_file": "docs/upgrade/evidence/intelligence-forward/spelunk/prompt.txt",
+    "artifact": "docs/upgrade/evidence/intelligence-forward/spelunk/artifact.md",
+    "commands": "docs/upgrade/evidence/intelligence-forward/spelunk/commands.jsonl",
+    "metadata": "docs/upgrade/evidence/intelligence-forward/spelunk/metadata.json",
+    "package_sha256": "1675086d86b46243f1ba45266fa7b0bb57ed4eeed90fab14bde8873f066c5a92",
+    "status": "observation recorded; adjudication pending",
+    "limits": [
+      "Same agent/session; no independent replicate or comparator; root adjudicates.",
+      "Requests source and config only. No downloaded code, tests, or network requests executed."
+    ]
+  },
+  {
+    "task": "scout",
+    "prompt_file": "docs/upgrade/evidence/intelligence-forward/scout/prompt.txt",
+    "artifact": "docs/upgrade/evidence/intelligence-forward/scout/artifact.md",
+    "commands": "docs/upgrade/evidence/intelligence-forward/scout/commands.jsonl",
+    "metadata": "docs/upgrade/evidence/intelligence-forward/scout/metadata.json",
+    "package_sha256": "c8c8a038845afe19e012af1beabdf19561a485475710263ef4f7663c74f33aa2",
+    "status": "observation recorded; adjudication pending",
+    "limits": [
+      "Same agent/session; no independent replicate or comparator; root adjudicates.",
+      "Docs were fetched, but no Requests request or downloaded code ran. Deployed and installed urllib3 versions are unknown. Current stable release was not independently confirmed."
+    ]
+  },
+  {
+    "task": "distill",
+    "prompt_file": "docs/upgrade/evidence/intelligence-forward/distill/prompt.txt",
+    "artifact": "docs/upgrade/evidence/intelligence-forward/distill/artifact.md",
+    "commands": "docs/upgrade/evidence/intelligence-forward/distill/commands.jsonl",
+    "metadata": "docs/upgrade/evidence/intelligence-forward/distill/metadata.json",
+    "package_sha256": "6ac7ff62bf1c117757b4f6fd61522194ea348c922f4f110965bae4ce67ef23b1",
+    "status": "observation recorded; adjudication pending",
+    "limits": [
+      "Same agent/session; no independent replicate or comparator; root adjudicates.",
+      "Requirements artifact only per delegated task. No target application repository was supplied; file paths, roles and executable app commands remain to-discover. No implementation or email send performed."
+    ]
+  },
+  {
+    "task": "masterplan",
+    "prompt_file": "docs/upgrade/evidence/intelligence-forward/masterplan/prompt.txt",
+    "artifact": "docs/upgrade/evidence/intelligence-forward/masterplan/artifact.md",
+    "commands": "docs/upgrade/evidence/intelligence-forward/masterplan/commands.jsonl",
+    "metadata": "docs/upgrade/evidence/intelligence-forward/masterplan/metadata.json",
+    "package_sha256": "dfca400b9bafd82ad97da43c99bd36f60a9515febdc48f7d5543befc5425db8d",
+    "status": "observation recorded; adjudication pending",
+    "limits": [
+      "Same agent/session; no independent replicate or comparator; root adjudicates.",
+      "Plan only; no implementation. Source-only fixture has no node_modules, lockfile, tsconfig, HTML bootstrap, or tests. No dependency install attempted."
+    ]
+  },
+  {
+    "task": "recall",
+    "prompt_file": "docs/upgrade/evidence/intelligence-forward/recall/prompt.txt",
+    "artifact": "docs/upgrade/evidence/intelligence-forward/recall/artifact.md",
+    "commands": "docs/upgrade/evidence/intelligence-forward/recall/commands.jsonl",
+    "metadata": "docs/upgrade/evidence/intelligence-forward/recall/metadata.json",
+    "package_sha256": "e2545f9bc857232cf1d0fd38b6c0d15771358c402893b7da4a073b82aaf88f10",
+    "status": "observation recorded; adjudication pending",
+    "limits": [
+      "Same agent/session; no independent replicate or comparator; root adjudicates.",
+      "Live SQLite is an explicit user statement, not independently checked against a running database. Earlier fixture status is stale and not revalidated."
+    ]
+  },
+  {
+    "task": "pilot",
+    "prompt_file": "docs/upgrade/evidence/intelligence-forward/pilot/prompt.txt",
+    "artifact": "docs/upgrade/evidence/intelligence-forward/pilot/artifact.md",
+    "commands": "docs/upgrade/evidence/intelligence-forward/pilot/commands.jsonl",
+    "metadata": "docs/upgrade/evidence/intelligence-forward/pilot/metadata.json",
+    "package_sha256": "bfd5dac99dbf43879f1b6d71bf1ae11ef8b20694916f87ee1bd0869353a48e4b",
+    "status": "observation recorded; adjudication pending",
+    "limits": [
+      "Same agent/session; no independent replicate or comparator; root adjudicates.",
+      "No project tests, build, lint or typecheck command is defined in this source-only fixture. Runtime API behavior was not exercised."
+    ]
+  }
+]

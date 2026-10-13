@@ -1,0 +1,10 @@
+{
+  "command": [
+    "scripts/check-names"
+  ],
+  "cwd": "/Users/uday/Skills",
+  "time_utc": "2026-10-13T19:40:14.523364+00:00",
+  "exit_code": 0,
+  "stdout": "OK: names follow the single-word system\n",
+  "stderr": ""
+}

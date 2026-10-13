@@ -1,0 +1,10 @@
+{
+  "skill": {
+    "SKILL.md": "bdcb9f57d9d0d6a6f7f081c5e35bb5fc67dab5f454d3dbca2f61fc624b1f91f5",
+    "assets/capacity-case.json": "a354f593310e7dd4884636066c1c39423d245a5fa08ec270083e5570b36f82ab",
+    "references/dimensions.md": "2ef5e8733394d458bcb8a9e0f2decfd7f2ae83f01441ebc652621867fd43f848",
+    "references/research.md": "95ebafa5f32b61d573eace48d8e83e7f1dfddbc4040aae591aebf94b16950b52",
+    "references/workload-experiments.md": "a9f970ae712f20e9a09d51bb7b8da7785e929a5d21d5c25be9738ae8eb8e5a86"
+  },
+  "fixture": {}
+}

@@ -1,0 +1,746 @@
+{
+  "schema": "independent-review/1",
+  "reviewed_at_utc": "2026-10-13T19:42:17.844570+00:00",
+  "candidate_head": "190ca7a2a81f2ce3631756953fcc00dbc7b6c022",
+  "method": "Independent forward executions first with current skill and raw fixture; no ledger, benchmark answer keys, outcome rubrics or other worker report content read until the four tasks finished. Then complete 28 entrypoints, selected on-demand refs, relevant branch/helper changes and ledger claim classification reviewed.",
+  "independence_limits": [
+    "Same in-session agent/runtime; no controlled baseline/treatment campaign or causal lift inference.",
+    "Fixture comments disclose seed failures; they are retained raw inputs.",
+    "Shared tree changed during audit; rows bind source hashes and findings record repairs seen during review.",
+    "No external source validity/recency, real device, hosted deployment or native cross-host activation proof."
+  ],
+  "findings": [
+    {
+      "id": "IR-1",
+      "priority": "P2",
+      "status": "resolved-during-review",
+      "skills": [
+        "unslop"
+      ],
+      "file": "skills/unslop/SKILL.md",
+      "line": 102,
+      "prior_issue": "Workflow unconditionally required commit after each cleanup batch, without scope/authorization or preservation of existing staged state.",
+      "current_evidence": "Current workflow requires a recoverable checkpoint and commit only when authorized with scoped staging.",
+      "recommendation": "Keep the authorization and existing-index preservation wording."
+    },
+    {
+      "id": "IR-2",
+      "priority": "P2",
+      "status": "resolved-during-review",
+      "skills": [
+        "masterplan",
+        "pilot"
+      ],
+      "file": "skills/pilot/references/completion-gate.md",
+      "line": 15,
+      "prior_issue": "Completion gate required migration up AND down, and masterplan quality gate required a down-path, despite irreversible/no-down-path rules.",
+      "current_evidence": "Current matrix accepts safe down, backup restore or forward fix, and masterplan forbids fictional down migration.",
+      "recommendation": "Keep safe recovery as invariant across all planners/gates."
+    },
+    {
+      "id": "IR-3",
+      "priority": "P2",
+      "status": "open",
+      "skills": [
+        "handsfree"
+      ],
+      "file": "skills/handsfree/references/decision-policy.md",
+      "line": 16,
+      "issue": "Every security-sensitive action is ASK ONCE and guidelines 32\u201334 require stopping dependent work. That topic-wide row conflicts with entrypoint AUTO local edits/tests and explicit authorization reuse, causing an approved local auth regression/remediation to pause.",
+      "recommendation": "Classify the actual effect and missing authority; permit approved local verification/remediation, and gate production/identity/credential/policy changes as needed."
+    },
+    {
+      "id": "IR-4",
+      "priority": "P2",
+      "status": "open",
+      "skills": [
+        "concierge"
+      ],
+      "file": "skills/concierge/SKILL.md",
+      "line": 120,
+      "issue": "Browser probe requires about:blank navigation. This session browser tool accepts http/https only; a prescribed unsupported protocol makes a usable browser look unknown and can trigger a policy denial unnecessarily.",
+      "confidence": "Static instruction conflict with observed tool protocol policy; about:blank itself was not attempted.",
+      "recommendation": "Use host-supported read-only inventory/observation or permitted task URL; avoid universal navigation scheme."
+    },
+    {
+      "id": "IR-5",
+      "priority": "P2",
+      "status": "open",
+      "skills": [
+        "roadtest"
+      ],
+      "file": "skills/roadtest/references/evidence-bundle.md",
+      "line": 50,
+      "issue": "Unqualified every PASS without screenshots is unverified contradicts permitted HTTP fallback and adverse-conditions per-capability evidence. A verified HTTP denial/persistence check cannot produce a browser screenshot.",
+      "recommendation": "Require screenshot evidence for visual/rendered claims, while preserving verified HTTP/assertion results and separately unverified missing capture capabilities."
+    },
+    {
+      "id": "IR-6",
+      "priority": "P1",
+      "status": "open",
+      "skills": [],
+      "file": "scripts/test-upgrade",
+      "line": 103,
+      "issue": "New coverage-floor regression patches SCENARIOS outside ROOT; load_scenarios path.relative_to(ROOT) raises ValueError before coverage assertion. Actual test-upgrade exits 1 with 1 error.",
+      "evidence": "docs/upgrade/evidence/forward/repository-check-3.json",
+      "recommendation": "Patch ROOT consistently to temporary fixture root with known skills, or create scenarios beneath a controlled temporary ROOT. Preserve loader identity semantics."
+    }
+  ],
+  "matrix": [
+    {
+      "skill": "backend",
+      "entrypoint": "skills/backend/SKILL.md",
+      "entrypoint_sha256": "72ee43dc170864f5696236babb7f9f70c847efdcd677547ef5c7a58359406dae",
+      "body_lines": 385,
+      "review_scope": "complete entrypoint plus selected on-demand safety/ownership/reference and changed-helper surfaces",
+      "resources_inspected": [
+        "skills/backend/references/boundary-cases.md",
+        "skills/backend/references/checklists.md"
+      ],
+      "snapshot_sha256": {
+        "SKILL.md": "72ee43dc170864f5696236babb7f9f70c847efdcd677547ef5c7a58359406dae",
+        "references/boundary-cases.md": "5da1ff45c8013ba75b09eaf93fc9d7f8b36c8f826f7e44f79a2c9ec722a6da09",
+        "references/checklists.md": "94bb9b245f04694c4c7eb211d1d6f98eee41f6a6a3f89c4434b91499dbdd9aa2"
+      },
+      "static_assessment": "Distinct delivery/effect/tenant invariants are explicit. Forward trial proves only a synthetic SQLite contract; provider authentication, real delivery and concurrent process semantics unverified.",
+      "finding_ids": [],
+      "forward_trial": "docs/upgrade/evidence/forward/backend",
+      "native_runtime_activation": "UNVERIFIED",
+      "cross_model_effectiveness": "UNVERIFIED"
+    },
+    {
+      "skill": "blueprint",
+      "entrypoint": "skills/blueprint/SKILL.md",
+      "entrypoint_sha256": "355f8119554b338753aabefa295fdd21f25313a86df3358c8baf5c77824f145f",
+      "body_lines": 246,
+      "review_scope": "complete entrypoint plus selected on-demand safety/ownership/reference and changed-helper surfaces",
+      "resources_inspected": [
+        "skills/blueprint/references/rendering.md",
+        "skills/blueprint/references/diagram-guide.md",
+        "skills/blueprint/assets/template.html"
+      ],
+      "snapshot_sha256": {
+        "SKILL.md": "355f8119554b338753aabefa295fdd21f25313a86df3358c8baf5c77824f145f",
+        "references/rendering.md": "251c2ef90e764ccb245d04a5c1d2fcbe6574f6501569202a4116bed13fcebd23",
+        "references/diagram-guide.md": "f78ef3c13db0ec61415052fbb669bcdd3202f7e82c4c0a3a4b546f5593b24031",
+        "assets/template.html": "31531dbe5376dccb407b7955719de04d460c32228d8d22c70c1fa50a8ad16ed4"
+      },
+      "static_assessment": "Current/proposed/inferred labels, strict renderer and HTML escaping boundary are explicit; heuristic syntax check is not rendering proof. CDN pin/offline limits stated.",
+      "finding_ids": [],
+      "forward_trial": null,
+      "native_runtime_activation": "UNVERIFIED",
+      "cross_model_effectiveness": "UNVERIFIED"
+    },
+    {
+      "skill": "cleared",
+      "entrypoint": "skills/cleared/SKILL.md",
+      "entrypoint_sha256": "50770aa9657979f1a6f85056869da2df2b5da76640be683ffb73b956a0d54544",
+      "body_lines": 218,
+      "review_scope": "complete entrypoint plus selected on-demand safety/ownership/reference and changed-helper surfaces",
+      "resources_inspected": [
+        "skills/cleared/references/gate-dimensions.md"
+      ],
+      "snapshot_sha256": {
+        "SKILL.md": "50770aa9657979f1a6f85056869da2df2b5da76640be683ffb73b956a0d54544",
+        "references/gate-dimensions.md": "26b60b26bc24e44a287d50682aec230f41d9d69843d5a79b1afc9df630237fa1"
+      },
+      "static_assessment": "Critical unknowns block release and exact-candidate evidence may be reused. Dirty work and recovery are preserved; gate does not itself publish.",
+      "finding_ids": [],
+      "forward_trial": null,
+      "native_runtime_activation": "UNVERIFIED",
+      "cross_model_effectiveness": "UNVERIFIED"
+    },
+    {
+      "skill": "concierge",
+      "entrypoint": "skills/concierge/SKILL.md",
+      "entrypoint_sha256": "93a2a20d7d70e2122153560a1a8bdbff7cb0757df8a7936d7376f5618cdc9a2c",
+      "body_lines": 272,
+      "review_scope": "complete entrypoint plus selected on-demand safety/ownership/reference and changed-helper surfaces",
+      "resources_inspected": [
+        "skills/concierge/references/routing.md",
+        "skills/concierge/references/capability-degradation.md"
+      ],
+      "snapshot_sha256": {
+        "SKILL.md": "93a2a20d7d70e2122153560a1a8bdbff7cb0757df8a7936d7376f5618cdc9a2c",
+        "references/routing.md": "31fbb020af0853816f3cfcf2a53794b27caac790b400118f60a45921fe1f1047",
+        "references/capability-degradation.md": "58a598205207aa410a68d39a1b4be79c2da288d4419b55b5428768edb032543c"
+      },
+      "static_assessment": "Smallest-owner routing and evidence freshness are explicit. Browser capability probe hardcodes a protocol unsupported by this host; inspect inventory or documented host-supported observation instead.",
+      "finding_ids": [
+        "IR-4"
+      ],
+      "forward_trial": null,
+      "native_runtime_activation": "UNVERIFIED",
+      "cross_model_effectiveness": "UNVERIFIED"
+    },
+    {
+      "skill": "distill",
+      "entrypoint": "skills/distill/SKILL.md",
+      "entrypoint_sha256": "7200b99ad03827aedcb08f545c777e1dfa0f674dccab8c4322de4c6ae05c09e0",
+      "body_lines": 217,
+      "review_scope": "complete entrypoint plus selected on-demand safety/ownership/reference and changed-helper surfaces",
+      "resources_inspected": [
+        "skills/distill/references/brief-template.md"
+      ],
+      "snapshot_sha256": {
+        "SKILL.md": "7200b99ad03827aedcb08f545c777e1dfa0f674dccab8c4322de4c6ae05c09e0",
+        "references/brief-template.md": "38a75c0c936904ba9025ce517193f1638b0f58508817c24c0c91728661e06649"
+      },
+      "static_assessment": "Blocking material ambiguity and numbered assumptions are separated. Existing implementation authority continues after the brief; no new approval gate.",
+      "finding_ids": [],
+      "forward_trial": null,
+      "native_runtime_activation": "UNVERIFIED",
+      "cross_model_effectiveness": "UNVERIFIED"
+    },
+    {
+      "skill": "ditto",
+      "entrypoint": "skills/ditto/SKILL.md",
+      "entrypoint_sha256": "c3283b357b779e79dbcc75d531c7d408c4304cf050a3eaec843febceb0e9d014",
+      "body_lines": 207,
+      "review_scope": "complete entrypoint plus selected on-demand safety/ownership/reference and changed-helper surfaces",
+      "resources_inspected": [
+        "skills/ditto/references/sourcing-rules.md",
+        "skills/ditto/references/comparison-controls.md"
+      ],
+      "snapshot_sha256": {
+        "SKILL.md": "c3283b357b779e79dbcc75d531c7d408c4304cf050a3eaec843febceb0e9d014",
+        "references/sourcing-rules.md": "5d97069fb162f2e50b659f3855fe983ab570c9324b57985ade4abaaafe6672f8",
+        "references/comparison-controls.md": "aa19ba823450d44f139b1dfc164cfd06c8c7ee0b1272a65231de9133c0699b4c"
+      },
+      "static_assessment": "Source viewport/state and inferred behavior distinguished; snapshot update is baseline authorship. Static fallback cannot prove fidelity.",
+      "finding_ids": [],
+      "forward_trial": null,
+      "native_runtime_activation": "UNVERIFIED",
+      "cross_model_effectiveness": "UNVERIFIED"
+    },
+    {
+      "skill": "findable",
+      "entrypoint": "skills/findable/SKILL.md",
+      "entrypoint_sha256": "f53024511dc1131f327c1cd90fb4ecbf7517c098f19d5365d89ed7c0732a1a40",
+      "body_lines": 193,
+      "review_scope": "complete entrypoint plus selected on-demand safety/ownership/reference and changed-helper surfaces",
+      "resources_inspected": [
+        "skills/findable/references/seo-checklist.md"
+      ],
+      "snapshot_sha256": {
+        "SKILL.md": "f53024511dc1131f327c1cd90fb4ecbf7517c098f19d5365d89ed7c0732a1a40",
+        "references/seo-checklist.md": "75f54435c17fc6c76ac3909dbea2b8fad6303e6f3111d2ed78e82d17c342e0c1"
+      },
+      "static_assessment": "HTTP initial HTML and rendered DOM are distinguished; canonical/noindex are not privacy controls. Ranking and rich-result claims remain bounded.",
+      "finding_ids": [],
+      "forward_trial": null,
+      "native_runtime_activation": "UNVERIFIED",
+      "cross_model_effectiveness": "UNVERIFIED"
+    },
+    {
+      "skill": "friction",
+      "entrypoint": "skills/friction/SKILL.md",
+      "entrypoint_sha256": "68a37d0a7caded8fc54bb01689b0642e2b0f291cfddb99f4af2ffd9cd2376aa9",
+      "body_lines": 221,
+      "review_scope": "complete entrypoint plus selected on-demand safety/ownership/reference and changed-helper surfaces",
+      "resources_inspected": [
+        "skills/friction/references/recovery-journeys.md"
+      ],
+      "snapshot_sha256": {
+        "SKILL.md": "68a37d0a7caded8fc54bb01689b0642e2b0f291cfddb99f4af2ffd9cd2376aa9",
+        "references/recovery-journeys.md": "1579bdd38873bbcde00e7ca04920cca431bf0e600ee749c6c24a4cd6b711d508"
+      },
+      "static_assessment": "Task diagnosis is separate from visuals/implementation; recovery writes belong to backend and privacy constraints bound persistence. Static fallback is explicitly limited.",
+      "finding_ids": [],
+      "forward_trial": null,
+      "native_runtime_activation": "UNVERIFIED",
+      "cross_model_effectiveness": "UNVERIFIED"
+    },
+    {
+      "skill": "frontpage",
+      "entrypoint": "skills/frontpage/SKILL.md",
+      "entrypoint_sha256": "7567b60ebf44c8e16fef581cc1aa74c7e739171141bacd791a875027b557b52b",
+      "body_lines": 210,
+      "review_scope": "complete entrypoint plus selected on-demand safety/ownership/reference and changed-helper surfaces",
+      "resources_inspected": [
+        "skills/frontpage/references/readme-blueprint.md"
+      ],
+      "snapshot_sha256": {
+        "SKILL.md": "7567b60ebf44c8e16fef581cc1aa74c7e739171141bacd791a875027b557b52b",
+        "references/readme-blueprint.md": "b15f04fe0942bf6c6d72fce7dcc30eec9023f67fb0d51b07502e83d8ae49cc39"
+      },
+      "static_assessment": "Quickstart execution is bounded by side-effect review; unsafe/unavailable snippets are unexecuted gaps. Declared requirements and runtime tests are separate.",
+      "finding_ids": [],
+      "forward_trial": null,
+      "native_runtime_activation": "UNVERIFIED",
+      "cross_model_effectiveness": "UNVERIFIED"
+    },
+    {
+      "skill": "frugal",
+      "entrypoint": "skills/frugal/SKILL.md",
+      "entrypoint_sha256": "fff8cd068f47c7d24eeef22531d78e880d2f6bd217bf38d59b03712959ddc283",
+      "body_lines": 226,
+      "review_scope": "complete entrypoint plus selected on-demand safety/ownership/reference and changed-helper surfaces",
+      "resources_inspected": [
+        "skills/frugal/references/measurement.md",
+        "skills/frugal/scripts/cost-report.py"
+      ],
+      "snapshot_sha256": {
+        "SKILL.md": "fff8cd068f47c7d24eeef22531d78e880d2f6bd217bf38d59b03712959ddc283",
+        "references/measurement.md": "14f6aa1eae6617710e48cd3180da9dea46e70355013718be2a491741eb395cc0",
+        "scripts/cost-report.py": "7e49421cfda6736769ffbd46f4ef5bf64d027a56c6f0413386655245660d8f18"
+      },
+      "static_assessment": "Same independent acceptance gate and total attempt cost retained. Helper checks arithmetic/shape only, not supplied acceptance/usage truth.",
+      "finding_ids": [],
+      "forward_trial": null,
+      "native_runtime_activation": "UNVERIFIED",
+      "cross_model_effectiveness": "UNVERIFIED"
+    },
+    {
+      "skill": "handsfree",
+      "entrypoint": "skills/handsfree/SKILL.md",
+      "entrypoint_sha256": "e1f5faa4d703df87ed0be85e22a2050ab8ccbb12e2556172ab7b5213d1e5a6e9",
+      "body_lines": 250,
+      "review_scope": "complete entrypoint plus selected on-demand safety/ownership/reference and changed-helper surfaces",
+      "resources_inspected": [
+        "skills/handsfree/references/decision-policy.md",
+        "skills/handsfree/references/host-permissions.md"
+      ],
+      "snapshot_sha256": {
+        "SKILL.md": "e1f5faa4d703df87ed0be85e22a2050ab8ccbb12e2556172ab7b5213d1e5a6e9",
+        "references/decision-policy.md": "ce870f0cf07158644e9d58dcaf6118e9d9ded6cffebe26953938749cb89419d9",
+        "references/host-permissions.md": "ffbda24addf4c3c9fa176fa7dbc478c90942258f9905f8c46aa2d8a32e7069a2"
+      },
+      "static_assessment": "Entrypoint reuses authorization and honors host denials, but decision-policy security-sensitive catch-all can add an unnecessary gate to approved local security work.",
+      "finding_ids": [
+        "IR-3"
+      ],
+      "forward_trial": null,
+      "native_runtime_activation": "UNVERIFIED",
+      "cross_model_effectiveness": "UNVERIFIED"
+    },
+    {
+      "skill": "harden",
+      "entrypoint": "skills/harden/SKILL.md",
+      "entrypoint_sha256": "4d526443b4787b7611c58254c57130929fbd8bea2017974e2eccc72302641c38",
+      "body_lines": 360,
+      "review_scope": "complete entrypoint plus selected on-demand safety/ownership/reference and changed-helper surfaces",
+      "resources_inspected": [
+        "skills/harden/references/attack-surface.md"
+      ],
+      "snapshot_sha256": {
+        "SKILL.md": "4d526443b4787b7611c58254c57130929fbd8bea2017974e2eccc72302641c38",
+        "references/attack-surface.md": "1b7a57746ff714f46bc4fb2284f745f7e8a8c90aac68541adf0c5cd98b216959"
+      },
+      "static_assessment": "Scope and attack-chain evidence precede remediation; scanners are candidates. Forward trial verified synthetic owner/config invariants only.",
+      "finding_ids": [],
+      "forward_trial": "docs/upgrade/evidence/forward/harden",
+      "native_runtime_activation": "UNVERIFIED",
+      "cross_model_effectiveness": "UNVERIFIED"
+    },
+    {
+      "skill": "headroom",
+      "entrypoint": "skills/headroom/SKILL.md",
+      "entrypoint_sha256": "bdcb9f57d9d0d6a6f7f081c5e35bb5fc67dab5f454d3dbca2f61fc624b1f91f5",
+      "body_lines": 283,
+      "review_scope": "complete entrypoint plus selected on-demand safety/ownership/reference and changed-helper surfaces",
+      "resources_inspected": [
+        "skills/headroom/references/workload-experiments.md"
+      ],
+      "snapshot_sha256": {
+        "SKILL.md": "bdcb9f57d9d0d6a6f7f081c5e35bb5fc67dab5f454d3dbca2f61fc624b1f91f5",
+        "references/workload-experiments.md": "a9f970ae712f20e9a09d51bb7b8da7785e929a5d21d5c25be9738ae8eb8e5a86"
+      },
+      "static_assessment": "Measured/reported/derived/assumed inputs and queue offered/accepted/completed rates separated. No production load or quota change implied.",
+      "finding_ids": [],
+      "forward_trial": null,
+      "native_runtime_activation": "UNVERIFIED",
+      "cross_model_effectiveness": "UNVERIFIED"
+    },
+    {
+      "skill": "hotpath",
+      "entrypoint": "skills/hotpath/SKILL.md",
+      "entrypoint_sha256": "7dcdb2f97017a608d9df946bbb4648f632f8012a6d5b764148c55dd684e232dd",
+      "body_lines": 245,
+      "review_scope": "complete entrypoint plus selected on-demand safety/ownership/reference and changed-helper surfaces",
+      "resources_inspected": [
+        "skills/hotpath/references/experiment-hazards.md",
+        "skills/hotpath/scripts/measure-report"
+      ],
+      "snapshot_sha256": {
+        "SKILL.md": "7dcdb2f97017a608d9df946bbb4648f632f8012a6d5b764148c55dd684e232dd",
+        "references/experiment-hazards.md": "87fcd264e4f542ebc66b429dd00b7316953b097f74b4de84fa25d777aae99f44",
+        "scripts/measure-report": "1bd180a19069cfbf505acefbe860215e675e0483376eb4a37dccb0100833f06c"
+      },
+      "static_assessment": "Before/after equivalence, execution hazards and threshold meaning are bounded. Numeric helper is arithmetic, not statistical/causal proof.",
+      "finding_ids": [],
+      "forward_trial": null,
+      "native_runtime_activation": "UNVERIFIED",
+      "cross_model_effectiveness": "UNVERIFIED"
+    },
+    {
+      "skill": "hotseat",
+      "entrypoint": "skills/hotseat/SKILL.md",
+      "entrypoint_sha256": "60152e35bf17e3a2c3837f75777922f5a469f61a946cb18e40fce6468f9fe916",
+      "body_lines": 291,
+      "review_scope": "complete entrypoint plus selected on-demand safety/ownership/reference and changed-helper surfaces",
+      "resources_inspected": [
+        "skills/hotseat/references/personas.md"
+      ],
+      "snapshot_sha256": {
+        "SKILL.md": "60152e35bf17e3a2c3837f75777922f5a469f61a946cb18e40fce6468f9fe916",
+        "references/personas.md": "e8a7552a159f8f185f133e1824eef4860f19d1ba86298f87dcef7fffa3dfed47"
+      },
+      "static_assessment": "Lenses are not actual people/research; independence and genuine dissent are qualified. No invented corrections/counts required by gate.",
+      "finding_ids": [],
+      "forward_trial": null,
+      "native_runtime_activation": "UNVERIFIED",
+      "cross_model_effectiveness": "UNVERIFIED"
+    },
+    {
+      "skill": "janitor",
+      "entrypoint": "skills/janitor/SKILL.md",
+      "entrypoint_sha256": "3172d1170c9122fc3cfb7ad818cebe3a75dc0aef30072ba9492b8a8089e4f984",
+      "body_lines": 178,
+      "review_scope": "complete entrypoint plus selected on-demand safety/ownership/reference and changed-helper surfaces",
+      "resources_inspected": [
+        "skills/janitor/references/hygiene-checklists.md",
+        "skills/janitor/references/maintenance-protocol.md"
+      ],
+      "snapshot_sha256": {
+        "SKILL.md": "3172d1170c9122fc3cfb7ad818cebe3a75dc0aef30072ba9492b8a8089e4f984",
+        "references/hygiene-checklists.md": "ecdeae900ff2dd3399ab97a0a8a1eef800b06007b368d8194098cfb719163c4b",
+        "references/maintenance-protocol.md": "4b6b1b6cd6aedb9de68466b2d437008724d0dab688ab27cc823f46de5c829944"
+      },
+      "static_assessment": "Target authorization, dirty index/worktree and ref ownership checked before mutation. Merged/old ref is candidate only.",
+      "finding_ids": [],
+      "forward_trial": null,
+      "native_runtime_activation": "UNVERIFIED",
+      "cross_model_effectiveness": "UNVERIFIED"
+    },
+    {
+      "skill": "masterplan",
+      "entrypoint": "skills/masterplan/SKILL.md",
+      "entrypoint_sha256": "8673479b3f93a834fbb64abfd2e96752f7c519e5dd02483a4fea290722ceac68",
+      "body_lines": 202,
+      "review_scope": "complete entrypoint plus selected on-demand safety/ownership/reference and changed-helper surfaces",
+      "resources_inspected": [
+        "skills/masterplan/references/planning-protocol.md",
+        "skills/masterplan/references/plan-template.md"
+      ],
+      "snapshot_sha256": {
+        "SKILL.md": "8673479b3f93a834fbb64abfd2e96752f7c519e5dd02483a4fea290722ceac68",
+        "references/planning-protocol.md": "6971e5c331ca12339f07635445a4f199e0843319dfc6649ace2f80cb97216e03",
+        "references/plan-template.md": "1aa79a8c364914ea2046f2e8f2f01d9153552babdc9d490c1bb125681794b24e"
+      },
+      "static_assessment": "Irreversible work and recovery are now compatible; prior mandatory down-path wording was corrected during shared-tree review.",
+      "finding_ids": [
+        "IR-2"
+      ],
+      "forward_trial": null,
+      "native_runtime_activation": "UNVERIFIED",
+      "cross_model_effectiveness": "UNVERIFIED"
+    },
+    {
+      "skill": "pilot",
+      "entrypoint": "skills/pilot/SKILL.md",
+      "entrypoint_sha256": "21555321544934428981f934456694c61f5b73507e6096b9a11c39380cd0969d",
+      "body_lines": 203,
+      "review_scope": "complete entrypoint plus selected on-demand safety/ownership/reference and changed-helper surfaces",
+      "resources_inspected": [
+        "skills/pilot/references/execution-protocol.md",
+        "skills/pilot/references/completion-gate.md"
+      ],
+      "snapshot_sha256": {
+        "SKILL.md": "21555321544934428981f934456694c61f5b73507e6096b9a11c39380cd0969d",
+        "references/execution-protocol.md": "5fc843a6526e2711d4ee87b7081589d6fe7ae88376b663339ef6c60ca2ebff7b",
+        "references/completion-gate.md": "9a64b7779349f38bbf477d29b9189c9fe25f6245e5e4dd6dd8a48585f4e7069d"
+      },
+      "static_assessment": "Slice proof, local deviation and recovery are explicit. Initial completion reference demanded migration down/full suite; corrected during shared-tree review.",
+      "finding_ids": [
+        "IR-2"
+      ],
+      "forward_trial": null,
+      "native_runtime_activation": "UNVERIFIED",
+      "cross_model_effectiveness": "UNVERIFIED"
+    },
+    {
+      "skill": "polish",
+      "entrypoint": "skills/polish/SKILL.md",
+      "entrypoint_sha256": "1a9152f6517f038f4d9050c21680d3043b4e7b500c68334b5b6c5252e0a46564",
+      "body_lines": 295,
+      "review_scope": "complete entrypoint plus selected on-demand safety/ownership/reference and changed-helper surfaces",
+      "resources_inspected": [
+        "skills/polish/references/audit.md",
+        "skills/polish/references/rendered-evidence.md"
+      ],
+      "snapshot_sha256": {
+        "SKILL.md": "1a9152f6517f038f4d9050c21680d3043b4e7b500c68334b5b6c5252e0a46564",
+        "references/audit.md": "4075fa32870e668118d83588a38bbf291fa2de3cc283f0c042edd3e768890763",
+        "references/rendered-evidence.md": "5ea8271a5891a8f9dfd560594ac34d9f9a39c92f98f70ef49be0a6d9fa5edd94"
+      },
+      "static_assessment": "Tokens and working behavior preserved; no-browser fallback marks visual/behavioral claims unverified. Trial retained static artifact only after host refusal.",
+      "finding_ids": [],
+      "forward_trial": "docs/upgrade/evidence/forward/polish",
+      "native_runtime_activation": "UNVERIFIED",
+      "cross_model_effectiveness": "UNVERIFIED"
+    },
+    {
+      "skill": "proof",
+      "entrypoint": "skills/proof/SKILL.md",
+      "entrypoint_sha256": "a77dcafa1482686e596a693b2e12020cf4b65b38c3470045cbc4ff341ccd181b",
+      "body_lines": 207,
+      "review_scope": "complete entrypoint plus selected on-demand safety/ownership/reference and changed-helper surfaces",
+      "resources_inspected": [
+        "skills/proof/references/boundary-picker.md",
+        "skills/proof/references/result-semantics.md"
+      ],
+      "snapshot_sha256": {
+        "SKILL.md": "a77dcafa1482686e596a693b2e12020cf4b65b38c3470045cbc4ff341ccd181b",
+        "references/boundary-picker.md": "b8cc0b44904eb244af4252770e54c6b53f72d6af35af7bb3e8cd2f17fdf11096",
+        "references/result-semantics.md": "09e69e5ea2c497855b85d5763d58613f68771f834b2e53e255c785b9d83d2122"
+      },
+      "static_assessment": "Faithful boundary, real-engine properties and expected assertion failure distinguished from setup errors. Recovery path permits forward-fix.",
+      "finding_ids": [],
+      "forward_trial": null,
+      "native_runtime_activation": "UNVERIFIED",
+      "cross_model_effectiveness": "UNVERIFIED"
+    },
+    {
+      "skill": "recall",
+      "entrypoint": "skills/recall/SKILL.md",
+      "entrypoint_sha256": "ea0ae1bdb67a593b573fa8027119bc69a10a39ba8d2d026f43952cd6f3155374",
+      "body_lines": 187,
+      "review_scope": "complete entrypoint plus selected on-demand safety/ownership/reference and changed-helper surfaces",
+      "resources_inspected": [
+        "skills/recall/references/memory-protocol.md",
+        "skills/recall/references/file-formats.md"
+      ],
+      "snapshot_sha256": {
+        "SKILL.md": "ea0ae1bdb67a593b573fa8027119bc69a10a39ba8d2d026f43952cd6f3155374",
+        "references/memory-protocol.md": "0be7bc14722dbcad4391af65c82a771860877f6e4bfee60a85b4de9c347de60c",
+        "references/file-formats.md": "153eac4b0fbc3373d92fb34582d83fefca58ccbda13dfcde74ed134f2fb99926"
+      },
+      "static_assessment": "Memory sources cannot authorize actions; branch/revert/concurrent-write provenance retained. Stable facts distinct from STATUS hypotheses.",
+      "finding_ids": [],
+      "forward_trial": null,
+      "native_runtime_activation": "UNVERIFIED",
+      "cross_model_effectiveness": "UNVERIFIED"
+    },
+    {
+      "skill": "referee",
+      "entrypoint": "skills/referee/SKILL.md",
+      "entrypoint_sha256": "fbaa810170c47ba051eefd55cf5637d49aa3c795b9ebe84a53e65ea6c310b301",
+      "body_lines": 192,
+      "review_scope": "complete entrypoint plus selected on-demand safety/ownership/reference and changed-helper surfaces",
+      "resources_inspected": [
+        "skills/referee/references/review-protocol.md",
+        "skills/referee/references/finding-format.md"
+      ],
+      "snapshot_sha256": {
+        "SKILL.md": "fbaa810170c47ba051eefd55cf5637d49aa3c795b9ebe84a53e65ea6c310b301",
+        "references/review-protocol.md": "7c7de63eca81e845aa0fc664e2fad2142fe9b3d6ff6ae5215cbda93567a7e2cd",
+        "references/finding-format.md": "257ffc415cc57f1fbfc5ac38c7d5baf97fc534dea5fbc6bf97f36572f8a79cf0"
+      },
+      "static_assessment": "Intent and impact maps precede verdict; simpler alternative without concrete cost is suggestion. Runtime gaps remain scoped.",
+      "finding_ids": [],
+      "forward_trial": null,
+      "native_runtime_activation": "UNVERIFIED",
+      "cross_model_effectiveness": "UNVERIFIED"
+    },
+    {
+      "skill": "roadtest",
+      "entrypoint": "skills/roadtest/SKILL.md",
+      "entrypoint_sha256": "89f619be6ec22e45a1835c1c8438205864f4b18c86e7a6e56c0f3ec9ec7caaec",
+      "body_lines": 210,
+      "review_scope": "complete entrypoint plus selected on-demand safety/ownership/reference and changed-helper surfaces",
+      "resources_inspected": [
+        "skills/roadtest/references/evidence-bundle.md",
+        "skills/roadtest/references/adverse-conditions.md",
+        "skills/roadtest/scripts/test-matrix"
+      ],
+      "snapshot_sha256": {
+        "SKILL.md": "89f619be6ec22e45a1835c1c8438205864f4b18c86e7a6e56c0f3ec9ec7caaec",
+        "references/evidence-bundle.md": "ce7eead3c3c14038690d398f70a1c6a025047c7f1028ae510a1a2c2fa2327914",
+        "references/adverse-conditions.md": "fdd5e731f91cfa344e34e4fbf375a22c93874accceaff5f627c7a096cc61c687",
+        "scripts/test-matrix": "7e79b1beca82b56d87616f18efb031e93c768335aae19b1657e190755ef035f2"
+      },
+      "static_assessment": "Negative-path console/network outcomes assessed against contract. Evidence-bundle still universally invalidates screenshot-free PASS, conflicting with HTTP/capability fallback.",
+      "finding_ids": [
+        "IR-5"
+      ],
+      "forward_trial": null,
+      "native_runtime_activation": "UNVERIFIED",
+      "cross_model_effectiveness": "UNVERIFIED"
+    },
+    {
+      "skill": "runway",
+      "entrypoint": "skills/runway/SKILL.md",
+      "entrypoint_sha256": "68817d2ac027203c67db9c1a3e68ebb46a57c964006bba55ff61c4cc3ba6b974",
+      "body_lines": 206,
+      "review_scope": "complete entrypoint plus selected on-demand safety/ownership/reference and changed-helper surfaces",
+      "resources_inspected": [
+        "skills/runway/references/platforms.md",
+        "skills/runway/references/release-protocol.md",
+        "skills/runway/scripts/check-receipt.py"
+      ],
+      "snapshot_sha256": {
+        "SKILL.md": "68817d2ac027203c67db9c1a3e68ebb46a57c964006bba55ff61c4cc3ba6b974",
+        "references/platforms.md": "2c73b8fe028feb403e65cc7e8c1dc32f0f6728f9e356ce82e15760d017aefa3e",
+        "references/release-protocol.md": "e7c354929161df15af2f6c8bf392d84dc3a90a3f2673d6c06769e4e810d68413",
+        "scripts/check-receipt.py": "21eb7b4af35aed3ebb397cea1bda7529d17191b09bbb77d782d66dacf7c92c18"
+      },
+      "static_assessment": "Target/artifact authorization, preview risks, pipeline-specific build, public fingerprint and compatibility-bound recovery required. Receipt helper is consistency only.",
+      "finding_ids": [],
+      "forward_trial": null,
+      "native_runtime_activation": "UNVERIFIED",
+      "cross_model_effectiveness": "UNVERIFIED"
+    },
+    {
+      "skill": "scout",
+      "entrypoint": "skills/scout/SKILL.md",
+      "entrypoint_sha256": "5e678d69e09df48d2eb84323f7a742f015aac7736a4cc8fbf316be19f0c1d160",
+      "body_lines": 215,
+      "review_scope": "complete entrypoint plus selected on-demand safety/ownership/reference and changed-helper surfaces",
+      "resources_inspected": [
+        "skills/scout/references/source-ladder.md",
+        "skills/scout/references/research-protocol.md"
+      ],
+      "snapshot_sha256": {
+        "SKILL.md": "5e678d69e09df48d2eb84323f7a742f015aac7736a4cc8fbf316be19f0c1d160",
+        "references/source-ladder.md": "7b03732abc8e3d6bab01e5d39d1d6edab408e01265736f87267a974db7e0236d",
+        "references/research-protocol.md": "adff44148f7fc0eee07766a17d1466d94166c9dd8b683f1c17568b0c20e3690a"
+      },
+      "static_assessment": "Installed/deployed/target versions and source authority are separate. Public/local source evidence does not authorize an external mutation.",
+      "finding_ids": [],
+      "forward_trial": null,
+      "native_runtime_activation": "UNVERIFIED",
+      "cross_model_effectiveness": "UNVERIFIED"
+    },
+    {
+      "skill": "sleuth",
+      "entrypoint": "skills/sleuth/SKILL.md",
+      "entrypoint_sha256": "0a4d9dfed0d0e99115d7714b1a8dbfa58d26d72d57db17a0a75636f691c35f65",
+      "body_lines": 319,
+      "review_scope": "complete entrypoint plus selected on-demand safety/ownership/reference and changed-helper surfaces",
+      "resources_inspected": [
+        "skills/sleuth/references/techniques.md"
+      ],
+      "snapshot_sha256": {
+        "SKILL.md": "0a4d9dfed0d0e99115d7714b1a8dbfa58d26d72d57db17a0a75636f691c35f65",
+        "references/techniques.md": "7b70a1b42637b2712edf678fcddf842099bc837d5612d63eca1751a6afb231db"
+      },
+      "static_assessment": "Confirmed mechanism needs failing signal, adjacent regression and causality evidence; no mandatory invented rival hypothesis. Trial verifies warmed-key replacement only.",
+      "finding_ids": [],
+      "forward_trial": "docs/upgrade/evidence/forward/sleuth",
+      "native_runtime_activation": "UNVERIFIED",
+      "cross_model_effectiveness": "UNVERIFIED"
+    },
+    {
+      "skill": "spelunk",
+      "entrypoint": "skills/spelunk/SKILL.md",
+      "entrypoint_sha256": "dfd6b96c987efd3c2e5177536fa6ae81614d19a5feead04ba04e5e922e82286e",
+      "body_lines": 188,
+      "review_scope": "complete entrypoint plus selected on-demand safety/ownership/reference and changed-helper surfaces",
+      "resources_inspected": [
+        "skills/spelunk/references/discovery-map.md",
+        "skills/spelunk/references/evidence-protocol.md",
+        "skills/spelunk/scripts/inventory"
+      ],
+      "snapshot_sha256": {
+        "SKILL.md": "dfd6b96c987efd3c2e5177536fa6ae81614d19a5feead04ba04e5e922e82286e",
+        "references/discovery-map.md": "cedd0d36fd2e6bca12ddeb6b62b359bcef3617de95591d8e50de67502728eea1",
+        "references/evidence-protocol.md": "d99d5483285d45c4fbf2515a8e38459577cae6e113198ab2835001be0828f8fd",
+        "scripts/inventory": "b27d16fa1fc0ec8cd5c14ac740654d5d43370044c0055922acb67ac7462b4420"
+      },
+      "static_assessment": "Read-only map, dynamic/generated ownership and actual call path evidence distinguish structure from runtime. Inventory remains heuristic.",
+      "finding_ids": [],
+      "forward_trial": null,
+      "native_runtime_activation": "UNVERIFIED",
+      "cross_model_effectiveness": "UNVERIFIED"
+    },
+    {
+      "skill": "unslop",
+      "entrypoint": "skills/unslop/SKILL.md",
+      "entrypoint_sha256": "74abe200cf746df439e1313d805b0b8cfc6f25bbb201d0e7f29573afb73c8287",
+      "body_lines": 209,
+      "review_scope": "complete entrypoint plus selected on-demand safety/ownership/reference and changed-helper surfaces",
+      "resources_inspected": [
+        "skills/unslop/references/slop-catalog.md",
+        "skills/unslop/references/cleanup-protocol.md"
+      ],
+      "snapshot_sha256": {
+        "SKILL.md": "74abe200cf746df439e1313d805b0b8cfc6f25bbb201d0e7f29573afb73c8287",
+        "references/slop-catalog.md": "272170c8270f0a223dc8d9671f19eec457bc2041d7bf9f0c408bf93b9ef757c9",
+        "references/cleanup-protocol.md": "428c37d763c3873392a5ed73efa9ff44891f2b8dd2681cd1959119c05d13adf2"
+      },
+      "static_assessment": "Reachability and contract preservation required. Unconditional per-batch commit was corrected to authorized checkpoint during review.",
+      "finding_ids": [
+        "IR-1"
+      ],
+      "forward_trial": null,
+      "native_runtime_activation": "UNVERIFIED",
+      "cross_model_effectiveness": "UNVERIFIED"
+    }
+  ],
+  "verification": [
+    {
+      "path": "docs/upgrade/evidence/forward/repository-check-0.json",
+      "command": [
+        "scripts/validate-skills"
+      ],
+      "exit_code": 0
+    },
+    {
+      "path": "docs/upgrade/evidence/forward/repository-check-1.json",
+      "command": [
+        "scripts/check-names"
+      ],
+      "exit_code": 0
+    },
+    {
+      "path": "docs/upgrade/evidence/forward/repository-check-2.json",
+      "command": [
+        "scripts/check-links"
+      ],
+      "exit_code": 0
+    },
+    {
+      "path": "docs/upgrade/evidence/forward/repository-check-3.json",
+      "command": [
+        "scripts/test-upgrade"
+      ],
+      "exit_code": 1
+    },
+    {
+      "path": "docs/upgrade/evidence/forward/repository-check-4.json",
+      "command": [
+        "scripts/test-regressions"
+      ],
+      "exit_code": 0
+    },
+    {
+      "path": "docs/upgrade/evidence/forward/repository-check-5.json",
+      "command": [
+        "scripts/check-packages",
+        "--output",
+        "/private/tmp/skills-forward/packages.json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "path": "docs/upgrade/evidence/forward/repository-check-6.json",
+      "command": [
+        "python3",
+        "skills/frugal/scripts/cost-report.py",
+        "--self-test"
+      ],
+      "exit_code": 0
+    },
+    {
+      "path": "docs/upgrade/evidence/forward/repository-check-7.json",
+      "command": [
+        "python3",
+        "skills/runway/scripts/check-receipt.py",
+        "--self-test"
+      ],
+      "exit_code": 0
+    }
+  ],
+  "ledger_assessment": "Ledger currently marks individual work IN_PROGRESS and current behavior UNVERIFIED. That does not overclaim this exploratory evidence. Packaging checks verify copied bytes/executable bits/structure, not native activation. Historical outcome categories must remain historical and do not transfer to current package hashes."
+}

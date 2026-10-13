@@ -1,0 +1,12 @@
+{
+  "command": [
+    "scripts/check-context"
+  ],
+  "exit_code": 0,
+  "stdout": "skill          ~tok  lines  refs  refKB flags\nbackend        4860    391     3     14 OUTLIER\nblueprint      3217    251     3      6\ncleared        2751    223     2      7\nconcierge      3305    277     3     15\ndistill        2638    222     2      7\nditto          2673    212     3      6\nfindable       2536    198     2      9\nfriction       2602    226     3      7\nfrontpage      2745    215     2      6\nfrugal         2891    231     3      8\nhandsfree      3102    255     4     11\nharden         4609    365     2     16 OUTLIER\nheadroom       3540    288     3      6\nhotpath        2997    250     3      7\nhotseat        3805    296     2     13\njanitor        2269    183     3     10\nmasterplan     2521    207     3      9\npilot          2505    208     3      8\npolish         3791    300     3      7\nproof          2556    212     3      7\nrecall         2381    192     3      9\nreferee        2345    197     3      9\nroadtest       2696    215     3      8\nrunway         2721    211     3      9\nscout          2730    220     3     11\nsleuth         4222    324     2      9 OUTLIER\nspelunk        2441    193     3      9\nunslop         2740    214     3     10\n\nmedian ~2740 tok (derived byte estimate) \u00b7 total SKILL.md 328KB \u00b7 references 268KB \u00b7 frontmatter descriptions ~1849 tok always-on\n",
+  "stderr": "investigate: backend, harden, sleuth\n",
+  "status": "PASS",
+  "started_at_utc": "2026-10-13T19:58:45.621452+00:00",
+  "client_date": "2026-10-14",
+  "scope": "local deterministic check; no causal effectiveness/native compatibility inference"
+}

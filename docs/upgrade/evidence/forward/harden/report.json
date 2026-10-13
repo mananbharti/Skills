@@ -1,0 +1,34 @@
+{
+  "mode": "focused identity/config review and remediation",
+  "scope": "Disposable local SQLite data only. Subjects are supplied fixture users, assumed authenticated upstream; no real credentials or network.",
+  "threat_model": "Synthetic private note bodies are protected assets. Actor can manipulate username/note_id or choose another owner. SQL and object ownership are the relevant boundaries.",
+  "findings": [
+    {
+      "id": "read-injection",
+      "severity": "high",
+      "confidence": "confirmed",
+      "status": "fixed-and-retested",
+      "path": "Raw input concatenated into SQL reveals both owners; parameterized owner/id query now rejects payload as data."
+    },
+    {
+      "id": "delete-owner",
+      "severity": "high",
+      "confidence": "confirmed",
+      "status": "fixed-and-retested",
+      "path": "Delete ignores supplied owner; now owner and id are matched in the data query with rowcount result."
+    },
+    {
+      "id": "configuration",
+      "severity": "medium",
+      "confidence": "confirmed",
+      "status": "fixed-and-retested",
+      "path": "Hardcoded synthetic secret removed; get_secret reads NOTES_SECRET and rejects missing/empty config."
+    }
+  ],
+  "verification": "5 tests; before 4 failures; after all pass.",
+  "limitations": [
+    "Authentication is a caller precondition; this fixture has no HTTP boundary.",
+    "Environment secrecy/storage and real credential rotation were not tested.",
+    "Synthetic seed credential value redacted in retained diff."
+  ]
+}

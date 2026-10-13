@@ -1,0 +1,11 @@
+{
+  "skill_sha256": {
+    "skills/harden/SKILL.md": "4d526443b4787b7611c58254c57130929fbd8bea2017974e2eccc72302641c38",
+    "skills/harden/references/research.md": "03d10ce26a2c5bc5c4b4097e26d1d7907d8e3f68132d099427ddd3e93ed4bd73",
+    "skills/harden/references/attack-surface.md": "1b7a57746ff714f46bc4fb2284f745f7e8a8c90aac68541adf0c5cd98b216959"
+  },
+  "fixture_sha256": {
+    "benchmarks/fixtures/harden-notes/notes.py": "ae673d3d5da86a73836f805f78756c9b10d210d46d994133447445a0ab0228f8"
+  },
+  "trial": "exploratory in-session forward trial; not controlled comparison"
+}

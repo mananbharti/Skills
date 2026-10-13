@@ -1,0 +1,9 @@
+{
+  "skill": {
+    "SKILL.md": "3172d1170c9122fc3cfb7ad818cebe3a75dc0aef30072ba9492b8a8089e4f984",
+    "references/hygiene-checklists.md": "ecdeae900ff2dd3399ab97a0a8a1eef800b06007b368d8194098cfb719163c4b",
+    "references/maintenance-protocol.md": "4b6b1b6cd6aedb9de68466b2d437008724d0dab688ab27cc823f46de5c829944",
+    "references/research.md": "6c0624dc92865f30045ae6af916a94c38d75cbdbf4e9f31f7d22b1fcf4558469"
+  },
+  "fixture": {}
+}

@@ -1,0 +1,29 @@
+{
+  "skill": "hotseat",
+  "prompt": "Quickly challenge my attendance-app idea for a 20-person volunteer club. We have no interviews or demand data. Give the most useful next experiment; I am not asking for a full panel.",
+  "package_sha256": "be0084007dde6e8f98925d6c7be2ff1ed7cff64179fbd0e012e5e156aaacbb8c",
+  "hash_method": "sha256 of sorted package-relative path + NUL + file sha256 + newline records",
+  "package_files": [
+    {
+      "path": "SKILL.md",
+      "sha256": "60152e35bf17e3a2c3837f75777922f5a469f61a946cb18e40fce6468f9fe916"
+    },
+    {
+      "path": "references/personas.md",
+      "sha256": "e8a7552a159f8f185f133e1824eef4860f19d1ba86298f87dcef7fffa3dfed47"
+    },
+    {
+      "path": "references/research.md",
+      "sha256": "509c2c5f2b015185dd0e95ebf9515f9042e7259e43100de9330c843d6ba404f4"
+    }
+  ],
+  "loaded_resources": [
+    "SKILL.md",
+    "references/personas.md"
+  ],
+  "observation_class": "exploratory native in-session observation; not controlled comparative evidence",
+  "limits": [
+    "Same agent/session; no independent replicate or comparator; root adjudicates.",
+    "Direct conditional challenge; no full hotseat panel or independently scoped persona agents were performed. No user research was collected."
+  ]
+}

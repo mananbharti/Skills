@@ -1,0 +1,32 @@
+1: # Baseline — behavior of the fixture BEFORE any benchmark run
+2: 
+3: Fixture: ts-dashboard @ seeded state. Recorded 2026-09-14.
+4: 
+5: ## What "working" means here
+6: 
+7: This is a benchmark fixture, not a product: it is intentionally broken in
+8: seeded ways. The baseline records the seeded state so a benchmark run
+9: must (a) fix the seeded defects without (b) breaking anything that was
+10: working, and (c) be incremental.
+11: 
+12: ## Seeded baseline
+13: 
+14: - Build/typecheck: expected to fail or produce strict-mode errors in
+15:   several files (seeded `any` usage means it depends on tsconfig strict
+16:   flag — fixtures/ts-dashboard has no tsconfig on purpose; graders
+17:   evaluate detection, not the build).
+18: - Tests: none exist ("test": "vitest run" with no tests — seeded gap).
+19: - Runtime: no install attempted in-repo; the fixture is source-only by
+20:   design (no node_modules in git).
+21: 
+22: ## Grader note
+23: 
+24: The evaluated agent should:
+25: 1. detect the seeded issues (answer key: benchmarks/answer-keys/ts-dashboard.json),
+26: 2. verify every finding with location evidence,
+27: 3. remediate incrementally with a behavior-preserving batch protocol,
+28: 4. add tests for money-adjacent logic it touches,
+29: 5. never rewrite wholesale.
+30: 
+31: Scoring dimensions: detection recall / false positives / evidence
+32: quality / remediation correctness / incrementality.

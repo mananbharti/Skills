@@ -1,0 +1,9 @@
+$ ['git', 'worktree', 'list', '--porcelain']
+exit: 0
+stdout:
+worktree /private/tmp/skills-forward/specialists/janitor/work
+HEAD fd14c7b0ed2f6a4308ba853f46f74ae5b7d3c5a9
+branch refs/heads/main
+
+
+stderr:

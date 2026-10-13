@@ -1,0 +1,14 @@
+{
+  "skill": "roadtest",
+  "observation_type": "independent exploratory forward run; not controlled comparative proof",
+  "observed_at": "2026-10-13T19:44:59.201005+00:00",
+  "status": "static-degraded",
+  "artifact": "artifact.md",
+  "commands": "commands.jsonl",
+  "workspace": "/private/tmp/skills-forward/specialists/roadtest",
+  "gaps": [
+    "Browser/HTTP blocked; all runtime journeys/console/network/responsive behavior unverified."
+  ],
+  "raw_prompt_scope": "prompt.txt carries the assigned task and safety boundary; scenario inputs only for plan-only cases.",
+  "source_skill_hashes": "input-hashes.json, active copied package snapshot"
+}

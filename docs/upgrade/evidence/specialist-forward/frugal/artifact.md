@@ -1,0 +1,5 @@
+Synthetic arithmetic only, not actual provider usage or model savings. Protected gate: independently labeled correct completion; the supplied booleans are scenario inputs, not adjudicated real task outcomes.
+
+Known attempts: taskA fail30 + succeed20 =50 tokens for that correct task; taskB fail50 remains incorrect. Batch numerator includes every attempt:30+20+50=100 tokens. Denominator is1 correctly completed task. Cost per correct task =100 tokens; task success=1/2; taskA retry count=1. Reporting20 tokens would hide both retry and failed task cost.
+
+Unknown-cost case: taskA first failed attempt cost=null, second succeeds at20. Known subtotal20; total and cost per correct task are undefined/unknown because one attempt is unmetered. Zero successful tasks would also leave ratio undefined, not0. Tokens cannot be converted to dollars without relevant input/output/cache/tool usage and prices. No baseline comparison exists; savings are unknown. The helper outputs are preserved, and no paid model call ran.

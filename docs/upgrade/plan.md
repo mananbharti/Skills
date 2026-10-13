@@ -24,3 +24,16 @@ regression, and rerun affected checks. Stop repeated unavailable source fetches;
 label access gaps. Never convert static case authorship into runtime success.
 Paid-agent comparisons require explicit human spend authorization and remain
 pending. Local safe implementation continues without those comparisons.
+
+## Checkpoint reached
+
+Snapshot, narrow changes across all 28, ownership, scenario expansion, independent
+static review, retained exploratory tasks, final isolated CLI package checks and
+the local deterministic sweep have executed. See `ledger.json` and the release
+report for exact scope. Historical results and task contracts remain preserved.
+
+The full master acceptance remains unmet: per-skill source-perspective/incident
+research depth, native activation, controlled current-model outcome comparisons,
+real full-stack/PostgreSQL/browser/mobile/game/staging verification and consented
+human DX study still need evidence. Research/forward workers hit usage limits;
+their completed records were retained. No paid authorization keys were set.

@@ -1,0 +1,1 @@
+Add a genuine module docstring to app/main.py only; preserve executable behavior. Run safe local checks without asking for routine choices.

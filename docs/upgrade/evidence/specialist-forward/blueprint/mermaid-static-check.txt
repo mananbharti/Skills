@@ -1,0 +1,6 @@
+$ ['/private/tmp/skills-forward/specialists/blueprint/skill/scripts/validate-mermaid', '/private/tmp/skills-forward/specialists/blueprint/work/docs/architecture/request-flow.mmd']
+exit: 0
+stdout:
+validate-mermaid: 1 file(s) pass static checks
+
+stderr:

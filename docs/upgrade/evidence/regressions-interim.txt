@@ -1,0 +1,98 @@
+test_every_declared_workflow_fixture_copies (__main__.EvaluationRegressions.test_every_declared_workflow_fixture_copies) ... ok
+test_invalid_cli_selections_fail_before_agent_invocation (__main__.EvaluationRegressions.test_invalid_cli_selections_fail_before_agent_invocation) ... ok
+test_outcome_accepts_single_file_fixture_and_ignores_artifact_directories (__main__.EvaluationRegressions.test_outcome_accepts_single_file_fixture_and_ignores_artifact_directories) ... ok
+test_outcome_artifacts_cannot_follow_external_symlinks (__main__.EvaluationRegressions.test_outcome_artifacts_cannot_follow_external_symlinks) ... ok
+test_outcome_containment_detects_changes_to_already_dirty_files (__main__.EvaluationRegressions.test_outcome_containment_detects_changes_to_already_dirty_files) ... ok
+test_outcome_requires_complete_successful_evidence (__main__.EvaluationRegressions.test_outcome_requires_complete_successful_evidence) ... ok
+test_outcome_setup_failure_cleans_workspace (__main__.EvaluationRegressions.test_outcome_setup_failure_cleans_workspace) ... ok
+test_outcome_task_contracts_stay_valid (__main__.EvaluationRegressions.test_outcome_task_contracts_stay_valid) ... ok
+test_outcome_validator_rejects_missing_fixture_without_side_effects (__main__.EvaluationRegressions.test_outcome_validator_rejects_missing_fixture_without_side_effects) ... ok
+test_stall_guard_preserves_failed_trial (__main__.EvaluationRegressions.test_stall_guard_preserves_failed_trial) ... ABORT: 1 consecutive bad observations; partial results: /var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/outcome-results-idt90pdo/20261014-005410-154508000-outcome-concierge-fake.json
+ok
+test_treatment_receives_executable_skill_helpers (__main__.EvaluationRegressions.test_treatment_receives_executable_skill_helpers) ... ok
+test_trigger_chain_accuracy_and_handsfree (__main__.EvaluationRegressions.test_trigger_chain_accuracy_and_handsfree) ... ok
+test_trigger_observe_cleans_owned_workdir (__main__.EvaluationRegressions.test_trigger_observe_cleans_owned_workdir) ... ok
+test_workflow_empty_suite_and_failed_setup_do_not_pass_or_leak (__main__.EvaluationRegressions.test_workflow_empty_suite_and_failed_setup_do_not_pass_or_leak) ... ok
+test_workflow_rejects_external_artifact_symlinks (__main__.EvaluationRegressions.test_workflow_rejects_external_artifact_symlinks) ... ok
+test_workflow_validator_rejects_missing_fixture (__main__.EvaluationRegressions.test_workflow_validator_rejects_missing_fixture) ... ok
+test_blueprint_deliverable_matrix (__main__.GraderValidity.test_blueprint_deliverable_matrix) ... ok
+test_concierge_c1_contract_calibration (__main__.GraderValidity.test_concierge_c1_contract_calibration) ... ok
+test_handsfree_c1_contract_calibration (__main__.GraderValidity.test_handsfree_c1_contract_calibration) ... ok
+test_hotseat_structure_proxies (__main__.GraderValidity.test_hotseat_structure_proxies) ... ok
+test_pilot_matrix_and_wording_penalty (__main__.GraderValidity.test_pilot_matrix_and_wording_penalty) ... ok
+test_polish_artifact_matrix (__main__.GraderValidity.test_polish_artifact_matrix) ... ok
+test_recall_c1_contract_calibration (__main__.GraderValidity.test_recall_c1_contract_calibration) ... ok
+test_route_good_and_bad_chains (__main__.GraderValidity.test_route_good_and_bad_chains) ... ok
+test_spelunk_c1_contract_calibration (__main__.GraderValidity.test_spelunk_c1_contract_calibration) ... ok
+test_spelunk_fact_matrix_and_negation_brittleness (__main__.GraderValidity.test_spelunk_fact_matrix_and_negation_brittleness) ... ok
+test_spelunk_strips_harness_path_residue (__main__.GraderValidity.test_spelunk_strips_harness_path_residue) ... ok
+test_handsfree_docstring_contract (__main__.HelperRegressions.test_handsfree_docstring_contract) ... ok
+test_inventory_json_escapes_target_path (__main__.HelperRegressions.test_inventory_json_escapes_target_path) ... ok
+test_measure_report_exit_contract (__main__.HelperRegressions.test_measure_report_exit_contract) ... ok
+test_measure_report_rejects_nonfinite_numbers (__main__.HelperRegressions.test_measure_report_rejects_nonfinite_numbers) ... ok
+test_test_matrix_rejects_empty_dimension (__main__.HelperRegressions.test_test_matrix_rejects_empty_dimension) ... ok
+test_confirm_only_tasks_excluded_from_sweeps (__main__.RunnerPlumbing.test_confirm_only_tasks_excluded_from_sweeps) ... O1 baseline t1: PASS route=['direct'] (0.1s)
+O1 treatment t1: PASS route=['direct'] (0.1s)
+no tasks for this selection
+wrote /var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/outcome-confirm-9nx1ceco/20261014-005412-000250000-outcome-concierge-fake.json (resumed-skipped: 0)
+O1 baseline: pass=1.00 mean_len=1.00
+O1 treatment: pass=1.00 mean_len=1.00
+C1 baseline t1: PASS route=['direct'] (0.1s)
+C1 treatment t1: PASS route=['direct'] (0.1s)
+ok
+test_dry_runs_accept_model_without_invocation (__main__.RunnerPlumbing.test_dry_runs_accept_model_without_invocation) ... ok
+test_isolation_env_is_documented_and_scoped (__main__.RunnerPlumbing.test_isolation_env_is_documented_and_scoped) ... ok
+test_opencode_model_flag_forwarding (__main__.RunnerPlumbing.test_opencode_model_flag_forwarding) ... ok
+test_outcome_order_counterbalance_and_resume (__main__.RunnerPlumbing.test_outcome_order_counterbalance_and_resume) ... wrote /var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/outcome-confirm-9nx1ceco/20261014-005412-083671000-outcome-concierge-fake.json (resumed-skipped: 0)
+C1 baseline: pass=1.00 mean_len=1.00
+C1 treatment: pass=1.00 mean_len=1.00
+O1 baseline t1: PASS route=['direct'] (0.1s)
+O1 treatment t1: PASS route=['direct'] (0.1s)
+O1 treatment t2: PASS route=['direct'] (0.1s)
+O1 baseline t2: PASS route=['direct'] (0.1s)
+ok
+test_outcome_resume_combines_and_summarizes (__main__.RunnerPlumbing.test_outcome_resume_combines_and_summarizes) ... wrote /var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/outcome-order-hkt6a7gd/20261014-005412-388509000-outcome-concierge-fake.json (resumed-skipped: 0)
+O1 baseline: pass=1.00 mean_len=1.00
+O1 treatment: pass=1.00 mean_len=1.00
+wrote /var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/outcome-order-hkt6a7gd/20261014-005412-462645000-outcome-concierge-fake.json (resumed-skipped: 4)
+O1 baseline: pass=1.00 mean_len=1.00
+O1 treatment: pass=1.00 mean_len=1.00
+O1 baseline t1: PASS route=['direct'] (0.1s)
+O1 treatment t1: PASS route=['direct'] (0.1s)
+wrote /var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/outcome-combine-4fwpcg8s/20261014-005412-532349000-outcome-concierge-fake.json (resumed-skipped: 0)
+O1 baseline: pass=1.00 mean_len=1.00
+O1 treatment: pass=1.00 mean_len=1.00
+O1 treatment t2: PASS route=['direct'] (0.1s)
+O1 baseline t2: PASS route=['direct'] (0.1s)
+ok
+test_outcome_resume_refuses_version_and_identity_mismatch (__main__.RunnerPlumbing.test_outcome_resume_refuses_version_and_identity_mismatch) ... --resume-from schema is 'outcome/2'; this runner writes outcome/6 — refusing to mix versions (historical results are preserved, never rewritten)
+--resume-from identity mismatch: skill is 'pilot', requested 'concierge'; settings.timeout_default differs; settings.order differs; settings.reference_policy differs; grader_version differs; model differs; task_contracts differ; runner implementation differs; provenance.skill_package differs; provenance.checkers differs; provenance.fixtures differs; provenance.treatment_context_sha256 differs; provenance.agent_version differs — refusing (source preserved, nothing written)
+ok
+test_outcome_resume_rejects_order_and_duplicate_mismatch (__main__.RunnerPlumbing.test_outcome_resume_rejects_order_and_duplicate_mismatch) ... wrote /var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/outcome-combine-4fwpcg8s/20261014-005412-601712000-outcome-concierge-fake.json (resumed-skipped: 2)
+O1 baseline: pass=1.00 mean_len=1.00
+O1 treatment: pass=1.00 mean_len=1.00
+O1 baseline t1: PASS route=['direct'] (0.1s)
+O1 treatment t1: PASS route=['direct'] (0.1s)
+--resume-from identity mismatch: settings.order differs — refusing (source preserved, nothing written)
+--resume-from source contains duplicate trial identities (task, condition, trial) — refusing (source preserved, nothing written)
+ok
+test_provenance_untracked_digest (__main__.RunnerPlumbing.test_provenance_untracked_digest) ... ok
+test_task_filter_selects_single_confirmation_task (__main__.RunnerPlumbing.test_task_filter_selects_single_confirmation_task) ... wrote /var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/outcome-mismatch-_qzf02dz/20261014-005412-810736000-outcome-concierge-fake.json (resumed-skipped: 0)
+O1 baseline: pass=1.00 mean_len=1.00
+O1 treatment: pass=1.00 mean_len=1.00
+C1 baseline t1: PASS route=['direct'] (0.1s)
+C1 treatment t1: PASS route=['direct'] (0.1s)
+unknown task 'Z9' for skill concierge
+task 'O1' is not held-out; refusing --heldout combo
+ok
+test_claim_validator_rejects_missing_evidence_path (__main__.ValidatorRegressions.test_claim_validator_rejects_missing_evidence_path) ... ok
+test_skill_validator_rejects_em_dash_without_ripgrep (__main__.ValidatorRegressions.test_skill_validator_rejects_em_dash_without_ripgrep) ... ok
+test_skill_validator_rejects_orphaned_resource (__main__.ValidatorRegressions.test_skill_validator_rejects_orphaned_resource) ... ok
+
+----------------------------------------------------------------------
+Ran 45 tests in 8.007s
+
+OK
+wrote /var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/outcome-task-qhu17mm2/20261014-005413-168633000-outcome-concierge-fake.json (resumed-skipped: 0)
+C1 baseline: pass=1.00 mean_len=1.00
+C1 treatment: pass=1.00 mean_len=1.00

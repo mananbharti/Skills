@@ -1,0 +1,66 @@
+#!/usr/bin/env python3
+"""Replay three retained local demonstrations; not a model/skill benchmark.
+
+Use identical boundary checks on deliberately faulty seed code and corrected
+artifacts in owned temporary copies. No dependencies, credentials or network.
+Preserving expected seed assertion failures prevents cosmetic success reports.
+"""
+import argparse
+import hashlib
+import json
+import os
+import shutil
+import subprocess
+import sys
+import tempfile
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+CASES = (("sleuth", "sleuth-cache", "test_cache", 3, 2),
+         ("harden", "harden-notes", "test_notes", 5, 4),
+         ("backend", None, "test_payment", 8, 8))
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--output", type=Path)
+    args = parser.parse_args()
+    report = {"kind": "local fixture behavior, not controlled agent comparison",
+              "python": sys.version.split()[0], "cases": []}
+    for slug, fixture, test, count, failures in CASES:
+        artifacts = ROOT / "docs/upgrade/evidence/forward" / slug
+        row = {"skill": slug, "runs": []}
+        report["cases"].append(row)
+        for condition in ("seed", "corrected"):
+            with tempfile.TemporaryDirectory(prefix="skills-demo-") as raw:
+                workspace = Path(raw)
+                for path in artifacts.glob("*.py"):
+                    shutil.copy2(path, workspace / path.name)
+                if condition == "seed":
+                    source = (ROOT / "benchmarks/fixtures" / fixture if fixture else
+                              ROOT / "skills/backend/assets")
+                    for path in source.glob("*.py"):
+                        shutil.copy2(path, workspace / path.name)
+                result = subprocess.run([sys.executable, "-m", "unittest", "-v", test],
+                                        cwd=workspace, capture_output=True, text=True, timeout=30,
+                                        env={**os.environ, "PYTHONDONTWRITEBYTECODE": "1"})
+                expected = 1 if condition == "seed" else 0
+                marker = f"FAILED (failures={failures})" if condition == "seed" else "\nOK\n"
+                passed = (result.returncode == expected
+                          and f"Ran {count} tests" in result.stderr
+                          and marker in result.stderr)
+                row["runs"].append({"condition": condition, "exit": result.returncode,
+                                    "expected_exit": expected, "pass": passed,
+                                    "stdout": result.stdout, "stderr": result.stderr,
+                                    "workspace_hashes": {p.name: hashlib.sha256(p.read_bytes()).hexdigest()
+                                                         for p in workspace.glob("*.py")}})
+        row["status"] = "PASS" if all(run["pass"] for run in row["runs"]) else "FAIL"
+        print(f"{row['status']}: {slug}: seed {failures} assertions fail; corrected {count} tests pass")
+    if args.output:
+        args.output.parent.mkdir(parents=True, exist_ok=True)
+        args.output.write_text(json.dumps(report, indent=2) + "\n")
+    return 0 if all(row["status"] == "PASS" for row in report["cases"]) else 1
+
+
+if __name__ == "__main__":
+    sys.exit(main())

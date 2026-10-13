@@ -1,0 +1,11 @@
+{
+  "skill": {
+    "SKILL.md": "c3283b357b779e79dbcc75d531c7d408c4304cf050a3eaec843febceb0e9d014",
+    "references/comparison-controls.md": "aa19ba823450d44f139b1dfc164cfd06c8c7ee0b1272a65231de9133c0699b4c",
+    "references/research.md": "48f04e0b097d91c0cb9375ac8ba615fc5bcfff14600b677e288f1af9b63ee538",
+    "references/sourcing-rules.md": "5d97069fb162f2e50b659f3855fe983ab570c9324b57985ade4abaaafe6672f8"
+  },
+  "fixture": {
+    "reference.html": "4c74e7464fe9a4f3e435435fdf349babd47af2576d902434445d923147e04bb4"
+  }
+}

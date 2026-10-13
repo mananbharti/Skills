@@ -1,0 +1,7 @@
+$ ['python3', 'notes.py', 'unknown']
+exit: 2
+stdout:
+
+stderr:
+usage: notes.py [-h] [action] [text]
+notes.py: error: unknown action 'unknown'

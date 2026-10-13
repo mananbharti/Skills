@@ -1,0 +1,14 @@
+{
+  "command": [
+    "python3",
+    "-m",
+    "unittest",
+    "-v",
+    "test_notes"
+  ],
+  "cwd": "/private/tmp/skills-forward/harden",
+  "time_utc": "2026-10-13T19:35:10.176164+00:00",
+  "exit_code": 1,
+  "stdout": "",
+  "stderr": "test_configuration (test_notes.Boundary.test_configuration) ... FAIL\ntest_delete_injection (test_notes.Boundary.test_delete_injection) ... FAIL\ntest_delete_scope (test_notes.Boundary.test_delete_scope) ... FAIL\ntest_injection (test_notes.Boundary.test_injection) ... FAIL\ntest_owner_reads (test_notes.Boundary.test_owner_reads) ... ok\n\n======================================================================\nFAIL: test_configuration (test_notes.Boundary.test_configuration)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/tmp/skills-forward/harden/test_notes.py\", line 24, in test_configuration\n    with self.assertRaises(RuntimeError): notes.get_secret()\n         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: RuntimeError not raised\n\n======================================================================\nFAIL: test_delete_injection (test_notes.Boundary.test_delete_injection)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/tmp/skills-forward/harden/test_notes.py\", line 20, in test_delete_injection\n    self.assertFalse(notes.delete_note('amy','1 OR 1=1'))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not false\n\n======================================================================\nFAIL: test_delete_scope (test_notes.Boundary.test_delete_scope)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/tmp/skills-forward/harden/test_notes.py\", line 14, in test_delete_scope\n    self.assertFalse(notes.delete_note('bob',1))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not false\n\n======================================================================\nFAIL: test_injection (test_notes.Boundary.test_injection)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/tmp/skills-forward/harden/test_notes.py\", line 11, in test_injection\n    self.assertEqual(notes.get_note('amy', '1 OR 1=1'),[])\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Lists differ: [(1, 'amy', 'amy private'), (2, 'bob', 'bob private')] != []\n\nFirst list contains 2 additional elements.\nFirst extra element 0:\n(1, 'amy', 'amy private')\n\n- [(1, 'amy', 'amy private'), (2, 'bob', 'bob private')]\n+ []\n\n----------------------------------------------------------------------\nRan 5 tests in 0.001s\n\nFAILED (failures=4)\n"
+}

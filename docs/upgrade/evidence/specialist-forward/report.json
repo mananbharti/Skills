@@ -1,0 +1,177 @@
+{
+  "observation_type": "independent exploratory specialist forward tests; no control/baseline agent comparison, not generalized effectiveness proof",
+  "task_count": 17,
+  "completed_artifact_records": 17,
+  "reports": [
+    {
+      "skill": "blueprint",
+      "status": "source-diagram",
+      "report": "blueprint/report.json",
+      "artifact": "blueprint/artifact.md",
+      "gaps": [
+        "Route mount/server/body parser/auth/durability and runtime flow unknown; visual render unavailable."
+      ]
+    },
+    {
+      "skill": "headroom",
+      "status": "assumption-model",
+      "report": "headroom/report.json",
+      "artifact": "headroom/artifact.md",
+      "gaps": [
+        "Demand, supply, quota, startup, burst, RTO/RPO and costs unmeasured."
+      ]
+    },
+    {
+      "skill": "friction",
+      "status": "static-audit",
+      "report": "friction/report.json",
+      "artifact": "friction/artifact.md",
+      "gaps": [
+        "Checkout/save absent; browser/user/AT and server response evidence unavailable."
+      ]
+    },
+    {
+      "skill": "ditto",
+      "status": "static-reconstruction",
+      "report": "ditto/report.json",
+      "artifact": "ditto/artifact.md",
+      "gaps": [
+        "No source/target render, viewport screenshot, responsive or behavior proof; asset geometry and content substitutes differ."
+      ]
+    },
+    {
+      "skill": "proof",
+      "status": "red-regression",
+      "report": "proof/report.json",
+      "artifact": "proof/artifact.md",
+      "gaps": [
+        "Fix prohibited; green-after-fix and payment integration not tested."
+      ]
+    },
+    {
+      "skill": "roadtest",
+      "status": "static-degraded",
+      "report": "roadtest/report.json",
+      "artifact": "roadtest/artifact.md",
+      "gaps": [
+        "Browser/HTTP blocked; all runtime journeys/console/network/responsive behavior unverified."
+      ]
+    },
+    {
+      "skill": "hotpath",
+      "status": "measured-local-optimization",
+      "report": "hotpath/report.json",
+      "artifact": "hotpath/artifact.md",
+      "gaps": [
+        "Synthetic microbenchmark only; short-order and memory tradeoffs, dynamic-generator mutation semantics not established."
+      ]
+    },
+    {
+      "skill": "sleuth",
+      "status": "plan-only",
+      "report": "sleuth/report.json",
+      "artifact": "sleuth/artifact.md",
+      "gaps": [
+        "No actual log contents, code, runtime, reproduction, or root cause evidence supplied."
+      ]
+    },
+    {
+      "skill": "referee",
+      "status": "request-changes",
+      "report": "referee/report.json",
+      "artifact": "referee/artifact.md",
+      "gaps": [
+        "Historical diff/baseline, callers, external override wrapper and tests unavailable."
+      ]
+    },
+    {
+      "skill": "harden",
+      "status": "triage-only",
+      "report": "harden/report.json",
+      "artifact": "harden/artifact.md",
+      "gaps": [
+        "Hypothetical inputs only; advisories, exact versions, reachability, CI and runtime exposure unverified."
+      ]
+    },
+    {
+      "skill": "unslop",
+      "status": "bounded-cleanup",
+      "report": "unslop/report.json",
+      "artifact": "unslop/artifact.md",
+      "gaps": [
+        "External import/monkeypatch consumers unknown; public zombie classes left intact."
+      ]
+    },
+    {
+      "skill": "janitor",
+      "status": "scoped-staging",
+      "report": "janitor/report.json",
+      "artifact": "janitor/artifact.md",
+      "gaps": [
+        "Toy local repo only; no remote/collaborator behavior tested."
+      ]
+    },
+    {
+      "skill": "frontpage",
+      "status": "tested-docs",
+      "report": "frontpage/report.json",
+      "artifact": "frontpage/artifact.md",
+      "gaps": [
+        "Original pip install unexecuted; only current local Python/runtime tested; no package publication or broader support evidence."
+      ]
+    },
+    {
+      "skill": "findable",
+      "status": "static-metadata-fix",
+      "report": "findable/report.json",
+      "artifact": "findable/artifact.md",
+      "gaps": [
+        "Live host/status/redirects/headers, client rendering, social assets/previews and indexing/ranking unverified."
+      ]
+    },
+    {
+      "skill": "frugal",
+      "status": "synthetic-arithmetic",
+      "report": "frugal/report.json",
+      "artifact": "frugal/artifact.md",
+      "gaps": [
+        "No real usage telemetry, independent outcome evaluation, pricing or controlled baseline."
+      ]
+    },
+    {
+      "skill": "cleared",
+      "status": "blocked-readiness",
+      "report": "cleared/report.json",
+      "artifact": "cleared/artifact.md",
+      "gaps": [
+        "Hypothetical scenario only; identity, candidate-bound logs, tenant negative tests and recovery evidence absent."
+      ]
+    },
+    {
+      "skill": "runway",
+      "status": "fingerprint-mismatch",
+      "report": "runway/report.json",
+      "artifact": "runway/artifact.md",
+      "gaps": [
+        "Scenario observations only; no requests or platform actions performed; cause and health unverified."
+      ]
+    }
+  ],
+  "preservation": "preservation.json",
+  "validator_commands": "commands.jsonl",
+  "no_shared_repository_commits": true,
+  "toy_git_baseline_commit": "janitor: authorized fixture baseline only; task staged not committed; no remote",
+  "browser_limit": "loopback server PermissionError and file URL policy denial; static fallback without retry/bypass",
+  "method_limits": [
+    "Same specialist performed all17 sequentially; task summaries persisted, not a blinded randomized trial.",
+    "Plan-only scenarios and source inspections are not dynamic behavior proof.",
+    "Hotpath synthetic list/string SKU scope; no production or general workload claim.",
+    "No paid keys, model CLIs, deployments, publication or live external service actions."
+  ],
+  "unavailable": [
+    "real browser flow evidence",
+    "actual provider usage comparison",
+    "real traffic/quota/cost evidence",
+    "live deployment/crawl verification"
+  ]
+}

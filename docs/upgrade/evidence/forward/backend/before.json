@@ -1,0 +1,11 @@
+{
+  "command": [
+    "python3",
+    "payment-demo.py"
+  ],
+  "cwd": "/private/tmp/skills-forward/backend",
+  "time_utc": "2026-10-13T19:35:23.340871+00:00",
+  "exit_code": 0,
+  "stdout": "state: pending\nfulfillments: 2\n",
+  "stderr": ""
+}

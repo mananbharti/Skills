@@ -1,0 +1,17 @@
+$ ['/private/tmp/skills-forward/specialists/hotpath/skill/scripts/measure-report', '--baseline', '2.078292', '--after', '0.415834', '--conditions', 'Local Python; same8-rowcatalog and10000 synthetic lines;5warmups31samples; p50 milliseconds; no network or concurrency', '--threshold', '0.03332063059473828', '--json']
+exit: 0
+stdout:
+{
+  "label": "measurement",
+  "unit": "ms",
+  "baseline": 2.078292,
+  "after": 0.415834,
+  "delta": -1.662458,
+  "delta_percent": -79.99,
+  "conditions": "Local Python; same8-rowcatalog and10000 synthetic lines;5warmups31samples; p50 milliseconds; no network or concurrency",
+  "threshold": 0.03332063059473828,
+  "significant": true,
+  "verdict": "KEEP"
+}
+
+stderr:

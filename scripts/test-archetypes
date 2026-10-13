@@ -1,0 +1,63 @@
+#!/usr/bin/env python3
+"""Check preserved failing seeds and corrected local models; no device/network.
+
+Node's standard test runner is required. Each model is executed in a disposable
+copy with its own JSON-backed local storage where applicable. Expected baseline
+assertion failures are retained seeds, not a failed CI suite. Corrections live in
+the evidence bundle. This does not measure skill lift or native stack support.
+"""
+import argparse
+import hashlib
+import json
+import os
+import shutil
+import subprocess
+import sys
+import tempfile
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--output", type=Path)
+    args = parser.parse_args()
+    if not shutil.which("node"):
+        print("UNAVAILABLE: node is required for model checks", file=sys.stderr)
+        return 3
+    report = {"kind": "deterministic-model-checks; no skill comparison or native platform proof",
+              "node": subprocess.check_output(["node", "--version"], text=True).strip(),
+              "models": []}
+    for slug, count in (("mobile-outbox", 2), ("game-input", 4)):
+        row = {"fixture": slug, "cases": count, "runs": []}
+        report["models"].append(row)
+        for condition in ("seed", "corrected"):
+            source = (ROOT / "benchmarks/fixtures" / slug if condition == "seed"
+                      else ROOT / "docs/upgrade/evidence/archetypes" / slug / "corrected")
+            with tempfile.TemporaryDirectory(prefix="skills-model-") as raw:
+                workspace = Path(raw)
+                shutil.copytree(source, workspace, dirs_exist_ok=True)
+                result = subprocess.run(["node", "--test", "--test-reporter=tap", "test.mjs"],
+                                        cwd=workspace, capture_output=True, text=True, timeout=30,
+                                        env={**os.environ, "NO_COLOR": "1"})
+                expected = 1 if condition == "seed" else 0
+                passed = (result.returncode == expected
+                          and f"# tests {count}" in result.stdout
+                          and f"# fail {count if condition == 'seed' else 0}" in result.stdout
+                          and (condition != "seed" or "AssertionError" in result.stdout))
+                row["runs"].append({"condition": condition, "exit": result.returncode,
+                                    "expected_exit": expected, "pass": passed,
+                                    "stdout": result.stdout, "stderr": result.stderr,
+                                    "source_hashes": {p.name: hashlib.sha256(p.read_bytes()).hexdigest()
+                                                      for p in source.glob("*.mjs")}})
+        row["status"] = "PASS" if all(run["pass"] for run in row["runs"]) else "FAIL"
+        print(f"{row['status']}: {slug}: seed {count} assertion failures; corrected {count} pass")
+    if args.output:
+        args.output.parent.mkdir(parents=True, exist_ok=True)
+        args.output.write_text(json.dumps(report, indent=2) + "\n")
+    return 0 if all(row["status"] == "PASS" for row in report["models"]) else 1
+
+
+if __name__ == "__main__":
+    sys.exit(main())

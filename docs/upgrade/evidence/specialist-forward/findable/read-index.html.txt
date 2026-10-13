@@ -1,0 +1,19 @@
+1: <!doctype html>
+2: <html>
+3: <head>
+4: <meta charset="utf-8">
+5: <title>Home — NotesApp</title>
+6: <meta name="robots" content="noindex, nofollow">
+7: <script type="application/ld+json">
+8: {"@context": "https://schema.org", "@type": "Product", "name": "NotesApp",
+9:  "aggregateRating": {"@type": "AggregateRating", "ratingValue": "5", "reviewCount": "214"}}
+10: </script>
+11: </head>
+12: <body>
+13:   <div class="header"><div class="title">NotesApp</div></div>
+14:   <div class="content">
+15:     <p>Welcome to NotesApp. Read the <a href="about.html">about page</a>.</p>
+16:     <p>Legacy docs live <a href="/missing-page">here</a>.</p>
+17:   </div>
+18: </body>
+19: </html>

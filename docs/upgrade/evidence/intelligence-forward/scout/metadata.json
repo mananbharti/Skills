@@ -1,0 +1,39 @@
+{
+  "skill": "scout",
+  "prompt": "Verify streaming response cleanup/connection reuse semantics for this checked-out version using current primary docs and source. Do not execute network requests. Record applicability and uncertainty.",
+  "package_sha256": "c8c8a038845afe19e012af1beabdf19561a485475710263ef4f7663c74f33aa2",
+  "hash_method": "sha256 of sorted package-relative path + NUL + file sha256 + newline records",
+  "package_files": [
+    {
+      "path": "SKILL.md",
+      "sha256": "5e678d69e09df48d2eb84323f7a742f015aac7736a4cc8fbf316be19f0c1d160"
+    },
+    {
+      "path": "references/research-protocol.md",
+      "sha256": "adff44148f7fc0eee07766a17d1466d94166c9dd8b683f1c17568b0c20e3690a"
+    },
+    {
+      "path": "references/research.md",
+      "sha256": "a63ec29584b125f7811dda1b0fd3ce8af39dcd43d6aae9f361813dbfbd1af20b"
+    },
+    {
+      "path": "references/source-ladder.md",
+      "sha256": "7b03732abc8e3d6bab01e5d39d1d6edab408e01265736f87267a974db7e0236d"
+    },
+    {
+      "path": "scripts/check-note",
+      "sha256": "bede9b3316dec35b621fc64754d059958de3a9e53e39f5e13bd66d59f805ef09"
+    }
+  ],
+  "loaded_resources": [
+    "SKILL.md",
+    "references/source-ladder.md",
+    "references/research-protocol.md",
+    "references/research.md"
+  ],
+  "observation_class": "exploratory native in-session observation; not controlled comparative evidence",
+  "limits": [
+    "Same agent/session; no independent replicate or comparator; root adjudicates.",
+    "Docs were fetched, but no Requests request or downloaded code ran. Deployed and installed urllib3 versions are unknown. Current stable release was not independently confirmed."
+  ]
+}

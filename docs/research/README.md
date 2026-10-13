@@ -9,6 +9,12 @@ Research files are maintainer evidence. They do **not** load into agent context
 when a skill runs. A copied skill remains self-contained; only its own
 `SKILL.md`, conditional references, scripts, and assets travel with it.
 
+The [2026-10-14 upgrade method](upgrade-method.md) records current source access,
+competitor mechanisms, reproduced harness defects and limits. Individual notes
+below retain historical provenance and add dated decisions. The
+[upgrade ledger](../upgrade-ledger.md) separates observed checks from pending
+behavioral campaigns.
+
 ## Evidence categories
 
 Treat sources according to the claim they can support:

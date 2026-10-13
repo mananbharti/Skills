@@ -1,0 +1,8 @@
+--- before/app/main.py
++++ after/app/main.py
+@@ -1,3 +1,5 @@
++"""Expose demo FastAPI endpoints for reading and creating SQLite-backed notes."""
++
+ from fastapi import FastAPI, HTTPException
+ import sqlite3
+ 

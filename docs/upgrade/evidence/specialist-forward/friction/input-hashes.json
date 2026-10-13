@@ -1,0 +1,11 @@
+{
+  "skill": {
+    "SKILL.md": "68a37d0a7caded8fc54bb01689b0642e2b0f291cfddb99f4af2ffd9cd2376aa9",
+    "references/recovery-journeys.md": "1579bdd38873bbcde00e7ca04920cca431bf0e600ee749c6c24a4cd6b711d508",
+    "references/research.md": "852daabc5330e2126cab946af387cfce01b3468eea63d650f854cfdb671564a8",
+    "references/usability-checklist.md": "3ddf5c528ade67ddc76cc16988b6b85c0faabfc4210e054c0c86694699677cc4"
+  },
+  "fixture": {
+    "index.html": "3d3eac35685419c631c05971b36e04ff56fb74934a4951cdf753d88fbec87f30"
+  }
+}

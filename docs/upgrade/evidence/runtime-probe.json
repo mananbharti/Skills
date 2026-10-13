@@ -1,0 +1,12 @@
+{
+  "command": [
+    "scripts/eval-trigger",
+    "--check"
+  ],
+  "exit_code": 0,
+  "stdout": "agent        installed  invocation   version\nclaude       True       unverified   2.1.235 (Claude Code)\ncodex        True       verified (gated) codex-cli 0.153.4\nopencode     True       verified     \ncursor       False      unavailable  \nantigravity  False      unavailable  \n",
+  "stderr": "",
+  "date": "2026-10-14",
+  "scope": "CLI presence/version only; invocation verified flags are historical adapter metadata, not a new model trial",
+  "current_native_activation": "UNVERIFIED"
+}

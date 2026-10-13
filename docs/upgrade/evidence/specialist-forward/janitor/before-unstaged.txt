@@ -1,0 +1,25 @@
+$ ['git', 'diff', '--', 'notes.txt']
+exit: 0
+stdout:
+diff --git a/notes.txt b/notes.txt
+index 8b209a8..f7f67e9 100644
+--- a/notes.txt
++++ b/notes.txt
+@@ -1,5 +1,5 @@
+ line01: baseline
+-line02: baseline
++line02: user draft, keep unstaged
+ line03: baseline
+ line04: baseline
+ line05: baseline
+@@ -27,7 +27,7 @@ line26: baseline
+ line27: baseline
+ line28: baseline
+ line29: baseline
+-line30: baseline
++line30: task improvement
+ line31: baseline
+ line32: baseline
+ line33: baseline
+
+stderr:

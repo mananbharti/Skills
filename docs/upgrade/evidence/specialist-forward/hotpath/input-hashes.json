@@ -1,0 +1,12 @@
+{
+  "skill": {
+    "SKILL.md": "7dcdb2f97017a608d9df946bbb4648f632f8012a6d5b764148c55dd684e232dd",
+    "references/experiment-hazards.md": "87fcd264e4f542ebc66b429dd00b7316953b097f74b4de84fa25d777aae99f44",
+    "references/measurement.md": "f8789646b4fdfc4374a73954cde87e7802ed65350ec2b3e8eb8a8d055f3b7032",
+    "references/research.md": "cbb62e357b69e38dfc80133a5984700ab8311543ca74225e77a976b077db67cf",
+    "scripts/measure-report": "1bd180a19069cfbf505acefbe860215e675e0483376eb4a37dccb0100833f06c"
+  },
+  "fixture": {
+    "orders.py": "a624b04786c1903c9592fe32185e21e4dcce4009f35cd30450709a28345e267d"
+  }
+}

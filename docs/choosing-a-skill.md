@@ -2,6 +2,8 @@
 
 Start from the sentence you would naturally say. If two rows sound right, use
 the first one that removes the uncertainty blocking your next action.
+An obvious specialist can run directly. A one-line style or wording edit may
+need no bundle skill; using fewer owners is a valid outcome.
 
 | What you are thinking | Start here | Why |
 | --- | --- | --- |
@@ -41,6 +43,19 @@ the first one that removes the uncertainty blocking your next action.
   diagnoses performance, and `harden` diagnoses security exposure.
 - **Ready vs deployed:** `cleared` decides whether a release may proceed;
   `runway` performs and verifies the deployment.
+
+## Risk and domain ownership
+
+- Creating payment, auth or tenancy behavior starts with `backend`; auditing
+  an existing trust boundary starts with `harden`. Reuse one another only when
+  the task needs the missing expertise.
+- Today's slow path starts with `hotpath`; a future workload/capacity decision
+  starts with `headroom`. A registered-user count alone cannot decide either.
+- A spec starts with `distill`; an approved spec needing sequencing starts with
+  `masterplan`; an approved plan needing code starts with `pilot`.
+- Native mobile and multiplayer work keep the same owners, but need real
+  project/device/server tools. Their execution is conditional, not a compatibility
+  promise. See the [ownership matrix](skill-matrix.md).
 
 ## Still do not know?
 

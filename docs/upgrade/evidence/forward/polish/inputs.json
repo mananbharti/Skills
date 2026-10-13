@@ -1,0 +1,13 @@
+{
+  "skill_sha256": {
+    "skills/polish/SKILL.md": "1a9152f6517f038f4d9050c21680d3043b4e7b500c68334b5b6c5252e0a46564",
+    "skills/polish/references/rendered-evidence.md": "5ea8271a5891a8f9dfd560594ac34d9f9a39c92f98f70ef49be0a6d9fa5edd94",
+    "skills/polish/references/audit.md": "4075fa32870e668118d83588a38bbf291fa2de3cc283f0c042edd3e768890763",
+    "skills/polish/references/research.md": "04e1ce0e1fa78d4d393c20c6e57f146cc6d8088041b7f889de8cf74a607bf416"
+  },
+  "fixture_sha256": {
+    "benchmarks/fixtures/polish-dashboard/index.html": "e35895b7c11e8fa62b91973a72b39db662012933c1b58d0b0c085e15232801b4",
+    "benchmarks/fixtures/polish-dashboard/tokens.css": "979c9d1f0c388a0d50deac58009332f67057f3abdbe4fb8e22b954af09782c82"
+  },
+  "trial": "exploratory in-session forward trial; not controlled comparison"
+}

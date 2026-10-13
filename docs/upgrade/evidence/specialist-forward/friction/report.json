@@ -1,0 +1,14 @@
+{
+  "skill": "friction",
+  "observation_type": "independent exploratory forward run; not controlled comparative proof",
+  "observed_at": "2026-10-13T19:44:59.193726+00:00",
+  "status": "static-audit",
+  "artifact": "artifact.md",
+  "commands": "commands.jsonl",
+  "workspace": "/private/tmp/skills-forward/specialists/friction",
+  "gaps": [
+    "Checkout/save absent; browser/user/AT and server response evidence unavailable."
+  ],
+  "raw_prompt_scope": "prompt.txt carries the assigned task and safety boundary; scenario inputs only for plan-only cases.",
+  "source_skill_hashes": "input-hashes.json, active copied package snapshot"
+}

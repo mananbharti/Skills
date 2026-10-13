@@ -1,0 +1,5 @@
+from record import *
+e=EVID/'hotpath';r=json.loads((e/'report.json').read_text());a=r['baseline'];b=r['after'];t=r['threshold_percent']/100
+run('hotpath',[str(BASE/'hotpath/skill/scripts/measure-report'),'--baseline',str(a['p50_ms']),'--after',str(b['p50_ms']),'--conditions','Local Python; same8-rowcatalog and10000 synthetic lines;5warmups31samples; p50 milliseconds; no network or concurrency','--threshold',str(t),'--json'],name='delta-helper-corrected-unit.txt')
+text=(e/'artifact.md').read_text()+'\nMeasurement receipt correction: initial helper invocation supplied3.332 as a percentage; the helper actually expects a relative fraction and returned NOISE/exit1. The retained raw failure is a reporting-input error, not a performance rerun. After inspecting its source, corrected threshold to0.03332063059473828 (3.332%); same measured observations yield KEEP/exit0. No measurements were rerun or hidden.\n'
+(e/'artifact.md').write_text(text);r['threshold_relative']=t;r['receipt_gap']='Helper --threshold units initially misread; corrected fractional input; raw failure preserved.';(e/'report.json').write_text(json.dumps(r,indent=2)+'\n')

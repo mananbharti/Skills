@@ -1,0 +1,23 @@
+$ ['python3', '-m', 'unittest', 'discover', '-s', 'tests', '-v']
+exit: 1
+stdout:
+
+stderr:
+test_add_and_remove (test_cart.TestCart.test_add_and_remove) ... ok
+test_empty_cart_totals_zero (test_cart.TestCart.test_empty_cart_totals_zero) ... ok
+test_total_without_discount (test_cart.TestCart.test_total_without_discount) ... ok
+test_percentage_discount_is_applied_once_to_whole_cart (test_discount.TestDiscount.test_percentage_discount_is_applied_once_to_whole_cart) ... FAIL
+
+======================================================================
+FAIL: test_percentage_discount_is_applied_once_to_whole_cart (test_discount.TestDiscount.test_percentage_discount_is_applied_once_to_whole_cart)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/skills-forward/specialists/proof/work/tests/test_discount.py", line 8, in test_percentage_discount_is_applied_once_to_whole_cart
+    self.assertEqual(total(cart, discount=0.10), 27.0)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 24.3 != 27.0
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.000s
+
+FAILED (failures=1)

@@ -1,0 +1,12 @@
+{
+  "command": [
+    "scripts/check-packages",
+    "--output",
+    "/private/tmp/skills-forward/packages.json"
+  ],
+  "cwd": "/Users/uday/Skills",
+  "time_utc": "2026-10-13T19:40:28.239565+00:00",
+  "exit_code": 0,
+  "stdout": "PASS: backend\nPASS: blueprint\nPASS: cleared\nPASS: concierge\nPASS: distill\nPASS: ditto\nPASS: findable\nPASS: friction\nPASS: frontpage\nPASS: frugal\nPASS: handsfree\nPASS: harden\nPASS: headroom\nPASS: hotpath\nPASS: hotseat\nPASS: janitor\nPASS: masterplan\nPASS: pilot\nPASS: polish\nPASS: proof\nPASS: recall\nPASS: referee\nPASS: roadtest\nPASS: runway\nPASS: scout\nPASS: sleuth\nPASS: spelunk\nPASS: unslop\nPASS: 28 isolated packages; host behavior UNVERIFIED\n",
+  "stderr": ""
+}

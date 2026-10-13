@@ -1,0 +1,6 @@
+{
+  "attempt": "await cua.createBrowserTab(\"iab\", \"file:///private/tmp/skills-forward/polish/index.html\", {visible:false})",
+  "result": "Browser Use rejected this action due to browser security policy. Protocol not allowed; allowed http:/https:. Explicitly prohibited workaround, indirect execution, raw CDP, alternate surfaces or policy circumvention.",
+  "screenshots": [],
+  "roadtest_used": false
+}

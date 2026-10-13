@@ -1,0 +1,2 @@
+Review billing.py against brief.md; actionable findings; no patch.
+Constraints: safe local owned workspace only; do not modify source fixture/skill, use paid agents, publish, deploy, or mutate real services. Exploratory observation only, no controlled comparative proof.

@@ -1,0 +1,36 @@
+1: export function formatDate(d: string) {
+2:   const date = new Date(d);
+3:   const mm = date.getMonth() + 1;
+4:   const dd = date.getDate();
+5:   const yyyy = date.getFullYear();
+6:   return `${mm}/${dd}/${yyyy}`;
+7: }
+8: 
+9: // legacy helper kept "just in case"
+10: export function formatDateV2(d: string) {
+11:   const date = new Date(d);
+12:   return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
+13: }
+14: 
+15: export function isValidEmail(email: string) {
+16:   return /\S+@\S+\.\S+/.test(email);
+17: }
+18: 
+19: export function oldFormatDate(d: string) {
+20:   const date = new Date(d);
+21:   const m = date.getMonth() + 1;
+22:   const day = date.getDate();
+23:   return m + "/" + day + "/" + date.getFullYear();
+24: }
+25: 
+26: export function deepClone(obj: any): any {
+27:   return JSON.parse(JSON.stringify(obj));
+28: }
+29: 
+30: export function sumTotals(orders: { total: number }[]) {
+31:   let t = 0;
+32:   for (const o of orders) {
+33:     t += o.total;
+34:   }
+35:   return t;
+36: }

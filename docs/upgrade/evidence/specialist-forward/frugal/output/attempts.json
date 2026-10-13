@@ -1,0 +1,20 @@
+[
+  {
+    "task": "taskA",
+    "unit": "tokens",
+    "cost": 30,
+    "correct": false
+  },
+  {
+    "task": "taskA",
+    "unit": "tokens",
+    "cost": 20,
+    "correct": true
+  },
+  {
+    "task": "taskB",
+    "unit": "tokens",
+    "cost": 50,
+    "correct": false
+  }
+]

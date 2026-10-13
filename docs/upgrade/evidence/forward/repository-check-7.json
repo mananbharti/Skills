@@ -1,0 +1,12 @@
+{
+  "command": [
+    "python3",
+    "skills/runway/scripts/check-receipt.py",
+    "--self-test"
+  ],
+  "cwd": "/Users/uday/Skills",
+  "time_utc": "2026-10-13T19:40:28.303771+00:00",
+  "exit_code": 0,
+  "stdout": "PASS: CLI zero, stale fingerprint, failed/missing smoke and malformed receipts rejected\n",
+  "stderr": ""
+}

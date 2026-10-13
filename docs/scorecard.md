@@ -1,5 +1,11 @@
 # Historical skill maturity scorecard
 
+This historical maturity vocabulary describes the earlier implementation pass.
+For the 2026-10-14 branch, use the [current upgrade ledger](upgrade-ledger.md)
+and [release report](release-readiness.md). New instruction changes do not
+inherit historical outcome verdicts, and structural passes do not establish
+the master request's behavioral exit gate.
+
 > Snapshot of the prior evidence pass. The current runtime release is validated
 > by repository checks; this document preserves past measured and unverified
 > evaluation evidence and is not a marketing claim. A separate pinned-model

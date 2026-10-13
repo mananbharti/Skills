@@ -1,0 +1,9 @@
+1: // Seeded defects for roadtest drills (static-readable, no build step).
+2: document.getElementById("checkout-btn").addEventListener("click", () => {
+3:   // BUG: checkout reports success while the charge never fires.
+4:   console.error("checkout: charge not submitted, showing success anyway");
+5:   alert("Order placed!");
+6: });
+7: 
+8: // Unhandled rejection on load — a finding even when the page "works".
+9: Promise.reject(new Error("session prefetch failed"));

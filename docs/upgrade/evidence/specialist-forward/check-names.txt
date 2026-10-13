@@ -1,0 +1,3 @@
+$ scripts/check-names
+exit: 0
+OK: names follow the single-word system

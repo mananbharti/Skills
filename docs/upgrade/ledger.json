@@ -1,0 +1,2807 @@
+{
+  "schema": "upgrade/2",
+  "date": "2026-10-14",
+  "baseline_commit": "66668739d4e3b99aab30bdea9594ca6361072c84",
+  "branch": "codex/deep-skills-v2",
+  "paid_campaigns": "not authorized; no keys set",
+  "skills": [
+    {
+      "skill": "backend",
+      "baseline_behavior": "Design, change, debug, or review server-side behavior when an API, database, authentication or authorization path, background job, webhook, external dependency, migration, cache, concurrency invariant, or production reliability concern is in scope. Use this skill for backend work in any stack; inspect the repository before choosing framework-specific patterns.",
+      "strengths": "Existing self-contained workflow, references, output contract and outcome protocol passed baseline structural checks.",
+      "historical_evidence": "Protocol + two-stack tasks authored; outcome UNVERIFIED (zero-spend)",
+      "baseline_skill_bytes": 18946,
+      "baseline_context_estimate": {
+        "method": "UTF-8 bytes divided by 4; not tokenizer telemetry",
+        "tokens": 4736
+      },
+      "gaps": "Individual failure-first audit in progress; live current-runtime effectiveness unverified.",
+      "sources": "docs/research/backend.md",
+      "neighbors": "See docs/skill-matrix.md; integration audit pending.",
+      "proposed_behavior_change": "Only demonstrated gaps; retain valuable existing workflow.",
+      "cases": "evals/workflow/scenarios/backend.md",
+      "status": "IMPLEMENTED_WITH_VERIFICATION_LIMITS",
+      "verification": {
+        "baseline_structure": "PASS",
+        "final_structure": "PASS; final-checks.json snapshot",
+        "cli_individual_packaging": "PASS",
+        "independent_static_review": "REVIEWED snapshot; six findings resolved (original/followthrough records preserved)",
+        "files_changed_after_review": [
+          "SKILL.md",
+          "references/boundary-cases.md"
+        ],
+        "current_native_activation": "UNVERIFIED",
+        "controlled_comparative_lift": "UNVERIFIED",
+        "exploratory_task": "EXECUTABLE_LOCAL"
+      },
+      "baseline_failure": "Existing retry/tenancy guidance did not distinguish provider event identity, business-effect identity, stale delivery, or RLS bypass test roles.",
+      "behavior_change": "Conditional payment/tenant boundary protocol plus synthetic seeded replay fixture; preserve existing stack-neutral workflow.",
+      "why": "Stripe duplicate/reordering semantics and PostgreSQL RLS role caveats change concrete verification choices.",
+      "files": [
+        "skills/backend/SKILL.md",
+        "skills/backend/references/",
+        "docs/research/backend.md",
+        "evals/workflow/scenarios/backend.md"
+      ],
+      "research_status": "PARTIAL current source pass; broad perspective/depth and real-incident triangulation incomplete",
+      "audit_record": "docs/upgrade/building-experience.json",
+      "source_access": {
+        "date": "2026-10-14",
+        "status": "Primary documentation and relevant upstream implementation accessed; exact per-source scope in local research ledger",
+        "failed": []
+      },
+      "neighbor_ownership": "docs/skill-matrix.md",
+      "tests": [
+        {
+          "label": "payment seeded baseline",
+          "command": "python3 skills/backend/assets/payment-demo.py",
+          "workdir": "/Users/uday/Skills",
+          "chunk_id": "03db98",
+          "wall_time_seconds": 5.458e-06,
+          "exit_code": 0,
+          "original_token_count": 8,
+          "output": "state: pending\nfulfillments: 2\n"
+        },
+        {
+          "command": "scripts/validate-skills; scripts/check-names; scripts/check-links",
+          "observed": "Each command executed separately; exits 0. skills-ref unavailable, local strict validator ran.",
+          "evidence_type": "deterministic structure, not agent behavior"
+        },
+        {
+          "command": "scoped load_scenarios() check",
+          "observed": "11 cases per owned scenario file; no scoped schema errors.",
+          "evidence_type": "authored scenario shape"
+        }
+      ],
+      "authored_cases": 14,
+      "fixture_backed_cases": 4,
+      "observed_local_outcome": "Seeded demo reproduces two fulfillments and stale pending final state; this is a deliberately failing fixture, not a corrected provider integration.",
+      "forward_evidence": "docs/upgrade/evidence/forward/backend",
+      "forward_artifact": "docs/upgrade/evidence/forward/backend/report.json",
+      "forward_category": "EXECUTABLE_LOCAL",
+      "current_status": "IMPLEMENTED; structural/package checks PASS; native activation and causal skill lift UNVERIFIED",
+      "root_followthrough": "Keys bind original intent; stable offline operation identity and authoritative session/input semantics.",
+      "remaining_limits": [
+        "No live/paid agent CLI invoked; authored scenarios unexecuted against independent agent.",
+        "15 local failure hypotheses per research doc; no empirical prevalence or claimed highest-frequency ranking.",
+        "External source pages/branches are not installed-version or host compatibility evidence."
+      ],
+      "cost": {
+        "baseline_entrypoint_bytes": 18946,
+        "current_entrypoint_bytes": 19440,
+        "entrypoint_byte_delta": 494,
+        "current_package_bytes": 36439,
+        "method": "UTF-8 file bytes; not token/cost/latency telemetry",
+        "actual_model_spend": "UNKNOWN in-session; no paid agent CLI calls or keys set"
+      }
+    },
+    {
+      "skill": "blueprint",
+      "baseline_behavior": "Documents observed or proposed software architecture with evidence-backed context, container, component, dynamic, data-flow, and deployment views. Use when the user needs architecture diagrams, onboarding material, trust boundaries, or a design view before a major change.",
+      "strengths": "Existing self-contained workflow, references, output contract and outcome protocol passed baseline structural checks.",
+      "historical_evidence": "Protocol + artifact grader authored; outcome UNVERIFIED (zero-spend)",
+      "baseline_skill_bytes": 13555,
+      "baseline_context_estimate": {
+        "method": "UTF-8 bytes divided by 4; not tokenizer telemetry",
+        "tokens": 3388
+      },
+      "gaps": "Individual failure-first audit in progress; live current-runtime effectiveness unverified.",
+      "sources": "docs/research/blueprint.md",
+      "neighbors": "See docs/skill-matrix.md; integration audit pending.",
+      "proposed_behavior_change": "Only demonstrated gaps; retain valuable existing workflow.",
+      "cases": "evals/workflow/scenarios/blueprint.md",
+      "status": "IMPLEMENTED_WITH_VERIFICATION_LIMITS",
+      "verification": {
+        "baseline_structure": "PASS",
+        "final_structure": "PASS; final-checks.json snapshot",
+        "cli_individual_packaging": "PASS",
+        "independent_static_review": "REVIEWED snapshot; six findings resolved (original/followthrough records preserved)",
+        "files_changed_after_review": [],
+        "current_native_activation": "UNVERIFIED",
+        "controlled_comparative_lift": "UNVERIFIED",
+        "exploratory_task": "SOURCE_OR_SCENARIO_ONLY"
+      },
+      "baseline_failure": "Entrypoint overstated heuristic validator; duplicated fallback/gates; CDN failure overwrote source; parser default was implicit.",
+      "behavior_change": "Clarify heuristic limits, remove duplicated sections, preserve offline source, set strict renderer explicitly; add conditional rendering/trust-edge protocol.",
+      "why": "Template source loss is deterministic; Mermaid strict setting constrains diagram markup/click behavior but does not sanitize arbitrary template HTML.",
+      "files": [
+        "skills/blueprint/SKILL.md",
+        "skills/blueprint/references/",
+        "docs/research/blueprint.md",
+        "evals/workflow/scenarios/blueprint.md"
+      ],
+      "research_status": "PARTIAL current source pass; broad perspective/depth and real-incident triangulation incomplete",
+      "audit_record": "docs/upgrade/building-experience.json",
+      "source_access": {
+        "date": "2026-10-14",
+        "status": "Primary documentation and relevant upstream implementation accessed; exact per-source scope in local research ledger",
+        "failed": [
+          "C4 review URL returned internal error; not used for new claim"
+        ]
+      },
+      "neighbor_ownership": "docs/skill-matrix.md",
+      "tests": [
+        {
+          "command": "scripts/validate-skills; scripts/check-names; scripts/check-links",
+          "observed": "Each command executed separately; exits 0. skills-ref unavailable, local strict validator ran.",
+          "evidence_type": "deterministic structure, not agent behavior"
+        },
+        {
+          "command": "scoped load_scenarios() check",
+          "observed": "11 cases per owned scenario file; no scoped schema errors.",
+          "evidence_type": "authored scenario shape"
+        }
+      ],
+      "authored_cases": 14,
+      "fixture_backed_cases": 7,
+      "observed_local_outcome": "Mock-DOM execution preserves source offline and captures strict initialization; no real browser rendering or architectural accuracy claim.",
+      "forward_evidence": "docs/upgrade/evidence/specialist-forward/blueprint",
+      "forward_artifact": "docs/upgrade/evidence/specialist-forward/blueprint/artifact.md",
+      "forward_category": "SOURCE_OR_SCENARIO_ONLY",
+      "current_status": "IMPLEMENTED; structural/package checks PASS; native activation and causal skill lift UNVERIFIED",
+      "root_followthrough": null,
+      "remaining_limits": [
+        "No live/paid agent CLI invoked; authored scenarios unexecuted against independent agent.",
+        "15 local failure hypotheses per research doc; no empirical prevalence or claimed highest-frequency ranking.",
+        "External source pages/branches are not installed-version or host compatibility evidence."
+      ],
+      "cost": {
+        "baseline_entrypoint_bytes": 13555,
+        "current_entrypoint_bytes": 12870,
+        "entrypoint_byte_delta": -685,
+        "current_package_bytes": 29032,
+        "method": "UTF-8 file bytes; not token/cost/latency telemetry",
+        "actual_model_spend": "UNKNOWN in-session; no paid agent CLI calls or keys set"
+      }
+    },
+    {
+      "skill": "cleared",
+      "baseline_behavior": "Issues an evidence-backed READY, READY WITH WARNINGS, or BLOCKED verdict using only release dimensions relevant to the artifact and its risks. Use before shipping, merging, publishing, or declaring a software task complete.",
+      "strengths": "Existing self-contained workflow, references, output contract and outcome protocol passed baseline structural checks.",
+      "historical_evidence": "Protocol + gate-integrity tasks authored; outcome UNVERIFIED (zero-spend)",
+      "baseline_skill_bytes": 10449,
+      "baseline_context_estimate": {
+        "method": "UTF-8 bytes divided by 4; not tokenizer telemetry",
+        "tokens": 2612
+      },
+      "gaps": "Individual failure-first audit in progress; live current-runtime effectiveness unverified.",
+      "sources": "docs/research/cleared.md",
+      "neighbors": "See docs/skill-matrix.md; integration audit pending.",
+      "proposed_behavior_change": "Only demonstrated gaps; retain valuable existing workflow.",
+      "cases": "evals/workflow/scenarios/cleared.md",
+      "status": "IMPLEMENTED_WITH_VERIFICATION_LIMITS",
+      "verification": {
+        "baseline_structure": "PASS",
+        "final_structure": "PASS; final-checks.json snapshot",
+        "cli_individual_packaging": "PASS",
+        "independent_static_review": "REVIEWED snapshot; six findings resolved (original/followthrough records preserved)",
+        "files_changed_after_review": [],
+        "current_native_activation": "UNVERIFIED",
+        "controlled_comparative_lift": "UNVERIFIED",
+        "exploratory_task": "SOURCE_OR_SCENARIO_ONLY"
+      },
+      "baseline_failure": "Unknown critical dimensions warning-capped; every completion required clean/pushed Git and build; full suite and down migration blanket gates.",
+      "behavior_change": "Unknown critical auth/data evidence blocks regardless headline feature; immutable candidate-scoped evidence; build/test selection proportional; compatible recovery rather than unsafe down requirement.",
+      "why": "Observed instruction contradiction/gap and source-supported decision recorded in individual research trace; retain established behavior outside that defect.",
+      "files": [
+        "skills/cleared/SKILL.md",
+        "skills/cleared/references/gate-dimensions.md",
+        "skills/cleared/references/research.md",
+        "docs/research/cleared.md",
+        "evals/workflow/scenarios/cleared.md"
+      ],
+      "research_status": "PARTIAL current source pass; broad perspective/depth and real-incident triangulation incomplete",
+      "audit_record": "docs/upgrade/safety-shipping.json",
+      "source_access": "NIST and SLSA 1.0 retrieved; SLSA 1.2 path failed. Unsupported prior 1.2 label corrected.",
+      "neighbor_ownership": "docs/skill-matrix.md",
+      "tests": [
+        {
+          "skill": "cleared",
+          "label": "read-only red gate witness",
+          "command": [
+            "python3",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tests",
+            "-t",
+            "."
+          ],
+          "exit_code": 1,
+          "expected_exit": 1,
+          "passed": true,
+          "stdout": "",
+          "stderr": "..F\n======================================================================\nFAIL: test_version_matches_docs (tests.test_release.TestRelease.test_version_matches_docs)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/skills-safety-evidence-_vry2_hf/cleared-release/tests/test_release.py\", line 19, in test_version_matches_docs\n    self.assertEqual(release.__version__, \"2.0.0\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: '1.9.0' != '2.0.0'\n- 1.9.0\n+ 2.0.0\n\n\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nFAILED (failures=1)\n",
+          "limitation": "Deterministic fixture/helper check only; no agent trial or skill effectiveness measured."
+        }
+      ],
+      "authored_cases": 10,
+      "fixture_backed_cases": 1,
+      "observed_local_outcome": "Local seed reproduced or characterization executed; specific instruction contradictions corrected. Helpers validated where present. Agent effectiveness remains UNVERIFIED.",
+      "forward_evidence": "docs/upgrade/evidence/specialist-forward/cleared",
+      "forward_artifact": "docs/upgrade/evidence/specialist-forward/cleared/artifact.md",
+      "forward_category": "SOURCE_OR_SCENARIO_ONLY",
+      "current_status": "IMPLEMENTED; structural/package checks PASS; native activation and causal skill lift UNVERIFIED",
+      "root_followthrough": null,
+      "remaining_limits": "No paid or live agent campaign; runtime compatibility beyond observed host untested; source-perspective/depth gaps listed in individual research note.",
+      "cost": {
+        "baseline_entrypoint_bytes": 10449,
+        "current_entrypoint_bytes": 11007,
+        "entrypoint_byte_delta": 558,
+        "current_package_bytes": 18736,
+        "method": "UTF-8 file bytes; not token/cost/latency telemetry",
+        "actual_model_spend": "UNKNOWN in-session; no paid agent CLI calls or keys set"
+      }
+    },
+    {
+      "skill": "concierge",
+      "baseline_behavior": "Routes ambiguous software-work requests to the smallest useful workflow after checking intent, lifecycle stage, risk, evidence, cost, and available capabilities. Use when the user asks what to do next, invokes concierge, or no single specialist clearly owns the task.",
+      "strengths": "Existing self-contained workflow, references, output contract and outcome protocol passed baseline structural checks.",
+      "historical_evidence": "**MIXED** \u2014 codex O1 4/4 vs baseline 1/4; O2/O3 no lift available; see `docs/benchmarks/concierge.md`",
+      "baseline_skill_bytes": 12214,
+      "baseline_context_estimate": {
+        "method": "UTF-8 bytes divided by 4; not tokenizer telemetry",
+        "tokens": 3053
+      },
+      "gaps": "Individual failure-first audit in progress; live current-runtime effectiveness unverified.",
+      "sources": "docs/research/concierge.md",
+      "neighbors": "See docs/skill-matrix.md; integration audit pending.",
+      "proposed_behavior_change": "Only demonstrated gaps; retain valuable existing workflow.",
+      "cases": "evals/workflow/scenarios/concierge.md",
+      "status": "IMPLEMENTED_WITH_VERIFICATION_LIMITS",
+      "verification": {
+        "baseline_structure": "PASS",
+        "final_structure": "PASS; final-checks.json snapshot",
+        "cli_individual_packaging": "PASS",
+        "independent_static_review": "REVIEWED snapshot; six findings resolved (original/followthrough records preserved)",
+        "files_changed_after_review": [],
+        "current_native_activation": "UNVERIFIED",
+        "controlled_comparative_lift": "UNVERIFIED",
+        "exploratory_task": "SOURCE_OR_SCENARIO_ONLY"
+      },
+      "baseline_failure": "Router has direct/none rows and a loop ceiling, but initial workflow still inventories first, dates imply freshness, user messages lose authority, and auth/money topics imply gates.",
+      "behavior_change": "Choose direct/none before discovery; restore current human authority; scope freshness to candidate/environment; handoff carries typed fields; repeat identity survives renaming; risk follows action.",
+      "why": "C6/C8/C9/C10 expose unnecessary work, stale verdict reuse, and loops without requiring another orchestrator.",
+      "files": [
+        "skills/concierge/SKILL.md",
+        "skills/concierge/references/routing.md",
+        "skills/concierge/references/research.md",
+        "docs/research/concierge.md",
+        "evals/workflow/scenarios/concierge.md"
+      ],
+      "research_status": "PARTIAL current source pass; broad perspective/depth and real-incident triangulation incomplete",
+      "audit_record": "docs/upgrade/intelligence.json",
+      "source_access": [
+        {
+          "url": "https://agentskills.io/specification",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "Living specification; update date not exposed",
+          "scope": "current fetched text",
+          "limitation": "No behavioral efficacy guarantee"
+        },
+        {
+          "url": "https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "2025-09-29",
+          "scope": "web article",
+          "limitation": "Vendor report, not a universal optimum"
+        },
+        {
+          "url": "https://arxiv.org/abs/2602.12670",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "2026-02-13; revised 2026-06-14",
+          "scope": "arXiv 2602.12670 v4",
+          "limitation": "Aggregate results do not establish this skill lift"
+        },
+        {
+          "url": "https://modelcontextprotocol.io/docs/2025-11-25/tutorials/security/security_best_practices",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "Versioned docs 2025-11-25; publication not exposed",
+          "scope": "2025-11-25 redirected tutorial",
+          "limitation": "Not a blanket authority ranking for connector contents"
+        },
+        {
+          "url": "https://www.reddit.com/r/ClaudeAI/comments/1usls7m/anyone_else_has_a_graveyard_of_claude_code_skills/",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "Relative age only; exact date unverified",
+          "scope": "fetched post and one visible reply",
+          "limitation": "Selection bias; not measured activation evidence"
+        }
+      ],
+      "neighbor_ownership": "docs/skill-matrix.md",
+      "tests": [
+        {
+          "kind": "scenario_spec",
+          "path": "evals/workflow/scenarios/concierge.md",
+          "count": 11,
+          "status": "AUTHORED_NOT_EXECUTED"
+        },
+        {
+          "kind": "repository_deterministic",
+          "commands": [
+            "scripts/validate-skills",
+            "scripts/check-names",
+            "scripts/check-links",
+            "scripts/eval-workflow --check"
+          ],
+          "status": "PASS",
+          "scope": "shared-tree snapshot: 28 skill contracts; 262 workflow cases/28 skills; no behavior proof"
+        }
+      ],
+      "authored_cases": 12,
+      "fixture_backed_cases": 1,
+      "observed_local_outcome": "Instruction defects narrowed; live task effect UNVERIFIED",
+      "forward_evidence": "docs/upgrade/evidence/intelligence-forward/concierge",
+      "forward_artifact": "docs/upgrade/evidence/intelligence-forward/concierge/artifact.md",
+      "forward_category": "SOURCE_OR_SCENARIO_ONLY",
+      "current_status": "IMPLEMENTED; structural/package checks PASS; native activation and causal skill lift UNVERIFIED",
+      "root_followthrough": "Host-permitted task browser observation replaces hardcoded scheme probe.",
+      "remaining_limits": [
+        "No independent live comparison",
+        "Eight-to-fifteen sources per skill and issue triangulation incomplete",
+        "Synthetic advanced cases not all materialized",
+        "No cross-host behavior proof"
+      ],
+      "cost": {
+        "baseline_entrypoint_bytes": 12214,
+        "current_entrypoint_bytes": 13220,
+        "entrypoint_byte_delta": 1006,
+        "current_package_bytes": 28797,
+        "method": "UTF-8 file bytes; not token/cost/latency telemetry",
+        "actual_model_spend": "UNKNOWN in-session; no paid agent CLI calls or keys set"
+      }
+    },
+    {
+      "skill": "distill",
+      "baseline_behavior": "Turns a vague software request into a compact implementation brief with actors, triggers, preconditions, behavior, failures, permissions, data effects, edge cases, and observable acceptance conditions. Use before planning when product intent or scope is ambiguous.",
+      "strengths": "Existing self-contained workflow, references, output contract and outcome protocol passed baseline structural checks.",
+      "historical_evidence": "**NO LIFT** \u2014 O1 2/2 vs 1/2, O2 tie, O3 0/1 both; see `docs/benchmarks/distill.md`",
+      "baseline_skill_bytes": 10222,
+      "baseline_context_estimate": {
+        "method": "UTF-8 bytes divided by 4; not tokenizer telemetry",
+        "tokens": 2555
+      },
+      "gaps": "Individual failure-first audit in progress; live current-runtime effectiveness unverified.",
+      "sources": "docs/research/distill.md",
+      "neighbors": "See docs/skill-matrix.md; integration audit pending.",
+      "proposed_behavior_change": "Only demonstrated gaps; retain valuable existing workflow.",
+      "cases": "evals/workflow/scenarios/distill.md",
+      "status": "IMPLEMENTED_WITH_VERIFICATION_LIMITS",
+      "verification": {
+        "baseline_structure": "PASS",
+        "final_structure": "PASS; final-checks.json snapshot",
+        "cli_individual_packaging": "PASS",
+        "independent_static_review": "REVIEWED snapshot; six findings resolved (original/followthrough records preserved)",
+        "files_changed_after_review": [],
+        "current_native_activation": "UNVERIFIED",
+        "controlled_comparative_lift": "UNVERIFIED",
+        "exploratory_task": "SOURCE_OR_SCENARIO_ONLY"
+      },
+      "baseline_failure": "Materiality test and repository grounding are sound; mandatory critique/confirmation can block authorized work; nontrivial compact output can omit boundaries and ownership.",
+      "behavior_change": "Optional critique by decision intent; respect implementation authorization; risk-bearing feature minimum preserves non-goals/A assumptions and actor/resource denial oracle.",
+      "why": "Historical O1 misses non-goal/assumption markers; heldout login misses boundaries/auth; new DI6 acceptance targets tenant behavior instead of adding document length.",
+      "files": [
+        "skills/distill/SKILL.md",
+        "skills/distill/references/brief-template.md",
+        "skills/distill/references/research.md",
+        "docs/research/distill.md",
+        "evals/workflow/scenarios/distill.md"
+      ],
+      "research_status": "PARTIAL current source pass; broad perspective/depth and real-incident triangulation incomplete",
+      "audit_record": "docs/upgrade/intelligence.json",
+      "source_access": [
+        {
+          "url": "https://cucumber.io/docs/bdd/better-gherkin/",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "Living docs; update date not exposed",
+          "scope": "current fetched documentation",
+          "limitation": "Syntax cannot resolve stakeholder disagreement"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/obra/superpowers/main/skills/brainstorming/SKILL.md",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "Update date not exposed; fetched 2026-10-14",
+          "scope": "main branch, unpinned",
+          "limitation": "Broad trigger/approval gate is not adopted"
+        },
+        {
+          "url": "https://arxiv.org/abs/2603.15401",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "2026-03-16",
+          "scope": "arXiv 2603.15401 v1",
+          "limitation": "External benchmark does not prove this bundle improved"
+        },
+        {
+          "url": "https://code.claude.com/docs/en/security",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "Living docs; update date not exposed",
+          "scope": "current fetched docs; host version not pinned",
+          "limitation": "No cross-host permission guarantee"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/obra/superpowers/main/skills/writing-plans/SKILL.md",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "Update date not exposed; fetched 2026-10-14",
+          "scope": "main branch, unpinned",
+          "limitation": "Instructions inspected, efficacy not executed"
+        }
+      ],
+      "neighbor_ownership": "docs/skill-matrix.md",
+      "tests": [
+        {
+          "kind": "scenario_spec",
+          "path": "evals/workflow/scenarios/distill.md",
+          "count": 10,
+          "status": "AUTHORED_NOT_EXECUTED"
+        },
+        {
+          "kind": "repository_deterministic",
+          "commands": [
+            "scripts/validate-skills",
+            "scripts/check-names",
+            "scripts/check-links",
+            "scripts/eval-workflow --check"
+          ],
+          "status": "PASS",
+          "scope": "shared-tree snapshot: 28 skill contracts; 262 workflow cases/28 skills; no behavior proof"
+        }
+      ],
+      "authored_cases": 10,
+      "fixture_backed_cases": 1,
+      "observed_local_outcome": "Instruction defects narrowed; live task effect UNVERIFIED",
+      "forward_evidence": "docs/upgrade/evidence/intelligence-forward/distill",
+      "forward_artifact": "docs/upgrade/evidence/intelligence-forward/distill/artifact.md",
+      "forward_category": "SOURCE_OR_SCENARIO_ONLY",
+      "current_status": "IMPLEMENTED; structural/package checks PASS; native activation and causal skill lift UNVERIFIED",
+      "root_followthrough": null,
+      "remaining_limits": [
+        "No independent live comparison",
+        "Eight-to-fifteen sources per skill and issue triangulation incomplete",
+        "Synthetic advanced cases not all materialized",
+        "No cross-host behavior proof"
+      ],
+      "cost": {
+        "baseline_entrypoint_bytes": 10222,
+        "current_entrypoint_bytes": 10554,
+        "entrypoint_byte_delta": 332,
+        "current_package_bytes": 18429,
+        "method": "UTF-8 file bytes; not token/cost/latency telemetry",
+        "actual_model_spend": "UNKNOWN in-session; no paid agent CLI calls or keys set"
+      }
+    },
+    {
+      "skill": "ditto",
+      "baseline_behavior": "Reconstructs a reference interface from screenshots, URLs, or design exports by measuring layout, type, spacing, color, imagery, borders, shadows, responsive behavior, states, and content. Use when the user asks to reproduce an existing design faithfully.",
+      "strengths": "Existing self-contained workflow, references, output contract and outcome protocol passed baseline structural checks.",
+      "historical_evidence": "Protocol + fixture-graded tasks authored; outcome UNVERIFIED (zero-spend)",
+      "baseline_skill_bytes": 10483,
+      "baseline_context_estimate": {
+        "method": "UTF-8 bytes divided by 4; not tokenizer telemetry",
+        "tokens": 2620
+      },
+      "gaps": "Individual failure-first audit in progress; live current-runtime effectiveness unverified.",
+      "sources": "docs/research/ditto.md",
+      "neighbors": "See docs/skill-matrix.md; integration audit pending.",
+      "proposed_behavior_change": "Only demonstrated gaps; retain valuable existing workflow.",
+      "cases": "evals/workflow/scenarios/ditto.md",
+      "status": "IMPLEMENTED_WITH_VERIFICATION_LIMITS",
+      "verification": {
+        "baseline_structure": "PASS",
+        "final_structure": "PASS; final-checks.json snapshot",
+        "cli_individual_packaging": "PASS",
+        "independent_static_review": "REVIEWED snapshot; six findings resolved (original/followthrough records preserved)",
+        "files_changed_after_review": [],
+        "current_native_activation": "UNVERIFIED",
+        "controlled_comparative_lift": "UNVERIFIED",
+        "exploratory_task": "DEGRADED_STATIC; BROWSER_UNVERIFIED"
+      },
+      "baseline_failure": "Capture loop did not distinguish successful snapshot regeneration from independent fidelity comparison; old workflow forced two rounds.",
+      "behavior_change": "Controlled capture/masks/tolerance/baseline authorship protocol; stop when material mismatches resolved.",
+      "why": "Playwright docs and matcher implementation permit expected-artifact writes under update modes.",
+      "files": [
+        "skills/ditto/SKILL.md",
+        "skills/ditto/references/",
+        "docs/research/ditto.md",
+        "evals/workflow/scenarios/ditto.md"
+      ],
+      "research_status": "PARTIAL current source pass; broad perspective/depth and real-incident triangulation incomplete",
+      "audit_record": "docs/upgrade/building-experience.json",
+      "source_access": {
+        "date": "2026-10-14",
+        "status": "Primary documentation and relevant upstream implementation accessed; exact per-source scope in local research ledger",
+        "failed": []
+      },
+      "neighbor_ownership": "docs/skill-matrix.md",
+      "tests": [
+        {
+          "command": "scripts/validate-skills; scripts/check-names; scripts/check-links",
+          "observed": "Each command executed separately; exits 0. skills-ref unavailable, local strict validator ran.",
+          "evidence_type": "deterministic structure, not agent behavior"
+        },
+        {
+          "command": "scoped load_scenarios() check",
+          "observed": "11 cases per owned scenario file; no scoped schema errors.",
+          "evidence_type": "authored scenario shape"
+        }
+      ],
+      "authored_cases": 11,
+      "fixture_backed_cases": 2,
+      "observed_local_outcome": "Static package and scenario validation pass; no generated screenshot or fidelity percentage.",
+      "forward_evidence": "docs/upgrade/evidence/specialist-forward/ditto",
+      "forward_artifact": "docs/upgrade/evidence/specialist-forward/ditto/artifact.md",
+      "forward_category": "DEGRADED_STATIC; BROWSER_UNVERIFIED",
+      "current_status": "IMPLEMENTED; structural/package checks PASS; native activation and causal skill lift UNVERIFIED",
+      "root_followthrough": null,
+      "remaining_limits": [
+        "No live/paid agent CLI invoked; authored scenarios unexecuted against independent agent.",
+        "15 local failure hypotheses per research doc; no empirical prevalence or claimed highest-frequency ranking.",
+        "External source pages/branches are not installed-version or host compatibility evidence."
+      ],
+      "cost": {
+        "baseline_entrypoint_bytes": 10483,
+        "current_entrypoint_bytes": 10692,
+        "entrypoint_byte_delta": 209,
+        "current_package_bytes": 17189,
+        "method": "UTF-8 file bytes; not token/cost/latency telemetry",
+        "actual_model_spend": "UNKNOWN in-session; no paid agent CLI calls or keys set"
+      }
+    },
+    {
+      "skill": "findable",
+      "baseline_behavior": "Audits and improves web discoverability across crawlability, HTTP status, rendering, indexability, canonical metadata, titles, descriptions, internal links, sitemaps, robots rules, social previews, and eligible structured data. Use for technical SEO without ranking promises.",
+      "strengths": "Existing self-contained workflow, references, output contract and outcome protocol passed baseline structural checks.",
+      "historical_evidence": "Protocol + workspace tasks authored; outcome UNVERIFIED (zero-spend)",
+      "baseline_skill_bytes": 9773,
+      "baseline_context_estimate": {
+        "method": "UTF-8 bytes divided by 4; not tokenizer telemetry",
+        "tokens": 2443
+      },
+      "gaps": "Individual failure-first audit in progress; live current-runtime effectiveness unverified.",
+      "sources": "docs/research/findable.md",
+      "neighbors": "See docs/skill-matrix.md; integration audit pending.",
+      "proposed_behavior_change": "Only demonstrated gaps; retain valuable existing workflow.",
+      "cases": "evals/workflow/scenarios/findable.md",
+      "status": "IMPLEMENTED_WITH_VERIFICATION_LIMITS",
+      "verification": {
+        "baseline_structure": "PASS",
+        "final_structure": "PASS; final-checks.json snapshot",
+        "cli_individual_packaging": "PASS",
+        "independent_static_review": "REVIEWED snapshot; six findings resolved (original/followthrough records preserved)",
+        "files_changed_after_review": [],
+        "current_native_activation": "UNVERIFIED",
+        "controlled_comparative_lift": "UNVERIFIED",
+        "exploratory_task": "SOURCE_OR_SCENARIO_ONLY"
+      },
+      "baseline_failure": "Curl called rendered HTML; client metadata universally invisible; robots/noindex advice conflicted; heading count and 2026 penalty claims unsupported.",
+      "behavior_change": "Separate initial response, rendered DOM and engine observation; noindex crawler-access rule; auth for privacy; equivalent-only canonicalization; no ranking/heading-count guarantees.",
+      "why": "Observed instruction contradiction/gap and source-supported decision recorded in individual research trace; retain established behavior outside that defect.",
+      "files": [
+        "skills/findable/SKILL.md",
+        "skills/findable/references/research.md",
+        "skills/findable/references/seo-checklist.md",
+        "docs/research/findable.md",
+        "evals/workflow/scenarios/findable.md"
+      ],
+      "research_status": "PARTIAL current source pass; broad perspective/depth and real-incident triangulation incomplete",
+      "audit_record": "docs/upgrade/safety-shipping.json",
+      "source_access": "individual primary documents fetched 2026-10-14",
+      "neighbor_ownership": "docs/skill-matrix.md",
+      "tests": [
+        {
+          "skill": "findable",
+          "label": "initial HTML and crawler-control witness",
+          "command": [
+            "python3",
+            "-c",
+            "from pathlib import Path; import re,xml.etree.ElementTree as E; a=Path('index.html').read_text(); b=Path('about.html').read_text(); assert re.search(r'<title>(.*?)</title>',a).group(1)==re.search(r'<title>(.*?)</title>',b).group(1); assert 'noindex' in a and 'aggregateRating' in a; assert 'Disallow: /' in Path('robots.txt').read_text(); assert 'missing-page' in Path('sitemap.xml').read_text(); E.parse('sitemap.xml'); print('baseline witness: duplicate title, noindex plus robots block, unsubstantiated rating, missing sitemap URL')"
+          ],
+          "exit_code": 0,
+          "expected_exit": 0,
+          "passed": true,
+          "stdout": "baseline witness: duplicate title, noindex plus robots block, unsubstantiated rating, missing sitemap URL\n",
+          "stderr": "",
+          "limitation": "Deterministic fixture/helper check only; no agent trial or skill effectiveness measured."
+        }
+      ],
+      "authored_cases": 10,
+      "fixture_backed_cases": 1,
+      "observed_local_outcome": "Local seed reproduced or characterization executed; specific instruction contradictions corrected. Helpers validated where present. Agent effectiveness remains UNVERIFIED.",
+      "forward_evidence": "docs/upgrade/evidence/specialist-forward/findable",
+      "forward_artifact": "docs/upgrade/evidence/specialist-forward/findable/artifact.md",
+      "forward_category": "SOURCE_OR_SCENARIO_ONLY",
+      "current_status": "IMPLEMENTED; structural/package checks PASS; native activation and causal skill lift UNVERIFIED",
+      "root_followthrough": null,
+      "remaining_limits": "No paid or live agent campaign; runtime compatibility beyond observed host untested; source-perspective/depth gaps listed in individual research note.",
+      "cost": {
+        "baseline_entrypoint_bytes": 9773,
+        "current_entrypoint_bytes": 10146,
+        "entrypoint_byte_delta": 373,
+        "current_package_bytes": 19364,
+        "method": "UTF-8 file bytes; not token/cost/latency telemetry",
+        "actual_model_spend": "UNKNOWN in-session; no paid agent CLI calls or keys set"
+      }
+    },
+    {
+      "skill": "friction",
+      "baseline_behavior": "Diagnoses and improves usability by walking real user tasks, finding hesitation, backtracking, errors, recovery gaps, accessibility barriers, and inefficient paths. Use for UX audits, onboarding, forms, navigation, error messages, or confusing flows.",
+      "strengths": "Existing self-contained workflow, references, output contract and outcome protocol passed baseline structural checks.",
+      "historical_evidence": "Protocol + fixture-graded tasks authored; outcome UNVERIFIED (zero-spend)",
+      "baseline_skill_bytes": 10191,
+      "baseline_context_estimate": {
+        "method": "UTF-8 bytes divided by 4; not tokenizer telemetry",
+        "tokens": 2547
+      },
+      "gaps": "Individual failure-first audit in progress; live current-runtime effectiveness unverified.",
+      "sources": "docs/research/friction.md",
+      "neighbors": "See docs/skill-matrix.md; integration audit pending.",
+      "proposed_behavior_change": "Only demonstrated gaps; retain valuable existing workflow.",
+      "cases": "evals/workflow/scenarios/friction.md",
+      "status": "IMPLEMENTED_WITH_VERIFICATION_LIMITS",
+      "verification": {
+        "baseline_structure": "PASS",
+        "final_structure": "PASS; final-checks.json snapshot",
+        "cli_individual_packaging": "PASS",
+        "independent_static_review": "REVIEWED snapshot; six findings resolved (original/followthrough records preserved)",
+        "files_changed_after_review": [],
+        "current_native_activation": "UNVERIFIED",
+        "controlled_comparative_lift": "UNVERIFIED",
+        "exploratory_task": "DEGRADED_STATIC; BROWSER_UNVERIFIED"
+      },
+      "baseline_failure": "Task walks lacked explicit unknown-save outcome, offline durability and cross-identity draft privacy branches.",
+      "behavior_change": "Conditional interrupted-submit/reconnect/draft/re-entry/mobile recovery journeys with scoped persistence.",
+      "why": "WCAG redundant-entry and browser-storage examples support recovery choices, not blanket autosave.",
+      "files": [
+        "skills/friction/SKILL.md",
+        "skills/friction/references/",
+        "docs/research/friction.md",
+        "evals/workflow/scenarios/friction.md"
+      ],
+      "research_status": "PARTIAL current source pass; broad perspective/depth and real-incident triangulation incomplete",
+      "audit_record": "docs/upgrade/building-experience.json",
+      "source_access": {
+        "date": "2026-10-14",
+        "status": "Primary documentation and relevant upstream implementation accessed; exact per-source scope in local research ledger",
+        "failed": []
+      },
+      "neighbor_ownership": "docs/skill-matrix.md",
+      "tests": [
+        {
+          "command": "scripts/validate-skills; scripts/check-names; scripts/check-links",
+          "observed": "Each command executed separately; exits 0. skills-ref unavailable, local strict validator ran.",
+          "evidence_type": "deterministic structure, not agent behavior"
+        },
+        {
+          "command": "scoped load_scenarios() check",
+          "observed": "11 cases per owned scenario file; no scoped schema errors.",
+          "evidence_type": "authored scenario shape"
+        }
+      ],
+      "authored_cases": 11,
+      "fixture_backed_cases": 4,
+      "observed_local_outcome": "Static package and scenario validation pass; no real user walkthrough, mobile keyboard, conversion or retention-policy experiment.",
+      "forward_evidence": "docs/upgrade/evidence/specialist-forward/friction",
+      "forward_artifact": "docs/upgrade/evidence/specialist-forward/friction/artifact.md",
+      "forward_category": "DEGRADED_STATIC; BROWSER_UNVERIFIED",
+      "current_status": "IMPLEMENTED; structural/package checks PASS; native activation and causal skill lift UNVERIFIED",
+      "root_followthrough": null,
+      "remaining_limits": [
+        "No live/paid agent CLI invoked; authored scenarios unexecuted against independent agent.",
+        "15 local failure hypotheses per research doc; no empirical prevalence or claimed highest-frequency ranking.",
+        "External source pages/branches are not installed-version or host compatibility evidence."
+      ],
+      "cost": {
+        "baseline_entrypoint_bytes": 10191,
+        "current_entrypoint_bytes": 10409,
+        "entrypoint_byte_delta": 218,
+        "current_package_bytes": 18320,
+        "method": "UTF-8 file bytes; not token/cost/latency telemetry",
+        "actual_model_spend": "UNKNOWN in-session; no paid agent CLI calls or keys set"
+      }
+    },
+    {
+      "skill": "frontpage",
+      "baseline_behavior": "Creates or improves a repository README for prospective users, evaluators, and contributors using verified product facts, executable commands, examples, and links. Use when the repository front page is missing, stale, unclear, or overrun by internal detail.",
+      "strengths": "Existing self-contained workflow, references, output contract and outcome protocol passed baseline structural checks.",
+      "historical_evidence": "Protocol + artifact tasks authored; outcome UNVERIFIED (zero-spend)",
+      "baseline_skill_bytes": 10434,
+      "baseline_context_estimate": {
+        "method": "UTF-8 bytes divided by 4; not tokenizer telemetry",
+        "tokens": 2608
+      },
+      "gaps": "Individual failure-first audit in progress; live current-runtime effectiveness unverified.",
+      "sources": "docs/research/frontpage.md",
+      "neighbors": "See docs/skill-matrix.md; integration audit pending.",
+      "proposed_behavior_change": "Only demonstrated gaps; retain valuable existing workflow.",
+      "cases": "evals/workflow/scenarios/frontpage.md",
+      "status": "IMPLEMENTED_WITH_VERIFICATION_LIMITS",
+      "verification": {
+        "baseline_structure": "PASS",
+        "final_structure": "PASS; final-checks.json snapshot",
+        "cli_individual_packaging": "PASS",
+        "independent_static_review": "REVIEWED snapshot; six findings resolved (original/followthrough records preserved)",
+        "files_changed_after_review": [],
+        "current_native_activation": "UNVERIFIED",
+        "controlled_comparative_lift": "UNVERIFIED",
+        "exploratory_task": "EXECUTABLE_LOCAL"
+      },
+      "baseline_failure": "Run every snippet verbatim could execute unsafe release commands; declared platform confused with tested support; every README required visual.",
+      "behavior_change": "Inspect snippet effects in isolated copy; unavailable/unsafe commands remain explicitly unexecuted; separate declared/tested support; tiny tools can use compact examples.",
+      "why": "Observed instruction contradiction/gap and source-supported decision recorded in individual research trace; retain established behavior outside that defect.",
+      "files": [
+        "skills/frontpage/SKILL.md",
+        "skills/frontpage/references/readme-blueprint.md",
+        "skills/frontpage/references/research.md",
+        "docs/research/frontpage.md",
+        "evals/workflow/scenarios/frontpage.md"
+      ],
+      "research_status": "PARTIAL current source pass; broad perspective/depth and real-incident triangulation incomplete",
+      "audit_record": "docs/upgrade/safety-shipping.json",
+      "source_access": "individual primary documents fetched 2026-10-14",
+      "neighbor_ownership": "docs/skill-matrix.md",
+      "tests": [
+        {
+          "skill": "frontpage",
+          "label": "documented help",
+          "command": [
+            "python3",
+            "notes.py",
+            "--help"
+          ],
+          "exit_code": 0,
+          "expected_exit": 0,
+          "passed": true,
+          "stdout": "usage: notes.py [-h] [action] [text]\n\nTiny file-backed notes CLI.\n\npositional arguments:\n  action      add or list\n  text        note text for add\n\noptions:\n  -h, --help  show this help message and exit\n",
+          "stderr": "",
+          "limitation": "Deterministic fixture/helper check only; no agent trial or skill effectiveness measured."
+        },
+        {
+          "skill": "frontpage",
+          "label": "disposable first write",
+          "command": [
+            "python3",
+            "notes.py",
+            "add",
+            "hello"
+          ],
+          "exit_code": 0,
+          "expected_exit": 0,
+          "passed": true,
+          "stdout": "added note #1\n",
+          "stderr": "",
+          "limitation": "Deterministic fixture/helper check only; no agent trial or skill effectiveness measured."
+        },
+        {
+          "skill": "frontpage",
+          "label": "first success observable",
+          "command": [
+            "python3",
+            "notes.py",
+            "list"
+          ],
+          "exit_code": 0,
+          "expected_exit": 0,
+          "passed": true,
+          "stdout": "1. hello\n",
+          "stderr": "",
+          "limitation": "Deterministic fixture/helper check only; no agent trial or skill effectiveness measured."
+        }
+      ],
+      "authored_cases": 13,
+      "fixture_backed_cases": 2,
+      "observed_local_outcome": "Local seed reproduced or characterization executed; specific instruction contradictions corrected. Helpers validated where present. Agent effectiveness remains UNVERIFIED.",
+      "forward_evidence": "docs/upgrade/evidence/specialist-forward/frontpage",
+      "forward_artifact": "docs/upgrade/evidence/specialist-forward/frontpage/artifact.md",
+      "forward_category": "EXECUTABLE_LOCAL",
+      "current_status": "IMPLEMENTED; structural/package checks PASS; native activation and causal skill lift UNVERIFIED",
+      "root_followthrough": null,
+      "remaining_limits": "No paid or live agent campaign; runtime compatibility beyond observed host untested; source-perspective/depth gaps listed in individual research note.",
+      "cost": {
+        "baseline_entrypoint_bytes": 10434,
+        "current_entrypoint_bytes": 10983,
+        "entrypoint_byte_delta": 549,
+        "current_package_bytes": 17925,
+        "method": "UTF-8 file bytes; not token/cost/latency telemetry",
+        "actual_model_spend": "UNKNOWN in-session; no paid agent CLI calls or keys set"
+      }
+    },
+    {
+      "skill": "frugal",
+      "baseline_behavior": "Reduces context and token waste while preserving task-critical evidence, source pointers, and the same quality gate. Use when a software task is context-heavy, repetitive, expensive, or likely to exceed an agent context window.",
+      "strengths": "Existing self-contained workflow, references, output contract and outcome protocol passed baseline structural checks.",
+      "historical_evidence": "Protocol + frozen-number tasks authored; outcome UNVERIFIED (zero-spend)",
+      "baseline_skill_bytes": 10881,
+      "baseline_context_estimate": {
+        "method": "UTF-8 bytes divided by 4; not tokenizer telemetry",
+        "tokens": 2720
+      },
+      "gaps": "Individual failure-first audit in progress; live current-runtime effectiveness unverified.",
+      "sources": "docs/research/frugal.md",
+      "neighbors": "See docs/skill-matrix.md; integration audit pending.",
+      "proposed_behavior_change": "Only demonstrated gaps; retain valuable existing workflow.",
+      "cases": "evals/workflow/scenarios/frugal.md",
+      "status": "IMPLEMENTED_WITH_VERIFICATION_LIMITS",
+      "verification": {
+        "baseline_structure": "PASS",
+        "final_structure": "PASS; final-checks.json snapshot",
+        "cli_individual_packaging": "PASS",
+        "independent_static_review": "REVIEWED snapshot; six findings resolved (original/followthrough records preserved)",
+        "files_changed_after_review": [],
+        "current_native_activation": "UNVERIFIED",
+        "controlled_comparative_lift": "UNVERIFIED",
+        "exploratory_task": "SOURCE_OR_SCENARIO_ONLY"
+      },
+      "baseline_failure": "Retry automatically declared a loss; double retry count assumed erases saving; KPI lacked aggregate failed-task denominator.",
+      "behavior_change": "Compute all-attempt cost per independently correct task; unknown usage stays unknown; invalidate stale summaries and preserve producer exit status under output caps.",
+      "why": "Observed instruction contradiction/gap and source-supported decision recorded in individual research trace; retain established behavior outside that defect.",
+      "files": [
+        "skills/frugal/SKILL.md",
+        "skills/frugal/references/budget-protocol.md",
+        "skills/frugal/references/measurement.md",
+        "skills/frugal/references/research.md",
+        "skills/frugal/scripts/cost-report.py",
+        "docs/research/frugal.md",
+        "evals/workflow/scenarios/frugal.md"
+      ],
+      "research_status": "PARTIAL current source pass; broad perspective/depth and real-incident triangulation incomplete",
+      "audit_record": "docs/upgrade/safety-shipping.json",
+      "source_access": "individual primary documents fetched 2026-10-14",
+      "neighbor_ownership": "docs/skill-matrix.md",
+      "tests": [
+        {
+          "skill": "frugal",
+          "label": "nonlossy bounded log extraction",
+          "command": [
+            "python3",
+            "-c",
+            "from pathlib import Path; hits=[n for n,line in enumerate(Path('data.log').read_text().splitlines(),1) if 'ERROR' in line]; assert hits==[412,987,1330]; print('exact error lines:',hits)"
+          ],
+          "exit_code": 0,
+          "expected_exit": 0,
+          "passed": true,
+          "stdout": "exact error lines: [412, 987, 1330]\n",
+          "stderr": "",
+          "limitation": "Deterministic fixture/helper check only; no agent trial or skill effectiveness measured."
+        },
+        {
+          "skill": "frugal",
+          "label": "new deterministic helper regression",
+          "command": [
+            "python3",
+            "/Users/uday/Skills/skills/frugal/scripts/cost-report.py",
+            "--self-test"
+          ],
+          "exit_code": 0,
+          "expected_exit": 0,
+          "passed": true,
+          "stdout": "PASS: failed attempts counted; zero success/missing usage undefined; invalid costs rejected\n",
+          "stderr": "",
+          "limitation": "Deterministic fixture/helper check only; no agent trial or skill effectiveness measured."
+        }
+      ],
+      "authored_cases": 13,
+      "fixture_backed_cases": 2,
+      "observed_local_outcome": "Local seed reproduced or characterization executed; specific instruction contradictions corrected. Helpers validated where present. Agent effectiveness remains UNVERIFIED.",
+      "forward_evidence": "docs/upgrade/evidence/specialist-forward/frugal",
+      "forward_artifact": "docs/upgrade/evidence/specialist-forward/frugal/artifact.md",
+      "forward_category": "SOURCE_OR_SCENARIO_ONLY",
+      "current_status": "IMPLEMENTED; structural/package checks PASS; native activation and causal skill lift UNVERIFIED",
+      "root_followthrough": null,
+      "remaining_limits": "No paid or live agent campaign; runtime compatibility beyond observed host untested; source-perspective/depth gaps listed in individual research note.",
+      "cost": {
+        "baseline_entrypoint_bytes": 10881,
+        "current_entrypoint_bytes": 11564,
+        "entrypoint_byte_delta": 683,
+        "current_package_bytes": 23642,
+        "method": "UTF-8 file bytes; not token/cost/latency telemetry",
+        "actual_model_spend": "UNKNOWN in-session; no paid agent CLI calls or keys set"
+      }
+    },
+    {
+      "skill": "handsfree",
+      "baseline_behavior": "Governs autonomous execution by reversibility, blast radius, external effects, secrets, spend, destructive state, and host-enforced permissions. Use when the user wants fewer interruptions, continued work, or a clear distinction between safe defaults and required approval.",
+      "strengths": "Existing self-contained workflow, references, output contract and outcome protocol passed baseline structural checks.",
+      "historical_evidence": "Original smoke 0/4 on defective grader; four new v2 calls pass (baseline 2/2, treatment 2/2); effectiveness UNVERIFIED; see `docs/benchmarks/handsfree.md`",
+      "baseline_skill_bytes": 11757,
+      "baseline_context_estimate": {
+        "method": "UTF-8 bytes divided by 4; not tokenizer telemetry",
+        "tokens": 2939
+      },
+      "gaps": "Individual failure-first audit in progress; live current-runtime effectiveness unverified.",
+      "sources": "docs/research/handsfree.md",
+      "neighbors": "See docs/skill-matrix.md; integration audit pending.",
+      "proposed_behavior_change": "Only demonstrated gaps; retain valuable existing workflow.",
+      "cases": "evals/workflow/scenarios/handsfree.md",
+      "status": "IMPLEMENTED_WITH_VERIFICATION_LIMITS",
+      "verification": {
+        "baseline_structure": "PASS",
+        "final_structure": "PASS; final-checks.json snapshot",
+        "cli_individual_packaging": "PASS",
+        "independent_static_review": "REVIEWED snapshot; six findings resolved (original/followthrough records preserved)",
+        "files_changed_after_review": [],
+        "current_native_activation": "UNVERIFIED",
+        "controlled_comparative_lift": "UNVERIFIED",
+        "exploratory_task": "EXECUTABLE_LOCAL"
+      },
+      "baseline_failure": "Four action classes and checkpoints are valuable; ASK ONCE and batch wording can re-ask granted actions or imply unanswered gates proceed; dirty branch language suggests isolation.",
+      "behavior_change": "Match exact prior action/target grant before asking; dependent work waits for grant; concrete preparation precedes approval; scoped dirty protection; denial and owned-process recovery.",
+      "why": "HF6/HF8 distinguish repeated approval from absent approval; HF7 targets known secret-read derail without bypass.",
+      "files": [
+        "skills/handsfree/SKILL.md",
+        "skills/handsfree/references/host-permissions.md",
+        "skills/handsfree/references/research.md",
+        "docs/research/handsfree.md",
+        "evals/workflow/scenarios/handsfree.md"
+      ],
+      "research_status": "PARTIAL current source pass; broad perspective/depth and real-incident triangulation incomplete",
+      "audit_record": "docs/upgrade/intelligence.json",
+      "source_access": [
+        {
+          "url": "https://code.claude.com/docs/en/security",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "Living docs; update date not exposed",
+          "scope": "current fetched docs; host version not pinned",
+          "limitation": "No cross-host permission guarantee"
+        },
+        {
+          "url": "https://git-scm.com/docs/git-status",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "Living manual; update not assigned here",
+          "scope": "current fetched manual; local git version not pinned",
+          "limitation": "A branch name alone does not isolate dirty state"
+        },
+        {
+          "url": "https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "2025-11-26",
+          "scope": "reported Claude Agent SDK setup",
+          "limitation": "Specific setup, not mandatory per-step ceremony"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/obra/superpowers/main/skills/executing-plans/SKILL.md",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "Update date not exposed; fetched 2026-10-14",
+          "scope": "main branch, unpinned",
+          "limitation": "Sibling dependencies conflict with standalone bundle contract"
+        },
+        {
+          "url": "https://arxiv.org/abs/2603.15401",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "2026-03-16",
+          "scope": "arXiv 2603.15401 v1",
+          "limitation": "External benchmark does not prove this bundle improved"
+        }
+      ],
+      "neighbor_ownership": "docs/skill-matrix.md",
+      "tests": [
+        {
+          "kind": "scenario_spec",
+          "path": "evals/workflow/scenarios/handsfree.md",
+          "count": 10,
+          "status": "AUTHORED_NOT_EXECUTED"
+        },
+        {
+          "kind": "repository_deterministic",
+          "commands": [
+            "scripts/validate-skills",
+            "scripts/check-names",
+            "scripts/check-links",
+            "scripts/eval-workflow --check"
+          ],
+          "status": "PASS",
+          "scope": "shared-tree snapshot: 28 skill contracts; 262 workflow cases/28 skills; no behavior proof"
+        }
+      ],
+      "authored_cases": 11,
+      "fixture_backed_cases": 0,
+      "observed_local_outcome": "Instruction defects narrowed; live task effect UNVERIFIED",
+      "forward_evidence": "docs/upgrade/evidence/intelligence-forward/handsfree",
+      "forward_artifact": "docs/upgrade/evidence/intelligence-forward/handsfree/artifact.md",
+      "forward_category": "EXECUTABLE_LOCAL",
+      "current_status": "IMPLEMENTED; structural/package checks PASS; native activation and causal skill lift UNVERIFIED",
+      "root_followthrough": "Conditional action table checks existing target/effect approval before gating.",
+      "remaining_limits": [
+        "No independent live comparison",
+        "Eight-to-fifteen sources per skill and issue triangulation incomplete",
+        "Synthetic advanced cases not all materialized",
+        "No cross-host behavior proof"
+      ],
+      "cost": {
+        "baseline_entrypoint_bytes": 11757,
+        "current_entrypoint_bytes": 12411,
+        "entrypoint_byte_delta": 654,
+        "current_package_bytes": 23705,
+        "method": "UTF-8 file bytes; not token/cost/latency telemetry",
+        "actual_model_spend": "UNKNOWN in-session; no paid agent CLI calls or keys set"
+      }
+    },
+    {
+      "skill": "harden",
+      "baseline_behavior": "Threat-model, review, or reduce exploitable risk in software you are authorized to assess, including application code, APIs, identities, data flows, dependencies, CI/CD, configuration, cloud/IaC, and agentic capabilities. Use for security-sensitive changes, feature threat models, security audits, or evidence-backed remediation and retesting.",
+      "strengths": "Existing self-contained workflow, references, output contract and outcome protocol passed baseline structural checks.",
+      "historical_evidence": "Protocol + exploit-graded tasks authored; outcome UNVERIFIED (zero-spend)",
+      "baseline_skill_bytes": 18436,
+      "baseline_context_estimate": {
+        "method": "UTF-8 bytes divided by 4; not tokenizer telemetry",
+        "tokens": 4609
+      },
+      "gaps": "Individual failure-first audit in progress; live current-runtime effectiveness unverified.",
+      "sources": "docs/research/harden.md",
+      "neighbors": "See docs/skill-matrix.md; integration audit pending.",
+      "proposed_behavior_change": "Only demonstrated gaps; retain valuable existing workflow.",
+      "cases": "evals/workflow/scenarios/harden.md",
+      "status": "IMPLEMENTED_WITH_VERIFICATION_LIMITS",
+      "verification": {
+        "baseline_structure": "PASS",
+        "final_structure": "PASS; final-checks.json snapshot",
+        "cli_individual_packaging": "PASS",
+        "independent_static_review": "REVIEWED snapshot; six findings resolved (original/followthrough records preserved)",
+        "files_changed_after_review": [],
+        "current_native_activation": "UNVERIFIED",
+        "controlled_comparative_lift": "UNVERIFIED",
+        "exploratory_task": "EXECUTABLE_LOCAL"
+      },
+      "baseline_failure": "2021 category IDs mislabeled 2025; prompt injection equated with RCE; raw secret history diff encouraged; dev-only interpreted as safe.",
+      "behavior_change": "Correct versioned OWASP mapping, include supply chain/exception handling; redact history output; tenant denial requires no side effect and downstream model-independent policy.",
+      "why": "Observed instruction contradiction/gap and source-supported decision recorded in individual research trace; retain established behavior outside that defect.",
+      "files": [
+        "skills/harden/SKILL.md",
+        "skills/harden/references/attack-surface.md",
+        "skills/harden/references/research.md",
+        "docs/research/harden.md",
+        "evals/workflow/scenarios/harden.md"
+      ],
+      "research_status": "PARTIAL current source pass; broad perspective/depth and real-incident triangulation incomplete",
+      "audit_record": "docs/upgrade/safety-shipping.json",
+      "source_access": "individual primary documents fetched 2026-10-14",
+      "neighbor_ownership": "docs/skill-matrix.md",
+      "tests": [
+        {
+          "skill": "harden",
+          "label": "seeded failing behavior reproduced",
+          "command": [
+            "python3",
+            "-c",
+            "from notes import seed,get_note,delete_note; seed(); assert any(r[1]=='bob' for r in get_note('amy','1 OR 1=1')); seed(); assert delete_note('amy',2) and not get_note('bob',2); print('baseline witness: injectable lookup leaks other owner; unauthorized delete has side effect')"
+          ],
+          "exit_code": 0,
+          "expected_exit": 0,
+          "passed": true,
+          "stdout": "baseline witness: injectable lookup leaks other owner; unauthorized delete has side effect\n",
+          "stderr": "",
+          "limitation": "Deterministic fixture/helper check only; no agent trial or skill effectiveness measured."
+        }
+      ],
+      "authored_cases": 13,
+      "fixture_backed_cases": 3,
+      "observed_local_outcome": "Local seed reproduced or characterization executed; specific instruction contradictions corrected. Helpers validated where present. Agent effectiveness remains UNVERIFIED.",
+      "forward_evidence": "docs/upgrade/evidence/forward/harden",
+      "forward_artifact": "docs/upgrade/evidence/forward/harden/report.json",
+      "forward_category": "EXECUTABLE_LOCAL",
+      "current_status": "IMPLEMENTED; structural/package checks PASS; native activation and causal skill lift UNVERIFIED",
+      "root_followthrough": null,
+      "remaining_limits": "No paid or live agent campaign; runtime compatibility beyond observed host untested; source-perspective/depth gaps listed in individual research note.",
+      "cost": {
+        "baseline_entrypoint_bytes": 18436,
+        "current_entrypoint_bytes": 18436,
+        "entrypoint_byte_delta": 0,
+        "current_package_bytes": 35676,
+        "method": "UTF-8 file bytes; not token/cost/latency telemetry",
+        "actual_model_spend": "UNKNOWN in-session; no paid agent CLI calls or keys set"
+      }
+    },
+    {
+      "skill": "headroom",
+      "baseline_behavior": "Plans capacity, performance, and resilience from measured or explicitly estimated demand. Use for scalability decisions, growth planning, service targets, bottleneck forecasts, queue or cache sizing, and Now/Next/Scale plans. Do not use to debug a known slow path or implement a feature.",
+      "strengths": "Existing self-contained workflow, references, output contract and outcome protocol passed baseline structural checks.",
+      "historical_evidence": "Protocol + tiny/growing/large tasks authored; outcome UNVERIFIED (zero-spend)",
+      "baseline_skill_bytes": 13872,
+      "baseline_context_estimate": {
+        "method": "UTF-8 bytes divided by 4; not tokenizer telemetry",
+        "tokens": 3468
+      },
+      "gaps": "Individual failure-first audit in progress; live current-runtime effectiveness unverified.",
+      "sources": "docs/research/headroom.md",
+      "neighbors": "See docs/skill-matrix.md; integration audit pending.",
+      "proposed_behavior_change": "Only demonstrated gaps; retain valuable existing workflow.",
+      "cases": "evals/workflow/scenarios/headroom.md",
+      "status": "IMPLEMENTED_WITH_VERIFICATION_LIMITS",
+      "verification": {
+        "baseline_structure": "PASS",
+        "final_structure": "PASS; final-checks.json snapshot",
+        "cli_individual_packaging": "PASS",
+        "independent_static_review": "REVIEWED snapshot; six findings resolved (original/followthrough records preserved)",
+        "files_changed_after_review": [],
+        "current_native_activation": "UNVERIFIED",
+        "controlled_comparative_lift": "UNVERIFIED",
+        "exploratory_task": "SOURCE_OR_SCENARIO_ONLY"
+      },
+      "baseline_failure": "No independent-arrival versus completion-coupled load distinction; authored scenario demanded invented headroom multiplier.",
+      "behavior_change": "Conditional offered/accepted/completed/drop model, finite backlog drain condition, autoscaler readiness/metric caveats; synthetic workload case.",
+      "why": "k6 arrival model and Kubernetes implementation limit conclusions from low p95 or desired replica counts.",
+      "files": [
+        "skills/headroom/SKILL.md",
+        "skills/headroom/references/",
+        "docs/research/headroom.md",
+        "evals/workflow/scenarios/headroom.md"
+      ],
+      "research_status": "PARTIAL current source pass; broad perspective/depth and real-incident triangulation incomplete",
+      "audit_record": "docs/upgrade/building-experience.json",
+      "source_access": {
+        "date": "2026-10-14",
+        "status": "Primary documentation and relevant upstream implementation accessed; exact per-source scope in local research ledger",
+        "failed": [
+          "AWS queue-backlog redirect yielded no body; not used for new claim"
+        ]
+      },
+      "neighbor_ownership": "docs/skill-matrix.md",
+      "tests": [
+        {
+          "command": "scripts/validate-skills; scripts/check-names; scripts/check-links",
+          "observed": "Each command executed separately; exits 0. skills-ref unavailable, local strict validator ran.",
+          "evidence_type": "deterministic structure, not agent behavior"
+        },
+        {
+          "command": "scoped load_scenarios() check",
+          "observed": "11 cases per owned scenario file; no scoped schema errors.",
+          "evidence_type": "authored scenario shape"
+        }
+      ],
+      "authored_cases": 11,
+      "fixture_backed_cases": 1,
+      "observed_local_outcome": "Synthetic arithmetic and discrete replay agree: current backlog grows 5 jobs/s; candidate steady-state drain is 600 seconds, excluding startup/retries/quotas.",
+      "forward_evidence": "docs/upgrade/evidence/specialist-forward/headroom",
+      "forward_artifact": "docs/upgrade/evidence/specialist-forward/headroom/artifact.md",
+      "forward_category": "SOURCE_OR_SCENARIO_ONLY",
+      "current_status": "IMPLEMENTED; structural/package checks PASS; native activation and causal skill lift UNVERIFIED",
+      "root_followthrough": null,
+      "remaining_limits": [
+        "No live/paid agent CLI invoked; authored scenarios unexecuted against independent agent.",
+        "15 local failure hypotheses per research doc; no empirical prevalence or claimed highest-frequency ranking.",
+        "External source pages/branches are not installed-version or host compatibility evidence."
+      ],
+      "cost": {
+        "baseline_entrypoint_bytes": 13872,
+        "current_entrypoint_bytes": 14163,
+        "entrypoint_byte_delta": 291,
+        "current_package_bytes": 21903,
+        "method": "UTF-8 file bytes; not token/cost/latency telemetry",
+        "actual_model_spend": "UNKNOWN in-session; no paid agent CLI calls or keys set"
+      }
+    },
+    {
+      "skill": "hotpath",
+      "baseline_behavior": "Improves performance by defining a metric and workload, profiling first, controlling noise, changing one major variable, and comparing equivalent conditions. Use for latency, throughput, memory, CPU, rendering, query, bundle, or startup problems.",
+      "strengths": "Existing self-contained workflow, references, output contract and outcome protocol passed baseline structural checks.",
+      "historical_evidence": "Protocol + workspace tasks authored; outcome UNVERIFIED (zero-spend)",
+      "baseline_skill_bytes": 11780,
+      "baseline_context_estimate": {
+        "method": "UTF-8 bytes divided by 4; not tokenizer telemetry",
+        "tokens": 2945
+      },
+      "gaps": "Individual failure-first audit in progress; live current-runtime effectiveness unverified.",
+      "sources": "docs/research/hotpath.md",
+      "neighbors": "See docs/skill-matrix.md; integration audit pending.",
+      "proposed_behavior_change": "Only demonstrated gaps; retain valuable existing workflow.",
+      "cases": "evals/workflow/scenarios/hotpath.md",
+      "status": "IMPLEMENTED_WITH_VERIFICATION_LIMITS",
+      "verification": {
+        "baseline_structure": "PASS",
+        "final_structure": "PASS; final-checks.json snapshot",
+        "cli_individual_packaging": "PASS",
+        "independent_static_review": "REVIEWED snapshot; six findings resolved (original/followthrough records preserved)",
+        "files_changed_after_review": [],
+        "current_native_activation": "UNVERIFIED",
+        "controlled_comparative_lift": "UNVERIFIED",
+        "exploratory_task": "EXECUTABLE_LOCAL"
+      },
+      "baseline_failure": "measure-report identical values at threshold zero emitted significant=true/REVERT; EXPLAIN ANALYZE and arrival-generator hazards under-specified.",
+      "behavior_change": "Zero delta always NOISE; conditional diagnostic effects/load-model/generator/threshold limits.",
+      "why": "Reproduced helper baseline defect; PostgreSQL execution semantics and k6 dropped iterations limit safe inference.",
+      "files": [
+        "skills/hotpath/SKILL.md",
+        "skills/hotpath/references/",
+        "docs/research/hotpath.md",
+        "evals/workflow/scenarios/hotpath.md"
+      ],
+      "research_status": "PARTIAL current source pass; broad perspective/depth and real-incident triangulation incomplete",
+      "audit_record": "docs/upgrade/building-experience.json",
+      "source_access": {
+        "date": "2026-10-14",
+        "status": "Primary documentation and relevant upstream implementation accessed; exact per-source scope in local research ledger",
+        "failed": []
+      },
+      "neighbor_ownership": "docs/skill-matrix.md",
+      "tests": [
+        {
+          "label": "hotpath unchanged result",
+          "command": "skills/hotpath/scripts/measure-report --baseline 100 --after 100 --threshold 0 --conditions 'synthetic equal samples' --json",
+          "workdir": "/Users/uday/Skills",
+          "chunk_id": "770700",
+          "wall_time_seconds": 5.375e-06,
+          "exit_code": 1,
+          "original_token_count": 71,
+          "output": "{\n  \"label\": \"measurement\",\n  \"unit\": \"ms\",\n  \"baseline\": 100.0,\n  \"after\": 100.0,\n  \"delta\": 0.0,\n  \"delta_percent\": 0.0,\n  \"conditions\": \"synthetic equal samples\",\n  \"threshold\": 0.0,\n  \"significant\": false,\n  \"verdict\": \"NOISE: below threshold, complexity cost not justified\"\n}\n"
+        },
+        {
+          "label": "hotpath improvement arithmetic",
+          "command": "skills/hotpath/scripts/measure-report --baseline 100 --after 80 --threshold 0.1 --conditions 'synthetic arithmetic input, not a benchmark' --json",
+          "workdir": "/Users/uday/Skills",
+          "chunk_id": "cb95cb",
+          "wall_time_seconds": 5.5e-06,
+          "exit_code": 0,
+          "original_token_count": 64,
+          "output": "{\n  \"label\": \"measurement\",\n  \"unit\": \"ms\",\n  \"baseline\": 100.0,\n  \"after\": 80.0,\n  \"delta\": -20.0,\n  \"delta_percent\": -20.0,\n  \"conditions\": \"synthetic arithmetic input, not a benchmark\",\n  \"threshold\": 0.1,\n  \"significant\": true,\n  \"verdict\": \"KEEP\"\n}\n"
+        },
+        {
+          "label": "hotpath regression arithmetic",
+          "command": "skills/hotpath/scripts/measure-report --baseline 100 --after 120 --threshold 0.1 --conditions 'synthetic arithmetic input, not a benchmark' --json",
+          "workdir": "/Users/uday/Skills",
+          "chunk_id": "0c06a0",
+          "wall_time_seconds": 3.75e-06,
+          "exit_code": 1,
+          "original_token_count": 64,
+          "output": "{\n  \"label\": \"measurement\",\n  \"unit\": \"ms\",\n  \"baseline\": 100.0,\n  \"after\": 120.0,\n  \"delta\": 20.0,\n  \"delta_percent\": 20.0,\n  \"conditions\": \"synthetic arithmetic input, not a benchmark\",\n  \"threshold\": 0.1,\n  \"significant\": true,\n  \"verdict\": \"REVERT\"\n}\n"
+        },
+        {
+          "label": "hotpath invalid input",
+          "command": "skills/hotpath/scripts/measure-report --baseline nan --after 10 --threshold 0.1 --conditions 'synthetic invalid input' --json",
+          "workdir": "/Users/uday/Skills",
+          "chunk_id": "6e41ba",
+          "wall_time_seconds": 8.041e-06,
+          "exit_code": 2,
+          "original_token_count": 15,
+          "output": "measure-report: measurements and threshold must be finite\n"
+        },
+        {
+          "command": "scripts/validate-skills; scripts/check-names; scripts/check-links",
+          "observed": "Each command executed separately; exits 0. skills-ref unavailable, local strict validator ran.",
+          "evidence_type": "deterministic structure, not agent behavior"
+        },
+        {
+          "command": "scoped load_scenarios() check",
+          "observed": "11 cases per owned scenario file; no scoped schema errors.",
+          "evidence_type": "authored scenario shape"
+        }
+      ],
+      "authored_cases": 11,
+      "fixture_backed_cases": 2,
+      "observed_local_outcome": "Original helper: equal 100/100 threshold0 -> significant=true REVERT; changed helper -> significant=false NOISE. Improvement/regression/NaN CLI cases behave as expected.",
+      "forward_evidence": "docs/upgrade/evidence/specialist-forward/hotpath",
+      "forward_artifact": "docs/upgrade/evidence/specialist-forward/hotpath/artifact.md",
+      "forward_category": "EXECUTABLE_LOCAL",
+      "current_status": "IMPLEMENTED; structural/package checks PASS; native activation and causal skill lift UNVERIFIED",
+      "root_followthrough": null,
+      "remaining_limits": [
+        "No live/paid agent CLI invoked; authored scenarios unexecuted against independent agent.",
+        "15 local failure hypotheses per research doc; no empirical prevalence or claimed highest-frequency ranking.",
+        "External source pages/branches are not installed-version or host compatibility evidence."
+      ],
+      "cost": {
+        "baseline_entrypoint_bytes": 11780,
+        "current_entrypoint_bytes": 11991,
+        "entrypoint_byte_delta": 211,
+        "current_package_bytes": 22873,
+        "method": "UTF-8 file bytes; not token/cost/latency telemetry",
+        "actual_model_spend": "UNKNOWN in-session; no paid agent CLI calls or keys set"
+      }
+    },
+    {
+      "skill": "hotseat",
+      "baseline_behavior": "Challenges a consequential product, architecture, or feature decision through independent lenses, evidence, disagreement, premortem risks, kill criteria, and re-entry conditions. Use before committing when the user wants critique, alternatives, or a go or no-go recommendation.",
+      "strengths": "Existing self-contained workflow, references, output contract and outcome protocol passed baseline structural checks.",
+      "historical_evidence": "**PROVEN LIFT** \u2014 5/5 structural passes vs 0/5 baseline (strong-critic baseline); cost documented; see `docs/benchmarks/hotseat.md`",
+      "baseline_skill_bytes": 15046,
+      "baseline_context_estimate": {
+        "method": "UTF-8 bytes divided by 4; not tokenizer telemetry",
+        "tokens": 3761
+      },
+      "gaps": "Individual failure-first audit in progress; live current-runtime effectiveness unverified.",
+      "sources": "docs/research/hotseat.md",
+      "neighbors": "See docs/skill-matrix.md; integration audit pending.",
+      "proposed_behavior_change": "Only demonstrated gaps; retain valuable existing workflow.",
+      "cases": "evals/workflow/scenarios/hotseat.md",
+      "status": "IMPLEMENTED_WITH_VERIFICATION_LIMITS",
+      "verification": {
+        "baseline_structure": "PASS",
+        "final_structure": "PASS; final-checks.json snapshot",
+        "cli_individual_packaging": "PASS",
+        "independent_static_review": "REVIEWED snapshot; six findings resolved (original/followthrough records preserved)",
+        "files_changed_after_review": [],
+        "current_native_activation": "UNVERIFIED",
+        "controlled_comparative_lift": "UNVERIFIED",
+        "exploratory_task": "SOURCE_OR_SCENARIO_ONLY"
+      },
+      "baseline_failure": "Independent lens packet, option discipline and bounded rounds are useful; mandatory two corrections and numerical kill criteria incentivize fabricated objections; premortem example fabricates rates.",
+      "behavior_change": "Permit evidence-supported zero corrections; owner-grounded thresholds or discriminating qualitative observation; label future failures hypothetical; preserve seven lenses without compulsory deployment.",
+      "why": "HS3/HS5/HS6 test useful decisions instead of objection counts and arbitrary precision.",
+      "files": [
+        "skills/hotseat/SKILL.md",
+        "skills/hotseat/references/personas.md",
+        "skills/hotseat/references/research.md",
+        "docs/research/hotseat.md",
+        "evals/workflow/scenarios/hotseat.md"
+      ],
+      "research_status": "PARTIAL current source pass; broad perspective/depth and real-incident triangulation incomplete",
+      "audit_record": "docs/upgrade/intelligence.json",
+      "source_access": [
+        {
+          "url": "https://arxiv.org/abs/2305.14325",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "2023-05-23",
+          "scope": "arXiv 2305.14325 v1",
+          "limitation": "Does not validate seven fictional product personas"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/obra/superpowers/main/skills/brainstorming/SKILL.md",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "Update date not exposed; fetched 2026-10-14",
+          "scope": "main branch, unpinned",
+          "limitation": "Broad trigger/approval gate is not adopted"
+        },
+        {
+          "url": "https://arxiv.org/abs/2602.12670",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "2026-02-13; revised 2026-06-14",
+          "scope": "arXiv 2602.12670 v4",
+          "limitation": "Aggregate results do not establish this skill lift"
+        },
+        {
+          "url": "https://code.claude.com/docs/en/security",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "Living docs; update date not exposed",
+          "scope": "current fetched docs; host version not pinned",
+          "limitation": "No cross-host permission guarantee"
+        },
+        {
+          "url": "https://www.reddit.com/r/ClaudeAI/comments/1usls7m/anyone_else_has_a_graveyard_of_claude_code_skills/",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "Relative age only; exact date unverified",
+          "scope": "fetched post and one visible reply",
+          "limitation": "Selection bias; not measured activation evidence"
+        }
+      ],
+      "neighbor_ownership": "docs/skill-matrix.md",
+      "tests": [
+        {
+          "kind": "scenario_spec",
+          "path": "evals/workflow/scenarios/hotseat.md",
+          "count": 11,
+          "status": "AUTHORED_NOT_EXECUTED"
+        },
+        {
+          "kind": "repository_deterministic",
+          "commands": [
+            "scripts/validate-skills",
+            "scripts/check-names",
+            "scripts/check-links",
+            "scripts/eval-workflow --check"
+          ],
+          "status": "PASS",
+          "scope": "shared-tree snapshot: 28 skill contracts; 262 workflow cases/28 skills; no behavior proof"
+        }
+      ],
+      "authored_cases": 16,
+      "fixture_backed_cases": 1,
+      "observed_local_outcome": "Instruction defects narrowed; live task effect UNVERIFIED",
+      "forward_evidence": "docs/upgrade/evidence/intelligence-forward/hotseat",
+      "forward_artifact": "docs/upgrade/evidence/intelligence-forward/hotseat/artifact.md",
+      "forward_category": "SOURCE_OR_SCENARIO_ONLY",
+      "current_status": "IMPLEMENTED; structural/package checks PASS; native activation and causal skill lift UNVERIFIED",
+      "root_followthrough": null,
+      "remaining_limits": [
+        "No independent live comparison",
+        "Eight-to-fifteen sources per skill and issue triangulation incomplete",
+        "Synthetic advanced cases not all materialized",
+        "No cross-host behavior proof"
+      ],
+      "cost": {
+        "baseline_entrypoint_bytes": 15046,
+        "current_entrypoint_bytes": 15222,
+        "entrypoint_byte_delta": 176,
+        "current_package_bytes": 29399,
+        "method": "UTF-8 file bytes; not token/cost/latency telemetry",
+        "actual_model_spend": "UNKNOWN in-session; no paid agent CLI calls or keys set"
+      }
+    },
+    {
+      "skill": "janitor",
+      "baseline_behavior": "Improves Git and repository hygiene using project-specific conventions for branches, commits, tags, ignored files, workflows, templates, releases, and public presentation. Use for repository cleanup or commit-message work; gate destructive history or remote operations.",
+      "strengths": "Existing self-contained workflow, references, output contract and outcome protocol passed baseline structural checks.",
+      "historical_evidence": "Protocol + git-state tasks authored; outcome UNVERIFIED (zero-spend)",
+      "baseline_skill_bytes": 8875,
+      "baseline_context_estimate": {
+        "method": "UTF-8 bytes divided by 4; not tokenizer telemetry",
+        "tokens": 2218
+      },
+      "gaps": "Individual failure-first audit in progress; live current-runtime effectiveness unverified.",
+      "sources": "docs/research/janitor.md",
+      "neighbors": "See docs/skill-matrix.md; integration audit pending.",
+      "proposed_behavior_change": "Only demonstrated gaps; retain valuable existing workflow.",
+      "cases": "evals/workflow/scenarios/janitor.md",
+      "status": "IMPLEMENTED_WITH_VERIFICATION_LIMITS",
+      "verification": {
+        "baseline_structure": "PASS",
+        "final_structure": "PASS; final-checks.json snapshot",
+        "cli_individual_packaging": "PASS",
+        "independent_static_review": "REVIEWED snapshot; six findings resolved (original/followthrough records preserved)",
+        "files_changed_after_review": [],
+        "current_native_activation": "UNVERIFIED",
+        "controlled_comparative_lift": "UNVERIFIED",
+        "exploratory_task": "EXECUTABLE_LOCAL"
+      },
+      "baseline_failure": "Orphan-looking name called litter; broken multiline for-each-ref command; main assumed; dirty/ignored preservation not operationalized; local authorization unnecessarily reset.",
+      "behavior_change": "Snapshot staged/unstaged/untracked/ignored boundaries and attached worktrees; path-scoped dry-run; preserve prior scope authorization; candidate branch never classified from name/age alone.",
+      "why": "Observed instruction contradiction/gap and source-supported decision recorded in individual research trace; retain established behavior outside that defect.",
+      "files": [
+        "skills/janitor/SKILL.md",
+        "skills/janitor/references/hygiene-checklists.md",
+        "skills/janitor/references/maintenance-protocol.md",
+        "skills/janitor/references/research.md",
+        "docs/research/janitor.md",
+        "evals/workflow/scenarios/janitor.md"
+      ],
+      "research_status": "PARTIAL current source pass; broad perspective/depth and real-incident triangulation incomplete",
+      "audit_record": "docs/upgrade/safety-shipping.json",
+      "source_access": "individual primary documents fetched 2026-10-14",
+      "neighbor_ownership": "docs/skill-matrix.md",
+      "tests": [
+        {
+          "skill": "janitor",
+          "label": "fixture setup in isolated copy",
+          "command": [
+            "sh",
+            "setup.sh",
+            "staged"
+          ],
+          "exit_code": 0,
+          "expected_exit": 0,
+          "passed": true,
+          "stdout": "",
+          "stderr": "",
+          "limitation": "Deterministic fixture/helper check only; no agent trial or skill effectiveness measured."
+        },
+        {
+          "skill": "janitor",
+          "label": "dirty and ignored state audit",
+          "command": [
+            "git",
+            "status",
+            "--porcelain=v1",
+            "--ignored",
+            "--untracked-files=all"
+          ],
+          "exit_code": 0,
+          "expected_exit": 0,
+          "passed": true,
+          "stdout": " M .gitignore\nMM notes.txt\n?? .baseline-sha\n?? setup.sh\n?? \"user draft.txt\"\n!! local-user.json\n",
+          "stderr": "",
+          "limitation": "Deterministic fixture/helper check only; no agent trial or skill effectiveness measured."
+        },
+        {
+          "skill": "janitor",
+          "label": "attached worktree audit",
+          "command": [
+            "git",
+            "worktree",
+            "list",
+            "--porcelain"
+          ],
+          "exit_code": 0,
+          "expected_exit": 0,
+          "passed": true,
+          "stdout": "worktree /private/var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/skills-safety-evidence-_vry2_hf/janitor-mess\nHEAD 2b3b48bf168b4821e4627107c14fe3f8d297143a\nbranch refs/heads/main\n\n",
+          "stderr": "",
+          "limitation": "Deterministic fixture/helper check only; no agent trial or skill effectiveness measured."
+        },
+        {
+          "skill": "janitor",
+          "label": "read-only audit preserves file and staged bytes",
+          "passed": true,
+          "observed": "staged, unstaged, untracked and ignored test data unchanged",
+          "limitation": "Disposable fixture; no real workspace mutation attempted"
+        }
+      ],
+      "authored_cases": 10,
+      "fixture_backed_cases": 2,
+      "observed_local_outcome": "Local seed reproduced or characterization executed; specific instruction contradictions corrected. Helpers validated where present. Agent effectiveness remains UNVERIFIED.",
+      "forward_evidence": "docs/upgrade/evidence/specialist-forward/janitor",
+      "forward_artifact": "docs/upgrade/evidence/specialist-forward/janitor/artifact.md",
+      "forward_category": "EXECUTABLE_LOCAL",
+      "current_status": "IMPLEMENTED; structural/package checks PASS; native activation and causal skill lift UNVERIFIED",
+      "root_followthrough": null,
+      "remaining_limits": "No paid or live agent campaign; runtime compatibility beyond observed host untested; source-perspective/depth gaps listed in individual research note.",
+      "cost": {
+        "baseline_entrypoint_bytes": 8875,
+        "current_entrypoint_bytes": 9076,
+        "entrypoint_byte_delta": 201,
+        "current_package_bytes": 20324,
+        "method": "UTF-8 file bytes; not token/cost/latency telemetry",
+        "actual_model_spend": "UNKNOWN in-session; no paid agent CLI calls or keys set"
+      }
+    },
+    {
+      "skill": "masterplan",
+      "baseline_behavior": "Builds an implementation sequence from repository evidence using dependencies, invariants, vertical slices, rollback points, parallel work, irreversible decisions, and conscious deferrals. Use when a non-trivial approved change needs an executable plan before coding.",
+      "strengths": "Existing self-contained workflow, references, output contract and outcome protocol passed baseline structural checks.",
+      "historical_evidence": "**NO LIFT** \u2014 baseline \u2265 treatment everywhere after adjudication; see `docs/benchmarks/masterplan.md`",
+      "baseline_skill_bytes": 9791,
+      "baseline_context_estimate": {
+        "method": "UTF-8 bytes divided by 4; not tokenizer telemetry",
+        "tokens": 2447
+      },
+      "gaps": "Individual failure-first audit in progress; live current-runtime effectiveness unverified.",
+      "sources": "docs/research/masterplan.md",
+      "neighbors": "See docs/skill-matrix.md; integration audit pending.",
+      "proposed_behavior_change": "Only demonstrated gaps; retain valuable existing workflow.",
+      "cases": "evals/workflow/scenarios/masterplan.md",
+      "status": "IMPLEMENTED_WITH_VERIFICATION_LIMITS",
+      "verification": {
+        "baseline_structure": "PASS",
+        "final_structure": "PASS; final-checks.json snapshot",
+        "cli_individual_packaging": "PASS",
+        "independent_static_review": "REVIEWED snapshot; six findings resolved (original/followthrough records preserved)",
+        "files_changed_after_review": [],
+        "current_native_activation": "UNVERIFIED",
+        "controlled_comparative_lift": "UNVERIFIED",
+        "exploratory_task": "SOURCE_OR_SCENARIO_ONLY"
+      },
+      "baseline_failure": "Slice contracts, invariants and uncertainty-first are valuable; paths must all preexist; absence of unknowns is called dishonest; fixed minimum slices produces ceremony.",
+      "behavior_change": "Existing/read versus proposed/new versus discovery; no artificial uncertainty/count minimum; criterion-to-slice coverage and honest data restoration boundary.",
+      "why": "Historical false-positive proposed/self-authored paths are separate from real slice-vocabulary misses; new MP6/MP7 target planning contradictions without changing frozen grading.",
+      "files": [
+        "skills/masterplan/SKILL.md",
+        "skills/masterplan/references/planning-protocol.md",
+        "skills/masterplan/references/plan-template.md",
+        "skills/masterplan/references/research.md",
+        "docs/research/masterplan.md",
+        "evals/workflow/scenarios/masterplan.md"
+      ],
+      "research_status": "PARTIAL current source pass; broad perspective/depth and real-incident triangulation incomplete",
+      "audit_record": "docs/upgrade/intelligence.json",
+      "source_access": [
+        {
+          "url": "https://raw.githubusercontent.com/obra/superpowers/main/skills/writing-plans/SKILL.md",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "Update date not exposed; fetched 2026-10-14",
+          "scope": "main branch, unpinned",
+          "limitation": "Instructions inspected, efficacy not executed"
+        },
+        {
+          "url": "https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "2025-11-26",
+          "scope": "reported Claude Agent SDK setup",
+          "limitation": "Specific setup, not mandatory per-step ceremony"
+        },
+        {
+          "url": "https://martinfowler.com/bliki/StranglerFigApplication.html",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "2024-08-22",
+          "scope": "web article",
+          "limitation": "No universal decomposition or rollback guarantee"
+        },
+        {
+          "url": "https://arxiv.org/abs/2603.15401",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "2026-03-16",
+          "scope": "arXiv 2603.15401 v1",
+          "limitation": "External benchmark does not prove this bundle improved"
+        },
+        {
+          "url": "https://git-scm.com/docs/git-status",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "Living manual; update not assigned here",
+          "scope": "current fetched manual; local git version not pinned",
+          "limitation": "A branch name alone does not isolate dirty state"
+        }
+      ],
+      "neighbor_ownership": "docs/skill-matrix.md",
+      "tests": [
+        {
+          "kind": "scenario_spec",
+          "path": "evals/workflow/scenarios/masterplan.md",
+          "count": 10,
+          "status": "AUTHORED_NOT_EXECUTED"
+        },
+        {
+          "kind": "repository_deterministic",
+          "commands": [
+            "scripts/validate-skills",
+            "scripts/check-names",
+            "scripts/check-links",
+            "scripts/eval-workflow --check"
+          ],
+          "status": "PASS",
+          "scope": "shared-tree snapshot: 28 skill contracts; 262 workflow cases/28 skills; no behavior proof"
+        }
+      ],
+      "authored_cases": 11,
+      "fixture_backed_cases": 2,
+      "observed_local_outcome": "Instruction defects narrowed; live task effect UNVERIFIED",
+      "forward_evidence": "docs/upgrade/evidence/intelligence-forward/masterplan",
+      "forward_artifact": "docs/upgrade/evidence/intelligence-forward/masterplan/artifact.md",
+      "forward_category": "SOURCE_OR_SCENARIO_ONLY",
+      "current_status": "IMPLEMENTED; structural/package checks PASS; native activation and causal skill lift UNVERIFIED",
+      "root_followthrough": "Recovery can use safe down, restore or forward fix; no fictional reversal.",
+      "remaining_limits": [
+        "No independent live comparison",
+        "Eight-to-fifteen sources per skill and issue triangulation incomplete",
+        "Synthetic advanced cases not all materialized",
+        "No cross-host behavior proof"
+      ],
+      "cost": {
+        "baseline_entrypoint_bytes": 9791,
+        "current_entrypoint_bytes": 10085,
+        "entrypoint_byte_delta": 294,
+        "current_package_bytes": 20050,
+        "method": "UTF-8 file bytes; not token/cost/latency telemetry",
+        "actual_model_spend": "UNKNOWN in-session; no paid agent CLI calls or keys set"
+      }
+    },
+    {
+      "skill": "pilot",
+      "baseline_behavior": "Implements an approved plan one coherent slice at a time with fresh inspection, risk-appropriate verification, diff review, and clean handoff state. Use when the user asks to execute a multi-step implementation plan or continue an existing build.",
+      "strengths": "Existing self-contained workflow, references, output contract and outcome protocol passed baseline structural checks.",
+      "historical_evidence": "**NO LIFT on available evidence** \u2014 O1/O2 tied; O3 confounded by environment rejection and needs a clean rerun; see `docs/benchmarks/pilot.md`",
+      "baseline_skill_bytes": 9578,
+      "baseline_context_estimate": {
+        "method": "UTF-8 bytes divided by 4; not tokenizer telemetry",
+        "tokens": 2394
+      },
+      "gaps": "Individual failure-first audit in progress; live current-runtime effectiveness unverified.",
+      "sources": "docs/research/pilot.md",
+      "neighbors": "See docs/skill-matrix.md; integration audit pending.",
+      "proposed_behavior_change": "Only demonstrated gaps; retain valuable existing workflow.",
+      "cases": "evals/workflow/scenarios/pilot.md",
+      "status": "IMPLEMENTED_WITH_VERIFICATION_LIMITS",
+      "verification": {
+        "baseline_structure": "PASS",
+        "final_structure": "PASS; final-checks.json snapshot",
+        "cli_individual_packaging": "PASS",
+        "independent_static_review": "REVIEWED snapshot; six findings resolved (original/followthrough records preserved)",
+        "files_changed_after_review": [],
+        "current_native_activation": "UNVERIFIED",
+        "controlled_comparative_lift": "UNVERIFIED",
+        "exploratory_task": "EXECUTABLE_LOCAL"
+      },
+      "baseline_failure": "Scoped loop and honest evidence are strong; blanket green rule conflicts with baseline-red guidance; denied .env can derail task; finish-or-revert after stop violates user control.",
+      "behavior_change": "Explicit baseline regression distinction; config names first and denial-safe independent continuation; candidate-bound resume evidence; prompt stopping; implemented/verified statuses.",
+      "why": "Historical failure is reporting/denial confounded, not demonstrated poor edits; PI6/PI7/PI8 test mechanisms without removing host enforcement.",
+      "files": [
+        "skills/pilot/SKILL.md",
+        "skills/pilot/references/execution-protocol.md",
+        "skills/pilot/references/research.md",
+        "docs/research/pilot.md",
+        "evals/workflow/scenarios/pilot.md"
+      ],
+      "research_status": "PARTIAL current source pass; broad perspective/depth and real-incident triangulation incomplete",
+      "audit_record": "docs/upgrade/intelligence.json",
+      "source_access": [
+        {
+          "url": "https://raw.githubusercontent.com/obra/superpowers/main/skills/executing-plans/SKILL.md",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "Update date not exposed; fetched 2026-10-14",
+          "scope": "main branch, unpinned",
+          "limitation": "Sibling dependencies conflict with standalone bundle contract"
+        },
+        {
+          "url": "https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "2025-11-26",
+          "scope": "reported Claude Agent SDK setup",
+          "limitation": "Specific setup, not mandatory per-step ceremony"
+        },
+        {
+          "url": "https://git-scm.com/docs/git-status",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "Living manual; update not assigned here",
+          "scope": "current fetched manual; local git version not pinned",
+          "limitation": "A branch name alone does not isolate dirty state"
+        },
+        {
+          "url": "https://code.claude.com/docs/en/security",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "Living docs; update date not exposed",
+          "scope": "current fetched docs; host version not pinned",
+          "limitation": "No cross-host permission guarantee"
+        },
+        {
+          "url": "https://arxiv.org/abs/2603.15401",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "2026-03-16",
+          "scope": "arXiv 2603.15401 v1",
+          "limitation": "External benchmark does not prove this bundle improved"
+        }
+      ],
+      "neighbor_ownership": "docs/skill-matrix.md",
+      "tests": [
+        {
+          "kind": "scenario_spec",
+          "path": "evals/workflow/scenarios/pilot.md",
+          "count": 10,
+          "status": "AUTHORED_NOT_EXECUTED"
+        },
+        {
+          "kind": "repository_deterministic",
+          "commands": [
+            "scripts/validate-skills",
+            "scripts/check-names",
+            "scripts/check-links",
+            "scripts/eval-workflow --check"
+          ],
+          "status": "PASS",
+          "scope": "shared-tree snapshot: 28 skill contracts; 262 workflow cases/28 skills; no behavior proof"
+        }
+      ],
+      "authored_cases": 11,
+      "fixture_backed_cases": 0,
+      "observed_local_outcome": "Instruction defects narrowed; live task effect UNVERIFIED",
+      "forward_evidence": "docs/upgrade/evidence/intelligence-forward/pilot",
+      "forward_artifact": "docs/upgrade/evidence/intelligence-forward/pilot/artifact.md",
+      "forward_category": "EXECUTABLE_LOCAL",
+      "current_status": "IMPLEMENTED; structural/package checks PASS; native activation and causal skill lift UNVERIFIED",
+      "root_followthrough": "Completion matrix applies affected/project-required checks and effect-appropriate recovery.",
+      "remaining_limits": [
+        "No independent live comparison",
+        "Eight-to-fifteen sources per skill and issue triangulation incomplete",
+        "Synthetic advanced cases not all materialized",
+        "No cross-host behavior proof"
+      ],
+      "cost": {
+        "baseline_entrypoint_bytes": 9578,
+        "current_entrypoint_bytes": 10021,
+        "entrypoint_byte_delta": 443,
+        "current_package_bytes": 18967,
+        "method": "UTF-8 file bytes; not token/cost/latency telemetry",
+        "actual_model_spend": "UNKNOWN in-session; no paid agent CLI calls or keys set"
+      }
+    },
+    {
+      "skill": "polish",
+      "baseline_behavior": "Refines a product interface while preserving its visual language, improving hierarchy, typography, spacing, density, states, responsiveness, keyboard use, focus, motion, and accessibility. Use when the user asks to make an existing web or app interface look intentional and professional.",
+      "strengths": "Existing self-contained workflow, references, output contract and outcome protocol passed baseline structural checks.",
+      "historical_evidence": "Protocol + fixture-graded tasks authored; outcome UNVERIFIED (zero-spend)",
+      "baseline_skill_bytes": 14734,
+      "baseline_context_estimate": {
+        "method": "UTF-8 bytes divided by 4; not tokenizer telemetry",
+        "tokens": 3683
+      },
+      "gaps": "Individual failure-first audit in progress; live current-runtime effectiveness unverified.",
+      "sources": "docs/research/polish.md",
+      "neighbors": "See docs/skill-matrix.md; integration audit pending.",
+      "proposed_behavior_change": "Only demonstrated gaps; retain valuable existing workflow.",
+      "cases": "evals/workflow/scenarios/polish.md",
+      "status": "IMPLEMENTED_WITH_VERIFICATION_LIMITS",
+      "verification": {
+        "baseline_structure": "PASS",
+        "final_structure": "PASS; final-checks.json snapshot",
+        "cli_individual_packaging": "PASS",
+        "independent_static_review": "REVIEWED snapshot; six findings resolved (original/followthrough records preserved)",
+        "files_changed_after_review": [],
+        "current_native_activation": "UNVERIFIED",
+        "controlled_comparative_lift": "UNVERIFIED",
+        "exploratory_task": "DEGRADED_STATIC; BROWSER_UNVERIFIED"
+      },
+      "baseline_failure": "Generic banned list demanded a second approval for explicitly requested reversible style; mobile/focus evidence limits incomplete.",
+      "behavior_change": "Honor requested visual style while testing barriers; conditional mobile-overlay/focus/capture evidence.",
+      "why": "User authority and concrete WCAG/APG focus evidence should govern style and verification.",
+      "files": [
+        "skills/polish/SKILL.md",
+        "skills/polish/references/",
+        "docs/research/polish.md",
+        "evals/workflow/scenarios/polish.md"
+      ],
+      "research_status": "PARTIAL current source pass; broad perspective/depth and real-incident triangulation incomplete",
+      "audit_record": "docs/upgrade/building-experience.json",
+      "source_access": {
+        "date": "2026-10-14",
+        "status": "Primary documentation and relevant upstream implementation accessed; exact per-source scope in local research ledger",
+        "failed": []
+      },
+      "neighbor_ownership": "docs/skill-matrix.md",
+      "tests": [
+        {
+          "command": "scripts/validate-skills; scripts/check-names; scripts/check-links",
+          "observed": "Each command executed separately; exits 0. skills-ref unavailable, local strict validator ran.",
+          "evidence_type": "deterministic structure, not agent behavior"
+        },
+        {
+          "command": "scoped load_scenarios() check",
+          "observed": "11 cases per owned scenario file; no scoped schema errors.",
+          "evidence_type": "authored scenario shape"
+        }
+      ],
+      "authored_cases": 14,
+      "fixture_backed_cases": 6,
+      "observed_local_outcome": "Static package and scenario validation pass; visual/keyboard/physical-device/AT behavior remains unexecuted.",
+      "forward_evidence": "docs/upgrade/evidence/forward/polish",
+      "forward_artifact": "docs/upgrade/evidence/forward/polish/report.json",
+      "forward_category": "DEGRADED_STATIC; BROWSER_UNVERIFIED",
+      "current_status": "IMPLEMENTED; structural/package checks PASS; native activation and causal skill lift UNVERIFIED",
+      "root_followthrough": null,
+      "remaining_limits": [
+        "No live/paid agent CLI invoked; authored scenarios unexecuted against independent agent.",
+        "15 local failure hypotheses per research doc; no empirical prevalence or claimed highest-frequency ranking.",
+        "External source pages/branches are not installed-version or host compatibility evidence."
+      ],
+      "cost": {
+        "baseline_entrypoint_bytes": 14734,
+        "current_entrypoint_bytes": 15164,
+        "entrypoint_byte_delta": 430,
+        "current_package_bytes": 22824,
+        "method": "UTF-8 file bytes; not token/cost/latency telemetry",
+        "actual_model_spend": "UNKNOWN in-session; no paid agent CLI calls or keys set"
+      }
+    },
+    {
+      "skill": "proof",
+      "baseline_behavior": "Chooses and implements the cheapest trustworthy test boundary for a behavior or invariant, including regression, property, contract, integration, and end-to-end tests. Use when adding tests, protecting a bug fix, or proving changed behavior without optimizing for coverage counts.",
+      "strengths": "Existing self-contained workflow, references, output contract and outcome protocol passed baseline structural checks.",
+      "historical_evidence": "**MIXED** \u2014 opencode O1 2/2 vs baseline 0/2; O2/O3 no lift available; see `docs/benchmarks/proof.md`",
+      "baseline_skill_bytes": 9815,
+      "baseline_context_estimate": {
+        "method": "UTF-8 bytes divided by 4; not tokenizer telemetry",
+        "tokens": 2453
+      },
+      "gaps": "Individual failure-first audit in progress; live current-runtime effectiveness unverified.",
+      "sources": "docs/research/proof.md",
+      "neighbors": "See docs/skill-matrix.md; integration audit pending.",
+      "proposed_behavior_change": "Only demonstrated gaps; retain valuable existing workflow.",
+      "cases": "evals/workflow/scenarios/proof.md",
+      "status": "IMPLEMENTED_WITH_VERIFICATION_LIMITS",
+      "verification": {
+        "baseline_structure": "PASS",
+        "final_structure": "PASS; final-checks.json snapshot",
+        "cli_individual_packaging": "PASS",
+        "independent_static_review": "REVIEWED snapshot; six findings resolved (original/followthrough records preserved)",
+        "files_changed_after_review": [],
+        "current_native_activation": "UNVERIFIED",
+        "controlled_comparative_lift": "UNVERIFIED",
+        "exploratory_task": "EXECUTABLE_LOCAL"
+      },
+      "baseline_failure": "Blanket mutation/property requirements and suite-green phrasing obscured skips/setup errors/partial runs; migration table mandated down.",
+      "behavior_change": "Risk-selective isolated sensitivity probes; actual outcome classes and installed-version caution; approved recovery path.",
+      "why": "pytest strict/non-strict outcome implementation and seeded known bug show process green alone is inadequate.",
+      "files": [
+        "skills/proof/SKILL.md",
+        "skills/proof/references/",
+        "docs/research/proof.md",
+        "evals/workflow/scenarios/proof.md"
+      ],
+      "research_status": "PARTIAL current source pass; broad perspective/depth and real-incident triangulation incomplete",
+      "audit_record": "docs/upgrade/building-experience.json",
+      "source_access": {
+        "date": "2026-10-14",
+        "status": "Primary documentation and relevant upstream implementation accessed; exact per-source scope in local research ledger",
+        "failed": []
+      },
+      "neighbor_ownership": "docs/skill-matrix.md",
+      "tests": [
+        {
+          "label": "proof existing runner baseline",
+          "command": "python3 -m unittest discover -s tests -v",
+          "workdir": "/Users/uday/Skills/benchmarks/fixtures/proof-cart",
+          "chunk_id": "ab63ae",
+          "wall_time_seconds": 5.625e-06,
+          "exit_code": 0,
+          "original_token_count": 84,
+          "output": "test_add_and_remove (test_cart.TestCart.test_add_and_remove) ... ok\ntest_empty_cart_totals_zero (test_cart.TestCart.test_empty_cart_totals_zero) ... ok\ntest_total_without_discount (test_cart.TestCart.test_total_without_discount) ... ok\n\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n"
+        },
+        {
+          "command": "scripts/validate-skills; scripts/check-names; scripts/check-links",
+          "observed": "Each command executed separately; exits 0. skills-ref unavailable, local strict validator ran.",
+          "evidence_type": "deterministic structure, not agent behavior"
+        },
+        {
+          "command": "scoped load_scenarios() check",
+          "observed": "11 cases per owned scenario file; no scoped schema errors.",
+          "evidence_type": "authored scenario shape"
+        }
+      ],
+      "authored_cases": 11,
+      "fixture_backed_cases": 2,
+      "observed_local_outcome": "Existing seed suite passes 3 tests; isolated added regression yields assertion 24.3 != 27.0 with 4 tests/1 failure; isolated correction passes all 4.",
+      "forward_evidence": "docs/upgrade/evidence/specialist-forward/proof",
+      "forward_artifact": "docs/upgrade/evidence/specialist-forward/proof/artifact.md",
+      "forward_category": "EXECUTABLE_LOCAL",
+      "current_status": "IMPLEMENTED; structural/package checks PASS; native activation and causal skill lift UNVERIFIED",
+      "root_followthrough": null,
+      "remaining_limits": [
+        "No live/paid agent CLI invoked; authored scenarios unexecuted against independent agent.",
+        "15 local failure hypotheses per research doc; no empirical prevalence or claimed highest-frequency ranking.",
+        "External source pages/branches are not installed-version or host compatibility evidence."
+      ],
+      "cost": {
+        "baseline_entrypoint_bytes": 9815,
+        "current_entrypoint_bytes": 10224,
+        "entrypoint_byte_delta": 409,
+        "current_package_bytes": 17841,
+        "method": "UTF-8 file bytes; not token/cost/latency telemetry",
+        "actual_model_spend": "UNKNOWN in-session; no paid agent CLI calls or keys set"
+      }
+    },
+    {
+      "skill": "recall",
+      "baseline_behavior": "Maintains compact project memory as verified facts, decisions, current state, unresolved issues, and lessons with source and freshness metadata. Use for long-running work, context resets, handoffs, or when the user asks what was decided or what remains.",
+      "strengths": "Existing self-contained workflow, references, output contract and outcome protocol passed baseline structural checks.",
+      "historical_evidence": "**MIXED** \u2014 opencode O1 2/2 vs 0/2 (marker-only, baseline workspace-green); O2 0/4 both (brittle flag); O3 1/1 vs 0/1 refusal; see `docs/benchmarks/recall.md`",
+      "baseline_skill_bytes": 9362,
+      "baseline_context_estimate": {
+        "method": "UTF-8 bytes divided by 4; not tokenizer telemetry",
+        "tokens": 2340
+      },
+      "gaps": "Individual failure-first audit in progress; live current-runtime effectiveness unverified.",
+      "sources": "docs/research/recall.md",
+      "neighbors": "See docs/skill-matrix.md; integration audit pending.",
+      "proposed_behavior_change": "Only demonstrated gaps; retain valuable existing workflow.",
+      "cases": "evals/workflow/scenarios/recall.md",
+      "status": "IMPLEMENTED_WITH_VERIFICATION_LIMITS",
+      "verification": {
+        "baseline_structure": "PASS",
+        "final_structure": "PASS; final-checks.json snapshot",
+        "cli_individual_packaging": "PASS",
+        "independent_static_review": "REVIEWED snapshot; six findings resolved (original/followthrough records preserved)",
+        "files_changed_after_review": [],
+        "current_native_activation": "UNVERIFIED",
+        "controlled_comparative_lift": "UNVERIFIED",
+        "exploratory_task": "EXECUTABLE_LOCAL"
+      },
+      "baseline_failure": "Four-file memory and supersession are useful; lessons called portable everywhere; compaction says delete superseded entries despite format requiring header/pointer preservation.",
+      "behavior_change": "Scope lessons; retain supersession pointers; branch/revert provenance; reread-and-merge concurrent deltas; old notes cannot grant authority; checker limits explicit.",
+      "why": "RC6\u2013RC10 isolate branch drift, reversals, concurrent state loss, injection and lossy compaction.",
+      "files": [
+        "skills/recall/SKILL.md",
+        "skills/recall/references/memory-protocol.md",
+        "skills/recall/references/research.md",
+        "docs/research/recall.md",
+        "evals/workflow/scenarios/recall.md"
+      ],
+      "research_status": "PARTIAL current source pass; broad perspective/depth and real-incident triangulation incomplete",
+      "audit_record": "docs/upgrade/intelligence.json",
+      "source_access": [
+        {
+          "url": "https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "2025-09-29",
+          "scope": "web article",
+          "limitation": "Vendor report, not a universal optimum"
+        },
+        {
+          "url": "https://arxiv.org/abs/2307.03172",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "2023-07-06; revised 2023-11-20",
+          "scope": "arXiv 2307.03172 v3",
+          "limitation": "Retrieval tasks and older models, not current memory benchmark"
+        },
+        {
+          "url": "https://git-scm.com/docs/git-status",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "Living manual; update not assigned here",
+          "scope": "current fetched manual; local git version not pinned",
+          "limitation": "A branch name alone does not isolate dirty state"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/obra/superpowers/main/skills/executing-plans/SKILL.md",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "Update date not exposed; fetched 2026-10-14",
+          "scope": "main branch, unpinned",
+          "limitation": "Sibling dependencies conflict with standalone bundle contract"
+        },
+        {
+          "url": "https://code.claude.com/docs/en/security",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "Living docs; update date not exposed",
+          "scope": "current fetched docs; host version not pinned",
+          "limitation": "No cross-host permission guarantee"
+        }
+      ],
+      "neighbor_ownership": "docs/skill-matrix.md",
+      "tests": [
+        {
+          "kind": "scenario_spec",
+          "path": "evals/workflow/scenarios/recall.md",
+          "count": 10,
+          "status": "AUTHORED_NOT_EXECUTED"
+        },
+        {
+          "kind": "deterministic_helper",
+          "command": "python3 /private/tmp/intelligence_verify.py",
+          "status": "PASS",
+          "limitation": "temporary verification script; structure/inventory only"
+        },
+        {
+          "kind": "repository_deterministic",
+          "commands": [
+            "scripts/validate-skills",
+            "scripts/check-names",
+            "scripts/check-links",
+            "scripts/eval-workflow --check"
+          ],
+          "status": "PASS",
+          "scope": "shared-tree snapshot: 28 skill contracts; 262 workflow cases/28 skills; no behavior proof"
+        }
+      ],
+      "authored_cases": 10,
+      "fixture_backed_cases": 1,
+      "observed_local_outcome": "Instruction defects narrowed; live task effect UNVERIFIED",
+      "forward_evidence": "docs/upgrade/evidence/intelligence-forward/recall",
+      "forward_artifact": "docs/upgrade/evidence/intelligence-forward/recall/artifact.md",
+      "forward_category": "EXECUTABLE_LOCAL",
+      "current_status": "IMPLEMENTED; structural/package checks PASS; native activation and causal skill lift UNVERIFIED",
+      "root_followthrough": null,
+      "remaining_limits": [
+        "No independent live comparison",
+        "Eight-to-fifteen sources per skill and issue triangulation incomplete",
+        "Synthetic advanced cases not all materialized",
+        "No cross-host behavior proof"
+      ],
+      "cost": {
+        "baseline_entrypoint_bytes": 9362,
+        "current_entrypoint_bytes": 9525,
+        "entrypoint_byte_delta": 163,
+        "current_package_bytes": 22392,
+        "method": "UTF-8 file bytes; not token/cost/latency telemetry",
+        "actual_model_spend": "UNKNOWN in-session; no paid agent CLI calls or keys set"
+      }
+    },
+    {
+      "skill": "referee",
+      "baseline_behavior": "Reviews a change against intent, design, correctness, complexity, security, tests, maintainability, and repository conventions. Use for code, diffs, pull requests, or implementation reviews that should produce only evidence-backed actionable findings.",
+      "strengths": "Existing self-contained workflow, references, output contract and outcome protocol passed baseline structural checks.",
+      "historical_evidence": "Protocol + fixture tasks authored; outcome UNVERIFIED (zero-spend)",
+      "baseline_skill_bytes": 9197,
+      "baseline_context_estimate": {
+        "method": "UTF-8 bytes divided by 4; not tokenizer telemetry",
+        "tokens": 2299
+      },
+      "gaps": "Individual failure-first audit in progress; live current-runtime effectiveness unverified.",
+      "sources": "docs/research/referee.md",
+      "neighbors": "See docs/skill-matrix.md; integration audit pending.",
+      "proposed_behavior_change": "Only demonstrated gaps; retain valuable existing workflow.",
+      "cases": "evals/workflow/scenarios/referee.md",
+      "status": "IMPLEMENTED_WITH_VERIFICATION_LIMITS",
+      "verification": {
+        "baseline_structure": "PASS",
+        "final_structure": "PASS; final-checks.json snapshot",
+        "cli_individual_packaging": "PASS",
+        "independent_static_review": "REVIEWED snapshot; six findings resolved (original/followthrough records preserved)",
+        "files_changed_after_review": [],
+        "current_native_activation": "UNVERIFIED",
+        "controlled_comparative_lift": "UNVERIFIED",
+        "exploratory_task": "SOURCE_OR_SCENARIO_ONLY"
+      },
+      "baseline_failure": "Major findings defined as should-not-merge yet verdict allowed majors forward; simpler alternative automatically major; missing criteria stopped all review.",
+      "behavior_change": "Require changes for merge-blocking majors; factual cost before complexity severity; recover intent while continuing bounded correctness review; recovery need not be down migration.",
+      "why": "Observed instruction contradiction/gap and source-supported decision recorded in individual research trace; retain established behavior outside that defect.",
+      "files": [
+        "skills/referee/SKILL.md",
+        "skills/referee/references/finding-format.md",
+        "skills/referee/references/research.md",
+        "skills/referee/references/review-protocol.md",
+        "docs/research/referee.md",
+        "evals/workflow/scenarios/referee.md"
+      ],
+      "research_status": "PARTIAL current source pass; broad perspective/depth and real-incident triangulation incomplete",
+      "audit_record": "docs/upgrade/safety-shipping.json",
+      "source_access": "individual primary documents fetched 2026-10-14",
+      "neighbor_ownership": "docs/skill-matrix.md",
+      "tests": [
+        {
+          "skill": "referee",
+          "label": "seeded failing behavior reproduced",
+          "command": [
+            "python3",
+            "-c",
+            "import inspect; from billing import total; p=inspect.signature(total).parameters; assert 'admin_override' not in p; assert total([{'price':100,'qty':1}],0.05)==95; print('baseline witness: normal cap works; required admin override/audit interface absent')"
+          ],
+          "exit_code": 0,
+          "expected_exit": 0,
+          "passed": true,
+          "stdout": "baseline witness: normal cap works; required admin override/audit interface absent\n",
+          "stderr": "",
+          "limitation": "Deterministic fixture/helper check only; no agent trial or skill effectiveness measured."
+        }
+      ],
+      "authored_cases": 10,
+      "fixture_backed_cases": 1,
+      "observed_local_outcome": "Local seed reproduced or characterization executed; specific instruction contradictions corrected. Helpers validated where present. Agent effectiveness remains UNVERIFIED.",
+      "forward_evidence": "docs/upgrade/evidence/specialist-forward/referee",
+      "forward_artifact": "docs/upgrade/evidence/specialist-forward/referee/artifact.md",
+      "forward_category": "SOURCE_OR_SCENARIO_ONLY",
+      "current_status": "IMPLEMENTED; structural/package checks PASS; native activation and causal skill lift UNVERIFIED",
+      "root_followthrough": null,
+      "remaining_limits": "No paid or live agent campaign; runtime compatibility beyond observed host untested; source-perspective/depth gaps listed in individual research note.",
+      "cost": {
+        "baseline_entrypoint_bytes": 9197,
+        "current_entrypoint_bytes": 9382,
+        "entrypoint_byte_delta": 185,
+        "current_package_bytes": 18625,
+        "method": "UTF-8 file bytes; not token/cost/latency telemetry",
+        "actual_model_spend": "UNKNOWN in-session; no paid agent CLI calls or keys set"
+      }
+    },
+    {
+      "skill": "roadtest",
+      "baseline_behavior": "Verifies a small set of critical user journeys in a real browser using user-facing locators, isolated state, rendered outcomes, and relevant console or network evidence. Use when browser-dependent behavior must be exercised like a user.",
+      "strengths": "Existing self-contained workflow, references, output contract and outcome protocol passed baseline structural checks.",
+      "historical_evidence": "Protocol + fixture tasks authored; outcome UNVERIFIED (zero-spend)",
+      "baseline_skill_bytes": 10553,
+      "baseline_context_estimate": {
+        "method": "UTF-8 bytes divided by 4; not tokenizer telemetry",
+        "tokens": 2638
+      },
+      "gaps": "Individual failure-first audit in progress; live current-runtime effectiveness unverified.",
+      "sources": "docs/research/roadtest.md",
+      "neighbors": "See docs/skill-matrix.md; integration audit pending.",
+      "proposed_behavior_change": "Only demonstrated gaps; retain valuable existing workflow.",
+      "cases": "evals/workflow/scenarios/roadtest.md",
+      "status": "IMPLEMENTED_WITH_VERIFICATION_LIMITS",
+      "verification": {
+        "baseline_structure": "PASS",
+        "final_structure": "PASS; final-checks.json snapshot",
+        "cli_individual_packaging": "PASS",
+        "independent_static_review": "REVIEWED snapshot; six findings resolved (original/followthrough records preserved)",
+        "files_changed_after_review": [
+          "references/adverse-conditions.md"
+        ],
+        "current_native_activation": "UNVERIFIED",
+        "controlled_comparative_lift": "UNVERIFIED",
+        "exploratory_task": "DEGRADED_STATIC; BROWSER_UNVERIFIED"
+      },
+      "baseline_failure": "Generated console-clean/network-clean labels contradicted legitimate negative-path responses; evidence template mentioned forbidden XPath.",
+      "behavior_change": "Contract-aware generated matrix, sanitized-log wording, documented locator fallback; conditional offline/WebRTC/device/instrumentation limits.",
+      "why": "Expected rejection can pass while fake success fails; emulation has transport boundaries.",
+      "files": [
+        "skills/roadtest/SKILL.md",
+        "skills/roadtest/references/",
+        "docs/research/roadtest.md",
+        "evals/workflow/scenarios/roadtest.md"
+      ],
+      "research_status": "PARTIAL current source pass; broad perspective/depth and real-incident triangulation incomplete",
+      "audit_record": "docs/upgrade/building-experience.json",
+      "source_access": {
+        "date": "2026-10-14",
+        "status": "Primary documentation and relevant upstream implementation accessed; exact per-source scope in local research ledger",
+        "failed": []
+      },
+      "neighbor_ownership": "docs/skill-matrix.md",
+      "tests": [
+        {
+          "label": "roadtest negative matrix",
+          "command": "skills/roadtest/scripts/test-matrix --paths 'invalid checkout' --viewports 390 --states --json",
+          "workdir": "/Users/uday/Skills",
+          "chunk_id": "2da5e8",
+          "wall_time_seconds": 4.375e-06,
+          "exit_code": 0,
+          "original_token_count": 94,
+          "output": "{\n  \"matrix\": [\n    {\n      \"path\": \"invalid checkout\",\n      \"viewport\": \"390\",\n      \"checks\": [\n        \"render\",\n        \"console-assessed\",\n        \"network-matches-contract\",\n        \"interaction-works\",\n        \"empty-state\",\n        \"error-state\",\n        \"loading-visible\",\n        \"success-feedback\"\n      ]\n    }\n  ],\n  \"bundle\": \"docs/reports/roadtest-<slug>/\"\n}\n"
+        },
+        {
+          "command": "scripts/validate-skills; scripts/check-names; scripts/check-links",
+          "observed": "Each command executed separately; exits 0. skills-ref unavailable, local strict validator ran.",
+          "evidence_type": "deterministic structure, not agent behavior"
+        },
+        {
+          "command": "scoped load_scenarios() check",
+          "observed": "11 cases per owned scenario file; no scoped schema errors.",
+          "evidence_type": "authored scenario shape"
+        }
+      ],
+      "authored_cases": 13,
+      "fixture_backed_cases": 2,
+      "observed_local_outcome": "Matrix CLI emits console-assessed and network-matches-contract for invalid checkout; no actual browser journey.",
+      "forward_evidence": "docs/upgrade/evidence/specialist-forward/roadtest",
+      "forward_artifact": "docs/upgrade/evidence/specialist-forward/roadtest/artifact.md",
+      "forward_category": "DEGRADED_STATIC; BROWSER_UNVERIFIED",
+      "current_status": "IMPLEMENTED; structural/package checks PASS; native activation and causal skill lift UNVERIFIED",
+      "root_followthrough": "HTTP assertion evidence is separate from screenshots; service-worker offline and bounded readiness checks.",
+      "remaining_limits": [
+        "No live/paid agent CLI invoked; authored scenarios unexecuted against independent agent.",
+        "15 local failure hypotheses per research doc; no empirical prevalence or claimed highest-frequency ranking.",
+        "External source pages/branches are not installed-version or host compatibility evidence."
+      ],
+      "cost": {
+        "baseline_entrypoint_bytes": 10553,
+        "current_entrypoint_bytes": 10784,
+        "entrypoint_byte_delta": 231,
+        "current_package_bytes": 21303,
+        "method": "UTF-8 file bytes; not token/cost/latency telemetry",
+        "actual_model_spend": "UNKNOWN in-session; no paid agent CLI calls or keys set"
+      }
+    },
+    {
+      "skill": "runway",
+      "baseline_behavior": "Deploys software through the target platform's real release model, sequencing configuration, secrets, data, and code safely, then verifying the immutable release and public behavior. Use when the user asks to deploy, release, publish, roll back, or prove a version is live.",
+      "strengths": "Existing self-contained workflow, references, output contract and outcome protocol passed baseline structural checks.",
+      "historical_evidence": "Protocol + no-fabrication tasks authored; outcome UNVERIFIED (zero-spend)",
+      "baseline_skill_bytes": 9172,
+      "baseline_context_estimate": {
+        "method": "UTF-8 bytes divided by 4; not tokenizer telemetry",
+        "tokens": 2293
+      },
+      "gaps": "Individual failure-first audit in progress; live current-runtime effectiveness unverified.",
+      "sources": "docs/research/runway.md",
+      "neighbors": "See docs/skill-matrix.md; integration audit pending.",
+      "proposed_behavior_change": "Only demonstrated gaps; retain valuable existing workflow.",
+      "cases": "evals/workflow/scenarios/runway.md",
+      "status": "IMPLEMENTED_WITH_VERIFICATION_LIMITS",
+      "verification": {
+        "baseline_structure": "PASS",
+        "final_structure": "PASS; final-checks.json snapshot",
+        "cli_individual_packaging": "PASS",
+        "independent_static_review": "REVIEWED snapshot; six findings resolved (original/followthrough records preserved)",
+        "files_changed_after_review": [],
+        "current_native_activation": "UNVERIFIED",
+        "controlled_comparative_lift": "UNVERIFIED",
+        "exploratory_task": "SOURCE_OR_SCENARIO_ONLY"
+      },
+      "baseline_failure": "Preview freely authorized regardless paid/shared data risk; local build always required; rolling assumed everywhere; speculative rollback commands; deployment existence confused with verified behavior.",
+      "behavior_change": "Scope preview data/cost/exposure; accept trusted candidate CI build; preserve dirty work; platform-checked recovery; bounded fingerprint/smoke observations and data-compatible rollback.",
+      "why": "Observed instruction contradiction/gap and source-supported decision recorded in individual research trace; retain established behavior outside that defect.",
+      "files": [
+        "skills/runway/SKILL.md",
+        "skills/runway/references/platforms.md",
+        "skills/runway/references/release-protocol.md",
+        "skills/runway/references/research.md",
+        "skills/runway/scripts/check-receipt.py",
+        "docs/research/runway.md",
+        "evals/workflow/scenarios/runway.md"
+      ],
+      "research_status": "PARTIAL current source pass; broad perspective/depth and real-incident triangulation incomplete",
+      "audit_record": "docs/upgrade/safety-shipping.json",
+      "source_access": "Kubernetes and Vercel instant-rollback retrieved. Earlier Vercel deployments/rollback-a-deployment URL failed; replacement primary page used.",
+      "neighbor_ownership": "docs/skill-matrix.md",
+      "tests": [
+        {
+          "skill": "runway",
+          "label": "static preflight cannot prove live",
+          "command": [
+            "python3",
+            "-c",
+            "from pathlib import Path; assert 'build fingerprint: local-dev' in Path('index.html').read_text(); print('baseline witness: local-dev marker only; public deployment remains unverified')"
+          ],
+          "exit_code": 0,
+          "expected_exit": 0,
+          "passed": true,
+          "stdout": "baseline witness: local-dev marker only; public deployment remains unverified\n",
+          "stderr": "",
+          "limitation": "Deterministic fixture/helper check only; no agent trial or skill effectiveness measured."
+        },
+        {
+          "skill": "runway",
+          "label": "new deterministic helper regression",
+          "command": [
+            "python3",
+            "/Users/uday/Skills/skills/runway/scripts/check-receipt.py",
+            "--self-test"
+          ],
+          "exit_code": 0,
+          "expected_exit": 0,
+          "passed": true,
+          "stdout": "PASS: CLI zero, stale fingerprint, failed/missing smoke and malformed receipts rejected\n",
+          "stderr": "",
+          "limitation": "Deterministic fixture/helper check only; no agent trial or skill effectiveness measured."
+        }
+      ],
+      "authored_cases": 10,
+      "fixture_backed_cases": 0,
+      "observed_local_outcome": "Local seed reproduced or characterization executed; specific instruction contradictions corrected. Helpers validated where present. Agent effectiveness remains UNVERIFIED.",
+      "forward_evidence": "docs/upgrade/evidence/specialist-forward/runway",
+      "forward_artifact": "docs/upgrade/evidence/specialist-forward/runway/artifact.md",
+      "forward_category": "SOURCE_OR_SCENARIO_ONLY",
+      "current_status": "IMPLEMENTED; structural/package checks PASS; native activation and causal skill lift UNVERIFIED",
+      "root_followthrough": null,
+      "remaining_limits": "No paid or live agent campaign; runtime compatibility beyond observed host untested; source-perspective/depth gaps listed in individual research note.",
+      "cost": {
+        "baseline_entrypoint_bytes": 9172,
+        "current_entrypoint_bytes": 10884,
+        "entrypoint_byte_delta": 1712,
+        "current_package_bytes": 23917,
+        "method": "UTF-8 file bytes; not token/cost/latency telemetry",
+        "actual_model_spend": "UNKNOWN in-session; no paid agent CLI calls or keys set"
+      }
+    },
+    {
+      "skill": "scout",
+      "baseline_behavior": "Researches version-sensitive technical questions using repository truth, installed sources, official documentation, standards, and upstream evidence. Use when an API, library, platform, security rule, or current implementation detail must be verified rather than recalled.",
+      "strengths": "Existing self-contained workflow, references, output contract and outcome protocol passed baseline structural checks.",
+      "historical_evidence": "**MIXED (adjudicated)** \u2014 raw 0/5 vs 1/5, adjudicated 5/5 vs 2/5 on documented grader artifacts; see `docs/benchmarks/scout.md`",
+      "baseline_skill_bytes": 10922,
+      "baseline_context_estimate": {
+        "method": "UTF-8 bytes divided by 4; not tokenizer telemetry",
+        "tokens": 2730
+      },
+      "gaps": "Individual failure-first audit in progress; live current-runtime effectiveness unverified.",
+      "sources": "docs/research/scout.md",
+      "neighbors": "See docs/skill-matrix.md; integration audit pending.",
+      "proposed_behavior_change": "Only demonstrated gaps; retain valuable existing workflow.",
+      "cases": "evals/workflow/scenarios/scout.md",
+      "status": "IMPLEMENTED_WITH_VERIFICATION_LIMITS",
+      "verification": {
+        "baseline_structure": "PASS",
+        "final_structure": "PASS; final-checks.json snapshot",
+        "cli_individual_packaging": "PASS",
+        "independent_static_review": "REVIEWED snapshot; six findings resolved (original/followthrough records preserved)",
+        "files_changed_after_review": [],
+        "current_native_activation": "UNVERIFIED",
+        "controlled_comparative_lift": "UNVERIFIED",
+        "exploratory_task": "SOURCE_OR_SCENARIO_ONLY"
+      },
+      "baseline_failure": "Installed evidence/source ladder and offline mode work conceptually; MCP transport receives blanket Tier 1 trust and notes collapse installed/deployed/target versions.",
+      "behavior_change": "Rank content by provenance rather than transport; distinguish three versions and local wrappers; preserve denied/paywalled claims and update-date unknowns; structural validation limits.",
+      "why": "SC6\u2013SC10 make apparent authoritative evidence falsifiable at the actual version/environment boundary.",
+      "files": [
+        "skills/scout/SKILL.md",
+        "skills/scout/references/source-ladder.md",
+        "skills/scout/references/research-protocol.md",
+        "skills/scout/references/research.md",
+        "docs/research/scout.md",
+        "evals/workflow/scenarios/scout.md"
+      ],
+      "research_status": "PARTIAL current source pass; broad perspective/depth and real-incident triangulation incomplete",
+      "audit_record": "docs/upgrade/intelligence.json",
+      "source_access": [
+        {
+          "url": "https://modelcontextprotocol.io/docs/2025-11-25/tutorials/security/security_best_practices",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "Versioned docs 2025-11-25; publication not exposed",
+          "scope": "2025-11-25 redirected tutorial",
+          "limitation": "Not a blanket authority ranking for connector contents"
+        },
+        {
+          "url": "https://arxiv.org/abs/2603.15401",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "2026-03-16",
+          "scope": "arXiv 2603.15401 v1",
+          "limitation": "External benchmark does not prove this bundle improved"
+        },
+        {
+          "url": "https://agentskills.io/specification",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "Living specification; update date not exposed",
+          "scope": "current fetched text",
+          "limitation": "No behavioral efficacy guarantee"
+        },
+        {
+          "url": "https://code.claude.com/docs/en/security",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "Living docs; update date not exposed",
+          "scope": "current fetched docs; host version not pinned",
+          "limitation": "No cross-host permission guarantee"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/obra/superpowers/main/skills/writing-plans/SKILL.md",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "Update date not exposed; fetched 2026-10-14",
+          "scope": "main branch, unpinned",
+          "limitation": "Instructions inspected, efficacy not executed"
+        }
+      ],
+      "neighbor_ownership": "docs/skill-matrix.md",
+      "tests": [
+        {
+          "kind": "scenario_spec",
+          "path": "evals/workflow/scenarios/scout.md",
+          "count": 10,
+          "status": "AUTHORED_NOT_EXECUTED"
+        },
+        {
+          "kind": "deterministic_helper",
+          "command": "python3 /private/tmp/intelligence_verify.py",
+          "status": "PASS",
+          "limitation": "temporary verification script; structure/inventory only"
+        },
+        {
+          "kind": "repository_deterministic",
+          "commands": [
+            "scripts/validate-skills",
+            "scripts/check-names",
+            "scripts/check-links",
+            "scripts/eval-workflow --check"
+          ],
+          "status": "PASS",
+          "scope": "shared-tree snapshot: 28 skill contracts; 262 workflow cases/28 skills; no behavior proof"
+        }
+      ],
+      "authored_cases": 10,
+      "fixture_backed_cases": 0,
+      "observed_local_outcome": "Instruction defects narrowed; live task effect UNVERIFIED",
+      "forward_evidence": "docs/upgrade/evidence/intelligence-forward/scout",
+      "forward_artifact": "docs/upgrade/evidence/intelligence-forward/scout/artifact.md",
+      "forward_category": "SOURCE_OR_SCENARIO_ONLY",
+      "current_status": "IMPLEMENTED; structural/package checks PASS; native activation and causal skill lift UNVERIFIED",
+      "root_followthrough": null,
+      "remaining_limits": [
+        "No independent live comparison",
+        "Eight-to-fifteen sources per skill and issue triangulation incomplete",
+        "Synthetic advanced cases not all materialized",
+        "No cross-host behavior proof"
+      ],
+      "cost": {
+        "baseline_entrypoint_bytes": 10922,
+        "current_entrypoint_bytes": 10922,
+        "entrypoint_byte_delta": 0,
+        "current_package_bytes": 23763,
+        "method": "UTF-8 file bytes; not token/cost/latency telemetry",
+        "actual_model_spend": "UNKNOWN in-session; no paid agent CLI calls or keys set"
+      }
+    },
+    {
+      "skill": "sleuth",
+      "baseline_behavior": "Finds root causes through reproduction, minimization, telemetry, competing hypotheses, discriminating experiments, causal chains, and counterfactual validation. Use when a bug, intermittent failure, or unexplained system behavior needs diagnosis.",
+      "strengths": "Existing self-contained workflow, references, output contract and outcome protocol passed baseline structural checks.",
+      "historical_evidence": "Protocol + workspace tasks authored; outcome UNVERIFIED (zero-spend)",
+      "baseline_skill_bytes": 16650,
+      "baseline_context_estimate": {
+        "method": "UTF-8 bytes divided by 4; not tokenizer telemetry",
+        "tokens": 4162
+      },
+      "gaps": "Individual failure-first audit in progress; live current-runtime effectiveness unverified.",
+      "sources": "docs/research/sleuth.md",
+      "neighbors": "See docs/skill-matrix.md; integration audit pending.",
+      "proposed_behavior_change": "Only demonstrated gaps; retain valuable existing workflow.",
+      "cases": "evals/workflow/scenarios/sleuth.md",
+      "status": "IMPLEMENTED_WITH_VERIFICATION_LIMITS",
+      "verification": {
+        "baseline_structure": "PASS",
+        "final_structure": "PASS; final-checks.json snapshot",
+        "cli_individual_packaging": "PASS",
+        "independent_static_review": "REVIEWED snapshot; six findings resolved (original/followthrough records preserved)",
+        "files_changed_after_review": [],
+        "current_native_activation": "UNVERIFIED",
+        "controlled_comparative_lift": "UNVERIFIED",
+        "exploratory_task": "EXECUTABLE_LOCAL"
+      },
+      "baseline_failure": "Failed fix was declared proof that the hypothesis is dead; stack direction and 2026 trace/APM assertions were universal.",
+      "behavior_change": "Separate failed intervention from rejected prediction; runtime-specific exception order; competing hypotheses only when plausible; observable traces without hidden reasoning.",
+      "why": "Observed instruction contradiction/gap and source-supported decision recorded in individual research trace; retain established behavior outside that defect.",
+      "files": [
+        "skills/sleuth/SKILL.md",
+        "skills/sleuth/references/research.md",
+        "skills/sleuth/references/techniques.md",
+        "docs/research/sleuth.md",
+        "evals/workflow/scenarios/sleuth.md"
+      ],
+      "research_status": "PARTIAL current source pass; broad perspective/depth and real-incident triangulation incomplete",
+      "audit_record": "docs/upgrade/safety-shipping.json",
+      "source_access": "individual primary documents fetched 2026-10-14",
+      "neighbor_ownership": "docs/skill-matrix.md",
+      "tests": [
+        {
+          "skill": "sleuth",
+          "label": "seeded failing behavior reproduced",
+          "command": [
+            "python3",
+            "-c",
+            "from cache import Cache; c=Cache(); c.set('a',1); assert c.get('a')==1; c.set('a',2); assert c._store['a']==2 and c.get('a')==1 and c.hits==1; print('baseline witness: store2, cached read1, hit retained')"
+          ],
+          "exit_code": 0,
+          "expected_exit": 0,
+          "passed": true,
+          "stdout": "baseline witness: store2, cached read1, hit retained\n",
+          "stderr": "",
+          "limitation": "Deterministic fixture/helper check only; no agent trial or skill effectiveness measured."
+        }
+      ],
+      "authored_cases": 10,
+      "fixture_backed_cases": 1,
+      "observed_local_outcome": "Local seed reproduced or characterization executed; specific instruction contradictions corrected. Helpers validated where present. Agent effectiveness remains UNVERIFIED.",
+      "forward_evidence": "docs/upgrade/evidence/forward/sleuth",
+      "forward_artifact": "docs/upgrade/evidence/forward/sleuth/report.json",
+      "forward_category": "EXECUTABLE_LOCAL",
+      "current_status": "IMPLEMENTED; structural/package checks PASS; native activation and causal skill lift UNVERIFIED",
+      "root_followthrough": null,
+      "remaining_limits": "No paid or live agent campaign; runtime compatibility beyond observed host untested; source-perspective/depth gaps listed in individual research note.",
+      "cost": {
+        "baseline_entrypoint_bytes": 16650,
+        "current_entrypoint_bytes": 16888,
+        "entrypoint_byte_delta": 238,
+        "current_package_bytes": 26342,
+        "method": "UTF-8 file bytes; not token/cost/latency telemetry",
+        "actual_model_spend": "UNKNOWN in-session; no paid agent CLI calls or keys set"
+      }
+    },
+    {
+      "skill": "spelunk",
+      "baseline_behavior": "Maps an unfamiliar repository from a concrete question by finding manifests, entry points, execution paths, dependencies, churn, ownership, and risk. Use for codebase onboarding, impact analysis, or locating where behavior lives before planning or debugging.",
+      "strengths": "Existing self-contained workflow, references, output contract and outcome protocol passed baseline structural checks.",
+      "historical_evidence": "**MIXED** \u2014 opencode O1 2/2 vs 1/2; O2/O3 no lift after adjudication; see `docs/benchmarks/spelunk.md`",
+      "baseline_skill_bytes": 9706,
+      "baseline_context_estimate": {
+        "method": "UTF-8 bytes divided by 4; not tokenizer telemetry",
+        "tokens": 2426
+      },
+      "gaps": "Individual failure-first audit in progress; live current-runtime effectiveness unverified.",
+      "sources": "docs/research/spelunk.md",
+      "neighbors": "See docs/skill-matrix.md; integration audit pending.",
+      "proposed_behavior_change": "Only demonstrated gaps; retain valuable existing workflow.",
+      "cases": "evals/workflow/scenarios/spelunk.md",
+      "status": "IMPLEMENTED_WITH_VERIFICATION_LIMITS",
+      "verification": {
+        "baseline_structure": "PASS",
+        "final_structure": "PASS; final-checks.json snapshot",
+        "cli_individual_packaging": "PASS",
+        "independent_static_review": "REVIEWED snapshot; six findings resolved (original/followthrough records preserved)",
+        "files_changed_after_review": [],
+        "current_native_activation": "UNVERIFIED",
+        "controlled_comparative_lift": "UNVERIFIED",
+        "exploratory_task": "SOURCE_OR_SCENARIO_ONLY"
+      },
+      "baseline_failure": "Question-led mapping, trace-first discovery and inventory exist; scanner excludes .venv in one section but counts/scans it elsewhere; dynamic/generated ownership needs sharper evidence.",
+      "behavior_change": "Consistent scanner exclusions for cache/vendor/generated trees; current-source check on memory; conditional runtime registration/source-generator ownership evidence.",
+      "why": "SP9 deterministic reproduction shows baseline six sources versus one first-party source; SP6/SP7 prevent owner assignment from name matches.",
+      "files": [
+        "skills/spelunk/SKILL.md",
+        "skills/spelunk/references/evidence-protocol.md",
+        "skills/spelunk/references/research.md",
+        "docs/research/spelunk.md",
+        "evals/workflow/scenarios/spelunk.md",
+        "skills/spelunk/scripts/inventory",
+        "skills/spelunk/references/discovery-map.md"
+      ],
+      "research_status": "PARTIAL current source pass; broad perspective/depth and real-incident triangulation incomplete",
+      "audit_record": "docs/upgrade/intelligence.json",
+      "source_access": [
+        {
+          "url": "https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "2025-09-29",
+          "scope": "web article",
+          "limitation": "Vendor report, not a universal optimum"
+        },
+        {
+          "url": "https://git-scm.com/docs/git-status",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "Living manual; update not assigned here",
+          "scope": "current fetched manual; local git version not pinned",
+          "limitation": "A branch name alone does not isolate dirty state"
+        },
+        {
+          "url": "https://arxiv.org/abs/2603.15401",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "2026-03-16",
+          "scope": "arXiv 2603.15401 v1",
+          "limitation": "External benchmark does not prove this bundle improved"
+        },
+        {
+          "url": "https://code.claude.com/docs/en/security",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "Living docs; update date not exposed",
+          "scope": "current fetched docs; host version not pinned",
+          "limitation": "No cross-host permission guarantee"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/obra/superpowers/main/skills/writing-plans/SKILL.md",
+          "checked_on": "2026-10-14",
+          "status": "FETCHED",
+          "date": "Update date not exposed; fetched 2026-10-14",
+          "scope": "main branch, unpinned",
+          "limitation": "Instructions inspected, efficacy not executed"
+        }
+      ],
+      "neighbor_ownership": "docs/skill-matrix.md",
+      "tests": [
+        {
+          "kind": "scenario_spec",
+          "path": "evals/workflow/scenarios/spelunk.md",
+          "count": 10,
+          "status": "AUTHORED_NOT_EXECUTED"
+        },
+        {
+          "kind": "deterministic_helper",
+          "command": "python3 /private/tmp/intelligence_verify.py",
+          "status": "PASS",
+          "limitation": "temporary verification script; structure/inventory only"
+        },
+        {
+          "kind": "repository_deterministic",
+          "commands": [
+            "scripts/validate-skills",
+            "scripts/check-names",
+            "scripts/check-links",
+            "scripts/eval-workflow --check"
+          ],
+          "status": "PASS",
+          "scope": "shared-tree snapshot: 28 skill contracts; 262 workflow cases/28 skills; no behavior proof"
+        },
+        {
+          "kind": "durable_helper_regression",
+          "command": "scripts/test-upgrade",
+          "status": "PASS",
+          "scope": "inventory: first-party source/test count + exclusion from largest/debt output; not navigation accuracy or agent outcome proof"
+        }
+      ],
+      "authored_cases": 10,
+      "fixture_backed_cases": 1,
+      "observed_local_outcome": "Instruction defects narrowed; live task effect UNVERIFIED",
+      "forward_evidence": "docs/upgrade/evidence/intelligence-forward/spelunk",
+      "forward_artifact": "docs/upgrade/evidence/intelligence-forward/spelunk/artifact.md",
+      "forward_category": "SOURCE_OR_SCENARIO_ONLY",
+      "current_status": "IMPLEMENTED; structural/package checks PASS; native activation and causal skill lift UNVERIFIED",
+      "root_followthrough": null,
+      "remaining_limits": [
+        "No independent live comparison",
+        "Eight-to-fifteen sources per skill and issue triangulation incomplete",
+        "Synthetic advanced cases not all materialized",
+        "No cross-host behavior proof"
+      ],
+      "cost": {
+        "baseline_entrypoint_bytes": 9706,
+        "current_entrypoint_bytes": 9766,
+        "entrypoint_byte_delta": 60,
+        "current_package_bytes": 25392,
+        "method": "UTF-8 file bytes; not token/cost/latency telemetry",
+        "actual_model_spend": "UNKNOWN in-session; no paid agent CLI calls or keys set"
+      }
+    },
+    {
+      "skill": "unslop",
+      "baseline_behavior": "Removes accidental complexity, duplication, dead code, abstraction leakage, naming debt, and generated cruft in small behavior-preserving batches. Use when a working repository is hard to change or contains messy AI-generated code.",
+      "strengths": "Existing self-contained workflow, references, output contract and outcome protocol passed baseline structural checks.",
+      "historical_evidence": "Protocol + workspace tasks authored; outcome UNVERIFIED (zero-spend)",
+      "baseline_skill_bytes": 10539,
+      "baseline_context_estimate": {
+        "method": "UTF-8 bytes divided by 4; not tokenizer telemetry",
+        "tokens": 2634
+      },
+      "gaps": "Individual failure-first audit in progress; live current-runtime effectiveness unverified.",
+      "sources": "docs/research/unslop.md",
+      "neighbors": "See docs/skill-matrix.md; integration audit pending.",
+      "proposed_behavior_change": "Only demonstrated gaps; retain valuable existing workflow.",
+      "cases": "evals/workflow/scenarios/unslop.md",
+      "status": "IMPLEMENTED_WITH_VERIFICATION_LIMITS",
+      "verification": {
+        "baseline_structure": "PASS",
+        "final_structure": "PASS; final-checks.json snapshot",
+        "cli_individual_packaging": "PASS",
+        "independent_static_review": "REVIEWED snapshot; six findings resolved (original/followthrough records preserved)",
+        "files_changed_after_review": [],
+        "current_native_activation": "UNVERIFIED",
+        "controlled_comparative_lift": "UNVERIFIED",
+        "exploratory_task": "EXECUTABLE_LOCAL"
+      },
+      "baseline_failure": "No tests means no detox contradicted characterization fallback; any red suite forced revert; net-negative lines treated as target; single implementation assumed pointless.",
+      "behavior_change": "Bounded characterization and unchanged failing baseline allowed; scope rollback; line delta informational; preserve lifecycle, compatibility and integration seams.",
+      "why": "Observed instruction contradiction/gap and source-supported decision recorded in individual research trace; retain established behavior outside that defect.",
+      "files": [
+        "skills/unslop/SKILL.md",
+        "skills/unslop/references/cleanup-protocol.md",
+        "skills/unslop/references/research.md",
+        "skills/unslop/references/slop-catalog.md",
+        "docs/research/unslop.md",
+        "evals/workflow/scenarios/unslop.md"
+      ],
+      "research_status": "PARTIAL current source pass; broad perspective/depth and real-incident triangulation incomplete",
+      "audit_record": "docs/upgrade/safety-shipping.json",
+      "source_access": "individual primary documents fetched 2026-10-14",
+      "neighbor_ownership": "docs/skill-matrix.md",
+      "tests": [
+        {
+          "skill": "unslop",
+          "label": "behavior characterization baseline",
+          "command": [
+            "python3",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tests",
+            "-t",
+            "."
+          ],
+          "exit_code": 0,
+          "expected_exit": 0,
+          "passed": true,
+          "stdout": "DEBUG total= 30.0\nDEBUG total= 0\n",
+          "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n",
+          "limitation": "Deterministic fixture/helper check only; no agent trial or skill effectiveness measured."
+        }
+      ],
+      "authored_cases": 14,
+      "fixture_backed_cases": 4,
+      "observed_local_outcome": "Local seed reproduced or characterization executed; specific instruction contradictions corrected. Helpers validated where present. Agent effectiveness remains UNVERIFIED.",
+      "forward_evidence": "docs/upgrade/evidence/specialist-forward/unslop",
+      "forward_artifact": "docs/upgrade/evidence/specialist-forward/unslop/artifact.md",
+      "forward_category": "EXECUTABLE_LOCAL",
+      "current_status": "IMPLEMENTED; structural/package checks PASS; native activation and causal skill lift UNVERIFIED",
+      "root_followthrough": "Checkpoint and authorized scoped commits preserve user index and worktree.",
+      "remaining_limits": "No paid or live agent campaign; runtime compatibility beyond observed host untested; source-perspective/depth gaps listed in individual research note.",
+      "cost": {
+        "baseline_entrypoint_bytes": 10539,
+        "current_entrypoint_bytes": 10961,
+        "entrypoint_byte_delta": 422,
+        "current_package_bytes": 22105,
+        "method": "UTF-8 file bytes; not token/cost/latency telemetry",
+        "actual_model_spend": "UNKNOWN in-session; no paid agent CLI calls or keys set"
+      }
+    }
+  ],
+  "checkpoint": "Implementation checkpoint verified; master acceptance remains incomplete at source/live capability/spend boundaries",
+  "limitations": [
+    "Full 8\u201315 load-bearing sources/fiveperspectives/real incident register per skill not complete.",
+    "No native host activation or controlled current-model baseline/treatment trials.",
+    "No browser capture, real mobile app, hosted deployment or real PostgreSQL execution.",
+    "Exploratory tasks share session/model family and seed hints; no causal improvement inferred.",
+    "Research worker hit usage limit; partial candidate mechanisms adopted only after primary-source check."
+  ],
+  "verification_summary": {
+    "path": "docs/upgrade/evidence/final-checks.json",
+    "required_checks": "PASS",
+    "existing_regressions": 45,
+    "upgrade_regressions": 12,
+    "trigger_cases": 267,
+    "workflow_cases": 324,
+    "fixture_backed_workflow_cases": 54,
+    "outcome_tasks": 87,
+    "local_demo_corrected_tests": 16,
+    "offline_game_model_tests": 6,
+    "live_paid_cli_calls": 0,
+    "actual_in_session_model_cost": "UNKNOWN",
+    "ci_remote_execution": "UNVERIFIED"
+  }
+}

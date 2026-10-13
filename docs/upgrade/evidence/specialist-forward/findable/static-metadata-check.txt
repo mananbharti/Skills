@@ -1,0 +1,62 @@
+$ ['python3', 'check_static.py']
+exit: 0
+stdout:
+{
+  "rung": "static initial HTML/config only",
+  "pages": {
+    "index.html": {
+      "title": "NotesApp \u2014 simple notes",
+      "meta": {
+        "": "",
+        "viewport": "width=device-width, initial-scale=1",
+        "description": "Welcome to NotesApp. Learn about the notes app and read its story.",
+        "robots": "index, follow",
+        "og:title": "NotesApp \u2014 simple notes",
+        "og:description": "Learn about NotesApp, a notes app.",
+        "og:type": "website",
+        "og:url": "https://notesapp.example/"
+      },
+      "canonical": [
+        "https://notesapp.example/"
+      ],
+      "links": [
+        "about.html"
+      ],
+      "headings": [
+        "h1"
+      ]
+    },
+    "about.html": {
+      "title": "About NotesApp \u2014 our story",
+      "meta": {
+        "": "",
+        "viewport": "width=device-width, initial-scale=1",
+        "description": "NotesApp is a notes app. Read our story and return to the home page.",
+        "robots": "index, follow",
+        "og:title": "About NotesApp",
+        "og:description": "Read the story of NotesApp.",
+        "og:type": "website",
+        "og:url": "https://notesapp.example/about.html"
+      },
+      "canonical": [
+        "https://notesapp.example/about.html"
+      ],
+      "links": [
+        "index.html"
+      ],
+      "headings": [
+        "h1",
+        "h2"
+      ]
+    }
+  },
+  "sitemap": [
+    "https://notesapp.example/",
+    "https://notesapp.example/about.html"
+  ],
+  "http_status": "unverified",
+  "browser_render": "unverified",
+  "indexing": "unverified"
+}
+
+stderr:

@@ -1,0 +1,20 @@
+{
+  "skill": {
+    "SKILL.md": "355f8119554b338753aabefa295fdd21f25313a86df3358c8baf5c77824f145f",
+    "assets/template.html": "31531dbe5376dccb407b7955719de04d460c32228d8d22c70c1fa50a8ad16ed4",
+    "references/diagram-guide.md": "f78ef3c13db0ec61415052fbb669bcdd3202f7e82c4c0a3a4b546f5593b24031",
+    "references/rendering.md": "251c2ef90e764ccb245d04a5c1d2fcbe6574f6501569202a4116bed13fcebd23",
+    "references/research.md": "3783c2319b41cf851a3653018f643fda66aa5a66d4d3d557c23964807b1d0ee0",
+    "scripts/validate-mermaid": "cc48c624c8e296493f480cfdfdadf612a207886261191052529261e90ac340aa"
+  },
+  "fixture": {
+    ".env": "1e45ce60b5ca35fd2779a1c6c6b746395223211508a3a0527f0691c8deb32ce5",
+    ".gitignore": "4d56952b0fb13bf8f9b6c13a6d4c34a075bac3af447636a1df4335d7576e2f97",
+    "BASELINE.md": "5433509e42cfdcb4ee253a1fc3a0dda0f15e4107367c8e61ed3e997531a1f317",
+    "package.json": "bbcbdae06865c7237018a87ab69e5327e7eea03b7e9047dba45866b484f79dc3",
+    "src/App.tsx": "f10b8928828d198ea57ea0234ec1bac19a05e070e3255908031f2d4f781145bc",
+    "src/api/orders.ts": "609f4076cf67bb3cefd49a821e4efa11706a1251aafcf81221e15e607644fe02",
+    "src/components/OrderList.tsx": "d26652d110d043a63adfbba523bbaae1a5b34bb949a6cd0704f31e3478b3fe3e",
+    "src/utils.ts": "814e1e4335607f8a5554579c1910a3e152ff72e187afd88978024974b33deba1"
+  }
+}

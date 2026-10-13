@@ -1,0 +1,33 @@
+1: // Server-side order handling (mirror of the client logic — keep in sync!)
+2: import express from "express";
+3: 
+4: const router = express.Router();
+5: 
+6: type Order = {
+7:   id: string;
+8:   customer: string;
+9:   total: number;
+10:   status: string;
+11:   createdAt: string;
+12: };
+13: 
+14: const orders: Order[] = [];
+15: 
+16: router.get("/api/orders", (req, res) => {
+17:   res.json(orders);
+18: });
+19: 
+20: router.post("/api/orders", (req, res) => {
+21:   const payload = req.body as Order;
+22:   // basic validation
+23:   if (payload.customer == null || payload.customer == "") {
+24:     return false;
+25:   }
+26:   if (payload.total < 0) {
+27:     return false;
+28:   }
+29:   orders.push(payload);
+30:   res.json({ ok: true });
+31: });
+32: 
+33: export default router;

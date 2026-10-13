@@ -1,0 +1,8 @@
+$ ['/private/tmp/skills-forward/specialists/hotpath/skill/scripts/measure-report', '--baseline', '2.078292', '--after', '0.415834', '--conditions', 'Local Python; same8-rowcatalog and10000 synthetic lines;5warmups31samples; p50 milliseconds; no network or concurrency', '--threshold', '3.3320630594738283']
+exit: 1
+stdout:
+measurement: 2.078292ms → 0.415834  (↓ 79.99%)
+conditions: Local Python; same8-rowcatalog and10000 synthetic lines;5warmups31samples; p50 milliseconds; no network or concurrency
+verdict: NOISE: below threshold, complexity cost not justified
+
+stderr:

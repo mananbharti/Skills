@@ -1,0 +1,13 @@
+{
+  "skill": {
+    "SKILL.md": "a77dcafa1482686e596a693b2e12020cf4b65b38c3470045cbc4ff341ccd181b",
+    "references/boundary-picker.md": "b8cc0b44904eb244af4252770e54c6b53f72d6af35af7bb3e8cd2f17fdf11096",
+    "references/research.md": "1dd0462f1db096dc145a65cf7279e008699830b15cd0efc5202cb8df8db3eb45",
+    "references/result-semantics.md": "09e69e5ea2c497855b85d5763d58613f68771f834b2e53e255c785b9d83d2122"
+  },
+  "fixture": {
+    "cart.py": "35d36bb73ebfee8b04a7a26297215e5e7cdb9dcfb1b6356bb216593f7a260fe4",
+    "tests/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tests/test_cart.py": "45d6332267ebc0a84860a2893f73ee110253926e072a9fb646e2d4eb1d25926e"
+  }
+}

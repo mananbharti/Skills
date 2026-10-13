@@ -1,0 +1,26 @@
+$ ['rg', '-n', 'axios|setOrders|submitNewOrder|OrderRow|router\\.|orders\\.push|res\\.json|return false', 'src']
+exit: 0
+stdout:
+src/api/orders.ts:16:router.get("/api/orders", (req, res) => {
+src/api/orders.ts:17:  res.json(orders);
+src/api/orders.ts:20:router.post("/api/orders", (req, res) => {
+src/api/orders.ts:24:    return false;
+src/api/orders.ts:27:    return false;
+src/api/orders.ts:29:  orders.push(payload);
+src/api/orders.ts:30:  res.json({ ok: true });
+src/components/OrderList.tsx:5:export function OrderRow({ order, fmt, fmt2 }: any) {
+src/components/OrderList.tsx:31:    return false;
+src/components/OrderList.tsx:34:    return false;
+src/App.tsx:3:import axios from "axios";
+src/App.tsx:6:import { OrderRow } from "./components/OrderList";
+src/App.tsx:19:  const [orders, setOrders] = useState<any>(null);
+src/App.tsx:28:    axios
+src/App.tsx:31:        setOrders(res.data);
+src/App.tsx:54:  function submitNewOrder(form: any) {
+src/App.tsx:63:      return false;
+src/App.tsx:66:      axios.post("/api/orders", payload);
+src/App.tsx:67:      setOrders([...(orders || []), payload]);
+src/App.tsx:70:      return false;
+src/App.tsx:122:                  <OrderRow key={o.id} order={o} fmt={moment} fmt2={formatDate} />
+
+stderr:

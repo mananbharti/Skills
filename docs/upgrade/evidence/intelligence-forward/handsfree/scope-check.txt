@@ -1,0 +1,2 @@
+Observed changed paths: app/main.py
+No fixture app import, dependency install, credential read, or network request was performed.

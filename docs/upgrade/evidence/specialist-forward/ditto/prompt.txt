@@ -1,0 +1,2 @@
+Recreate reference.html layout using local placeholders, retain semantic controls; compare source and admit unavailable visual proof.
+Constraints: safe local owned workspace only; do not modify source fixture/skill, use paid agents, publish, deploy, or mutate real services. Exploratory observation only, no controlled comparative proof.

@@ -1,0 +1,6 @@
+$ ['git', 'log', '--oneline', '-3']
+exit: 0
+stdout:
+fd14c7b fixture: initial text
+
+stderr:

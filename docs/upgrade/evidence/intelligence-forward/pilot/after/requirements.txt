@@ -1,0 +1,4 @@
+fastapi
+pytz
+requests
+uvicorn

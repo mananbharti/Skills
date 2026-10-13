@@ -1,0 +1,10 @@
+{
+  "mode": "local deterministic",
+  "symptom": "Read old value after set replacement on warmed key.",
+  "cause_chain": "Symptom stale read -> cached branch returns cached old value -> set updates store without invalidation -> warmed-key replacement triggers -> separate store/cache dictionaries permit divergence. Test asserts store holds new value while get returns old, so failed writes are excluded. Unwarmed replacement passes.",
+  "fix": "Invalidate only the written key in set.",
+  "verification": "3 unittest tests; before 2 failures; after all pass.",
+  "limitations": [
+    "No thread-safety or distributed cache claim."
+  ]
+}

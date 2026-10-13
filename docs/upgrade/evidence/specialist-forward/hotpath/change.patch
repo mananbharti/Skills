@@ -1,0 +1,18 @@
+--- a/orders.py
++++ b/orders.py
+@@ -32,7 +32,14 @@
+ 
+ 
+ def totals(lines):
++    # Build afresh for each call: no stale cross-request catalog cache.
++    prices = None
+     out = 0.0
+     for line in lines:
+-        out += lookup(line["sku"]) * line["qty"]
++        if prices is None:
++            prices = {}
++            for key, price in DB:
++                SCANS["n"] += 1
++                prices.setdefault(key, price)  # Preserve first duplicate match.
++        out += prices[line["sku"]] * line["qty"]
+     return round(out, 2)

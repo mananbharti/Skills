@@ -1,0 +1,18 @@
+{
+  "mode": "dashboard static-only fallback",
+  "direction": "A dense operational overview for someone scanning metrics and exporting recent orders. Use the house tokens, make orders and Export easy to find, group metrics compactly, and stack metrics at narrow widths. Preserve the existing data and Export action.",
+  "observed_static_issues": [
+    "Existing CSS ignores the token palette and spacing.",
+    "No mobile viewport metadata; fixed-width cards and oversized hero.",
+    "A populated table is followed by contradictory No data text.",
+    "No explicit focus styling or semantic table header scope."
+  ],
+  "fix": "Token-based surfaces/spacing, compact heading/metric grid, narrow-width CSS, main/header/section/table semantics, focus-visible and reduced-motion styling; empty status hidden for populated fixture.",
+  "verification": "Static parser, exact token bytes, values and onclick preserved. Computed text contrast 15.903:1, muted contrast 5.934:1, primary-button white contrast 4.548:1.",
+  "limitations": [
+    "CUA rejected file:// navigation and forbade workarounds. No browser state or screenshot obtained.",
+    "Visual hierarchy, mobile reflow, zoom, keyboard focus, hover/disabled rendering, CWV and real-device behavior UNVERIFIED.",
+    "Export remains fixture alert(todo); no working export is claimed.",
+    "Empty/loading/error states lack an actual data source; no runtime state claim."
+  ]
+}

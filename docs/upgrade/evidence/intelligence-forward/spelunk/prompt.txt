@@ -1,0 +1,1 @@
+Map how a request reaches the network adapter, identify the actual test command and one risk for a beginner changing session behavior. Read-only; do not run downloaded code.

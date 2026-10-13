@@ -1,0 +1,38 @@
+{
+  "skill": "handsfree",
+  "prompt": "Add a genuine module docstring to app/main.py only; preserve executable behavior. Run safe local checks without asking for routine choices.",
+  "package_sha256": "e281deaa3b58a946c9e53ab22757000bc281edd2a096720c077c1e372871ea70",
+  "hash_method": "sha256 of sorted package-relative path + NUL + file sha256 + newline records",
+  "package_files": [
+    {
+      "path": "SKILL.md",
+      "sha256": "e1f5faa4d703df87ed0be85e22a2050ab8ccbb12e2556172ab7b5213d1e5a6e9"
+    },
+    {
+      "path": "references/decision-policy.md",
+      "sha256": "c1be2d4b2df96b28a71674bfa334e3488a4be164184fc9a970dec656b081a050"
+    },
+    {
+      "path": "references/execution-record.md",
+      "sha256": "cb615cb8a2487d4a6c5bde9b2e0336d90c330f929b1fc0313f394b3128031be6"
+    },
+    {
+      "path": "references/host-permissions.md",
+      "sha256": "ffbda24addf4c3c9fa176fa7dbc478c90942258f9905f8c46aa2d8a32e7069a2"
+    },
+    {
+      "path": "references/research.md",
+      "sha256": "4a6d0e75024108635b6886b00c21e2f57062d1c68a6b70d442e30e521e4946bf"
+    }
+  ],
+  "loaded_resources": [
+    "SKILL.md",
+    "references/host-permissions.md",
+    "references/decision-policy.md"
+  ],
+  "observation_class": "exploratory native in-session observation; not controlled comparative evidence",
+  "limits": [
+    "Same agent/session; no independent replicate or comparator; root adjudicates.",
+    "No project tests, build, lint or typecheck command is defined in this source-only fixture. Runtime API behavior was not exercised."
+  ]
+}

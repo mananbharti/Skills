@@ -1,0 +1,64 @@
+$ ['python3', 'measure.py']
+exit: 0
+stdout:
+{
+  "runtime": "3.14.6 (main, Jun 10 2026, 10:03:53) [Clang 21.0.0 (clang-2100.0.123.102)]",
+  "platform": "macOS-27.0.1-arm64-arm-64bit-Mach-O",
+  "workload": "synthetic10000-lines8-skus quantities1..3; catalog fixture8 rows; no network/concurrency",
+  "warmups": 5,
+  "samples_ms": [
+    0.408291,
+    0.409167,
+    0.401292,
+    0.409458,
+    0.402917,
+    0.4215,
+    0.414209,
+    0.415834,
+    0.414375,
+    0.428875,
+    0.419875,
+    0.437875,
+    0.445292,
+    0.438416,
+    0.416833,
+    0.418042,
+    0.413375,
+    0.439458,
+    0.414458,
+    0.398583,
+    0.423625,
+    0.406167,
+    0.413125,
+    0.415209,
+    0.42525,
+    0.427375,
+    0.414792,
+    0.423125,
+    0.396333,
+    0.416709,
+    0.423375
+  ],
+  "p50_ms": 0.415834,
+  "p95_ms": 0.439458,
+  "range_ms": [
+    0.396333,
+    0.445292
+  ],
+  "result": 502403.25,
+  "catalog_examinations": 8
+}
+         11 function calls in 0.000 seconds
+
+   Ordered by: cumulative time
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.000    0.000    0.000    0.000 /private/tmp/skills-forward/specialists/hotpath/work/orders.py:34(totals)
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+        8    0.000    0.000    0.000    0.000 {method 'setdefault' of 'dict' objects}
+        1    0.000    0.000    0.000    0.000 {built-in method builtins.round}
+
+
+
+
+stderr:

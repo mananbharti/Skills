@@ -1,0 +1,29 @@
+{
+  "skill": "distill",
+  "prompt": "Our team needs invitation links that work once, expire after 24 hours, and only join the inviting team. Keep a compact actionable brief; use a configurable invite email transport because ours is not chosen. Local implementation is authorized; actual emails are not.",
+  "package_sha256": "6ac7ff62bf1c117757b4f6fd61522194ea348c922f4f110965bae4ce67ef23b1",
+  "hash_method": "sha256 of sorted package-relative path + NUL + file sha256 + newline records",
+  "package_files": [
+    {
+      "path": "SKILL.md",
+      "sha256": "7200b99ad03827aedcb08f545c777e1dfa0f674dccab8c4322de4c6ae05c09e0"
+    },
+    {
+      "path": "references/brief-template.md",
+      "sha256": "38a75c0c936904ba9025ce517193f1638b0f58508817c24c0c91728661e06649"
+    },
+    {
+      "path": "references/research.md",
+      "sha256": "1ba59ff61723eb4204fd5d713fc0c0d5114502dbc425fa3aa5299f3a900f74cf"
+    }
+  ],
+  "loaded_resources": [
+    "SKILL.md",
+    "references/brief-template.md"
+  ],
+  "observation_class": "exploratory native in-session observation; not controlled comparative evidence",
+  "limits": [
+    "Same agent/session; no independent replicate or comparator; root adjudicates.",
+    "Requirements artifact only per delegated task. No target application repository was supplied; file paths, roles and executable app commands remain to-discover. No implementation or email send performed."
+  ]
+}

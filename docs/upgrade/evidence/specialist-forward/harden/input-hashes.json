@@ -1,0 +1,8 @@
+{
+  "skill": {
+    "SKILL.md": "4d526443b4787b7611c58254c57130929fbd8bea2017974e2eccc72302641c38",
+    "references/attack-surface.md": "1b7a57746ff714f46bc4fb2284f745f7e8a8c90aac68541adf0c5cd98b216959",
+    "references/research.md": "b96d888cae4b0c135bd7486f6dee91fb281959ee0b096c50af6e652b3fed6d6c"
+  },
+  "fixture": {}
+}

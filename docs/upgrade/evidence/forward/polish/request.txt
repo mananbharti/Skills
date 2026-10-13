@@ -1,0 +1,1 @@
+Make this dashboard useful and deliberate on desktop and mobile, retaining our token file and existing actions. Verify what you can, and keep before/after screenshots when the browser works.

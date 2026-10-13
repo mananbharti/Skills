@@ -1,0 +1,14 @@
+{
+  "command": [
+    "python3",
+    "-m",
+    "unittest",
+    "-v",
+    "test_cache"
+  ],
+  "cwd": "/private/tmp/skills-forward/sleuth",
+  "time_utc": "2026-10-13T19:35:10.098635+00:00",
+  "exit_code": 0,
+  "stdout": "",
+  "stderr": "test_missing_and_falsey (test_cache.Regression.test_missing_and_falsey) ... ok\ntest_read_replace_read (test_cache.Regression.test_read_replace_read) ... ok\ntest_unwarmed_and_other_keys (test_cache.Regression.test_unwarmed_and_other_keys) ... ok\n\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n"
+}

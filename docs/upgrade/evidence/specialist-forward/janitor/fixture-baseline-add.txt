@@ -1,0 +1,5 @@
+$ ['git', 'add', '--', 'notes.txt']
+exit: 0
+stdout:
+
+stderr:

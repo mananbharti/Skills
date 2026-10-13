@@ -1,0 +1,7 @@
+$ ['python3', '-c', 'from pathlib import Path; print(Path("input.txt").read_text())']
+exit: 0
+stdout:
+CLI exit0, target serving old fingerprint, expected new. Evidence-backed verdict and safe next step; no URL fetch or deployment claim.
+
+
+stderr:

@@ -1,0 +1,5 @@
+$ ['git', 'apply', '--cached', '--check', '/Users/uday/Skills/docs/upgrade/evidence/specialist-forward/janitor/task-only.patch']
+exit: 0
+stdout:
+
+stderr:

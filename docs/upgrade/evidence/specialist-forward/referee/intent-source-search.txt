@@ -1,0 +1,9 @@
+$ ['rg', '-n', 'total\\(|user_cap|override|audit|tax\\(', 'billing.py', 'brief.md']
+exit: 0
+stdout:
+billing.py:4:def total(items, user_cap=0.15):
+billing.py:6:    d = min(0.10, user_cap)
+billing.py:10:def tax(amount, region):
+brief.md:4:2. Admin override with an audit-log entry.
+
+stderr:

@@ -1,0 +1,36 @@
+{
+  "skill": "spelunk",
+  "prompt": "Map how a request reaches the network adapter, identify the actual test command and one risk for a beginner changing session behavior. Read-only; do not run downloaded code.",
+  "package_sha256": "1675086d86b46243f1ba45266fa7b0bb57ed4eeed90fab14bde8873f066c5a92",
+  "hash_method": "sha256 of sorted package-relative path + NUL + file sha256 + newline records",
+  "package_files": [
+    {
+      "path": "SKILL.md",
+      "sha256": "dfd6b96c987efd3c2e5177536fa6ae81614d19a5feead04ba04e5e922e82286e"
+    },
+    {
+      "path": "references/discovery-map.md",
+      "sha256": "cedd0d36fd2e6bca12ddeb6b62b359bcef3617de95591d8e50de67502728eea1"
+    },
+    {
+      "path": "references/evidence-protocol.md",
+      "sha256": "d99d5483285d45c4fbf2515a8e38459577cae6e113198ab2835001be0828f8fd"
+    },
+    {
+      "path": "references/research.md",
+      "sha256": "f4025641f4703c375c1aa84ae4f834c0741c553383be5e6460b59a5a6e950545"
+    },
+    {
+      "path": "scripts/inventory",
+      "sha256": "b27d16fa1fc0ec8cd5c14ac740654d5d43370044c0055922acb67ac7462b4420"
+    }
+  ],
+  "loaded_resources": [
+    "SKILL.md"
+  ],
+  "observation_class": "exploratory native in-session observation; not controlled comparative evidence",
+  "limits": [
+    "Same agent/session; no independent replicate or comparator; root adjudicates.",
+    "Requests source and config only. No downloaded code, tests, or network requests executed."
+  ]
+}

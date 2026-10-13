@@ -1,0 +1,6 @@
+$ ['python3', 'notes.py']
+exit: 0
+stdout:
+1. hello
+
+stderr:

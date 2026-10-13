@@ -2,25 +2,26 @@
 
 # Skills
 
-### The complete implementation of a 28-skill vibe-coding toolkit.
+### 28 specialists for the engineering work around vibe coding.
 
 Twenty-eight research-backed specialists for the work between “I have an
 idea” and “it is live in production.” Each skill owns one job, carries its own
 restraints and verification contract, and loads only when it is relevant.
 
-The workflows and package contracts are complete. Cross-runtime compatibility
-and comparative outcomes remain empirical questions for the separate proof
-phase; this release makes no benchmark-superiority claim.
+Each package has a workflow and verification contract. The current upgrade
+repairs demonstrated gaps; cross-runtime behavior and comparative outcomes
+remain empirical questions. See the [28-row upgrade ledger](docs/upgrade-ledger.md).
 
 ```bash
 npx skills add udaysharmadev/Skills --all
 ```
 
-Then run `/concierge`. It reads the project, checks which capabilities are
-available, and routes the request to the smallest useful workflow.
+Try a direct request such as “Use sleuth to find why this value stays stale
+after a write.” You should receive a reproduction, a causal explanation, a
+scoped fix and its check output. `/concierge` is optional when the owner is unclear.
 
 > Building one feature, fixing one bug, or cleaning one frightening repo: you
-> do not need to memorize 28 commands. Start with the concierge.
+> do not need to memorize 28 commands. Use the owner you know, or ask concierge.
 
 ## From idea to production
 
@@ -156,14 +157,19 @@ For inputs, outputs, neighbors, and research links for every skill, use the
 [human skill guide](docs/skills/README.md). The generated
 [skill index](docs/skills/INDEX.md) mirrors the frontmatter exactly.
 
+Try the [reproducible local failure gallery](docs/demo-gallery.md): a stale
+cache, an owner-boundary bug and duplicated payment effects, with retained
+failing seeds and correction checks. They demonstrate local behavior without
+claiming comparative skill superiority.
+
 ## A few worth meeting properly
 
 <details>
 <summary><strong>hotseat</strong> does not manufacture seven agreeable opinions</summary>
 
-Each persona forms a verdict before seeing the others. The moderator detects
-premature convergence, preserves real disagreement, and ends with assumptions,
-an MVP cut line, and falsifiable kill criteria.
+The selected lenses form verdicts before comparison. The moderator preserves
+real disagreement and ends with assumptions, an MVP cut line and falsifiable
+decision criteria. It does not manufacture consensus or numerical thresholds.
 </details>
 
 <details>
@@ -184,9 +190,9 @@ and a regression test. Emergency workarounds remain visibly provisional.
 <details>
 <summary><strong>recall</strong> remembers less on purpose</summary>
 
-Facts, decisions, current status, and hard-won lessons rot at different speeds.
-They live in four small files with caps, TTLs, supersession, and no transcript
-dumps.
+Facts, decisions, current status and hard-won lessons age at different speeds.
+Memory uses a task-sized retrieval budget, refresh conditions, supersession
+and no transcript dumps.
 </details>
 
 ## Install
@@ -203,10 +209,21 @@ Choose skills interactively instead:
 npx skills add udaysharmadev/Skills
 ```
 
-Both commands use the public [skills CLI](https://www.skills.sh/). Discovery
-and full-bundle installation were exercised in a clean directory on
-2026-09-14; the repository does not document project/global flags it has not
-validated.
+The public full-bundle command was rechecked on 2026-10-14 with
+`skills@1.7.2` in a disposable project: all 28 folders installed. Each selected
+local package was also installed independently with its resources and helper
+permissions checked. These are packaging checks; native host activation remains
+separate. [Installation evidence](docs/compatibility.md).
+
+Install just one owner:
+
+```bash
+npx skills@1.7.2 add udaysharmadev/Skills --skill sleuth --agent codex --copy --yes
+```
+
+The individual command's shape was exercised against local package sources;
+the public bundle check used the default branch. Interactive selection has
+historical evidence only and was not re-exercised during this upgrade.
 
 After installation, run:
 
@@ -259,9 +276,9 @@ inspectable, but this bundle is not a security guarantee. See
 - [Compatibility](docs/compatibility.md)
 - [Maintainer evidence and historical audits](docs/evaluations.md)
 
-Implementation is complete for all 28 skills. Empirical outcome benchmarking
-is a separate, intentionally deferred proof phase; no benchmark superiority is
-claimed here.
+All 28 packages are present. The [release report](docs/release-readiness.md)
+distinguishes structural checks, independent review, observed demonstrations
+and unverified live comparisons. No benchmark superiority is claimed here.
 
 ## Contributing
 

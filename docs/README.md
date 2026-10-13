@@ -29,6 +29,16 @@ The README is the front door. This directory is the map behind it.
 
 - [Research provenance index](research/README.md) — all 28 research passes,
   grouped by lifecycle area.
+- [Current upgrade ledger](upgrade-ledger.md) — individual behavior changes,
+  retained evidence and exact gaps.
+- [Skill ownership matrix](skill-matrix.md) — primary and optional capability
+  owners, with conditional platform limits.
+- [Release readiness](release-readiness.md) — observed passes, failures and
+  unverified runtime/behavior cells.
+- [Local failure gallery](demo-gallery.md) — replayable seeded problems and
+  retained observations, with clear runtime limits.
+- [Launch preparation](launch-plan.md) — drafts and study protocol; no external
+  posts or claims implied.
 
 ## Maintainer and historical material
 

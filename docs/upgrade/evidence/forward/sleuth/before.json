@@ -1,0 +1,14 @@
+{
+  "command": [
+    "python3",
+    "-m",
+    "unittest",
+    "-v",
+    "test_cache"
+  ],
+  "cwd": "/private/tmp/skills-forward/sleuth",
+  "time_utc": "2026-10-13T19:34:53.319487+00:00",
+  "exit_code": 1,
+  "stdout": "",
+  "stderr": "test_missing_and_falsey (test_cache.Regression.test_missing_and_falsey) ... FAIL\ntest_read_replace_read (test_cache.Regression.test_read_replace_read) ... FAIL\ntest_unwarmed_and_other_keys (test_cache.Regression.test_unwarmed_and_other_keys) ... ok\n\n======================================================================\nFAIL: test_missing_and_falsey (test_cache.Regression.test_missing_and_falsey)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/tmp/skills-forward/sleuth/test_cache.py\", line 15, in test_missing_and_falsey\n    c.set('x',1); c.get('x'); c.set('x',None); self.assertIsNone(c.get('x'))\n                                               ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^\nAssertionError: 1 is not None\n\n======================================================================\nFAIL: test_read_replace_read (test_cache.Regression.test_read_replace_read)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/tmp/skills-forward/sleuth/test_cache.py\", line 8, in test_read_replace_read\n    self.assertEqual(c.get('x'),'new')\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^\nAssertionError: 'old' != 'new'\n- old\n+ new\n\n\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nFAILED (failures=2)\n"
+}

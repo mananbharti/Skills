@@ -1,0 +1,33 @@
+{
+  "skill": "pilot",
+  "prompt": "Approved slice: add a real entrypoint docstring and alphabetize requirements, preserving executable code. Credential files are outside scope; no secret read is needed. Complete and verify local work.",
+  "package_sha256": "bfd5dac99dbf43879f1b6d71bf1ae11ef8b20694916f87ee1bd0869353a48e4b",
+  "hash_method": "sha256 of sorted package-relative path + NUL + file sha256 + newline records",
+  "package_files": [
+    {
+      "path": "SKILL.md",
+      "sha256": "21555321544934428981f934456694c61f5b73507e6096b9a11c39380cd0969d"
+    },
+    {
+      "path": "references/completion-gate.md",
+      "sha256": "3d48bdc587db83688189c762cecfe2cd5344717a298fa9e2c35202a6dd577b02"
+    },
+    {
+      "path": "references/execution-protocol.md",
+      "sha256": "5fc843a6526e2711d4ee87b7081589d6fe7ae88376b663339ef6c60ca2ebff7b"
+    },
+    {
+      "path": "references/research.md",
+      "sha256": "92dd7d5685802aac225d5d6fbe0d02efb901bf3fbbb80d16d38f1df9856d8981"
+    }
+  ],
+  "loaded_resources": [
+    "SKILL.md",
+    "references/completion-gate.md"
+  ],
+  "observation_class": "exploratory native in-session observation; not controlled comparative evidence",
+  "limits": [
+    "Same agent/session; no independent replicate or comparator; root adjudicates.",
+    "No project tests, build, lint or typecheck command is defined in this source-only fixture. Runtime API behavior was not exercised."
+  ]
+}

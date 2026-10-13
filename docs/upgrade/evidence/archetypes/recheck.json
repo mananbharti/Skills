@@ -1,0 +1,68 @@
+{
+  "kind": "deterministic-model-checks; no skill comparison or native platform proof",
+  "node": "v24.11.0",
+  "models": [
+    {
+      "fixture": "mobile-outbox",
+      "cases": 2,
+      "runs": [
+        {
+          "condition": "seed",
+          "exit": 1,
+          "expected_exit": 1,
+          "pass": true,
+          "stdout": "TAP version 13\n# Subtest: unknown acknowledgment retains persisted operation for restart/retry\nnot ok 1 - unknown acknowledgment retains persisted operation for restart/retry\n  ---\n  duration_ms: 1.499166\n  type: 'test'\n  location: '/private/var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/skills-model-kkxlq1vq/test.mjs:20:1'\n  failureType: 'testCodeFailure'\n  error: |-\n    Expected values to be strictly equal:\n    \n    0 !== 1\n    \n  code: 'ERR_ASSERTION'\n  name: 'AssertionError'\n  expected: 1\n  actual: 0\n  operator: 'strictEqual'\n  stack: |-\n    TestContext.<anonymous> (file:///private/var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/skills-model-kkxlq1vq/test.mjs:23:10)\n    async Test.run (node:internal/test_runner/test:1113:7)\n    async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3)\n  ...\n# Subtest: retry uses stable business identity after server commits but ack is lost\nnot ok 2 - retry uses stable business identity after server commits but ack is lost\n  ---\n  duration_ms: 0.760292\n  type: 'test'\n  location: '/private/var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/skills-model-kkxlq1vq/test.mjs:27:1'\n  failureType: 'testCodeFailure'\n  error: |-\n    Expected values to be strictly deep-equal:\n    + actual - expected\n    \n      [\n    +   'op-1-attempt'\n    -   'op-1',\n    -   'op-1'\n      ]\n    \n  code: 'ERR_ASSERTION'\n  name: 'AssertionError'\n  expected:\n    0: 'op-1'\n    1: 'op-1'\n  actual:\n    0: 'op-1-attempt'\n  operator: 'deepStrictEqual'\n  stack: |-\n    TestContext.<anonymous> (file:///private/var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/skills-model-kkxlq1vq/test.mjs:37:10)\n    async Test.run (node:internal/test_runner/test:1113:7)\n    async Test.processPendingSubtests (node:internal/test_runner/test:788:7)\n  ...\n1..2\n# tests 2\n# suites 0\n# pass 0\n# fail 2\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 32.272709\n",
+          "stderr": "",
+          "source_hashes": {
+            "test.mjs": "3ba47b5cdcdc2c60a7f8a795f46241bf9f719e49eaceb72efc553589d7bc8df3",
+            "outbox.mjs": "c3de02f1e7f1819a3d273140db12602fac750ed672429abe5c8b7c9b447ac577"
+          }
+        },
+        {
+          "condition": "corrected",
+          "exit": 0,
+          "expected_exit": 0,
+          "pass": true,
+          "stdout": "TAP version 13\n# Subtest: unknown acknowledgment retains persisted operation for restart/retry\nok 1 - unknown acknowledgment retains persisted operation for restart/retry\n  ---\n  duration_ms: 1.178375\n  type: 'test'\n  ...\n# Subtest: retry uses stable business identity after server commits but ack is lost\nok 2 - retry uses stable business identity after server commits but ack is lost\n  ---\n  duration_ms: 0.939417\n  type: 'test'\n  ...\n1..2\n# tests 2\n# suites 0\n# pass 2\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 32.223334\n",
+          "stderr": "",
+          "source_hashes": {
+            "test.mjs": "3ba47b5cdcdc2c60a7f8a795f46241bf9f719e49eaceb72efc553589d7bc8df3",
+            "outbox.mjs": "5b3eb3fa93a2339adee13632435ba4280894f02fe1fe4a3a8e005e351b32a98f"
+          }
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "fixture": "game-input",
+      "cases": 4,
+      "runs": [
+        {
+          "condition": "seed",
+          "exit": 1,
+          "expected_exit": 1,
+          "pass": true,
+          "stdout": "TAP version 13\n# Subtest: repeated command changes server state once\nnot ok 1 - repeated command changes server state once\n  ---\n  duration_ms: 0.85775\n  type: 'test'\n  location: '/private/var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/skills-model-g_e6fisl/test.mjs:11:1'\n  failureType: 'testCodeFailure'\n  error: |-\n    Expected values to be strictly equal:\n    + actual - expected\n    \n    + 'applied'\n    - 'duplicate'\n    \n  code: 'ERR_ASSERTION'\n  name: 'AssertionError'\n  expected: 'duplicate'\n  actual: 'applied'\n  operator: 'strictEqual'\n  stack: |-\n    TestContext.<anonymous> (file:///private/var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/skills-model-g_e6fisl/test.mjs:14:10)\n    Test.runInAsyncScope (node:async_hooks:214:14)\n    Test.run (node:internal/test_runner/test:1106:25)\n    Test.start (node:internal/test_runner/test:1003:17)\n    startSubtestAfterBootstrap (node:internal/test_runner/harness:358:17)\n  ...\n# Subtest: authenticated principal cannot command another player\nnot ok 2 - authenticated principal cannot command another player\n  ---\n  duration_ms: 0.158417\n  type: 'test'\n  location: '/private/var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/skills-model-g_e6fisl/test.mjs:17:1'\n  failureType: 'testCodeFailure'\n  error: 'Missing expected exception.'\n  code: 'ERR_ASSERTION'\n  name: 'AssertionError'\n  operator: 'throws'\n  stack: |-\n    TestContext.<anonymous> (file:///private/var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/skills-model-g_e6fisl/test.mjs:19:10)\n    Test.runInAsyncScope (node:async_hooks:214:14)\n    Test.run (node:internal/test_runner/test:1106:25)\n    Test.processPendingSubtests (node:internal/test_runner/test:788:18)\n    Test.postRun (node:internal/test_runner/test:1235:19)\n    Test.run (node:internal/test_runner/test:1163:12)\n    async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3)\n  ...\n# Subtest: old-session replay and sequence gap require resync without mutation\nnot ok 3 - old-session replay and sequence gap require resync without mutation\n  ---\n  duration_ms: 0.075667\n  type: 'test'\n  location: '/private/var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/skills-model-g_e6fisl/test.mjs:22:1'\n  failureType: 'testCodeFailure'\n  error: 'Missing expected exception.'\n  code: 'ERR_ASSERTION'\n  name: 'AssertionError'\n  operator: 'throws'\n  stack: |-\n    TestContext.<anonymous> (file:///private/var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/skills-model-g_e6fisl/test.mjs:24:10)\n    Test.runInAsyncScope (node:async_hooks:214:14)\n    Test.run (node:internal/test_runner/test:1106:25)\n    Test.processPendingSubtests (node:internal/test_runner/test:788:18)\n    Test.postRun (node:internal/test_runner/test:1235:19)\n    Test.run (node:internal/test_runner/test:1163:12)\n    async Test.processPendingSubtests (node:internal/test_runner/test:788:7)\n  ...\n# Subtest: client movement limit is enforced at the server boundary\nnot ok 4 - client movement limit is enforced at the server boundary\n  ---\n  duration_ms: 0.420292\n  type: 'test'\n  location: '/private/var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/skills-model-g_e6fisl/test.mjs:31:1'\n  failureType: 'testCodeFailure'\n  error: 'Missing expected exception.'\n  code: 'ERR_ASSERTION'\n  name: 'AssertionError'\n  operator: 'throws'\n  stack: |-\n    TestContext.<anonymous> (file:///private/var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/skills-model-g_e6fisl/test.mjs:34:12)\n    Test.runInAsyncScope (node:async_hooks:214:14)\n    Test.run (node:internal/test_runner/test:1106:25)\n    Test.processPendingSubtests (node:internal/test_runner/test:788:18)\n    Test.postRun (node:internal/test_runner/test:1235:19)\n    Test.run (node:internal/test_runner/test:1163:12)\n    async Test.processPendingSubtests (node:internal/test_runner/test:788:7)\n  ...\n1..4\n# tests 4\n# suites 0\n# pass 0\n# fail 4\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 33.001208\n",
+          "stderr": "",
+          "source_hashes": {
+            "test.mjs": "67857c8f25154e5b0ccf2dfefff3da70f7ca6002cd643d6c45b48df052c05f88",
+            "input.mjs": "ebd09f7a9cbd7b9fb776f381247cbd02bc7184f43779a75663f579cf04ec896f"
+          }
+        },
+        {
+          "condition": "corrected",
+          "exit": 0,
+          "expected_exit": 0,
+          "pass": true,
+          "stdout": "TAP version 13\n# Subtest: repeated command changes server state once\nok 1 - repeated command changes server state once\n  ---\n  duration_ms: 0.288375\n  type: 'test'\n  ...\n# Subtest: authenticated principal cannot command another player\nok 2 - authenticated principal cannot command another player\n  ---\n  duration_ms: 0.295292\n  type: 'test'\n  ...\n# Subtest: old-session replay and sequence gap require resync without mutation\nok 3 - old-session replay and sequence gap require resync without mutation\n  ---\n  duration_ms: 0.073708\n  type: 'test'\n  ...\n# Subtest: client movement limit is enforced at the server boundary\nok 4 - client movement limit is enforced at the server boundary\n  ---\n  duration_ms: 0.343292\n  type: 'test'\n  ...\n1..4\n# tests 4\n# suites 0\n# pass 4\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 31.448333\n",
+          "stderr": "",
+          "source_hashes": {
+            "test.mjs": "67857c8f25154e5b0ccf2dfefff3da70f7ca6002cd643d6c45b48df052c05f88",
+            "input.mjs": "a21501297ec2294253c3c3cd307eb0cb2d38b2c3f9171f6876caf72726e431d5"
+          }
+        }
+      ],
+      "status": "PASS"
+    }
+  ]
+}

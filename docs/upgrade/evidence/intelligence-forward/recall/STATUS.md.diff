@@ -1,0 +1,15 @@
+--- before/STATUS.md
++++ after/STATUS.md
+@@ -1,3 +1,12 @@
++# Status
++<!-- updated 2026-10-14: migration decision only; earlier snapshot not revalidated -->
++
++## Current migration decision
++- Done: recorded explicit user target PostgreSQL; SQLite remains live until a verified migration.
++- Next: inspect schema and migration tooling, then propose copy-based integrity and rollback checks [expires: verified migration or target changed].
++- Blocked: verification criteria and runnable migration evidence are not established [expires: copy-based verification approved and completed].
++
++## Previous snapshot — historical, not revalidated
+ # Status snapshot (updated 2026-09-14)
+ 
+ - Done: proof-cart fixture frozen.

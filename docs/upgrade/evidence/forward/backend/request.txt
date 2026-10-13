@@ -1,0 +1,1 @@
+Implement a provider-authenticated payment event handler preserving tenant ownership and legitimate transitions under retries and out-of-order delivery. Verify locally. Events here are synthetic and the provider-authentication boundary is already a trusted test precondition.
