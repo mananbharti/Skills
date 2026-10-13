@@ -34,3 +34,8 @@ public post occurred. In-session model usage/cost is unavailable; it is not zero
 Controlled native activation/comparative lift and broad source research remain
 unverified. Re-run check-demos, test-archetypes and check-packages from the root;
 review per-task receipts before quoting any observation.
+
+Raw diff/patch context lines and numbered source-read text intentionally contain
+spaces; branch whitespace review excludes only those capture formats. Generated
+CSV is normalized to LF. staged-whitespace-discovery.json preserves the late
+failed check; source-diff-check.json records the explicit corrected source scope.

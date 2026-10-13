@@ -138,3 +138,14 @@ cross-runtime benefit is inferred from these shared-session tasks.
 [ownership matrix](skill-matrix.md), [independent review](upgrade/independent-review.json),
 [verified follow-through](upgrade/followthrough.json), and
 [three genuine local narratives](demo-gallery.md) provide resumable evidence.
+
+## Late staged-diff correction
+
+The earlier working-tree `git diff --check` did not inspect untracked evidence.
+The staged check found generated CSV CRLF plus spaces intrinsic to raw patch
+context lines and numbered source-read captures. A commit mistakenly proceeded
+after that failure. The follow-up normalizes the generated CSV to LF, preserves
+raw captures, and executes an explicit whole-change source/docs check excluding
+only those raw formats. [Discovery](upgrade/evidence/staged-whitespace-discovery.json)
+and [scoped source check](upgrade/evidence/source-diff-check.json) record both.
+No raw test outcome or review receipt was rewritten to manufacture a pass.

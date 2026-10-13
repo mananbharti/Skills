@@ -1,0 +1,18 @@
+{
+  "command": [
+    "git",
+    "diff",
+    "--check",
+    "66668739d4e3b99aab30bdea9594ca6361072c84",
+    "--",
+    ".",
+    ":(exclude)docs/upgrade/evidence/**/*.diff",
+    ":(exclude)docs/upgrade/evidence/**/*.patch",
+    ":(exclude)docs/upgrade/evidence/**/read-*.txt"
+  ],
+  "exit_code": 0,
+  "stdout": "",
+  "stderr": "",
+  "status": "PASS",
+  "scope": "All changed tracked source/docs, except byte-exact raw .diff/.patch and numbered read captures. The generated CSV is included and now LF. New raw discovery JSON contains escaped output, not source."
+}
