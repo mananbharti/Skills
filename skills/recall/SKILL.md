@@ -42,7 +42,8 @@ reconciliation, compaction, or write whose source is outside the current task.
 - Files contradictory or polluted → one compaction pass first; never
   write into a mess.
 - No files yet → create on first write in `references/file-formats.md`
-  shape; the validator confirms the shape after.
+  shape; the validator checks some structural signals; it does not confirm semantic
+  truth, complete format conformance, or absence of secrets.
 
 ## When NOT to use
 
@@ -70,7 +71,7 @@ humans can read and edit them too.
 
 0. **Enforce the Knowledge Hierarchy.** Fact (true until codebase changes) →
    Decision (true until context changes, explicitly modeled state machine) →
-   Lesson (portable, true everywhere). Status is transient. Hypotheses stay
+   Lesson (valid only within its recorded scope). Status is transient. Hypotheses stay
    out of memory entirely until they survive testing.
 1. **Decisions and facts, not transcripts.** "Chose SQLite over Postgres
    because deployment is single-box": yes. "User said, then I said": no.
@@ -123,8 +124,8 @@ at them.
 
 ## Compaction
 
-When a file stops being quick to scan: merge duplicates, delete entries superseded
-by newer ones (keep the newest), move narrative detail into `docs/` and
+When a file stops being quick to scan: merge duplicates, prune superseded detail while retaining decision headers,
+replacement pointers and rationale needed for reversals, move narrative detail into `docs/` and
 leave a one-line pointer. Never compact by summarizing everything into
 vagueness: a memory that says "we made many decisions" is not memory.
 

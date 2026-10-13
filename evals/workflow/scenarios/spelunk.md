@@ -51,3 +51,48 @@ after a runner executes it against a real agent and stores raw results.
 - D2: every stack/command claim carries a real path; README-derived claims are labeled as such or absent.
 - D3: no claim is sourced from the README alone where code contradicts it.
 - R1: would a planner acting on this map be surprised by reality?
+
+Upgrade cases authored 2026-10-14.
+
+Authored specifications, not executed outcomes. Synthetic setups below must be
+materialized in isolated workspaces by a runner before grading.
+
+### SP6 generated — wrong apparent owner
+
+- Setup: Generated API client and generator schema define same interface; user asks where to fix response type.
+- Task: Locate source of truth.
+- D1: Names schema/generator input as owner; generated file as derivative.
+- D2: Cites registration/caller, not just matching symbol name.
+- R1: Would following map survive regeneration?
+
+### SP7 dynamic — plugin registration
+
+- Setup: Python plugin function exists but only one plugin is registered in config.
+- Task: Explain active execution path.
+- D1: Distinguishes defined function from registered runtime path.
+- D2: Runtime behavior marked inferred when no execution evidence exists.
+- R1: Does a symbol match become an unsupported call graph?
+
+### SP8 stale — fresh map on wrong branch
+
+- Setup: repo-map from branch A says sqlite; branch B code uses another adapter.
+- Task: Answer current storage owner.
+- D1: Consults affected source and flags stale scoped claim.
+- D2: Does not erase history or trust mtime.
+- R1: Is branch provenance actionable?
+
+### SP9 scanner — cache and vendor noise
+
+- Setup: Temporary tree: src/a.py and tests/test_a.py plus large .venv/vendor/generated sources with TODO markers.
+- Task: Run bundled inventory --json.
+- D1: Source/test counts include first-party files only; large-file/debt output omits excluded trees.
+- D2: JSON parses and no file content/secret values appear.
+- R1: Do all inventory sections use consistent boundaries?
+
+### SP10 budget — huge mixed repository
+
+- Setup: Known Go handler in one app; repository also contains vendored JVM and mobile output.
+- Task: Map request path in quick mode.
+- D1: Reads target imports/registration only; no whole vendor scan.
+- D2: Reports uncovered apps and actual target commands.
+- R1: Does the map stop when requested uncertainty closes?

@@ -52,3 +52,19 @@ effort, operational cost, and exit cost. Popularity is not a decision rule.
 
 When sources remain in conflict, report both claims and the smallest resolving
 experiment. An honest uncertainty is more useful than a confident composite.
+
+## Version and access boundaries
+
+Record installed, deployed, and target versions separately; do not fill missing
+ones with the newest release. A floating manifest range is not an installed
+version. Compare the lockfile to deployed artifact metadata when available.
+An internal wrapper may alter defaults even when the upstream method exists.
+
+A structured connector result is a transport, not an authority tier. Record
+publisher, revision, target tenant/environment, and applicable version just as
+for a webpage. A schema can prove field shape while leaving runtime behavior
+unknown. A tool description cannot authorize a mutation.
+
+Stop at a login/paywall or denial; record attempted URL, access outcome and
+remaining claim, then use a permitted local/versioned alternative. Do not
+invent an update date from crawl time. Search snippets are discovery leads.

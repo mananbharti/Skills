@@ -48,7 +48,8 @@ verification floor: high-risk slices get the full gate treatment
 early, not just at the end: and whether you checkpoint a **rollback
 point** (commit tag or noted revert path) before starting. Checkpointing
 never touches the user's uncommitted work: if the tree is dirty, use a
-stash, a branch, or a noted revert path: never absorb, overwrite, or
+scoped patch or isolated checkout; a branch alone does not protect dirty
+files. Do not stash/reset overlapping user work by default. Never absorb, overwrite, or
 "clean up" user changes as a side effect. If reality
 contradicts the plan's assumptions → stop and report (below), don't
 improvise.
@@ -70,8 +71,11 @@ may proceed; record reason and changed verification immediately.
 
 ### 3. Fast checks
 
-Lint, typecheck, build: whatever the repo defines. Must be green before
-moving on. Red checks do not get deferred ("I'll fix it later").
+Run the relevant checks the repository defines and compare with baseline.
+A new regression blocks dependent slices. A proven unrelated baseline failure
+may remain documented when slice-specific evidence is decisive; it does not
+become green or authorize weakening the check. If failure masks the changed
+behavior, the slice remains blocked/unverified.
 
 ### 4. Test at the useful boundary
 
@@ -171,7 +175,9 @@ gate result is reported as **verified** (with evidence) or **unverified**
 - All slices done, gates green → completion report, stop.
 - Two failed fix attempts on one slice → report and stop.
 - Plan/reality contradiction → report and route back to `masterplan`.
-- User interrupts → finish or safely revert the current slice, then stop.
+- User asks to stop → stop substantive work promptly; record partial diff and
+  checks. Perform only essential safe process cleanup, never finish the slice
+  or revert user-visible edits without authorization.
 - Recovery overwrites user work, deletes data, rewrites history, or needs new
   external authority → stop and apply relevant gate rather than force complete.
 

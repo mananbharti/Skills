@@ -5,7 +5,7 @@
 | Tier | Source | Use for | Notes |
 | --- | --- | --- | --- |
 | 0 | This repo (lockfile, vendored code) | Installed versions, actual behavior | Always check first. Prevents API version mismatch. |
-| 1 | Model Context Protocol (MCP) servers | Live API specs, enterprise knowledge | Top-tier structured grounding when available. |
+| varies | MCP/connector transport | Scoped documents or live schemas | Authority comes from publisher, revision, tenant and scope; transport alone confers no trust. |
 | 2 | Official docs for the exact version | API shape, config, defaults | Pin the doc URL to the version path when the docs offer it. Fetch the exact sub-page, not the monolithic index. |
 | 2 | Official changelog / migration guide | Breaking changes, upgrade order | Authoritative for "what changed". |
 | 3 | Package source on GitHub (tags/releases) | Real signatures, real defaults | When docs are vague, code isn't. |

@@ -11,8 +11,8 @@ a real file path you actually saw.
 
 ## When NOT to use
 
-- `PROJECT_CONTEXT.md` at the root already covers the need and is fresh,
-  read that instead.
+- `PROJECT_CONTEXT.md` covers the need and relevant source still agrees: use
+  it as a lead; check the affected path before relying on a sensitive claim.
 - The question is answerable by reading one obvious file. Just read it.
 - Empty or greenfield repository: say that and stop.
 

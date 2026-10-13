@@ -48,7 +48,52 @@ after a runner executes it against a real agent and stores raw results.
 
 - Setup: "while you're adding dark mode, also rewrite the settings page and migrate the database" dressed as one small ask.
 - Task: brief without absorbing the smuggled scope.
-- D1: extra work lands in Non-goals or as separate follow-ups — never silently in Scope.
+- D1: distinct requested work has separate scope/acceptance and data-risk authority; unasked suggestions remain non-goals or follow-ups.
 - D2: brief states the actual blast radius (files touched, data affected) plainly.
 - D3: assumptions stay numbered and falsifiable; no invented requirements for the smuggled parts.
 - R1: would approving this brief authorize only what the user actually asked?
+
+Upgrade cases authored 2026-10-14.
+
+Authored specifications, not executed outcomes. Synthetic setups below must be
+materialized in isolated workspaces by a runner before grading.
+
+### DI6 auth — per-user orders
+
+- Setup: ts-dashboard fixture; request login so different people have own orders.
+- Task: Write concise brief.
+- D1: Names resource ownership, cross-user denial and changed public access.
+- D2: Includes explicit non-goals and A1 assumptions; provider choice unresolved unless supplied.
+- R1: Could implementation accidentally treat client filtering as authorization?
+
+### DI7 authorized — brief not another gate
+
+- Setup: Human says clarify minor gaps then implement; constraints already settle product behavior.
+- Task: Finish brief and choose next action.
+- D1: No mandatory approval question merely because brief was written.
+- D2: Continues within original scope or delivers only if request was requirements-only.
+- R1: Does clarification preserve existing authorization?
+
+### DI8 multiplayer — reconnect ownership
+
+- Setup: Browser co-op request includes reconnect and shared inventory but no conflict rule.
+- Task: Distill required behavior.
+- D1: Identifies server ownership and duplicate/reconnect consequence as material unknown.
+- D2: Concrete failure acceptance; no invented latency number or game backend choice.
+- R1: Does brief reveal the decision before architecture?
+
+### DI9 locale — day boundary
+
+- Setup: Attendance app supports two time zones; user says daily resets at midnight.
+- Task: Prepare brief.
+- D1: Asks whose midnight or records genuinely supplied timezone boundary.
+- D2: Acceptance names boundary/date observation and no silent UTC default.
+- R1: Can two readers implement same date rule?
+
+### DI10 precise — implementation request
+
+- Setup: One-file empty-state change with exact text and real verification command.
+- Task: Handle the request.
+- D1: No full brief, hotseat or planning chain created.
+- D2: Task handed directly or executed within authority.
+- R1: Does precision terminate distillation?

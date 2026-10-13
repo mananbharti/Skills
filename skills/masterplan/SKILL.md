@@ -64,14 +64,12 @@ known unknown silently.
 
 ### 2. Inspect current reality
 
-Open and read the files the plan will touch. Every file path that appears
-in the final plan must be one you saw. For each: current state, what
-changes, what it connects to. Label every path by status: **confirmed**
-(you read it), **probable** (deduced from structure: say from what), or
-**to-discover** ("confirm during slice N"). A plan with no to-discover
-labels on a non-trivial repo is lying about its certainty. Where a path
-can't be confirmed, the plan says "confirm during slice N": it does not
-invent a path.
+Read the existing files and relevant callers the plan will touch. Label paths
+**existing/read**, **proposed/new** (parent location and convention checked),
+or **to-discover** (confirmation before dependent work). A missing path that
+the brief treats as existing is a contradiction; a deliberate new component
+is legitimate planned output. Do not invent file contents or artificial
+unknowns when inspection resolved them.
 
 ### 3. Record invariants and architectural decisions
 
@@ -98,7 +96,9 @@ and state the files that would conflict), or **can postpone** (valuable
 but not needed for the goal: postponed slices keep the plan honest and
 the scope cut visible). Rules:
 
-- 5–12 slices for serious work; a 30-step plan means the slices are fake.
+- Use only as many slices as independently demonstrable outcomes require;
+  there is no minimum. A long plan needs justification by dependencies,
+  risk or resumability, rather than a fixed count.
 - Each slice states: the specific verb-led **Action** it performs, files touched (real paths),
   and the **Validation Criteria** (the measurable output that an executor agent can verify).
 - Order by the dependency graph between slices; mark which slices are
@@ -153,8 +153,10 @@ executable definition of done is a wishlist.
 
 - Every path presented as existing was verified during reconnaissance.
 - Every slice independently verifiable (tests/commands named).
-- Rollback exists for every destructive or hard-to-reverse step;
-  migrations state their down-path; irreversible slices are marked and gated.
+- Each destructive or hard-to-reverse step has a demonstrated recovery plan
+  appropriate to its effects: safe reversal, backup restoration or forward fix.
+  Irreversible slices state the loss boundary and authorization gate; do not
+  invent a down migration or imply a code revert restores lost data.
 - Uncertainty-collapsing slices precede their dependents.
 - Decisions section covers every choice a reviewer would ask "why?" about.
 - Acceptance criteria from the brief all appear in the definition of done.
@@ -164,8 +166,9 @@ executable definition of done is a wishlist.
 
 ## Stop conditions
 
-- Plan written and confirmed → hand off to `pilot` for slice-by-slice
-  execution, then stop.
+- Executable plan delivered → stop for plan-only work; otherwise continue to
+  `pilot` within prior implementation authorization. Ask only for unresolved
+  material decisions or missing action authority.
 - Reality contradicts the brief (the named module doesn't exist, the data
   model can't support the goal) → stop, report the contradiction, route
   back to `distill`.

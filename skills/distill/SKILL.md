@@ -11,9 +11,10 @@ fact it needs is on the page, and nothing on the page is filler.
 
 ## When NOT to use
 
-- The idea hasn't survived critique yet → `hotseat` first.
-- The request is already precise (goal, scope, and definition of done are
-  unambiguous) → skip straight to planning.
+- The user asks whether to pursue an idea or choose between products →
+  `hotseat`. An uncritiqued idea alone does not require debate.
+- The request is already precise → the current owner can execute it; use
+  `masterplan` only when complexity warrants planning.
 - The task is a small mechanical fix ("rename this variable") → just do it.
 
 ## Prerequisites
@@ -132,8 +133,10 @@ example). Core sections:
 
 ### 5. One-pass confirmation
 
-Show the brief. Ask for corrections once, integrate, done. Don't loop on
-polish: downstream skills (`masterplan`) will surface anything structural.
+Show the brief with unresolved decisions distinguished from safe assumptions.
+If the user authorized implementation and no material decision remains, proceed
+within that scope; a brief is not a new approval gate. If the user requested
+only requirements, deliver them and stop. Ask only for a load-bearing answer.
 
 ### 6. Run the implementation-readiness review
 
@@ -197,8 +200,9 @@ polished prose.
 
 ## Stop conditions
 
-- User confirms the brief → hand off to `masterplan` (or implement
-  directly if the task is small), then stop.
+- Brief removes blocking ambiguity → deliver for a requirements-only request;
+  otherwise continue the already-authorized next action. Use `masterplan` only
+  when the implementation needs it.
 - The request reveals an unsettled product decision → stop and route back
   to `hotseat` for that decision.
 

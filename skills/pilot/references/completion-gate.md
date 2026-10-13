@@ -9,10 +9,10 @@ Report every applicable row as verified (with evidence) or unverified
 
 | Change touches | Required gates |
 | --- | --- |
-| Anything | full test suite · build · lint/types · diff self-review |
-| UI / user-visible behavior | browser walk of the changed flows (`roadtest`) · responsive check · console clean |
-| Auth, sessions, permissions, payments, PII | security review pass (`harden`, scoped to the changed surface) |
-| Data model / migrations | migration up **and** down tested · data-preservation check on a copy |
+| Any changed behavior | affected acceptance/regression checks · applicable project-required checks · diff self-review; broaden when shared dependencies or failures justify it |
+| UI / user-visible behavior | changed interaction/viewport checks with browser evidence when available; assess console/network against the expected contract, including deliberate denial paths |
+| Changed auth, session, permission, payment or PII trust boundary | scoped security review and relevant negative-principal/replay checks; `harden` when specialist review is needed |
+| Data model / migrations | forward migration on a disposable representative copy · preservation/compatibility checks · demonstrated recovery appropriate to the change: safe down migration, backup restore or forward fix; an irreversible change never earns a fictional down path |
 | Public API contract | consumer check: existing callers updated or compatible · versioning/deprecation noted |
 | Performance-sensitive path | before/after benchmark with numbers, or an explicit "not measured" |
 | Background jobs / queues | idempotency check · retry behavior exercised |
@@ -47,3 +47,6 @@ instead of skipping review:
 - An unverified gate is reported in those words, with the reason.
 - Gate results never get bulked up to look complete ("everything works"
   is not evidence; command output is).
+- A code revert cannot restore deleted data or undo an external side effect.
+  Record the recovery owner and authorization separately; missing critical
+  evidence blocks release even when implementation is finished.

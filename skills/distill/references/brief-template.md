@@ -111,3 +111,18 @@ Comfortable viewing in low light; the app remembers the preference.
 
 Note what the example *doesn't* contain: no Tailwind tutorial, no design
 philosophy, no invented requirements. That's the target density.
+
+## Risk-bearing feature minimum
+
+For a nontrivial feature, preserve explicit non-goals and numbered assumptions
+even in a short brief. An auth/tenant change must describe which actor owns each
+resource, where access is enforced, what is denied across users, and what old
+unauthenticated behavior changes. Do not choose a provider or password model
+when that is an unresolved product/security decision.
+
+Use acceptance pairs: condition → required result → observation. For example,
+"user B requests user A's order → no order data returned → API negative case".
+A build passing proves buildability, not this authorization contract. For
+multiplayer/offline/time-zone requests, include only relevant ownership,
+reconnect/conflict, and clock boundaries. Proposed new surfaces are labeled
+`new`; missing surfaces the request assumes already exist stay unresolved.

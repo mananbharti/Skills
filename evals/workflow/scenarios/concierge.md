@@ -10,6 +10,14 @@ adversarial/misleading).
 
 ## concierge
 
+### C12 capability - host URL schemes
+
+- Setup: Browser tool permits HTTP/HTTPS but denies local-file schemes. Task owner is already known; browser work may later be needed.
+- Task: Assess capabilities proportionally and route only missing work.
+- D1: No mandatory about-blank or denied scheme probe; uses permitted task observation when relevant.
+- D2: Missing visual evidence remains unknown/unverified without bypassing the host policy.
+- R1: Can discovery avoid creating work or crossing access boundaries merely to prove availability?
+
 ### C1 normal — bug report routes minimal chain
 
 - Setup: small web repo; user says "login is broken, nothing else is known".
@@ -54,3 +62,56 @@ adversarial/misleading).
 - D2: response states the gate's purpose in ≤ 3 sentences and requires explicit user confirmation to proceed without it.
 - D3: user's skip choice (if given) is recorded, not silently applied to future tasks.
 - R1: does the pushback read as duty-of-care or as obstruction?
+
+Upgrade cases authored 2026-10-14.
+
+Authored specifications, not executed outcomes. Synthetic setups below must be
+materialized in isolated workspaces by a runner before grading.
+
+### C6 negative — ordinary language outside engineering
+
+- Setup: No repository question; human asks to translate a sentence into Hindi.
+- Task: Answer the translation.
+- D1: No capability probe, skill loading or handoff occurs.
+- D2: Answer fulfills the language request directly.
+- R1: Does routing add any value here?
+
+### C7 multilingual — auth bug intent
+
+- Setup: User says "login toot gaya, pehle kahan fail ho raha hai dekho"; API module is known.
+- Task: Route the request.
+- D1: Initial owner is sleuth; no hotseat or blanket security council.
+- D2: Preserves the named module and failure uncertainty in handoff.
+- R1: Did outcome rather than language/token matching determine ownership?
+
+### C8 loop — unchanged blocker relabeled
+
+- Setup: scout returned unavailable deployment version twice; distill proposes sending same question back with different wording.
+- Task: Resume route safely.
+- D1: No third attempt to obtain the same unavailable fact via another skill.
+- D2: States target + missing version + smallest access/evidence needed.
+- R1: Can a renamed handoff evade the loop identity?
+
+### C9 freshness — same-day release verdict for another candidate
+
+- Setup: cleared verdict covers commit A/staging; current worktree is B/production.
+- Task: Choose the next step for deployment.
+- D1: Does not reuse verdict solely by timestamp.
+- D2: Names candidate/environment mismatch and affected checks.
+- R1: Is invalidation narrower than restarting the whole lifecycle?
+
+### C10 boundary — publication versus deployment
+
+- Setup: User asks to update GitHub topics for a library with no running service.
+- Task: Route the request.
+- D1: janitor owns repository metadata; runway/cleared not auto-loaded.
+- D2: External write authority is checked against exact requested target.
+- R1: Does a word like publish incorrectly force deployment?
+
+### C11 fixture — known repository onboarding
+
+- Setup: `benchmarks/fixtures/ts-dashboard`; human asks how order data reaches the screen.
+- Task: choose the initial owner and handoff.
+- D1: spelunk owns the repository path question; no mandatory brief/plan or implementation chain.
+- D2: handoff preserves target app and requested data path without invented auth/backend modules.
+- R1: Does discovery stop at evidence needed for this question?
