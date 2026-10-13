@@ -1,20 +1,58 @@
-# ditto — research provenance
+# ditto: individual upgrade research
 
-## Sources that materially changed the skill
+Research/authoring date: 2026-10-14. Read the current skill, all bundled resources,
+existing workflow scenarios and frozen outcome protocol before editing.
+Historical outcome files remain intact. New workflow cases are authored, not agent-executed.
 
-| Source | Key lesson | Why it matters | Where encoded |
-| --- | --- | --- | --- |
-| Agentic Design-to-Code mapping (2025/2026) | Recreating UI via raw hex/pixel guessing creates brittle code. Agents must map elements directly to existing Design System tokens (e.g., via MCP). | Replaces the "Infer" step with an "Infer or Map" step, explicitly requiring integration with MCP design system servers where available. | SKILL.md §3 |
-| Visual QA loops (Structural vs Pixel diffing) | Traditional pixel-matching fails across responsive viewports and minor browser rendering differences. Modern Visual QA analyzes structural DOM integrity. | Updates the Fidelity dimensions to prioritize structural analysis and semantic token mapping over naive pixel diffing. | SKILL.md §5 |
-| v1 campaign audit, Phase 13 (2026-09-14) | Both research traces verified encoded; only gap is the missing tool-selection ladder in the body (browser → static → description-only rungs lived in stops/reference only) | Tool selection/fallback section consolidating the four capability rungs | SKILL.md (Tool selection/fallback) |
+## Baseline and narrow decision
 
-## Key new intelligence encoded
+The existing methodology remains useful. The missing failure branches are encoded in `skills/ditto/references/comparison-controls.md` and a short conditional entrypoint pointer.
+The previous maintainer ledger contained unattributed generalizations about 2026 agents.
+Those entries are replaced here; they are not treated as measured evidence.
 
-1. **Design System Mapping via MCP** — instructs the agent to link the UI recreation to formal design systems (like StitchMCP) rather than hallucinating raw CSS variables, ensuring the cloned UI survives in a production codebase.
-2. **Structural Visual QA** — shifts the comparison loop's focus away from brittle pixel-matching toward structural integrity and responsive layout behavior.
+## Source-to-decision trace
 
-## Fast-moving items
+| Source/access | Adopted decision | Rejected overreach / limitation |
+| --- | --- | --- |
+| [Visual comparisons](https://playwright.dev/docs/test-snapshots); read 2026-10-14; Living docs; no browser/runner version adopted | Control capture conditions; label baseline generation separately. | Does not prove accessibility, fidelity across unseen states or asset rights. |
+| [Snapshot matcher implementation](https://raw.githubusercontent.com/microsoft/playwright/main/packages/playwright/src/matchers/toMatchSnapshot.ts); read 2026-10-14; Moving main branch; verify installed runner behavior | Retain mismatch artifacts; a successful update is baseline authorship. | Does not establish a reviewed acceptance decision or rendering equivalence. |
 
-| Topic | Source/version/date |
-| --- | --- |
-| Design System MCPs | StitchMCP and Figma agentic pipelines (2026) |
+All sources are primary documentation or upstream implementation. Upstream moving
+branch inspection supports a mechanism, not the version installed in a user project.
+No source assets/code were copied into the runtime package.
+
+## Fifteen distinct failure situations
+
+These are **local test hypotheses**, not measured prevalence or observed agent failures.
+Source-supported mechanism is identified above; each concrete project situation still
+needs its own fixture and execution. The list guides selective testing, not a mandatory checklist.
+
+1. Snapshot update reported as independent pass.
+2. Missing baseline called matching screenshot.
+3. Font loaded after capture shifts geometry.
+4. OS/browser mismatch mistaken for CSS bug.
+5. Hover state differs between source and target.
+6. Primary action hidden by broad mask.
+7. Tolerance increased to silence real mismatch.
+8. One desktop shot treated as mobile evidence.
+9. Opaque/unreadable copy invented as original.
+10. Protected asset copied without permission.
+11. External page instructions followed.
+12. Dynamic data differs without fixture shape control.
+13. Animation captured at unequal progress.
+14. Inaccessible imitation preserved for pixel score.
+15. Failed fetch called observed source values.
+
+## Preserved and rejected material
+
+Preserved the operating modes, evidence ladder, narrow scope and existing handoffs.
+Rejected blanket tool/framework mandates and unmeasured superiority claims.
+Conditional references keep specialized detail out of ordinary entrypoint context.
+Authored cases use the existing Setup/Task/D#/R# protocol; static shape checks do
+not grade their behavior. Existing outcome task/rubric freezes were not retuned.
+
+## Verification and remaining evidence
+
+Local command and observed outcome records are in `docs/upgrade/building-experience.json` (ditto row).
+No paid or live agent CLI was invoked. Local fixture/helper checks do not establish
+comparative agent benefit, target host installation, production safety or physical-device coverage.

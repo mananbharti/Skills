@@ -35,7 +35,7 @@ if runs repeat over time.
 - console: 2 unhandled promise rejections on /checkout (evidence: …)
 - network: POST /api/orders → 500 (trace id in network.log)
 - responsive: checkout form unusable at 390px (screenshot 03)
-- automation: healed locator on 'Submit' button (data-testid missing, fell back to XPath)
+- automation: healed locator on 'Submit' button (data-testid missing, used a documented temporary locator)
 
 ## Unverified
 - payment provider redirect: sandbox unavailable this run
@@ -45,10 +45,12 @@ if runs repeat over time.
 
 - Screenshot **at the assertion moment**: the state the result claim is
   about, named sequentially (`01-…`, `02-…`).
-- Console/network logs: full session capture per path, failures
+- Console/network logs: sanitized session capture per path, failures
   highlighted at the top of the excerpt in report.md.
-- A PASS with no screenshots is an unverified claim: rung discipline
-  applies to us too.
+- Scope PASS to the evidence actually collected. A browser visual claim needs
+  comparable captures; an HTTP endpoint assertion can pass with response
+  evidence and no screenshot. HTTP or static checks leave browser interaction,
+  responsive rendering and pixel appearance unverified.
 - Failed paths keep their failing evidence; don't overwrite with the
   post-fix re-run: the re-run is a new path dir (or `-rerun` suffix).
 
@@ -57,8 +59,9 @@ if runs repeat over time.
 A screenshot alone does not prove a flow works: it proves one pixel
 state at one moment. Every screenshot pair must be tied to the
 assertion it evidences ("after submit: order visible in table"), and
-the result.txt records the checks that passed (console clean, network
-clean, interaction worked), not just "looks right".
+the result.txt records the actual assertions and capability gaps: console
+assessed, network matched the contract, interaction checked. Deliberate denial
+traffic is evaluated against its expectation; appearance alone is insufficient.
 
 ## What does NOT go in the bundle
 

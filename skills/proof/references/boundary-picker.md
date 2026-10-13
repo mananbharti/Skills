@@ -20,7 +20,7 @@
 | Pure logic (parsing, calculation, state machines) | unit |
 | Business rule that touches the DB | integration or database (real engine, not mocked) |
 | An HTTP endpoint's contract | API level: status codes, shapes, auth, errors |
-| Schema changes / migrations | database: up **and** down, against the real engine |
+| Schema changes / migrations | real engine: apply plus the approved rollback, forward-fix, or restore path |
 | Provider/consumer agreements (client libs, webhooks) | contract |
 | A user flow across pages | end-to-end: only for the few money paths |
 | Anything visual/console/network | browser (roadtest owns that evidence) |

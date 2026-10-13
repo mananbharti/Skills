@@ -46,7 +46,7 @@ def main():
         print("measure-report: measurement delta exceeds numeric range", file=sys.stderr)
         return 2
     improved = (a.after < a.baseline) if not a.higher_is_better else (a.after > a.baseline)
-    significant = abs(rel) >= a.threshold
+    significant = delta != 0 and abs(rel) >= a.threshold
     verdict = ("KEEP" if improved and significant else
                "REVERT" if (not improved and significant) else
                "NOISE: below threshold, complexity cost not justified")

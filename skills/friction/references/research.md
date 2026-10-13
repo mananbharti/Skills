@@ -1,96 +1,63 @@
 # friction research ledger
 
+Accessed 2026-10-14. Sources below were inspected in this upgrade; moving
+documentation/branches are not evidence of installed versions or host compatibility.
+No numerical default, empirical prevalence, or comparative lift is adopted.
+
 ## Source 1
 
-Title: 10 Usability Heuristics for User Interface Design
+Title: Understanding Redundant Entry
 
-Author / Organization: Nielsen Norman Group
+Author / Organization: W3C WAI
 
-Publication date: 2024 update
+Publication date: Not verified; living documentation/source accessed 2026-10-14
 
-Version: Heuristic guidance
+Version: WCAG 2.2 explanatory guidance; no conformance claim adopted
 
-URL: https://www.nngroup.com/articles/ten-usability-heuristics/
-
-Source type: official docs
-
-What it establishes:
-The heuristics are broad rules of thumb for diagnosing interaction problems, not specific interface requirements.
-
-What this skill adopts:
-Use them as prompts during task walkthroughs while severity comes from user impact, frequency, and recoverability.
-
-What it does NOT establish:
-They do not prove a finding, rank severity automatically, or replace user evidence.
-
-Numbers taken from source:
-The source defines 10 heuristics; the skill does not turn that count into a checklist score.
-
-Reverify when:
-The guidance or stronger usability evidence changes.
-
-## Accessibility evaluation
-
-Title: Evaluating Web Accessibility Overview
-
-Author / Organization: W3C Web Accessibility Initiative
-
-Publication date: 2026
-
-Version: Current guidance
-
-URL: https://www.w3.org/WAI/test-evaluate/
+URL: https://www.w3.org/WAI/WCAG22/Understanding/redundant-entry.html
 
 Source type: official docs
 
 What it establishes:
-Accessibility evaluation needs multiple complementary methods, including
-automated tools and human evaluation, because no single method finds all issues.
+Redundant input in one process creates barriers, with documented exceptions.
 
 What this skill adopts:
-Combine automated checks with task walks, semantic/keyboard inspection, and
-explicit evidence limits; avoid treating an axe result as conformance proof.
+Test entered-value preservation and recovery in the relevant process.
 
 What it does NOT establish:
-It does not prescribe a complete usability study, a fixed sample, or a product
-priority for every accessibility finding.
+Does not require saving sensitive data persistently in all forms.
 
 Numbers taken from source:
-None.
+None. Version identifiers describe source scope, not measurements.
 
 Reverify when:
-The applicable accessibility standard, platform, or evaluation capability
-changes.
+The target installed version, protocol, runtime, standard or relevant behavior changes.
 
-## Accessibility standard
+## Source 2
 
-Title: Web Content Accessibility Guidelines 2.2
+Title: Offline data
 
-Author / Organization: W3C
+Author / Organization: web.dev / Google
 
-Publication date: 2024-12-12
+Publication date: Not verified; living documentation/source accessed 2026-10-14
 
-Version: W3C Recommendation
+Version: Living tutorial with IndexedDB examples; not a required library
 
-URL: https://www.w3.org/TR/WCAG22/
+URL: https://web.dev/learn/pwa/offline-data
 
-Source type: standard
+Source type: implementation evidence
 
 What it establishes:
-WCAG 2.2 provides technology-neutral, testable success criteria for web
-accessibility and is intended to be evaluated with both automated and human
-methods.
+Browser persistence has distinct storage choices, transactions and shared quotas.
 
 What this skill adopts:
-Use relevant success criteria as anchors for task barriers, while distinguishing
-partial evaluation from a full conformance claim.
+Distinguish local storage from remote confirmation; test failed storage and privacy boundaries.
 
 What it does NOT establish:
-It does not define product usability, replace user research, or make all needs
-testable by a single criterion.
+Its example can insert duplicate rows if repeated; it is not a synchronization/conflict protocol.
 
 Numbers taken from source:
-No conformance level is adopted as a universal project requirement.
+None. Version identifiers describe source scope, not measurements.
 
 Reverify when:
-W3C publishes a newer recommendation, erratum, or project policy changes.
+The target installed version, protocol, runtime, standard or relevant behavior changes.

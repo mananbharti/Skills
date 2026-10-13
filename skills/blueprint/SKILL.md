@@ -82,7 +82,8 @@ people and external systems; a container view explains runtime applications and
 stores; a component view explains a bounded internal area; a sequence explains
 one temporal path; a data-flow explains ownership/lifecycle; a deployment view
 explains runtime placement; a failure view explains propagation and recovery.
-Read the conditional menu in `references/diagram-guide.md`.
+Read the conditional menu in `references/diagram-guide.md`. For HTML or
+untrusted diagram input, read [renderer boundaries](references/rendering.md).
 
 Create an ADR only for a load-bearing decision with alternatives and meaningful
 consequences. One ADR addresses one decision: status, context, decision,
@@ -123,8 +124,8 @@ Use one `.mmd` file per diagram in `docs/architecture/`. Split a diagram
 when labels or relationships stop being legible. Labels name real things (`api/index.ts`,
 `Postgres`, `Stripe webhook`): no "Service Layer Abstraction". Validate
 each with the bundled checker: `scripts/validate-mermaid docs/architecture/*.mmd`
-(catches unknown diagram types, unbalanced brackets, duplicate node ids
-,  the failures that break rendered docs). Static checks don't prove
+(a limited heuristic for diagram types, delimiters, and labels; it is not
+a Mermaid parser and may reject valid syntax). Static checks don't prove
 rendering: render once via mermaid-cli when available and say whether
 you did.
 
@@ -219,24 +220,6 @@ In addition to the diagram-specific gates below, verify:
   drawn.
 - If the architecture is genuinely one app + one database, say that in
   one honest diagram instead of decorating it into a microservices saga.
-
-## Tool selection / fallback
-
-- Repository evidence first; infrastructure state or user-supplied records may extend it.
-- Mermaid source is the portable default; render with an available project tool.
-- Without a renderer, validate syntax and mark visual output unverified.
-
-## Quality gates
-
-- Every observed diagram node is traceable to evidence; spot-check the
-  load-bearing nodes and report the result.
-- Each diagram answers one question a reader actually has; README states
-  that question above each diagram.
-- Assumptions + risk callouts sections exist and are non-empty (or
-  explicitly state "none found: which itself is worth trusting only
-  after this much reading").
-- No diagram remains unless it answers a named question; HTML has no empty
-  placeholder sections.
 
 ## Stop conditions
 

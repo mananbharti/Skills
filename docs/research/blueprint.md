@@ -1,22 +1,61 @@
-# blueprint — research provenance
+# blueprint: individual upgrade research
 
-## Sources that materially changed the skill
+Research/authoring date: 2026-10-14. Read the current skill, all bundled resources,
+existing workflow scenarios and frozen outcome protocol before editing.
+Historical outcome files remain intact. New workflow cases are authored, not agent-executed.
 
-| Source | Key lesson | Why it matters | Where encoded |
-| --- | --- | --- | --- |
-| Docs-as-Code Anti-Patterns (2025/2026) | "Monolithic Documentation" — forcing every C4 level into one giant diagram or document destroys readability and maintainability. | Enforces strict C4 Audience-Driven Abstraction, requiring the agent to pick targeted views rather than a monolith. | SKILL.md §2 |
-| Security as an Afterthought in Generative AI Diagrams | AI-generated architecture diagrams frequently omit trust boundaries, leading to designs that obscure threat vectors. | Mandates explicit `subgraph` trust boundaries and adds a dedicated Threat Model diagram to the menu. | references/diagram-guide.md |
-| Model-Backed Architecture (C4 + DSLs) | Drawing shapes is dead; architecture must be backed by diffable models (Mermaid/Structurizr) that represent real code. | Reaffirms the rule that every node must trace to code, rejecting hallucinated infrastructure. | SKILL.md §1 |
-| v1 campaign audit, Phase 09 (2026-09-14) | Deliverable had no provenance header (readers can't tell if diagrams match current code); decisions lived only in the plan, not the architecture doc | Provenance header (date + commit + map freshness) on the README index; Decisions section linking plan AgDRs or stating inline | SKILL.md §workflow step 4, §output contract |
+## Baseline and narrow decision
 
-## Key new intelligence encoded
+The existing methodology remains useful. The missing failure branches are encoded in `skills/blueprint/references/rendering.md` and a short conditional entrypoint pointer.
+The previous maintainer ledger contained unattributed generalizations about 2026 agents.
+Those entries are replaced here; they are not treated as measured evidence.
 
-1. **C4 Audience-Driven Abstraction** — formalized the rule to avoid Monolithic Documentation by strictly selecting views based on audience (Context for business, Container for engineering).
-2. **Explicit Trust Boundaries** — security contexts are now mandatory visual elements (`subgraph`) rather than implicit assumptions, directly addressing the "Security as an Afterthought" anti-pattern.
-3. **Threat Model Diagramming** — introduced a dedicated pattern for visualizing threat vectors across trust boundaries.
+## Source-to-decision trace
 
-## Fast-moving items
+| Source/access | Adopted decision | Rejected overreach / limitation |
+| --- | --- | --- |
+| [Usage: securityLevel](https://mermaid.js.org/config/usage.html); read 2026-10-14; Living docs; selected template requests major 11 without exact pin | Set strict explicitly and escape other HTML substitutions. | Does not sanitize arbitrary template content or prove diagram truth. |
+| [Default configuration implementation](https://raw.githubusercontent.com/mermaid-js/mermaid/develop/packages/mermaid/src/defaultConfig.ts); read 2026-10-14; Moving develop branch; not template installed-version evidence | Record the actual renderer separately and never treat the heuristic as a parser. | Inspection of this file did not verify an exact securityLevel default; no such code claim is adopted. |
 
-| Topic | Source/version/date |
-| --- | --- |
-| Generative AI Diagramming | Mermaid / C4 Model auto-generation (2026 trends) |
+All sources are primary documentation or upstream implementation. Upstream moving
+branch inspection supports a mechanism, not the version installed in a user project.
+No source assets/code were copied into the runtime package.
+
+## Fifteen distinct failure situations
+
+These are **local test hypotheses**, not measured prevalence or observed agent failures.
+Source-supported mechanism is identified above; each concrete project situation still
+needs its own fixture and execution. The list guides selective testing, not a mandatory checklist.
+
+1. Source import drawn as an actual runtime call.
+2. Proposed deployment mixed with observed topology.
+3. Trust-zone subgraph mistaken for enforcement.
+4. Async edge lacks ordering/owner assumption.
+5. CDN unavailable overwrites diagram source.
+6. CDN major assumed to be exact installed version.
+7. Heuristic delimiter check rejects valid label.
+8. Static pass used to claim visual rendering.
+9. Untrusted label copied into HTML placeholder.
+10. Renderer security weakened to enable source click.
+11. Print output clips load-bearing relationship.
+12. Dense diagram hides direction/labels.
+13. Private topology published to wrong audience.
+14. Stale map conflicts with current config.
+15. Unknown provider resources invented from env names.
+
+## Preserved and rejected material
+
+Preserved the operating modes, evidence ladder, narrow scope and existing handoffs.
+Rejected blanket tool/framework mandates and unmeasured superiority claims.
+Conditional references keep specialized detail out of ordinary entrypoint context.
+Authored cases use the existing Setup/Task/D#/R# protocol; static shape checks do
+not grade their behavior. Existing outcome task/rubric freezes were not retuned.
+
+## Verification and remaining evidence
+
+Local command and observed outcome records are in `docs/upgrade/building-experience.json` (blueprint row).
+No paid or live agent CLI was invoked. Local fixture/helper checks do not establish
+comparative agent benefit, target host installation, production safety or physical-device coverage.
+
+Source access limitation: `https://c4model.com/diagrams/review` returned an internal error.
+No new claim depends on that inaccessible page. The template remains network-dependent.

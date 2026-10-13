@@ -136,6 +136,10 @@ Every accepted difference must have a reason and be rechecked for unintended
 effects. Fix structural mismatches before token/value mismatches, and both
 before rasterization/compression noise.
 
+For repeatable capture conditions and snapshot update decisions, read
+[comparison controls](references/comparison-controls.md). Updating the expected
+image records a new baseline; it does not prove fidelity.
+
 ## Failure handling and edge cases
 
 - **Source conflict:** prefer newest, most specific evidence and record the

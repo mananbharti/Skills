@@ -144,6 +144,10 @@ Do not choose an index, cache, parallelism, memoization, or a new service from
 the symptom name alone. Each has a correctness and operational cost that must
 be justified by the evidence class.
 
+Before query execution or load-generation experiments, read
+[experiment hazards](references/experiment-hazards.md). An executed diagnostic
+can change data or external state even when its name sounds read-only.
+
 ## Domain-specific cautions
 
 ### Queries and data access

@@ -188,6 +188,10 @@ error announcement where applicable, correction, and successful completion.
 For a destructive operation, the visual change must not obscure the consequence,
 confirmation, or recovery path.
 
+For mobile overlays, sticky actions, zoom, or screenshot comparisons, read
+[rendered evidence](references/rendered-evidence.md). Viewport emulation does
+not establish physical-device keyboard or assistive-technology behavior.
+
 ## Accessibility and performance verification protocol
 
 Run this proportionately to the changed surface. Automation finds regressions;
@@ -243,8 +247,9 @@ debt behind a polished screenshot.
   **default decoration**: the same treatment can be right when it
   serves the product (a glass surface that communicates real layering,
   a gradient that is the brand). Ban the thoughtlessness, not the
-  technique: state the structural reason and the user approves
-  explicitly.
+  technique: honor an explicitly requested style, explain a material tradeoff
+  once, and verify usability and accessibility. Reversible visual choices do
+  not require another permission round.
 - **Vibe Coding (Decoupled Aesthetics & Logic)**: designing based on how a screen *feels* with perfect dummy data, ignoring how it behaves under pressure (long text, 1000 items, empty states). Design must survive reality.
 - **The "Blank Canvas" hallucination**: ignoring the project's existing design tokens and rewriting component styles from scratch. Existing tokens are a constraint, not a suggestion.
 - **Dark mode is a design surface, not an inversion:** check contrast
@@ -258,7 +263,8 @@ debt behind a polished screenshot.
 - All states present on changed components (hover/focus/disabled/loading/
   empty/error as applicable).
 - Text contrast meets AA; focus visible everywhere.
-- Zero banned patterns without an approved reason.
+- Decorative techniques have a product reason or reflect the requested style.
+  Do not substitute personal taste for the user's choice.
 - No unused CSS/one-off styles scattered behind the change: cleanup is
   part of the change.
 - The changed experience was inspected at every applicable state and supported

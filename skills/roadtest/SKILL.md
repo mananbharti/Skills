@@ -105,6 +105,10 @@ with a real session. For each path:
     re-walk;
 12. repeat until the path passes or is reported failing.
 
+For connection loss, reconnect, touch, or incomplete browser evidence, read
+[adverse browser conditions](references/adverse-conditions.md). Select those
+conditions from the journey contract; do not run every condition by default.
+
 ## Browser-specific investigation rules
 
 Use semantic/user-facing locators first: role plus accessible name, visible

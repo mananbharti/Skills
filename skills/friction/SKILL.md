@@ -111,6 +111,10 @@ Fix blockers and majors (directly, or as slices for `pilot`), then
 **re-walk the task** to confirm the path is actually smoother: the
 fix is verified by the walk, not by the intention.
 
+For interrupted forms, mobile keyboards, offline work, or uncertain save
+outcomes, read [recovery journeys](references/recovery-journeys.md). Preserve
+work only within the product's privacy and retention constraints.
+
 ## Turn findings into testable improvements
 
 For each blocker or major, state the causal hypothesis, smallest intervention,

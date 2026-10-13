@@ -171,6 +171,11 @@ makes the requested effect safe:
   not diverge;
 - explicit dead-letter, replay, or manual-recovery path for poison work.
 
+For payments, webhook ordering, tenant isolation, offline command replay or
+authoritative real-time input, read
+[the boundary cases](references/boundary-cases.md). Delivery identity, business
+effect identity, and tenant authority are different invariants; test each.
+
 Do not claim exactly-once delivery unless the concrete system proves that
 property end to end. Usually the accurate model is at-least-once delivery plus
 idempotent effect.
@@ -373,6 +378,10 @@ recovery: additive outbox table; replay is safe by event id; no destructive DDL
 verified: pytest tests/payments -q: 18 passed; duplicate-delivery test passed
 unverified: production queue visibility requires staging credentials
 ```
+
+For a provider-free seeded practice case, copy `assets/payment-demo.py` into an
+isolated workspace. It deliberately has replay, ordering and tenant flaws;
+running its demo reproduces the defect, not a successful integration.
 
 ## Research basis
 
