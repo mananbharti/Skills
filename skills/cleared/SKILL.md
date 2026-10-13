@@ -8,7 +8,8 @@ description: Issues an evidence-backed READY, READY WITH WARNINGS, or BLOCKED ve
 You are the last checkpoint between "I think it's done" and "it's live."
 The verdict is a **decision backed by evidence**, not a mood: every
 dimension gets verified this session, or it is reported unverified,
-and an unverified critical dimension caps the verdict at warnings.
+and an unverified applicable critical dimension blocks release. Noncritical
+unknowns can be warnings with an owner and a bounded follow-up.
 
 ## When NOT to use
 
@@ -97,32 +98,37 @@ it is unverified and caps the verdict. Run: don't recall:
 
 - **requirements**: walk the acceptance criteria one by one, verified
   or explicitly unmet;
-- **git**: clean status, work pushed, no debug branches merge-bound;
+- **git/artifact**: identify the actual shipped commit or immutable artifact;
+  preserve unrelated dirty work. Clean/pushed state is required only by the
+  selected delivery path, not for every local completion or documentation edit;
 - **types / lint / build**: the project's own commands, output quoted;
-- **tests**: full suite, real runner output, skip counts noted;
+- **tests**: relevant required suite at the correct boundary, real runner output,
+  skip counts noted; expand to the full suite when change impact or policy needs it;
 - **browser / responsive**: `roadtest` evidence for changed UI;
 - **accessibility**: friction/WCAG pass for user-facing changes;
 - **security**: no open critical findings (`harden` report current);
 - **dependencies**: audit run, critical CVEs in runtime path = finding;
 - **environment variables**: documented, present in target (names
   verified, values never printed);
-- **migrations**: up tested, down-path exists, backup taken for
-  destructive ones;
+- **migrations**: compatible sequencing tested, rollback or approved forward-fix
+  and restore plan; backups alone are not a tested recovery path;
 - **observability / backups / rollback**: errors visible, restore
   path stated;
 - **docs / SEO / performance**: README claims true, metadata live,
   budgets met or flagged.
 
-A check "passes" only with evidence from this session. Last week's
-green doesn't count; nobody's memory counts.
+A check passes only with current observations or immutable evidence
+demonstrably bound to this exact candidate and target configuration. A prior
+green run without that identity trace cannot pass; memory is not evidence.
 
 ### 3. Issue the verdict
 
 - **READY**: every applicable dimension verified green.
 - **READY WITH WARNINGS**: nothing critical; warnings are named risks
   with their evidence (unverified items, open minors, accepted risks).
-- **BLOCKED**: any critical failure: failing tests/build, unmet
-  acceptance criteria, committed secret, migration without down-path,
+- **BLOCKED**: any critical failure or missing critical evidence: failing
+  applicable tests/build, unmet
+  acceptance criteria, committed secret, migration without safe recovery,
   missing rollback for a destructive deploy, open critical security
   finding.
 

@@ -24,8 +24,9 @@ a rounding choice.
 - context bytes read (files opened, lines retrieved);
 - command-output bytes before/after capping;
 - tool calls per task; retries per task;
-- **task success**: the multiplier on everything: a saving that costs
-  a retry is a loss.
+- **task success**: measure total cost including failed attempts, retries,
+  tools and handoffs. A retry can still be net-cheaper; decide from totals
+  and identical independent acceptance checks, not retry count alone.
 
 ## Baseline discipline
 
@@ -43,3 +44,18 @@ a rounding choice.
   decision-relevant evidence.
 - This suite's own SKILL.md files follow the Agent Skills 500-line structural
   limit, with conditional detail loaded from references.
+
+## Cost per correct completion
+
+For a fixed batch with the same independent acceptance checks, report
+`sum(all attempt costs) / number of correctly completed tasks`. Include failed
+tasks in the numerator; if zero tasks completed correctly, the ratio is undefined,
+not zero. Keep tokens, currency, latency and bytes separate. Use provider usage
+and actual applicable pricing for currency, including cache/tool charges where
+known; incomplete fields mean total cost is unknown. Do not turn a byte proxy
+into dollars. Report correctness and observed regression cases beside cost.
+
+Reuse needs invalidation: bind summaries to source revision and relevant
+configuration; refresh after edits, failed verification or a contradictory
+observation. Output caps must preserve runner exit status and a path to complete
+logs; a green `head` process cannot establish that its producer succeeded.

@@ -14,9 +14,9 @@ does, not what its author intended it to do.
 ## Prerequisites
 
 The complete diff plus the written acceptance criteria (brief, plan, or
-issue) it claims to satisfy. Criteria missing or diff sliced → ask for
-them first; reviewing intent against memory is author-bias with extra
-steps.
+issue) it claims to satisfy. Recover missing criteria from the user request, issue, or repository first.
+If intent remains unknown, continue a bounded correctness review and name that
+gap; request only the evidence needed for an intent verdict.
 
 ## Authority and review modes
 
@@ -114,7 +114,8 @@ merely to appear cautious.
 ### 5. Verdict
 
 - **approve**: nothing above minor;
-- **approve with findings**: majors exist but are safe to fix forward;
+- **approve with findings**: only findings explicitly safe to fix forward;
+- **request changes**: any major that should not merge as-is, even without a blocker;
 - **request changes**: any blocker.
 
 Nits never affect the verdict. State which mode ran, the diff scope

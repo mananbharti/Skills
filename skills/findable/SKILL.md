@@ -72,8 +72,9 @@ as an outcome search engines control, not a deliverable this skill can promise.
 
 ## Tool selection/fallback
 
-- Live URLs + curl → rendered-HTML audit; every fix verified in served
-  output (before/after).
+- Live URLs + HTTP client → status, headers, redirects and initial HTML.
+  Curl does not execute JavaScript. Browser or search-engine inspection →
+  rendered DOM; without that capability, client-rendered claims stay unverified.
 - Validator available (schema.org, card debuggers) → structured data
   and previews proven; otherwise tags resolve to real assets by hand.
 - Offline / no runnable site → static audit of templates + content
@@ -86,8 +87,10 @@ as an outcome search engines control, not a deliverable this skill can promise.
 Walk `references/seo-checklist.md` on the real rendered pages:
 
 - per-page uniqueness: titles, meta descriptions, canonicals;
-- semantic HTML: one `h1`, heading hierarchy, real landmarks;
-- `robots.txt` + `sitemap.xml`: present, accurate, submitted;
+- semantic HTML: clear primary heading, heading hierarchy, real landmarks;
+  heading count alone is not proof of indexing or an SEO penalty;
+- `robots.txt` + `sitemap.xml`: applicable, accurate, submission state reported;
+  submission needs authority and never guarantees indexing;
 - structured data: valid, honest (schema.org: validate it);
 - social previews: Open Graph + Twitter cards rendering correctly;
 - crawl traps: noindex on public pages, broken internal links, orphan
@@ -153,9 +156,9 @@ watched later, but do not treat time-delayed indexing as a failed code fix.
 
 ## Anti-Patterns (The Banned List)
 
-- **Slop Content Generation**: generating 5,000 words of generic, keyword-stuffed AI text to "rank better." 2026 ranking engines penalize volume-based slop. Discoverability is earned through technical structure and actual human-valuable content, not text generation.
+- **Content as a ranking guarantee**: do not promise search gains from text volume or an asserted "2026 ranking engine" rule. Preserve useful content; route writing separately and test discoverability facts.
 - **Hallucinated Structured Data**: an agent auto-generating schema.org JSON-LD that includes fake 5-star reviews, hallucinated authors, or URLs that 404. Structured data must strictly describe the verifiable reality of the page.
-- **Invisible Meta Tags**: an agent appending `<meta>` tags using client-side React/Vue in a pure SPA without SSR. If you don't prerender it, the crawler won't see it, and the fix is a hallucination.
+- **Confusing fetched and rendered HTML**: client-injected metadata can be processed by Google; other consumers may not run JavaScript. Verify the target surface. Do not claim every crawler sees it, or no crawler ever sees it, from a curl response alone.
 
 ## Quality gates
 
@@ -175,8 +178,9 @@ watched later, but do not treat time-delayed indexing as a failed code fix.
 ## Stop conditions
 
 - Audit + fixes verified → report with re-crawl notes, stop.
-- SPA without prerendering and no build access → report the gap and the
-  exact prerender/SSR options; don't ship meta tags no crawler will see.
+- Client-rendered metadata with no rendering access → report the unverified
+  surface and narrow verification request; offer SSR/SSG only when required by
+  target crawler or current delivery failures, not as a mandatory rewrite.
 - Indexing blocked at a level above the code (robots at proxy/CDN,
   noindex from the platform) → name the layer, hand off.
 

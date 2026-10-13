@@ -1,3 +1,8 @@
+Current access pass: 2026-10-14. Publication dates and versions below remain
+source claims, not inferred from access date. Previously cited sources not
+listed in the current pass are preserved historical provenance, not newly
+verified. No agent-effectiveness or compatibility claim follows from this ledger.
+
 # harden research ledger
 
 This ledger records the sources that alter this skill's behavior. It is not a
@@ -203,3 +208,137 @@ None.
 
 Reverify when:
 The system's logging/privacy policy or relevant ASVS guidance changes.
+
+## Current decision and source records
+
+Changed artifacts: `attack-surface.md` (taxonomy, tenant, agent and CI boundaries)
+
+Behavior changed: Correct versioned OWASP mapping, include supply chain/exception handling; redact history output; tenant denial requires no side effect and downstream model-independent policy.
+
+Title: Top 10:2025
+
+Author / Organization: OWASP
+
+Publication date: 2025
+
+Version: 2025 edition
+
+URL: https://top10.owasp.org/2025/
+
+Source type: official docs
+
+What it establishes:
+The published category IDs differ from the older list.
+
+What this skill adopts:
+Apply the current decision above at the affected boundary; preserve existing
+workflow when evidence does not justify change.
+
+What it does NOT establish:
+It does not prove this skill improves an agent or validate an unobserved runtime.
+
+Numbers taken from source:
+Only version identifiers; no comparative measurement.
+
+Reverify when:
+The source, installed version, affected contract or tool capability changes.
+
+Access: fetched 2026-10-14; source-specific breadth and live evaluations remain
+pending. Offline fallback: inspect available code/configuration and label
+source-sensitive behavior unverified.
+
+Title: API1 Broken Object Level Authorization
+
+Author / Organization: OWASP
+
+Publication date: 2023
+
+Version: API Security Top 10 2023
+
+URL: https://api-security.owasp.org/editions/2023/en/0xa1-broken-object-level-authorization/
+
+Source type: official docs
+
+What it establishes:
+Object authorization must hold at each reachable operation.
+
+What this skill adopts:
+Apply the current decision above at the affected boundary; preserve existing
+workflow when evidence does not justify change.
+
+What it does NOT establish:
+It does not prove this skill improves an agent or validate an unobserved runtime.
+
+Numbers taken from source:
+Only version identifiers; no comparative measurement.
+
+Reverify when:
+The source, installed version, affected contract or tool capability changes.
+
+Access: fetched 2026-10-14; source-specific breadth and live evaluations remain
+pending. Offline fallback: inspect available code/configuration and label
+source-sensitive behavior unverified.
+
+Title: LLM01 Prompt Injection
+
+Author / Organization: OWASP GenAI
+
+Publication date: 2025
+
+Version: LLM01:2025
+
+URL: https://genai.owasp.org/llmrisk/llm01-prompt-injection/
+
+Source type: official docs
+
+What it establishes:
+Injected external instructions can cross model/tool boundaries; impact depends on capabilities.
+
+What this skill adopts:
+Apply the current decision above at the affected boundary; preserve existing
+workflow when evidence does not justify change.
+
+What it does NOT establish:
+It does not prove this skill improves an agent or validate an unobserved runtime.
+
+Numbers taken from source:
+Only version identifiers; no comparative measurement.
+
+Reverify when:
+The source, installed version, affected contract or tool capability changes.
+
+Access: fetched 2026-10-14; source-specific breadth and live evaluations remain
+pending. Offline fallback: inspect available code/configuration and label
+source-sensitive behavior unverified.
+
+Title: Secure use reference
+
+Author / Organization: GitHub
+
+Publication date: living; date not established
+
+Version: current Actions documentation
+
+URL: https://docs.github.com/en/actions/reference/security/secure-use
+
+Source type: official docs
+
+What it establishes:
+Privileged workflows executing untrusted PR content can expose credentials.
+
+What this skill adopts:
+Apply the current decision above at the affected boundary; preserve existing
+workflow when evidence does not justify change.
+
+What it does NOT establish:
+It does not prove this skill improves an agent or validate an unobserved runtime.
+
+Numbers taken from source:
+Only version identifiers; no comparative measurement.
+
+Reverify when:
+The source, installed version, affected contract or tool capability changes.
+
+Access: fetched 2026-10-14; source-specific breadth and live evaluations remain
+pending. Offline fallback: inspect available code/configuration and label
+source-sensitive behavior unverified.

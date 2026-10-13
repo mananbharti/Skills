@@ -5,14 +5,15 @@ description: Deploys software through the target platform's real release model, 
 
 # runway: deploy down the runway, verify on the ground
 
-A deploy that isn't verified on the live URL didn't happen. You take the
+A deploy command can succeed while live behavior remains unverified. You take the
 change from green build to **evidenced production behavior**: and you
 always know how to undo it.
 
 ## Prerequisites
 
-A fresh non-BLOCKED `cleared` verdict (re-run if stale), a green local
-build, and access to the target platform (CLI authed or CI wired).
+Candidate-bound readiness evidence (a `cleared` verdict when available), a
+successful applicable build locally or in the trusted pipeline, and access to
+the target platform (CLI authed or CI wired).
 Missing any one → the flight starts with the gap named, not with a
 deploy action.
 
@@ -51,15 +52,18 @@ production action, migration, traffic change, or release failure.
 
 ## Safety rails (before anything moves)
 
-- **Previews/staging:** autonomous: deploy freely, verify, report.
+- **Previews/staging:** proceed within authorized scope only after checking
+  data, secrets, public exposure and costs. A preview label does not make
+  production-connected databases or paid resources safe.
 - **Production:** requires the user's explicit go (this message, a
   command they ran, or previously-authorized CI). Expensive or
   irreversible production actions (infrastructure changes, data
   migrations on live data, DNS cutover) are gated even mid-deploy.
 - **Secrets:** env var names are handled freely; values are set through
   the platform's own mechanism and never printed, echoed, or committed.
-- **Never deploy a build that hasn't been built.** Local/green build
-  first, always.
+- **Build evidence follows the pipeline.** A candidate-bound successful CI
+  build can be sufficient; do not require a redundant local build or a build
+  command for an uncompiled static artifact. Identify exactly what will ship.
 
 ## Workflow
 
@@ -74,8 +78,10 @@ anything.
 
 ### 2. Preflight
 
-- `cleared` verdict fresh and not BLOCKED (re-run if stale);
-- git clean and pushed (the deployed commit is knowable);
+- candidate-bound readiness evidence has no unresolved critical blocker; use
+  an available `cleared` report or perform this scoped preflight directly;
+- shipped commit/artifact and exact included files are known; preserve
+  unrelated dirty work instead of resetting, stashing or adding everything;
 - target platform CLI authenticated (`vercel whoami` etc.: probe, name
   what's missing).
 
@@ -86,13 +92,14 @@ preflight gaps, not details to discover during production mutation.
 
 ### 3. Build and validate environment
 
-- Build locally with production config: output errors stop the flight.
+- Use the actual applicable build/pipeline and target configuration. Record
+  artifact identity and successful local or trusted CI output; errors stop promotion.
 - Environment variables: every required name present in the **target**
   environment (checked via platform CLI, values never displayed).
   Missing → BLOCKED, list the names.
 - Database migrations: strategy stated (expand/contract, order),
-  destructive ones have backup + down-path, applied to staging first
-  when staging exists.
+  destructive ones have tested restoration or an authorized forward-fix
+  recovery plan; application rollback must remain compatible with data state.
 
 ### 4. Deploy: nearest safe rung first
 
@@ -101,8 +108,7 @@ responds, key flows pass) → then production (user's go). Announce each
 step as it happens. The platform's own CLI/CI is the executor: you
 drive it, you don't pretend it.
 
-**Strategy follows the platform, not ambition**: rolling (default
-everywhere), blue/green or canary (when the platform supports traffic
+**Strategy follows the platform, not ambition**: rolling when supported, blue/green or canary (when the platform supports traffic
 switching and the change is risky), immutable deploys (container/image
 platforms), atomic static swaps (static hosts). A small project on
 Vercel gets preview → prod, and that IS professional; inventing canary
@@ -140,9 +146,10 @@ stated is a hope, not a path.
 
 ## Quality gates
 
-- Preflight complete (cleared fresh, git clean, CLI authed) before any
-  deploy action.
-- Build succeeded locally before platform deploy.
+- Preflight complete (candidate-bound readiness, artifact known, target access
+  and authorization) before a deploy action; preview risks checked too.
+- Applicable build succeeded against the candidate locally or in the trusted
+  pipeline before promotion; static artifacts without a build are explicit.
 - All required env names verified in the target; zero secret values in
   any output.
 - Smoke tests passed on the live URL with evidence; version fingerprint
@@ -158,8 +165,10 @@ stated is a hope, not a path.
 - Live and verified → deploy report, stop.
 - Any step fails irrecoverably (quota, missing credentials, platform
   outage) → stop with the exact blocker and the command/access needed.
-- User requests production deploy without a passing `cleared` → state
-  the risk once, proceed only on their explicit confirmation, record it.
+- Production preflight lacks critical readiness evidence → report the exact
+  missing evidence and complete safe preparation. User authorization to deploy
+  does not convert unknown critical controls into verified facts. An explicit
+  risk decision remains recorded beside the unchanged readiness findings.
 - Artifact, target, authorization, or migration state changes after preflight →
   invalidate record and re-run affected checks.
 
@@ -178,6 +187,18 @@ evidence:   screenshots + log excerpts inline
 ```
 
 The report is the deploy's flight record: every claim traceable.
+
+
+## Optional receipt consistency helper
+
+Use `scripts/check-receipt.py` after collecting sanitized release observations,
+not in place of collecting them. Run `python3 <skill-folder>/scripts/check-receipt.py receipt.json`.
+Fields: `target` (HTTP URL without credentials/query secrets), `expected_build`,
+`observed_build`, `observed_at`, `evidence`, `status` (200), and nonempty `smoke`
+observations with `name`, boolean `passed`, and `evidence`. Exit 0 means receipt
+consistency, 1 means missing/contradictory observations, 2 means invalid input.
+The helper does not fetch a URL, authenticate evidence, deploy, authorize, or
+prove freshness. `--self-test` safely rejects bogus CLI success and old builds.
 
 ## Research basis
 

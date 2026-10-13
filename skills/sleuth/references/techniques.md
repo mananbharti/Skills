@@ -4,15 +4,13 @@ Pick by what you're facing; most bugs need two or three of these.
 
 ## Reading failures
 
-- **Stack traces bottom-up**: the top frame says where it threw; the
-  bottom app frames say why your code got there. Library-internal frames
-  are a trail, not the culprit.
+- **Stack traces and chained exceptions**: identify the throw site and caller path using this runtime's ordering. Python prints the most recent frame last; other runtimes differ. A wrapper exception can hide the original cause. Library frames are evidence, not automatic blame.
 - **First error wins**: in cascading failures, debug the earliest error
   in the log, not the loudest last one.
 - **Full messages, always**: truncated errors ("TypeError: cannot read
   properties of undefined") hide the property name that names the
   suspect.
-- **Trace-Based Observability (2026)**: for agentic or orchestrated systems, traditional APMs hide the bug. Read the full execution trace (tool calls, state transitions, reasoning steps), not just the final HTTP 500.
+- **Orchestration traces**: correlate tool calls, state transitions, request IDs, and observable outputs across the failing path. Existing traces can help; do not claim traditional APM is universally inadequate or request hidden model reasoning. Redact sensitive payloads and check sampling gaps.
 
 ## Reproduction engineering
 

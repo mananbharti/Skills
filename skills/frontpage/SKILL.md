@@ -11,8 +11,9 @@ from **research, not vibes**: and every claim in it is provable.
 
 ## When NOT to use
 
-- The codebase itself is the mess → `unslop` first; a great README on a
-  broken project is a lie with formatting.
+- Code rescue itself → `unslop`. README work can proceed on a broken project
+  when it truthfully explains current limitations; do not expand documentation
+  scope into unrequested repairs.
 - Architecture documentation → `blueprint` (you may *link* to it).
 - Repo hygiene (badges, license files, topics) → `janitor`.
 
@@ -89,7 +90,7 @@ belongs in the README:
 | --- | --- | --- |
 | What it does | current code, example, or release demonstrates it | describe the goal as a roadmap item |
 | Install command | executed from documented starting state | omit or label as unverified draft |
-| Version/runtime support | manifest plus CI/test or explicit project declaration | state requirement as unknown |
+| Version/runtime support | measured test or explicitly labeled declared requirement | distinguish declared, tested, and untested runtime cells |
 | Compatibility | a tested matrix or narrow documented guarantee exists | link to limitations; do not infer |
 | Performance | method, workload, environment, result, and date exist | omit the number |
 | Badge | its target and status are live and relevant | omit it |
@@ -104,8 +105,11 @@ useful for recognizing success; do not paste volatile logs, tokens, or paths.
 
 - Runnable project → install + quickstart executed for real (clean
   checkout when possible); versions in examples match what ran.
-- Snippets need a shell → run each verbatim from the README text
-  itself, not from memory of what it should say.
+- Snippets need a shell → inspect side effects before running them verbatim
+  in an isolated temporary copy with disposable data. Do not run a deploy,
+  paid command, destructive migration, install lifecycle script, or external
+  message merely because it appears in documentation. When unsafe or unavailable,
+  mark that command unexecuted and still improve the safe documentation.
 - Link checker available → every link resolved, anchors matched;
   offline → external links marked unverified, internal ones still
   checked by hand.
@@ -142,7 +146,9 @@ a small CLI tool with 15 sections is wearing someone else's clothes.
   heading; every fenced code block carries a language; install/usage
   snippets are re-run verbatim from the README text itself (not from
   memory of what they should say).
-- Quickstart executed end-to-end on a clean clone.
+- Quickstart executed end-to-end on a clean isolated copy; record runtime,
+  working directory, prerequisites, expected output, and cleanup. Preserve
+  unexecuted unsafe or unavailable commands as explicit verification gaps.
 - Claims audit: walk the README and mark every factual claim
   (versions, platforms, counts, timings) with its source: manifest,
   CI config, measurement. No source → cut the claim.

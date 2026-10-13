@@ -16,7 +16,13 @@ change; it makes an already-authorized change safer to execute.
 | Recovery | undo path, or why history/remote recovery is not simple |
 
 Refresh preconditions immediately before a mutation. A ref changed after audit
-is a new target.
+is a new target. Preserve staged, unstaged, untracked, and relevant ignored user
+files separately. Capture status with `git status --porcelain=v1 -z --untracked-files=all`,
+staged and unstaged diffs, and `git worktree list --porcelain`. A normal status
+omits ignored files; ignored does not mean disposable. Do not use blanket
+reset, restore, stash, clean, or add-all to manufacture a clean tree. For an
+authorized deletion, inspect a path-limited dry-run first and recheck its exact
+target immediately before acting; dry-run output itself is not authorization.
 
 ## Branch and tag candidates
 

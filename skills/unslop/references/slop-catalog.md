@@ -25,9 +25,9 @@ to every entry: file:line or it isn't a finding.
 - **Duplicated logic**: the same transformation in several files;
   consolidate toward one home.
 - **Premature / Zombie abstractions**: base classes with one subclass,
-  strategy patterns with one strategy, "flexible" config for one use. AI
-  agents often hallucinate these layers from their 2015-era training bias.
-  Inline them; add abstraction when the second real case appears.
+  strategy patterns with one strategy, "flexible" config for one use.
+  Inspect actual costs and extension constraints before inlining; an interface
+  can deliberately isolate an external service even with one implementation.
 - **Needless indirection**: wrapper-of-wrapper calls, event buses for
   two listeners, "managers" that manage nothing. Flatten.
 - **Giant utility files**: `utils.ts` as a landfill; split by domain or

@@ -1,0 +1,1311 @@
+{
+  "date": "2026-10-14",
+  "owner": "safety_shipping",
+  "baseline_commit": "66668739d4e3b99aab30bdea9594ca6361072c84",
+  "status": "scoped implementation complete; independent verification and source-depth expansion pending",
+  "plan": [
+    {
+      "files": "skills/{sleuth,referee,harden,unslop,janitor,frontpage,findable,frugal,cleared,runway}/**",
+      "change": "Narrow domain-specific correction of contradictory or unsupported advice; preserve established workflows and add runnable offline examples only where they expose an invariant.",
+      "risk": "Instruction regressions; no live-system mutation permitted."
+    },
+    {
+      "files": "docs/research/<owned>.md and skills/<owned>/references/research.md",
+      "change": "Record current primary-source decisions and explicitly distinguish historical unsupported labels, original hypotheses, source access, and verification gaps.",
+      "risk": "Sources are guidance, not empirical agent-lift evidence."
+    },
+    {
+      "files": "evals/workflow/scenarios/<owned>.md",
+      "change": "Extend original five cases to ten with independent domain-specific checks including non-trigger, adverse, recovery and cross-stack paths.",
+      "risk": "Authored cases remain unexecuted behavioral evaluations."
+    }
+  ],
+  "failure_recovery": "Keep existing frozen outcome tasks unchanged; report rubric conflicts to primary. Revert only own batch if deterministic verification fails. Preserve shared work and pre-existing dirty Git state.",
+  "skills": [
+    {
+      "skill": "sleuth",
+      "owner": "causal debugging; hotpath owns measured performance, proof owns test strategy",
+      "before": "Failed fix was declared proof that the hypothesis is dead; stack direction and 2026 trace/APM assertions were universal.",
+      "change": "Separate failed intervention from rejected prediction; runtime-specific exception order; competing hypotheses only when plausible; observable traces without hidden reasoning.",
+      "sources": [
+        [
+          "Google SRE",
+          "Effective Troubleshooting",
+          "https://sre.google/sre-book/effective-troubleshooting/",
+          "2016",
+          "SRE book chapter",
+          "Hypothesis-driven observation supports diagnosis, not guaranteed causation."
+        ],
+        [
+          "Python Software Foundation",
+          "traceback",
+          "https://docs.python.org/3/library/traceback.html",
+          "living; retrieved 2026-10-14",
+          "3.15 documentation; target runtime must be detected",
+          "Exception chains and frame order are runtime-specific."
+        ],
+        [
+          "OpenTelemetry",
+          "Signals",
+          "https://opentelemetry.io/docs/concepts/signals/",
+          "living; date not established",
+          "current concepts documentation",
+          "Traces, logs and metrics are complementary observations."
+        ]
+      ],
+      "failures": [
+        "Failed patch incorrectly kills a still-plausible hypothesis [O: SKILL banned list]",
+        "Universal bottom-first stack rule mislocates Python throw site [O: techniques]",
+        "Invented 2026 APM limitation demands hidden reasoning traces [O: techniques]",
+        "Forced second hypothesis adds theater to deterministic contract defect [O: workflow]",
+        "Cache returns old value after set [R: sleuth-cache fixture]",
+        "Timezone change mistaken for data corruption",
+        "Logging perturbs race ordering",
+        "Sampling hides one failing request",
+        "Retry conceals repeated side effect",
+        "Bisect classifies skipped build failure as product bad",
+        "Wrong release telemetry attributed to candidate",
+        "Mitigation reported as causal fix",
+        "Production payload copied with PII",
+        "A failing test is the defect rather than product",
+        "Unreachable upstream dependency prevents replay"
+      ],
+      "status": "implemented; deterministic fixture/helper checks PASS; live behavior and comparative lift UNVERIFIED",
+      "files": [
+        "skills/sleuth/SKILL.md",
+        "skills/sleuth/references/research.md",
+        "skills/sleuth/references/techniques.md",
+        "docs/research/sleuth.md",
+        "evals/workflow/scenarios/sleuth.md"
+      ],
+      "risks": "Instruction behavior requires independent evaluation; source-depth gaps explicit",
+      "source_access": "individual primary documents fetched 2026-10-14",
+      "tests": [
+        {
+          "skill": "sleuth",
+          "label": "seeded failing behavior reproduced",
+          "command": [
+            "python3",
+            "-c",
+            "from cache import Cache; c=Cache(); c.set('a',1); assert c.get('a')==1; c.set('a',2); assert c._store['a']==2 and c.get('a')==1 and c.hits==1; print('baseline witness: store2, cached read1, hit retained')"
+          ],
+          "exit_code": 0,
+          "expected_exit": 0,
+          "passed": true,
+          "stdout": "baseline witness: store2, cached read1, hit retained\n",
+          "stderr": "",
+          "limitation": "Deterministic fixture/helper check only; no agent trial or skill effectiveness measured."
+        }
+      ],
+      "observed_outcome": "Local seed reproduced or characterization executed; specific instruction contradictions corrected. Helpers validated where present. Agent effectiveness remains UNVERIFIED.",
+      "limits": "No paid or live agent campaign; runtime compatibility beyond observed host untested; source-perspective/depth gaps listed in individual research note.",
+      "current_status": {
+        "implementation": "PASS",
+        "local_deterministic": "PASS",
+        "activation": "UNVERIFIED",
+        "independent_agent_behavior": "UNVERIFIED",
+        "comparative_lift": "UNVERIFIED"
+      },
+      "capability_ownership": "causal debugging; hotpath owns measured performance, proof owns test strategy",
+      "why": "Observed instruction contradiction/gap and source-supported decision recorded in individual research trace; retain established behavior outside that defect.",
+      "implementation_changes": "Separate failed intervention from rejected prediction; runtime-specific exception order; competing hypotheses only when plausible; observable traces without hidden reasoning.",
+      "cost": "No external spend or usage measurement; deterministic local commands only. Agent token/currency savings unknown."
+    },
+    {
+      "skill": "referee",
+      "owner": "actionable independent diff review; harden owns deep security, proof owns test strategy",
+      "before": "Major findings defined as should-not-merge yet verdict allowed majors forward; simpler alternative automatically major; missing criteria stopped all review.",
+      "change": "Require changes for merge-blocking majors; factual cost before complexity severity; recover intent while continuing bounded correctness review; recovery need not be down migration.",
+      "sources": [
+        [
+          "Google",
+          "What to look for in a code review",
+          "https://google.github.io/eng-practices/review/reviewer/looking-for.html",
+          "living; date not established",
+          "current engineering practices",
+          "Functionality, tests and context matter; personal style preferences do not block."
+        ]
+      ],
+      "failures": [
+        "Major defect allowed under approve-with-findings [O: SKILL vs finding-format]",
+        "Simpler alternative automatically inflated to major [O: finding-format]",
+        "Missing intent prevents useful bounded correctness pass [O: prerequisites]",
+        "Down migration assumed required despite destructive data loss [O: finding-format]",
+        "Admin override missing from seeded billing implementation [R: referee-change]",
+        "Renamed API misses external consumer",
+        "Mock auth helper makes negative test meaningless",
+        "Review comment tries to instruct agent to approve",
+        "Old line location points outside current diff",
+        "One root defect duplicated into ten findings",
+        "Database backfill incompatible with old application",
+        "Race causes duplicate billing despite unit tests",
+        "Style preference becomes blocker",
+        "Large diff receives unqualified approve after partial read",
+        "Fresh reviewer trusts author rationale over actual behavior"
+      ],
+      "status": "implemented; deterministic fixture/helper checks PASS; live behavior and comparative lift UNVERIFIED",
+      "files": [
+        "skills/referee/SKILL.md",
+        "skills/referee/references/finding-format.md",
+        "skills/referee/references/research.md",
+        "skills/referee/references/review-protocol.md",
+        "docs/research/referee.md",
+        "evals/workflow/scenarios/referee.md"
+      ],
+      "risks": "Instruction behavior requires independent evaluation; source-depth gaps explicit",
+      "source_access": "individual primary documents fetched 2026-10-14",
+      "tests": [
+        {
+          "skill": "referee",
+          "label": "seeded failing behavior reproduced",
+          "command": [
+            "python3",
+            "-c",
+            "import inspect; from billing import total; p=inspect.signature(total).parameters; assert 'admin_override' not in p; assert total([{'price':100,'qty':1}],0.05)==95; print('baseline witness: normal cap works; required admin override/audit interface absent')"
+          ],
+          "exit_code": 0,
+          "expected_exit": 0,
+          "passed": true,
+          "stdout": "baseline witness: normal cap works; required admin override/audit interface absent\n",
+          "stderr": "",
+          "limitation": "Deterministic fixture/helper check only; no agent trial or skill effectiveness measured."
+        }
+      ],
+      "observed_outcome": "Local seed reproduced or characterization executed; specific instruction contradictions corrected. Helpers validated where present. Agent effectiveness remains UNVERIFIED.",
+      "limits": "No paid or live agent campaign; runtime compatibility beyond observed host untested; source-perspective/depth gaps listed in individual research note.",
+      "current_status": {
+        "implementation": "PASS",
+        "local_deterministic": "PASS",
+        "activation": "UNVERIFIED",
+        "independent_agent_behavior": "UNVERIFIED",
+        "comparative_lift": "UNVERIFIED"
+      },
+      "capability_ownership": "actionable independent diff review; harden owns deep security, proof owns test strategy",
+      "why": "Observed instruction contradiction/gap and source-supported decision recorded in individual research trace; retain established behavior outside that defect.",
+      "implementation_changes": "Require changes for merge-blocking majors; factual cost before complexity severity; recover intent while continuing bounded correctness review; recovery need not be down migration.",
+      "cost": "No external spend or usage measurement; deterministic local commands only. Agent token/currency savings unknown."
+    },
+    {
+      "skill": "harden",
+      "owner": "security trust boundaries, tenancy, agent/tool abuse; backend implements domain contracts",
+      "before": "2021 category IDs mislabeled 2025; prompt injection equated with RCE; raw secret history diff encouraged; dev-only interpreted as safe.",
+      "change": "Correct versioned OWASP mapping, include supply chain/exception handling; redact history output; tenant denial requires no side effect and downstream model-independent policy.",
+      "sources": [
+        [
+          "OWASP",
+          "Top 10:2025",
+          "https://top10.owasp.org/2025/",
+          "2025",
+          "2025 edition",
+          "The published category IDs differ from the older list."
+        ],
+        [
+          "OWASP",
+          "API1 Broken Object Level Authorization",
+          "https://api-security.owasp.org/editions/2023/en/0xa1-broken-object-level-authorization/",
+          "2023",
+          "API Security Top 10 2023",
+          "Object authorization must hold at each reachable operation."
+        ],
+        [
+          "OWASP GenAI",
+          "LLM01 Prompt Injection",
+          "https://genai.owasp.org/llmrisk/llm01-prompt-injection/",
+          "2025",
+          "LLM01:2025",
+          "Injected external instructions can cross model/tool boundaries; impact depends on capabilities."
+        ],
+        [
+          "GitHub",
+          "Secure use reference",
+          "https://docs.github.com/en/actions/reference/security/secure-use",
+          "living; date not established",
+          "current Actions documentation",
+          "Privileged workflows executing untrusted PR content can expose credentials."
+        ]
+      ],
+      "failures": [
+        "Old OWASP IDs shipped under 2025 header [O: attack-surface]",
+        "Prompt injection universally called RCE [O: attack-surface]",
+        "Raw history diff can reproduce secrets [O: attack-surface]",
+        "SQL interpolation leaks other owner notes [R: harden-notes]",
+        "Delete path ignores username [R: harden-notes]",
+        "List enforces tenant while export does not",
+        "Cache key omits tenant",
+        "403 emitted after unauthorized write",
+        "Queue worker loses authenticated subject",
+        "Dev dependency executes in secret-bearing CI",
+        "Webhook valid signature permits replay",
+        "Uploaded filename becomes shell argument",
+        "SSRF redirect crosses destination boundary",
+        "Malformed error path fails open",
+        "Injected document asks tool to export another tenant"
+      ],
+      "status": "implemented; deterministic fixture/helper checks PASS; live behavior and comparative lift UNVERIFIED",
+      "files": [
+        "skills/harden/SKILL.md",
+        "skills/harden/references/attack-surface.md",
+        "skills/harden/references/research.md",
+        "docs/research/harden.md",
+        "evals/workflow/scenarios/harden.md"
+      ],
+      "risks": "Instruction behavior requires independent evaluation; source-depth gaps explicit",
+      "source_access": "individual primary documents fetched 2026-10-14",
+      "tests": [
+        {
+          "skill": "harden",
+          "label": "seeded failing behavior reproduced",
+          "command": [
+            "python3",
+            "-c",
+            "from notes import seed,get_note,delete_note; seed(); assert any(r[1]=='bob' for r in get_note('amy','1 OR 1=1')); seed(); assert delete_note('amy',2) and not get_note('bob',2); print('baseline witness: injectable lookup leaks other owner; unauthorized delete has side effect')"
+          ],
+          "exit_code": 0,
+          "expected_exit": 0,
+          "passed": true,
+          "stdout": "baseline witness: injectable lookup leaks other owner; unauthorized delete has side effect\n",
+          "stderr": "",
+          "limitation": "Deterministic fixture/helper check only; no agent trial or skill effectiveness measured."
+        }
+      ],
+      "observed_outcome": "Local seed reproduced or characterization executed; specific instruction contradictions corrected. Helpers validated where present. Agent effectiveness remains UNVERIFIED.",
+      "limits": "No paid or live agent campaign; runtime compatibility beyond observed host untested; source-perspective/depth gaps listed in individual research note.",
+      "current_status": {
+        "implementation": "PASS",
+        "local_deterministic": "PASS",
+        "activation": "UNVERIFIED",
+        "independent_agent_behavior": "UNVERIFIED",
+        "comparative_lift": "UNVERIFIED"
+      },
+      "capability_ownership": "security trust boundaries, tenancy, agent/tool abuse; backend implements domain contracts",
+      "why": "Observed instruction contradiction/gap and source-supported decision recorded in individual research trace; retain established behavior outside that defect.",
+      "implementation_changes": "Correct versioned OWASP mapping, include supply chain/exception handling; redact history output; tenant denial requires no side effect and downstream model-independent policy.",
+      "cost": "No external spend or usage measurement; deterministic local commands only. Agent token/currency savings unknown."
+    },
+    {
+      "skill": "unslop",
+      "owner": "behavior-preserving structure cleanup; sleuth owns bug fix, polish owns appearance",
+      "before": "No tests means no detox contradicted characterization fallback; any red suite forced revert; net-negative lines treated as target; single implementation assumed pointless.",
+      "change": "Bounded characterization and unchanged failing baseline allowed; scope rollback; line delta informational; preserve lifecycle, compatibility and integration seams.",
+      "sources": [
+        [
+          "Martin Fowler",
+          "Refactoring",
+          "https://refactoring.com/",
+          "living; date not established",
+          "current catalog overview",
+          "Refactoring changes structure while preserving observable behavior."
+        ],
+        [
+          "Python Software Foundation",
+          "importlib",
+          "https://docs.python.org/3/library/importlib.html",
+          "living; retrieved 2026-10-14",
+          "3.15 documentation; target runtime detected",
+          "Programmatic imports can make text-search absence misleading."
+        ]
+      ],
+      "failures": [
+        "Formal suite required despite allowed smoke characterization [O: SKILL rules]",
+        "Pre-existing unrelated failure blocks bounded batch [O: SKILL rules]",
+        "Line-count reduction rewards risky deletion [O: workflow]",
+        "One implementation treated as proof interface is pointless [O: slop catalog]",
+        "Legacy pipe export is load-bearing [R: unslop-shop tests]",
+        "Dynamic plugin appears unused in static imports",
+        "Import order changes singleton initialization",
+        "Wrapper removal drops cancellation",
+        "Consolidation changes error ordering",
+        "Dependency needed by code generator removed",
+        "Generated file edited rather than generator",
+        "Game tick extraction changes ordering",
+        "Refactor alters serialized public names",
+        "Existing user edits lost by rollback",
+        "Swallowed error changed under cleanup without product decision"
+      ],
+      "status": "implemented; deterministic fixture/helper checks PASS; live behavior and comparative lift UNVERIFIED",
+      "files": [
+        "skills/unslop/SKILL.md",
+        "skills/unslop/references/cleanup-protocol.md",
+        "skills/unslop/references/research.md",
+        "skills/unslop/references/slop-catalog.md",
+        "docs/research/unslop.md",
+        "evals/workflow/scenarios/unslop.md"
+      ],
+      "risks": "Instruction behavior requires independent evaluation; source-depth gaps explicit",
+      "source_access": "individual primary documents fetched 2026-10-14",
+      "tests": [
+        {
+          "skill": "unslop",
+          "label": "behavior characterization baseline",
+          "command": [
+            "python3",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tests",
+            "-t",
+            "."
+          ],
+          "exit_code": 0,
+          "expected_exit": 0,
+          "passed": true,
+          "stdout": "DEBUG total= 30.0\nDEBUG total= 0\n",
+          "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n",
+          "limitation": "Deterministic fixture/helper check only; no agent trial or skill effectiveness measured."
+        }
+      ],
+      "observed_outcome": "Local seed reproduced or characterization executed; specific instruction contradictions corrected. Helpers validated where present. Agent effectiveness remains UNVERIFIED.",
+      "limits": "No paid or live agent campaign; runtime compatibility beyond observed host untested; source-perspective/depth gaps listed in individual research note.",
+      "current_status": {
+        "implementation": "PASS",
+        "local_deterministic": "PASS",
+        "activation": "UNVERIFIED",
+        "independent_agent_behavior": "UNVERIFIED",
+        "comparative_lift": "UNVERIFIED"
+      },
+      "capability_ownership": "behavior-preserving structure cleanup; sleuth owns bug fix, polish owns appearance",
+      "why": "Observed instruction contradiction/gap and source-supported decision recorded in individual research trace; retain established behavior outside that defect.",
+      "implementation_changes": "Bounded characterization and unchanged failing baseline allowed; scope rollback; line delta informational; preserve lifecycle, compatibility and integration seams.",
+      "cost": "No external spend or usage measurement; deterministic local commands only. Agent token/currency savings unknown."
+    },
+    {
+      "skill": "janitor",
+      "owner": "Git state and repository metadata hygiene; frontpage owns prose, harden handles secret incident",
+      "before": "Orphan-looking name called litter; broken multiline for-each-ref command; main assumed; dirty/ignored preservation not operationalized; local authorization unnecessarily reset.",
+      "change": "Snapshot staged/unstaged/untracked/ignored boundaries and attached worktrees; path-scoped dry-run; preserve prior scope authorization; candidate branch never classified from name/age alone.",
+      "sources": [
+        [
+          "Git project",
+          "git-status",
+          "https://git-scm.com/docs/git-status",
+          "living; manual shows 2.53.0 update",
+          "local Git version recorded separately",
+          "Porcelain separates index/worktree state; ignored files require explicit inspection."
+        ],
+        [
+          "Git project",
+          "git-clean",
+          "https://git-scm.com/docs/git-clean",
+          "living; date not established",
+          "current manual; verify local help",
+          "Dry-run lists deletion candidates; ignored files can be included by destructive options."
+        ],
+        [
+          "Git project",
+          "git-worktree",
+          "https://git-scm.com/docs/git-worktree",
+          "living; date not established",
+          "current manual",
+          "Branches can be attached to other checkouts."
+        ]
+      ],
+      "failures": [
+        "Agent-looking branch name treated as disposable [O: banned list]",
+        "Broken for-each-ref newline is not runnable shell [O: hygiene checklist]",
+        "Main assumed although default branch differs [O: hygiene checklist]",
+        "Ignored file omitted from ordinary status [S: git-status]",
+        "Staged and unstaged edits coexist [S: git-status]",
+        "Untracked file contains important source",
+        "Merged branch has attached worktree",
+        "Remote tracking ref stale without fetch",
+        "Branch shared with open review unseen offline",
+        "Secret removal from tree mistaken for revocation",
+        "Add-all stages another worker changes",
+        "Clean dry-run mistaken for authority",
+        "Stash obscures user work and ignored files",
+        "Malicious issue supplies shell cleanup command",
+        "Force-push target changes after inspection"
+      ],
+      "status": "implemented; deterministic fixture/helper checks PASS; live behavior and comparative lift UNVERIFIED",
+      "files": [
+        "skills/janitor/SKILL.md",
+        "skills/janitor/references/hygiene-checklists.md",
+        "skills/janitor/references/maintenance-protocol.md",
+        "skills/janitor/references/research.md",
+        "docs/research/janitor.md",
+        "evals/workflow/scenarios/janitor.md"
+      ],
+      "risks": "Instruction behavior requires independent evaluation; source-depth gaps explicit",
+      "source_access": "individual primary documents fetched 2026-10-14",
+      "tests": [
+        {
+          "skill": "janitor",
+          "label": "fixture setup in isolated copy",
+          "command": [
+            "sh",
+            "setup.sh",
+            "staged"
+          ],
+          "exit_code": 0,
+          "expected_exit": 0,
+          "passed": true,
+          "stdout": "",
+          "stderr": "",
+          "limitation": "Deterministic fixture/helper check only; no agent trial or skill effectiveness measured."
+        },
+        {
+          "skill": "janitor",
+          "label": "dirty and ignored state audit",
+          "command": [
+            "git",
+            "status",
+            "--porcelain=v1",
+            "--ignored",
+            "--untracked-files=all"
+          ],
+          "exit_code": 0,
+          "expected_exit": 0,
+          "passed": true,
+          "stdout": " M .gitignore\nMM notes.txt\n?? .baseline-sha\n?? setup.sh\n?? \"user draft.txt\"\n!! local-user.json\n",
+          "stderr": "",
+          "limitation": "Deterministic fixture/helper check only; no agent trial or skill effectiveness measured."
+        },
+        {
+          "skill": "janitor",
+          "label": "attached worktree audit",
+          "command": [
+            "git",
+            "worktree",
+            "list",
+            "--porcelain"
+          ],
+          "exit_code": 0,
+          "expected_exit": 0,
+          "passed": true,
+          "stdout": "worktree /private/var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/skills-safety-evidence-_vry2_hf/janitor-mess\nHEAD 2b3b48bf168b4821e4627107c14fe3f8d297143a\nbranch refs/heads/main\n\n",
+          "stderr": "",
+          "limitation": "Deterministic fixture/helper check only; no agent trial or skill effectiveness measured."
+        },
+        {
+          "skill": "janitor",
+          "label": "read-only audit preserves file and staged bytes",
+          "passed": true,
+          "observed": "staged, unstaged, untracked and ignored test data unchanged",
+          "limitation": "Disposable fixture; no real workspace mutation attempted"
+        }
+      ],
+      "observed_outcome": "Local seed reproduced or characterization executed; specific instruction contradictions corrected. Helpers validated where present. Agent effectiveness remains UNVERIFIED.",
+      "limits": "No paid or live agent campaign; runtime compatibility beyond observed host untested; source-perspective/depth gaps listed in individual research note.",
+      "current_status": {
+        "implementation": "PASS",
+        "local_deterministic": "PASS",
+        "activation": "UNVERIFIED",
+        "independent_agent_behavior": "UNVERIFIED",
+        "comparative_lift": "UNVERIFIED"
+      },
+      "capability_ownership": "Git state and repository metadata hygiene; frontpage owns prose, harden handles secret incident",
+      "why": "Observed instruction contradiction/gap and source-supported decision recorded in individual research trace; retain established behavior outside that defect.",
+      "implementation_changes": "Snapshot staged/unstaged/untracked/ignored boundaries and attached worktrees; path-scoped dry-run; preserve prior scope authorization; candidate branch never classified from name/age alone.",
+      "cost": "No external spend or usage measurement; deterministic local commands only. Agent token/currency savings unknown."
+    },
+    {
+      "skill": "frontpage",
+      "owner": "truthful README and onboarding; janitor handles metadata, findable handles public web machine layer",
+      "before": "Run every snippet verbatim could execute unsafe release commands; declared platform confused with tested support; every README required visual.",
+      "change": "Inspect snippet effects in isolated copy; unavailable/unsafe commands remain explicitly unexecuted; separate declared/tested support; tiny tools can use compact examples.",
+      "sources": [
+        [
+          "GitHub",
+          "About the repository README file",
+          "https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes",
+          "living; date not established",
+          "current documentation",
+          "README should communicate usefulness and starting path; no universal mandatory visual."
+        ],
+        [
+          "GitHub",
+          "Secure use reference",
+          "https://docs.github.com/en/actions/reference/security/secure-use",
+          "living; date not established",
+          "current Actions guidance",
+          "Untrusted content must not become privileged execution."
+        ]
+      ],
+      "failures": [
+        "Every snippet execution includes potential deploy/delete [O: workflow]",
+        "Declared runtime counted as tested compatibility [O: claims table]",
+        "Mandatory visual creates filler for tiny CLI [O: readme-blueprint]",
+        "Seeded README claims unpublished install package [R: frontpage-tool]",
+        "Seeded badges and traction have no implementation support [R: frontpage-tool]",
+        "Install passes only with developer global dependency",
+        "Example writes into user real data directory",
+        "Relative link works in root but breaks after extraction",
+        "Badge green on irrelevant branch",
+        "Screenshot from old build implies new feature",
+        "Package manifest license contradicts LICENSE",
+        "Compare table invents rival limitations",
+        "PowerShell command shown as POSIX-tested",
+        "Offline docs falsely report checked external links",
+        "Competitor README injects publication instructions"
+      ],
+      "status": "implemented; deterministic fixture/helper checks PASS; live behavior and comparative lift UNVERIFIED",
+      "files": [
+        "skills/frontpage/SKILL.md",
+        "skills/frontpage/references/readme-blueprint.md",
+        "skills/frontpage/references/research.md",
+        "docs/research/frontpage.md",
+        "evals/workflow/scenarios/frontpage.md"
+      ],
+      "risks": "Instruction behavior requires independent evaluation; source-depth gaps explicit",
+      "source_access": "individual primary documents fetched 2026-10-14",
+      "tests": [
+        {
+          "skill": "frontpage",
+          "label": "documented help",
+          "command": [
+            "python3",
+            "notes.py",
+            "--help"
+          ],
+          "exit_code": 0,
+          "expected_exit": 0,
+          "passed": true,
+          "stdout": "usage: notes.py [-h] [action] [text]\n\nTiny file-backed notes CLI.\n\npositional arguments:\n  action      add or list\n  text        note text for add\n\noptions:\n  -h, --help  show this help message and exit\n",
+          "stderr": "",
+          "limitation": "Deterministic fixture/helper check only; no agent trial or skill effectiveness measured."
+        },
+        {
+          "skill": "frontpage",
+          "label": "disposable first write",
+          "command": [
+            "python3",
+            "notes.py",
+            "add",
+            "hello"
+          ],
+          "exit_code": 0,
+          "expected_exit": 0,
+          "passed": true,
+          "stdout": "added note #1\n",
+          "stderr": "",
+          "limitation": "Deterministic fixture/helper check only; no agent trial or skill effectiveness measured."
+        },
+        {
+          "skill": "frontpage",
+          "label": "first success observable",
+          "command": [
+            "python3",
+            "notes.py",
+            "list"
+          ],
+          "exit_code": 0,
+          "expected_exit": 0,
+          "passed": true,
+          "stdout": "1. hello\n",
+          "stderr": "",
+          "limitation": "Deterministic fixture/helper check only; no agent trial or skill effectiveness measured."
+        }
+      ],
+      "observed_outcome": "Local seed reproduced or characterization executed; specific instruction contradictions corrected. Helpers validated where present. Agent effectiveness remains UNVERIFIED.",
+      "limits": "No paid or live agent campaign; runtime compatibility beyond observed host untested; source-perspective/depth gaps listed in individual research note.",
+      "current_status": {
+        "implementation": "PASS",
+        "local_deterministic": "PASS",
+        "activation": "UNVERIFIED",
+        "independent_agent_behavior": "UNVERIFIED",
+        "comparative_lift": "UNVERIFIED"
+      },
+      "capability_ownership": "truthful README and onboarding; janitor handles metadata, findable handles public web machine layer",
+      "why": "Observed instruction contradiction/gap and source-supported decision recorded in individual research trace; retain established behavior outside that defect.",
+      "implementation_changes": "Inspect snippet effects in isolated copy; unavailable/unsafe commands remain explicitly unexecuted; separate declared/tested support; tiny tools can use compact examples.",
+      "cost": "No external spend or usage measurement; deterministic local commands only. Agent token/currency savings unknown."
+    },
+    {
+      "skill": "findable",
+      "owner": "technical public web discovery/indexing; frontpage owns GitHub prose, janitor owns topics",
+      "before": "Curl called rendered HTML; client metadata universally invisible; robots/noindex advice conflicted; heading count and 2026 penalty claims unsupported.",
+      "change": "Separate initial response, rendered DOM and engine observation; noindex crawler-access rule; auth for privacy; equivalent-only canonicalization; no ranking/heading-count guarantees.",
+      "sources": [
+        [
+          "Google Search Central",
+          "JavaScript SEO basics",
+          "https://developers.google.com/search/docs/crawling-indexing/javascript/javascript-seo-basics",
+          "living; date not established",
+          "current Google Search guidance",
+          "Google can process rendered JavaScript content; consumers differ."
+        ],
+        [
+          "Google Search Central",
+          "Block indexing with noindex",
+          "https://developers.google.com/search/docs/crawling-indexing/block-indexing",
+          "2025-12-10 as page states",
+          "current Google Search guidance",
+          "Blocked crawling can prevent reading noindex; noindex is not access control."
+        ],
+        [
+          "Google Search Central",
+          "Canonical URLs",
+          "https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls",
+          "living; date not established",
+          "current guidance",
+          "Canonical signals consolidate materially duplicate URLs, not arbitrary different pages."
+        ],
+        [
+          "Google Search Central",
+          "Structured data policies",
+          "https://developers.google.com/search/docs/appearance/structured-data/sd-policies",
+          "living; date not established",
+          "current policies",
+          "Syntax validity does not establish eligibility or display."
+        ]
+      ],
+      "failures": [
+        "Curl response called rendered DOM [O: tool fallback]",
+        "Correct JS-rendering prerequisite contradicted by banned list [O: SKILL]",
+        "Robots block prevents crawler seeing noindex [S: Google]",
+        "Private page privacy delegated to noindex [O: SEO checklist]",
+        "Seeded sitemap references missing page [R: findable-site]",
+        "Pagination canonicalized to different item set",
+        "Structured data passes JSON parse but invents reviews",
+        "CDN header overrides source robots meta",
+        "Soft404 returns 200",
+        "Locale alternate lacks reciprocal link",
+        "Client canonical differs from initial response",
+        "OG asset authenticated or missing",
+        "Query crawler trap generates infinite duplicates",
+        "Private staging included in public sitemap",
+        "Search indexing lag mistaken for failed code fix"
+      ],
+      "status": "implemented; deterministic fixture/helper checks PASS; live behavior and comparative lift UNVERIFIED",
+      "files": [
+        "skills/findable/SKILL.md",
+        "skills/findable/references/research.md",
+        "skills/findable/references/seo-checklist.md",
+        "docs/research/findable.md",
+        "evals/workflow/scenarios/findable.md"
+      ],
+      "risks": "Instruction behavior requires independent evaluation; source-depth gaps explicit",
+      "source_access": "individual primary documents fetched 2026-10-14",
+      "tests": [
+        {
+          "skill": "findable",
+          "label": "initial HTML and crawler-control witness",
+          "command": [
+            "python3",
+            "-c",
+            "from pathlib import Path; import re,xml.etree.ElementTree as E; a=Path('index.html').read_text(); b=Path('about.html').read_text(); assert re.search(r'<title>(.*?)</title>',a).group(1)==re.search(r'<title>(.*?)</title>',b).group(1); assert 'noindex' in a and 'aggregateRating' in a; assert 'Disallow: /' in Path('robots.txt').read_text(); assert 'missing-page' in Path('sitemap.xml').read_text(); E.parse('sitemap.xml'); print('baseline witness: duplicate title, noindex plus robots block, unsubstantiated rating, missing sitemap URL')"
+          ],
+          "exit_code": 0,
+          "expected_exit": 0,
+          "passed": true,
+          "stdout": "baseline witness: duplicate title, noindex plus robots block, unsubstantiated rating, missing sitemap URL\n",
+          "stderr": "",
+          "limitation": "Deterministic fixture/helper check only; no agent trial or skill effectiveness measured."
+        }
+      ],
+      "observed_outcome": "Local seed reproduced or characterization executed; specific instruction contradictions corrected. Helpers validated where present. Agent effectiveness remains UNVERIFIED.",
+      "limits": "No paid or live agent campaign; runtime compatibility beyond observed host untested; source-perspective/depth gaps listed in individual research note.",
+      "current_status": {
+        "implementation": "PASS",
+        "local_deterministic": "PASS",
+        "activation": "UNVERIFIED",
+        "independent_agent_behavior": "UNVERIFIED",
+        "comparative_lift": "UNVERIFIED"
+      },
+      "capability_ownership": "technical public web discovery/indexing; frontpage owns GitHub prose, janitor owns topics",
+      "why": "Observed instruction contradiction/gap and source-supported decision recorded in individual research trace; retain established behavior outside that defect.",
+      "implementation_changes": "Separate initial response, rendered DOM and engine observation; noindex crawler-access rule; auth for privacy; equivalent-only canonicalization; no ranking/heading-count guarantees.",
+      "cost": "No external spend or usage measurement; deterministic local commands only. Agent token/currency savings unknown."
+    },
+    {
+      "skill": "frugal",
+      "owner": "context and successful-task cost; recall owns durable memory, hotpath owns app performance",
+      "before": "Retry automatically declared a loss; double retry count assumed erases saving; KPI lacked aggregate failed-task denominator.",
+      "change": "Compute all-attempt cost per independently correct task; unknown usage stays unknown; invalidate stale summaries and preserve producer exit status under output caps.",
+      "sources": [
+        [
+          "Anthropic",
+          "Effective context engineering for AI agents",
+          "https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents",
+          "2025-09-29",
+          "engineering article",
+          "Select relevant context and retain high-signal state; this is not proof of cost savings."
+        ]
+      ],
+      "failures": [
+        "Any retry treated as automatic cost regression [O: measurement]",
+        "Doubled retries claimed to erase all savings [O: SKILL]",
+        "Failed tasks can disappear from successful-task cost [O: missing aggregate method]",
+        "Zero success denominator could imply zero cost [H: arithmetic guard]",
+        "Byte reduction confused with provider tokens [O: protected existing categories]",
+        "Cache read pricing omitted from currency total",
+        "Model switch compared as same intervention",
+        "Summary remains after source edit",
+        "Output head succeeds while tests fail",
+        "Truncated log drops only failure",
+        "Compaction loses authorization constraint",
+        "Pointer inaccessible to receiving worker",
+        "Task-critical stack chain overcompressed",
+        "Parallel handoffs cost more than local lookup",
+        "Empty telemetry fabricated as measured savings"
+      ],
+      "status": "implemented; deterministic fixture/helper checks PASS; live behavior and comparative lift UNVERIFIED",
+      "files": [
+        "skills/frugal/SKILL.md",
+        "skills/frugal/references/budget-protocol.md",
+        "skills/frugal/references/measurement.md",
+        "skills/frugal/references/research.md",
+        "skills/frugal/scripts/cost-report.py",
+        "docs/research/frugal.md",
+        "evals/workflow/scenarios/frugal.md"
+      ],
+      "risks": "Instruction behavior requires independent evaluation; source-depth gaps explicit",
+      "source_access": "individual primary documents fetched 2026-10-14",
+      "tests": [
+        {
+          "skill": "frugal",
+          "label": "nonlossy bounded log extraction",
+          "command": [
+            "python3",
+            "-c",
+            "from pathlib import Path; hits=[n for n,line in enumerate(Path('data.log').read_text().splitlines(),1) if 'ERROR' in line]; assert hits==[412,987,1330]; print('exact error lines:',hits)"
+          ],
+          "exit_code": 0,
+          "expected_exit": 0,
+          "passed": true,
+          "stdout": "exact error lines: [412, 987, 1330]\n",
+          "stderr": "",
+          "limitation": "Deterministic fixture/helper check only; no agent trial or skill effectiveness measured."
+        },
+        {
+          "skill": "frugal",
+          "label": "new deterministic helper regression",
+          "command": [
+            "python3",
+            "/Users/uday/Skills/skills/frugal/scripts/cost-report.py",
+            "--self-test"
+          ],
+          "exit_code": 0,
+          "expected_exit": 0,
+          "passed": true,
+          "stdout": "PASS: failed attempts counted; zero success/missing usage undefined; invalid costs rejected\n",
+          "stderr": "",
+          "limitation": "Deterministic fixture/helper check only; no agent trial or skill effectiveness measured."
+        }
+      ],
+      "observed_outcome": "Local seed reproduced or characterization executed; specific instruction contradictions corrected. Helpers validated where present. Agent effectiveness remains UNVERIFIED.",
+      "limits": "No paid or live agent campaign; runtime compatibility beyond observed host untested; source-perspective/depth gaps listed in individual research note.",
+      "current_status": {
+        "implementation": "PASS",
+        "local_deterministic": "PASS",
+        "activation": "UNVERIFIED",
+        "independent_agent_behavior": "UNVERIFIED",
+        "comparative_lift": "UNVERIFIED"
+      },
+      "capability_ownership": "context and successful-task cost; recall owns durable memory, hotpath owns app performance",
+      "why": "Observed instruction contradiction/gap and source-supported decision recorded in individual research trace; retain established behavior outside that defect.",
+      "implementation_changes": "Compute all-attempt cost per independently correct task; unknown usage stays unknown; invalidate stale summaries and preserve producer exit status under output caps.",
+      "cost": "No external spend or usage measurement; deterministic local commands only. Agent token/currency savings unknown."
+    },
+    {
+      "skill": "cleared",
+      "owner": "risk-proportional release decision; runway owns executing release, individual specialists supply evidence",
+      "before": "Unknown critical dimensions warning-capped; every completion required clean/pushed Git and build; full suite and down migration blanket gates.",
+      "change": "Unknown critical auth/data evidence blocks regardless headline feature; immutable candidate-scoped evidence; build/test selection proportional; compatible recovery rather than unsafe down requirement.",
+      "sources": [
+        [
+          "NIST",
+          "Secure Software Development Framework",
+          "https://csrc.nist.gov/pubs/sp/800/218/final",
+          "2022-02-03",
+          "SP 800-218 1.1 final",
+          "Select secure lifecycle practices by context; framework is not a universal pass checklist."
+        ],
+        [
+          "SLSA",
+          "Security levels",
+          "https://slsa.dev/spec/v1.0/levels",
+          "versioned; date not established",
+          "1.0 archived guidance, not 1.2",
+          "Provenance concerns artifact/build identity; presence is not application correctness."
+        ]
+      ],
+      "failures": [
+        "Unknown critical auth treated as warning [O: entrypoint]",
+        "Docs typo blocked on unrelated build/migration ceremony [O: gate dimensions]",
+        "Clean/pushed Git applied to every local task [O: workflow]",
+        "Required down migration conflicts with safe forward repair [O: gate dimensions]",
+        "Fixture version contradicts release tests [R: cleared-release]",
+        "CI green belongs to different commit",
+        "Security evidence stale after auth edit",
+        "Shared schema excluded from partial release",
+        "No owner for accepting warning",
+        "Mock core journey passes while live contract absent",
+        "Backup exists but restoration untested",
+        "Rollback cannot read newly written data",
+        "Emergency skips safety evidence without owner",
+        "Dependency scanner critical not reachable",
+        "Claimed READY omits one unmet acceptance criterion"
+      ],
+      "status": "implemented; deterministic fixture/helper checks PASS; live behavior and comparative lift UNVERIFIED",
+      "files": [
+        "skills/cleared/SKILL.md",
+        "skills/cleared/references/gate-dimensions.md",
+        "skills/cleared/references/research.md",
+        "docs/research/cleared.md",
+        "evals/workflow/scenarios/cleared.md"
+      ],
+      "risks": "Instruction behavior requires independent evaluation; source-depth gaps explicit",
+      "source_access": "NIST and SLSA 1.0 retrieved; SLSA 1.2 path failed. Unsupported prior 1.2 label corrected.",
+      "tests": [
+        {
+          "skill": "cleared",
+          "label": "read-only red gate witness",
+          "command": [
+            "python3",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tests",
+            "-t",
+            "."
+          ],
+          "exit_code": 1,
+          "expected_exit": 1,
+          "passed": true,
+          "stdout": "",
+          "stderr": "..F\n======================================================================\nFAIL: test_version_matches_docs (tests.test_release.TestRelease.test_version_matches_docs)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/skills-safety-evidence-_vry2_hf/cleared-release/tests/test_release.py\", line 19, in test_version_matches_docs\n    self.assertEqual(release.__version__, \"2.0.0\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: '1.9.0' != '2.0.0'\n- 1.9.0\n+ 2.0.0\n\n\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nFAILED (failures=1)\n",
+          "limitation": "Deterministic fixture/helper check only; no agent trial or skill effectiveness measured."
+        }
+      ],
+      "observed_outcome": "Local seed reproduced or characterization executed; specific instruction contradictions corrected. Helpers validated where present. Agent effectiveness remains UNVERIFIED.",
+      "limits": "No paid or live agent campaign; runtime compatibility beyond observed host untested; source-perspective/depth gaps listed in individual research note.",
+      "current_status": {
+        "implementation": "PASS",
+        "local_deterministic": "PASS",
+        "activation": "UNVERIFIED",
+        "independent_agent_behavior": "UNVERIFIED",
+        "comparative_lift": "UNVERIFIED"
+      },
+      "capability_ownership": "risk-proportional release decision; runway owns executing release, individual specialists supply evidence",
+      "why": "Observed instruction contradiction/gap and source-supported decision recorded in individual research trace; retain established behavior outside that defect.",
+      "implementation_changes": "Unknown critical auth/data evidence blocks regardless headline feature; immutable candidate-scoped evidence; build/test selection proportional; compatible recovery rather than unsafe down requirement.",
+      "cost": "No external spend or usage measurement; deterministic local commands only. Agent token/currency savings unknown."
+    },
+    {
+      "skill": "runway",
+      "owner": "candidate deployment, live verification and recovery; cleared judges readiness, headroom designs capacity",
+      "before": "Preview freely authorized regardless paid/shared data risk; local build always required; rolling assumed everywhere; speculative rollback commands; deployment existence confused with verified behavior.",
+      "change": "Scope preview data/cost/exposure; accept trusted candidate CI build; preserve dirty work; platform-checked recovery; bounded fingerprint/smoke observations and data-compatible rollback.",
+      "sources": [
+        [
+          "Kubernetes project",
+          "Deployments",
+          "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/",
+          "living; date not established",
+          "current concepts documentation; target cluster version required",
+          "Controller progress and Deployment revision rollback do not restore application data."
+        ],
+        [
+          "Vercel",
+          "Performing an Instant Rollback",
+          "https://vercel.com/docs/instant-rollback",
+          "living; date not established",
+          "current platform guidance; plan and CLI verified per project",
+          "Rollback restores previous deployment assumptions; external data and configuration must be checked separately."
+        ]
+      ],
+      "failures": [
+        "Preview automatically allowed against shared production data [O: safety rails]",
+        "Mandatory local build duplicates trusted pipeline [O: prerequisites]",
+        "Rolling assumed default for every platform [O: workflow]",
+        "Unverified Netlify/Workers rollback command supplied for Pages [O: platforms]",
+        "CLI zero accepted while old public fingerprint remains [H: receipt guard]",
+        "Remote build queued not complete",
+        "Public alias routes to older build",
+        "Cache-busted route new but normal user route old",
+        "Health200 but checkout fails",
+        "Secrets presence check prints values",
+        "Schema migration makes old build incompatible",
+        "Rollback command succeeds but prior smoke fails",
+        "Missing access claimed as deployment success",
+        "Preview resource spends beyond authorization",
+        "Installed mobile binaries cannot instantly be reverted"
+      ],
+      "status": "implemented; deterministic fixture/helper checks PASS; live behavior and comparative lift UNVERIFIED",
+      "files": [
+        "skills/runway/SKILL.md",
+        "skills/runway/references/platforms.md",
+        "skills/runway/references/release-protocol.md",
+        "skills/runway/references/research.md",
+        "skills/runway/scripts/check-receipt.py",
+        "docs/research/runway.md",
+        "evals/workflow/scenarios/runway.md"
+      ],
+      "risks": "Instruction behavior requires independent evaluation; source-depth gaps explicit",
+      "source_access": "Kubernetes and Vercel instant-rollback retrieved. Earlier Vercel deployments/rollback-a-deployment URL failed; replacement primary page used.",
+      "tests": [
+        {
+          "skill": "runway",
+          "label": "static preflight cannot prove live",
+          "command": [
+            "python3",
+            "-c",
+            "from pathlib import Path; assert 'build fingerprint: local-dev' in Path('index.html').read_text(); print('baseline witness: local-dev marker only; public deployment remains unverified')"
+          ],
+          "exit_code": 0,
+          "expected_exit": 0,
+          "passed": true,
+          "stdout": "baseline witness: local-dev marker only; public deployment remains unverified\n",
+          "stderr": "",
+          "limitation": "Deterministic fixture/helper check only; no agent trial or skill effectiveness measured."
+        },
+        {
+          "skill": "runway",
+          "label": "new deterministic helper regression",
+          "command": [
+            "python3",
+            "/Users/uday/Skills/skills/runway/scripts/check-receipt.py",
+            "--self-test"
+          ],
+          "exit_code": 0,
+          "expected_exit": 0,
+          "passed": true,
+          "stdout": "PASS: CLI zero, stale fingerprint, failed/missing smoke and malformed receipts rejected\n",
+          "stderr": "",
+          "limitation": "Deterministic fixture/helper check only; no agent trial or skill effectiveness measured."
+        }
+      ],
+      "observed_outcome": "Local seed reproduced or characterization executed; specific instruction contradictions corrected. Helpers validated where present. Agent effectiveness remains UNVERIFIED.",
+      "limits": "No paid or live agent campaign; runtime compatibility beyond observed host untested; source-perspective/depth gaps listed in individual research note.",
+      "current_status": {
+        "implementation": "PASS",
+        "local_deterministic": "PASS",
+        "activation": "UNVERIFIED",
+        "independent_agent_behavior": "UNVERIFIED",
+        "comparative_lift": "UNVERIFIED"
+      },
+      "capability_ownership": "candidate deployment, live verification and recovery; cleared judges readiness, headroom designs capacity",
+      "why": "Observed instruction contradiction/gap and source-supported decision recorded in individual research trace; retain established behavior outside that defect.",
+      "implementation_changes": "Scope preview data/cost/exposure; accept trusted candidate CI build; preserve dirty work; platform-checked recovery; bounded fingerprint/smoke observations and data-compatible rollback.",
+      "cost": "No external spend or usage measurement; deterministic local commands only. Agent token/currency savings unknown."
+    }
+  ],
+  "verification": [
+    {
+      "command": "scripts/validate-skills",
+      "exit_code": 0,
+      "stdout": "INFO: skills-ref unavailable; local strict validation completed\nOK: 28 frontmatter blocks are strict and spec-shaped\nOK: 28 self-contained skills satisfy the repository contract\n",
+      "stderr": ""
+    },
+    {
+      "command": "scripts/check-names",
+      "exit_code": 0,
+      "stdout": "OK: names follow the single-word system\n",
+      "stderr": ""
+    },
+    {
+      "command": "scripts/check-links",
+      "exit_code": 1,
+      "stdout": "FAIL skills/spelunk/references/evidence-protocol.md: points at 'scripts/inventory' which does not exist\n",
+      "stderr": ""
+    },
+    {
+      "command": "scripts/eval-workflow --check",
+      "exit_code": 0,
+      "stdout": "OK: 314 workflow scenarios well-formed across 28 skills; 52 fixture-backed\n",
+      "stderr": ""
+    },
+    {
+      "command": "scripts/validate-skills",
+      "exit_code": 0,
+      "stdout": "INFO: skills-ref unavailable; local strict validation completed\nOK: 28 frontmatter blocks are strict and spec-shaped\nOK: 28 self-contained skills satisfy the repository contract\n",
+      "stderr": "",
+      "checkpoint": "final owned files"
+    },
+    {
+      "command": "scripts/check-names",
+      "exit_code": 0,
+      "stdout": "OK: names follow the single-word system\n",
+      "stderr": "",
+      "checkpoint": "final owned files"
+    },
+    {
+      "command": "scripts/check-links",
+      "exit_code": 0,
+      "stdout": "OK: all bundled paths and inline local Markdown file targets exist\n",
+      "stderr": "",
+      "checkpoint": "final owned files"
+    },
+    {
+      "command": "scripts/eval-workflow --check",
+      "exit_code": 0,
+      "stdout": "OK: 314 workflow scenarios well-formed across 28 skills; 52 fixture-backed\n",
+      "stderr": "",
+      "checkpoint": "final owned files"
+    }
+  ],
+  "live_agent_trials": "not run; no spend authorization",
+  "evidence": [
+    {
+      "skill": "sleuth",
+      "label": "seeded failing behavior reproduced",
+      "command": [
+        "python3",
+        "-c",
+        "from cache import Cache; c=Cache(); c.set('a',1); assert c.get('a')==1; c.set('a',2); assert c._store['a']==2 and c.get('a')==1 and c.hits==1; print('baseline witness: store2, cached read1, hit retained')"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "passed": true,
+      "stdout": "baseline witness: store2, cached read1, hit retained\n",
+      "stderr": "",
+      "limitation": "Deterministic fixture/helper check only; no agent trial or skill effectiveness measured."
+    },
+    {
+      "skill": "referee",
+      "label": "seeded failing behavior reproduced",
+      "command": [
+        "python3",
+        "-c",
+        "import inspect; from billing import total; p=inspect.signature(total).parameters; assert 'admin_override' not in p; assert total([{'price':100,'qty':1}],0.05)==95; print('baseline witness: normal cap works; required admin override/audit interface absent')"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "passed": true,
+      "stdout": "baseline witness: normal cap works; required admin override/audit interface absent\n",
+      "stderr": "",
+      "limitation": "Deterministic fixture/helper check only; no agent trial or skill effectiveness measured."
+    },
+    {
+      "skill": "harden",
+      "label": "seeded failing behavior reproduced",
+      "command": [
+        "python3",
+        "-c",
+        "from notes import seed,get_note,delete_note; seed(); assert any(r[1]=='bob' for r in get_note('amy','1 OR 1=1')); seed(); assert delete_note('amy',2) and not get_note('bob',2); print('baseline witness: injectable lookup leaks other owner; unauthorized delete has side effect')"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "passed": true,
+      "stdout": "baseline witness: injectable lookup leaks other owner; unauthorized delete has side effect\n",
+      "stderr": "",
+      "limitation": "Deterministic fixture/helper check only; no agent trial or skill effectiveness measured."
+    },
+    {
+      "skill": "unslop",
+      "label": "behavior characterization baseline",
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-t",
+        "."
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "passed": true,
+      "stdout": "DEBUG total= 30.0\nDEBUG total= 0\n",
+      "stderr": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n",
+      "limitation": "Deterministic fixture/helper check only; no agent trial or skill effectiveness measured."
+    },
+    {
+      "skill": "cleared",
+      "label": "read-only red gate witness",
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-t",
+        "."
+      ],
+      "exit_code": 1,
+      "expected_exit": 1,
+      "passed": true,
+      "stdout": "",
+      "stderr": "..F\n======================================================================\nFAIL: test_version_matches_docs (tests.test_release.TestRelease.test_version_matches_docs)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/skills-safety-evidence-_vry2_hf/cleared-release/tests/test_release.py\", line 19, in test_version_matches_docs\n    self.assertEqual(release.__version__, \"2.0.0\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: '1.9.0' != '2.0.0'\n- 1.9.0\n+ 2.0.0\n\n\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nFAILED (failures=1)\n",
+      "limitation": "Deterministic fixture/helper check only; no agent trial or skill effectiveness measured."
+    },
+    {
+      "skill": "frontpage",
+      "label": "documented help",
+      "command": [
+        "python3",
+        "notes.py",
+        "--help"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "passed": true,
+      "stdout": "usage: notes.py [-h] [action] [text]\n\nTiny file-backed notes CLI.\n\npositional arguments:\n  action      add or list\n  text        note text for add\n\noptions:\n  -h, --help  show this help message and exit\n",
+      "stderr": "",
+      "limitation": "Deterministic fixture/helper check only; no agent trial or skill effectiveness measured."
+    },
+    {
+      "skill": "frontpage",
+      "label": "disposable first write",
+      "command": [
+        "python3",
+        "notes.py",
+        "add",
+        "hello"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "passed": true,
+      "stdout": "added note #1\n",
+      "stderr": "",
+      "limitation": "Deterministic fixture/helper check only; no agent trial or skill effectiveness measured."
+    },
+    {
+      "skill": "frontpage",
+      "label": "first success observable",
+      "command": [
+        "python3",
+        "notes.py",
+        "list"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "passed": true,
+      "stdout": "1. hello\n",
+      "stderr": "",
+      "limitation": "Deterministic fixture/helper check only; no agent trial or skill effectiveness measured."
+    },
+    {
+      "skill": "janitor",
+      "label": "fixture setup in isolated copy",
+      "command": [
+        "sh",
+        "setup.sh",
+        "staged"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "passed": true,
+      "stdout": "",
+      "stderr": "",
+      "limitation": "Deterministic fixture/helper check only; no agent trial or skill effectiveness measured."
+    },
+    {
+      "skill": "janitor",
+      "label": "dirty and ignored state audit",
+      "command": [
+        "git",
+        "status",
+        "--porcelain=v1",
+        "--ignored",
+        "--untracked-files=all"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "passed": true,
+      "stdout": " M .gitignore\nMM notes.txt\n?? .baseline-sha\n?? setup.sh\n?? \"user draft.txt\"\n!! local-user.json\n",
+      "stderr": "",
+      "limitation": "Deterministic fixture/helper check only; no agent trial or skill effectiveness measured."
+    },
+    {
+      "skill": "janitor",
+      "label": "attached worktree audit",
+      "command": [
+        "git",
+        "worktree",
+        "list",
+        "--porcelain"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "passed": true,
+      "stdout": "worktree /private/var/folders/4h/rp962rp501s_sy7dvj5lblsw0000gn/T/skills-safety-evidence-_vry2_hf/janitor-mess\nHEAD 2b3b48bf168b4821e4627107c14fe3f8d297143a\nbranch refs/heads/main\n\n",
+      "stderr": "",
+      "limitation": "Deterministic fixture/helper check only; no agent trial or skill effectiveness measured."
+    },
+    {
+      "skill": "janitor",
+      "label": "read-only audit preserves file and staged bytes",
+      "passed": true,
+      "observed": "staged, unstaged, untracked and ignored test data unchanged",
+      "limitation": "Disposable fixture; no real workspace mutation attempted"
+    },
+    {
+      "skill": "findable",
+      "label": "initial HTML and crawler-control witness",
+      "command": [
+        "python3",
+        "-c",
+        "from pathlib import Path; import re,xml.etree.ElementTree as E; a=Path('index.html').read_text(); b=Path('about.html').read_text(); assert re.search(r'<title>(.*?)</title>',a).group(1)==re.search(r'<title>(.*?)</title>',b).group(1); assert 'noindex' in a and 'aggregateRating' in a; assert 'Disallow: /' in Path('robots.txt').read_text(); assert 'missing-page' in Path('sitemap.xml').read_text(); E.parse('sitemap.xml'); print('baseline witness: duplicate title, noindex plus robots block, unsubstantiated rating, missing sitemap URL')"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "passed": true,
+      "stdout": "baseline witness: duplicate title, noindex plus robots block, unsubstantiated rating, missing sitemap URL\n",
+      "stderr": "",
+      "limitation": "Deterministic fixture/helper check only; no agent trial or skill effectiveness measured."
+    },
+    {
+      "skill": "frugal",
+      "label": "nonlossy bounded log extraction",
+      "command": [
+        "python3",
+        "-c",
+        "from pathlib import Path; hits=[n for n,line in enumerate(Path('data.log').read_text().splitlines(),1) if 'ERROR' in line]; assert hits==[412,987,1330]; print('exact error lines:',hits)"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "passed": true,
+      "stdout": "exact error lines: [412, 987, 1330]\n",
+      "stderr": "",
+      "limitation": "Deterministic fixture/helper check only; no agent trial or skill effectiveness measured."
+    },
+    {
+      "skill": "runway",
+      "label": "static preflight cannot prove live",
+      "command": [
+        "python3",
+        "-c",
+        "from pathlib import Path; assert 'build fingerprint: local-dev' in Path('index.html').read_text(); print('baseline witness: local-dev marker only; public deployment remains unverified')"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "passed": true,
+      "stdout": "baseline witness: local-dev marker only; public deployment remains unverified\n",
+      "stderr": "",
+      "limitation": "Deterministic fixture/helper check only; no agent trial or skill effectiveness measured."
+    },
+    {
+      "skill": "frugal",
+      "label": "new deterministic helper regression",
+      "command": [
+        "python3",
+        "/Users/uday/Skills/skills/frugal/scripts/cost-report.py",
+        "--self-test"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "passed": true,
+      "stdout": "PASS: failed attempts counted; zero success/missing usage undefined; invalid costs rejected\n",
+      "stderr": "",
+      "limitation": "Deterministic fixture/helper check only; no agent trial or skill effectiveness measured."
+    },
+    {
+      "skill": "runway",
+      "label": "new deterministic helper regression",
+      "command": [
+        "python3",
+        "/Users/uday/Skills/skills/runway/scripts/check-receipt.py",
+        "--self-test"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "passed": true,
+      "stdout": "PASS: CLI zero, stale fingerprint, failed/missing smoke and malformed receipts rejected\n",
+      "stderr": "",
+      "limitation": "Deterministic fixture/helper check only; no agent trial or skill effectiveness measured."
+    }
+  ],
+  "runtime": {
+    "python": "3.14.6",
+    "git": "2.50.1 Apple Git-155",
+    "platform": "macOS; other runtimes untested"
+  },
+  "artifact_claim": "No deploy, PR, publish, benchmark superiority, or production-security pass claimed.",
+  "freeze": "Owned files frozen after final validators 2026-10-14; root owns integration and independent trials."
+}

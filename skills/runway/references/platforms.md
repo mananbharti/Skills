@@ -23,9 +23,9 @@ verifies current CLI behavior).
 - Auth + deploy via their CLIs (`netlify deploy`, `wrangler pages
   deploy`); preview deployments per branch; env via dashboard/CLI
   (`netlify env:*`).
-- Rollback: previous deployment promote (`netlify restore`,
-  wrangler rollback): verify the exact command with scout when first
-  used on a project.
+- Rollback: select a previous known-good deployment using this product's
+  supported restore/promote mechanism. Verify current CLI help and primary
+  product docs first; Workers rollback commands do not imply Pages support.
 
 ## Containers (Docker → anywhere)
 
@@ -54,15 +54,17 @@ verifies current CLI behavior).
 
 - Build output deployed: verify the *generated* files (the HTML
   actually contains the meta tags), not just "upload finished".
-- CDN cache: state the invalidation status; stale-cache false alarms
-  are the #1 static-deploy confusion.
+- CDN cache: state invalidation and observed served fingerprint; cache
+  mismatches can obscure which version users receive.
 - Rollback: previous artifact directory/versioned bucket prefix.
 
 ## Kubernetes (when it's real)
 
 - Signals: manifests/Helm/kustomize under `deploy/` or `k8s/`.
-- `kubectl rollout status deployment/app` is the deploy truth; readiness
-  probes gate traffic; `kubectl rollout undo` is the rollback.
+- `kubectl rollout status deployment/app` reports controller progress, not
+  public product correctness. Verify service/ingress fingerprint and smoke
+  behavior separately. `kubectl rollout undo` changes Deployment revision;
+  it does not undo database or external configuration.
 - Migrations: init-container/job pattern, never in the app start-up
   path of every replica.
 
@@ -71,7 +73,9 @@ verifies current CLI behavior).
 - Build via `eas build` (or native pipelines); stores impose review
   timelines that are outside anyone's control: report them as external
   state, never as failures.
-- Rollback = phased release pause/halt or store-managed version revert.
+- Recovery can pause/halt a phased release or ship an approved corrected
+  binary. Installed binaries may persist; do not assume an app store can
+  instantly revert every device. Check current platform capability.
 - Smoke = the built binary on a device/simulator for the release
   critical paths.
 

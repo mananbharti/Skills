@@ -129,13 +129,13 @@ at the end.)
 
 ### 4. Gather evidence
 
-Read errors/stacks fully (bottom frames first: the cause usually lives
-there), logs around the failure, the diff between working and broken
+Read errors/stacks fully (check exception chaining and the actual frame order
+for this runtime; no universal top/bottom rule locates the cause), logs around the failure, the diff between working and broken
 (`git bisect` when "used to work" is known), actual data in the actual
 store. The full checklist of techniques lives in
 `references/techniques.md`.
 
-### 5. Hypothesize: at least two, competing
+### 5. Hypothesize: competing explanations when plausible
 
 Track them in a working table, not in your head:
 
@@ -143,8 +143,8 @@ Track them in a working table, not in your head:
 | --- | --- | --- | --- |
 
 "X is null" and "X is fine but the caller passes the wrong id": if both
-explain the evidence, keep both. One hypothesis is an arrest without
-investigation. The table forces the question the gut skips: what
+explain the evidence, keep both. Do not invent a second explanation when a deterministic contract violation
+already establishes the mechanism. The table forces the question the gut skips: what
 experiment separates these two? Run the cheapest one first.
 
 ### 6. Eliminate
@@ -269,7 +269,7 @@ appropriate approval.
 ## The Banned List (Anti-Patterns)
 
 - **The "Guess-and-Check" Loop**: making random code edits and re-running the test hoping it passes, without updating the hypothesis table. If you don't know *why* it should work, don't run it.
-- **Amnesia (Action Fingerprinting)**: retrying the exact same fix or tool call that just failed. If a fix fails, the hypothesis is dead. Do not resurrect it with minor syntax tweaks.
+- **Repeating failed interventions**: do not rerun an unchanged fix hoping for green. A failed fix can disprove the implementation, experiment setup, or causal hypothesis; record which prediction failed before rejecting the hypothesis or selecting a materially different experiment.
 - **Hallucinated Fixes**: suggesting a patch before reading the runtime state (logs, stack traces, DB rows). A fix proposed without a confirmed mechanism is a hallucination.
 
 ## Provisional fixes (the honest exception)

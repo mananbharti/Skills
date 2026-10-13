@@ -1,7 +1,8 @@
 # SEO checklist: verify on rendered HTML, per page type
 
-Commands assume `curl -s <url>`; the rendered/deferred HTML matters more
-than the template.
+Use HTTP requests for status, headers and initial HTML, and a browser/URL
+inspection for JavaScript-rendered DOM. Curl is not a renderer. A local static
+HTML fixture can validate metadata, not Google indexing or rich-result delivery.
 
 ## Per-page metadata
 
@@ -16,8 +17,8 @@ than the template.
 
 ## Structure
 
-- Exactly one `h1` per page stating the topic; `h2`/`h3` form a real
-  outline, not a styling ladder.
+- A clear primary heading and meaningful `h2`/`h3` outline; heading count
+  alone is not an indexing criterion. Respect accessibility and content scope.
 - Semantic landmarks: `header/nav/main/article/footer`; lists are
   `<ul>`, not div stacks.
 - Links: descriptive anchors ("read the migration guide", never
@@ -32,10 +33,14 @@ than the template.
 - `sitemap.xml`: only canonical 200s, lastmod honest, size limits
   respected.
 - Duplicate content: parameter URLs (utm, sort, page) canonicalized;
-  trailing-slash/case variants resolve to one canonical.
+  trailing-slash/case variants resolve to one canonical when equivalent.
+  Pagination pages with different items are not automatically equivalent.
+  Canonical is a consolidation signal; it is not an access control or noindex.
 - Avoid unnecessary redirect chains; no soft-404s (successful status with
   not-found content).
-- Staging environments: noindex + auth: they must never be crawlable.
+- Staging/private environments: authentication is the privacy control.
+  Noindex does not restrict access. For an intentionally public noindex page,
+  do not block crawling with robots.txt or the crawler cannot read the directive.
 
 ## Structured data (schema.org)
 
@@ -45,7 +50,8 @@ than the template.
 - Validates (Rich Results Test / validator.schema.org); required
   properties present; **describes only content actually on the page**.
 - **Anti-Hallucination Check:** Verify the JSON-LD does not contain fake 5-star `AggregateRating` reviews, hallucinated authors, or URLs that 404. Fabricating schema data is an anti-pattern.
-- JSON-LD in the served HTML (not injected client-side only).
+- JSON-LD verified in initial or rendered HTML for the actual target consumer;
+  validate eligibility separately from syntax and current rich-result support.
 
 ## Performance & accessibility overlap (flag, don't deep-dive)
 
