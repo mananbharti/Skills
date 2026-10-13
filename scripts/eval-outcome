@@ -479,18 +479,70 @@ def grade_spelunk(task, raw, obs=None):
     raw = re.sub(r"[\w./-]*evals/results/tmp/outcome-[0-9a-z_]+(?:/[\w.-]+)?", "", raw)
     hallucinated = []
     checked = 0
+    # Declared skill outputs are plans, not existence claims: the
+    # contracted output paths below are written by the agent as
+    # deliverables and must never count as invented fixture paths.
+    output_prefixes = ("docs/plans/", "docs/briefs/", "docs/research/")
+    # Fixture-quoted content is a quote, not a claim: a token that
+    # appears verbatim inside fixture file text (e.g. a connection
+    # string naming a database file that is not itself a tracked file)
+    # is excluded from hallucination grading.
+    quoted = set()
+    if known is not None:
+        base = os.path.join(ROOT, "benchmarks", "fixtures", task["fixture"])
+        for dirpath, _, filenames in os.walk(base):
+            for fn in filenames:
+                try:
+                    with open(os.path.join(dirpath, fn), encoding="utf-8",
+                              errors="replace") as handle:
+                        text = handle.read()
+                except OSError:
+                    continue
+                for raw_tok in set(PATH_RE.findall(text)):
+                    tok = raw_tok[2:] if raw_tok.startswith("./") else raw_tok
+                    if tok:
+                        quoted.add(tok)
+                        quoted.add(os.path.basename(tok))
+        lines = raw.splitlines()
     if known is not None:
         for raw_tok in set(PATH_RE.findall(raw)):
-            # Bare dotfile mentions (".env") are names, not path claims —
+            # Bare dotfile mentions (".env") are names, not path claims -
             # without this, any required finding about dotfiles false-fails.
             if raw_tok.startswith(".") and "/" not in raw_tok:
                 continue
             # Strip only a literal "./" prefix; lstrip("./") mangles
-            # dotfiles (".gitignore" → "gitignore") into hallucinations.
+            # dotfiles (".gitignore" -> "gitignore") into hallucinations.
             tok = raw_tok[2:] if raw_tok.startswith("./") else raw_tok
             if not tok:
                 continue
+            if tok.startswith(output_prefixes) or tok == "docs/plans":
+                continue
+            if tok in quoted:
+                continue
             checked += 1
+            # Negated mentions deny existence ("no X in the copy") and
+            # are not existence claims. A token counts as claimed only
+            # when at least one occurrence lacks a negation cue in the
+            # 60 characters before it on the same line.
+            neg_re = (r"\b(no|not|without|missing|never|neither|nor|"
+                      r"absent|avoid|excluding|none|nonexistent)\b")
+            claimed = False
+            for line in lines:
+                low_line = line.lower()
+                low_tok = tok.lower()
+                start = 0
+                while True:
+                    idx = low_line.find(low_tok, start)
+                    if idx < 0:
+                        break
+                    if not re.search(neg_re, low_line[max(0, idx - 60):idx]):
+                        claimed = True
+                        break
+                    start = idx + len(low_tok)
+                if claimed:
+                    break
+            if not claimed:
+                continue
             if not any(f == tok or f.endswith("/" + tok)
                        or os.path.basename(f) == os.path.basename(tok) and
                        tok.count("/") == 0 for f in known):

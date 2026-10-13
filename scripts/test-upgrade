@@ -174,6 +174,31 @@ class DomainHelpers(unittest.TestCase):
             self.assertNotIn("noise.py", document["debt_markers"])
 
 
+class NoLiftValidityFloors(unittest.TestCase):
+    # NO LIFT repair guards: the marker discipline that the outcome
+    # analysis depends on must survive future skill edits. These assert
+    # instruction presence, not agent behavior.
+    def test_distill_marker_floor_and_auth_bites_rule(self):
+        text = (ROOT / "skills/distill/SKILL.md").read_text(encoding="utf-8")
+        self.assertIn("Marker floor", text)
+        self.assertIn("Non-goals", text)
+        self.assertIn("A1:", text)
+        self.assertIn("Auth-bites rule", text)
+
+    def test_masterplan_slice_vocabulary_and_path_labels(self):
+        text = (ROOT / "skills/masterplan/SKILL.md").read_text(encoding="utf-8")
+        self.assertIn("Slice N:", text)
+        self.assertIn("existing/read", text)
+        self.assertIn("proposed/new", text)
+        self.assertIn("to-discover", text)
+        self.assertIn("docs/plans/<slug>.md", text)
+
+    def test_pilot_denial_safe_config_and_report_token(self):
+        text = (ROOT / "skills/pilot/SKILL.md").read_text(encoding="utf-8")
+        self.assertIn("denial-safe", text)
+        self.assertIn("verified", text.lower())
+
+
 class PaidDefaultDeny(unittest.TestCase):
     def test_live_adapter_refuses_before_invocation_without_human_keys(self):
         # Remove any inherited authorization; never manufacture either key.

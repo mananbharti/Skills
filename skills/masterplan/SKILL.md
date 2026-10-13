@@ -152,6 +152,13 @@ executable definition of done is a wishlist.
 ## Quality gates
 
 - Every path presented as existing was verified during reconnaissance.
+- Path labels are load-bearing: every named path carries one of
+  `existing/read`, `proposed/new`, or `to-discover`. The plan's own
+  output file (`docs/plans/<slug>.md`) is labeled `proposed/new`
+  output, never presented as an already-existing file.
+- Slice vocabulary is mandatory: the plan keeps the `## Slices` heading
+  and labels each slice `Slice N: <name>`. A plan without the literal
+  token `Slice` is incomplete, however good the prose reads.
 - Every slice independently verifiable (tests/commands named).
 - Each destructive or hard-to-reverse step has a demonstrated recovery plan
   appropriate to its effects: safe reversal, backup restoration or forward fix.

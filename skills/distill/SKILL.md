@@ -68,7 +68,7 @@ and "production-ready" are labels until their observable condition is named.
 
 | Request type | Brief shape |
 | --- | --- |
-| **tiny task** (button rename, copy fix) | goal + acceptance criterion + where: 5–10 lines, no template ceremony |
+| **tiny task** (button rename, copy fix) | goal + acceptance criterion + where + one-line Non-goals + one numbered assumption (A1:): 7-12 lines, no other ceremony |
 | **feature** | full template below |
 | **large feature / migration** | full template + NFRs, rollout constraints, backward-compatibility and data-migration notes |
 | **bug/change request** | reproduction facts + expected behavior + scope guard (what NOT to fix along the way) |
@@ -197,6 +197,14 @@ polished prose.
 - The verification section names real commands/checks (that exist in this
   repo or are standard).
 - Assumptions are numbered and falsifiable ("A1: single-user, no roles").
+- Marker floor (applies at every scale, including compact briefs): the
+  brief contains a literal `Non-goals` line and at least one numbered
+  assumption (`A1:`), even if each is a single line. A brief without
+  these markers is incomplete, not concise.
+- Auth-bites rule: when the request touches login, identity, per-user
+  data, sessions, tokens, passwords, or money, the brief names that
+  surface explicitly (one line suffices, e.g. under Scope or NFRs).
+  Omitting it because the brief is short is a miss, not brevity.
 
 ## Stop conditions
 

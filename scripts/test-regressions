@@ -618,6 +618,48 @@ class GraderValidity(unittest.TestCase):
         self.assertTrue(passed, notes)
         self.assertEqual(notes["hallucinated_paths"], [])
 
+    def test_spelunk_exempts_declared_outputs_quotes_and_denials(self) -> None:
+        # No-lift repair: three documented false positives must not flag.
+        # (a) the skill's contracted output file, (b) a string quoted
+        # from fixture source, (c) a negated existence denial. A
+        # positive claim about a missing file must still fail.
+        grade = self.outcome["grade_spelunk"]
+        task = {"expected": {"type": "spelunk",
+                             "must_contain": ["package.json"],
+                             "must_not": ["src/auth"],
+                             "max_lines": 200},
+                "fixture": "ts-dashboard"}
+        own_output = ("Plan written to docs/plans/order-status-history.md. "
+                      "Grounded in src/App.tsx and package.json.")
+        passed, notes = grade(task, own_output, {"workdir": ""})
+        self.assertTrue(passed, notes)
+        self.assertEqual(notes["hallucinated_paths"], [])
+        quoted = {"expected": {"type": "spelunk",
+                               "must_contain": ["main.py"],
+                               "must_not": ["src/auth"],
+                               "max_lines": 200},
+                  "fixture": "py-notes-api"}
+        raw_quoted = ('Storage uses sqlite3.connect("notes.db") '
+                      "in app/main.py as observed.")
+        passed, notes = grade(quoted, raw_quoted, {"workdir": ""})
+        self.assertTrue(passed, notes)
+        self.assertEqual(notes["hallucinated_paths"], [])
+        denied = ("Grounded in src/App.tsx and package.json. "
+                  "There is no notes.db file in the copy.")
+        passed, notes = grade(task, denied, {"workdir": ""})
+        self.assertTrue(passed, notes)
+        self.assertEqual(notes["hallucinated_paths"], [])
+        claimed = ("Grounded in src/App.tsx and package.json. "
+                   "Data lives in notes.db alongside the app.")
+        passed, notes = grade(task, claimed, {"workdir": ""})
+        self.assertFalse(passed)
+        self.assertIn("notes.db", " ".join(notes["hallucinated_paths"]))
+        ghost = ("Grounded in src/App.tsx and package.json. "
+                 "See src/ghost.ts for details.")
+        passed, notes = grade(task, ghost, {"workdir": ""})
+        self.assertFalse(passed)
+        self.assertIn("src/ghost.ts", notes["hallucinated_paths"])
+
     def test_concierge_c1_contract_calibration(self) -> None:
         # Phase 4 confirmation task: calibrated with synthetic outputs only,
         # no model. Guards the authored contract against typos as well.

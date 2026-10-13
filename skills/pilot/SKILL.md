@@ -160,6 +160,10 @@ gate result is reported as **verified** (with evidence) or **unverified**
 - If a verification capability is missing, finish safe in-scope work and report the exact unverified boundary.
 - Use narrowest deterministic check that can falsify slice claim, then broader
   gates when risk or repository policy requires them.
+- Config discovery is denial-safe: list config names first (`ls`, glob,
+  manifest keys), never read `.env` or secret file contents. A denied
+  config read never derails the slice: continue independent work, record
+  the denial in the decision log, and name it in the report.
 
 ## Quality gates
 
@@ -196,6 +200,11 @@ followups: theme audit for 3rd-party embeds (out of scope)
 
 Evidence or it didn't happen: every green claim names the command that
 proved it.
+
+Every run ends with the build report block above, including the literal
+token `verified` (as in `verified: ...`), even when blocked or edited
+nothing. A blocked report states what was not edited, what denied or
+failed, and what stays unverified; silence is never a report.
 
 ## Research basis
 
