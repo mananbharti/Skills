@@ -229,7 +229,9 @@ class EvaluationRegressions(unittest.TestCase):
         scenarios, errors = self.workflow["load_scenarios"]()
         self.assertEqual(errors, [])
         fixture_scenarios = [item for item in scenarios if item["fixture"]]
-        self.assertEqual(len(fixture_scenarios), 37)
+        # The frozen baseline had 37; new domain cases must not make this
+        # regression depend on an incidental authored-scenario count.
+        self.assertGreaterEqual(len(fixture_scenarios), 37)
         for scenario in fixture_scenarios:
             with self.subTest(scenario=scenario["id"]):
                 with tempfile.TemporaryDirectory(prefix="workflow-fixture-") as raw:

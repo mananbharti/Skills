@@ -1,0 +1,165 @@
+#!/usr/bin/env python3
+"""Focused evaluation integrity regressions; local fake agents only."""
+import json
+import runpy
+import subprocess
+import sys
+import tempfile
+import unittest
+from pathlib import Path
+from unittest.mock import patch
+
+sys.dont_write_bytecode = True
+ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT / "scripts"))
+
+
+class ContextIntegrity(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.runner = runpy.run_path(str(ROOT / "scripts/eval-outcome"))
+
+    def test_default_treatment_loads_entrypoint_and_defers_references(self):
+        context = self.runner["skill_context"]
+        with tempfile.TemporaryDirectory() as raw:
+            skill = Path(raw) / "skills/example"
+            (skill / "references").mkdir(parents=True)
+            (skill / "SKILL.md").write_text("---\nname: example\n---\n# Workflow\n")
+            (skill / "references/research.md").write_text("PROVENANCE_ONLY_SENTINEL")
+            with patch.dict(context.__globals__, ROOT=raw):
+                text = context("example")
+                self.assertIn("# Workflow", text)
+                self.assertNotIn("PROVENANCE_ONLY_SENTINEL", text)
+                self.assertIn(".eval-skill/example", text)
+
+    def test_eager_policy_is_explicit_and_retains_legacy_context(self):
+        context = self.runner["skill_context"]
+        with tempfile.TemporaryDirectory() as raw:
+            skill = Path(raw) / "skills/example"
+            (skill / "references").mkdir(parents=True)
+            (skill / "SKILL.md").write_text("---\nname: example\n---\n# Workflow\n")
+            (skill / "references/research.md").write_text("LEGACY_SENTINEL")
+            with patch.dict(context.__globals__, ROOT=raw):
+                self.assertIn("LEGACY_SENTINEL", context("example", "eager"))
+
+    def test_resume_refuses_changed_package_runner_and_reference_policy(self):
+        main = self.runner["main"]
+        task = {"id": "O1", "request": "Route this", "heldout": False,
+                "expected": ["direct"]}
+        fake = {"status": "ok", "output": "route: direct", "duration": 0.1}
+        with tempfile.TemporaryDirectory() as raw:
+            common = dict(RESULTS=raw, AGENTS={"fake": {"bin": sys.executable}},
+                          load_tasks=lambda *_: [task],
+                          observe=lambda *_a, **_k: dict(fake))
+            argv = ["eval-outcome", "--skill", "concierge", "--agent", "fake", "--trials", "1"]
+            with patch.dict(main.__globals__, **common), patch.object(sys, "argv", argv):
+                self.assertEqual(main(), 0)
+            original = next(Path(raw).glob("*.json"))
+            source = original.read_bytes()
+            for mutation in ("package", "runner", "policy", "checker", "fixture"):
+                with self.subTest(mutation=mutation):
+                    record = json.loads(source)
+                    if mutation == "package":
+                        record["provenance"]["skill_package"]["digest"] = "changed"
+                    elif mutation == "runner":
+                        record["runner_sha256"] = "changed"
+                    elif mutation == "policy":
+                        record["provenance"]["settings"]["reference_policy"] = "eager"
+                    elif mutation == "checker":
+                        record["provenance"]["checkers"]["digest"] = "changed"
+                    else:
+                        record["provenance"]["fixtures"] = {"other": {"digest": "changed"}}
+                    altered = Path(raw) / (mutation + ".json")
+                    altered.write_text(json.dumps(record))
+                    with patch.dict(main.__globals__, **common), patch.object(
+                        sys, "argv", argv + ["--resume-from", str(altered)]
+                    ):
+                        self.assertEqual(main(), 2)
+                    self.assertEqual(original.read_bytes(), source)
+            self.assertEqual(len(list(Path(raw).glob("*-outcome-*.json"))), 1)
+
+
+class RoutingContracts(unittest.TestCase):
+    def test_contradictory_labels_are_rejected_with_normalization(self):
+        check = runpy.run_path(str(ROOT / "scripts/check-trigger-contracts"))["contradictions"]
+        cases = [{"utterance": "  FIX  checkout", "expected": "sleuth", "suite": "a"},
+                 {"utterance": "fix checkout", "expected": "backend", "suite": "b"}]
+        self.assertEqual(len(check(cases)), 1)
+        cases[1]["expected"] = "sleuth"
+        self.assertEqual(check(cases), [])
+
+    def test_repository_trigger_labels_are_consistent(self):
+        checker = runpy.run_path(str(ROOT / "scripts/check-trigger-contracts"))
+        self.assertEqual(checker["main"](), 0)
+
+
+class PackageIntegrity(unittest.TestCase):
+    def test_symlink_cannot_make_a_package_depend_on_external_file(self):
+        manifest = runpy.run_path(str(ROOT / "scripts/check-packages"))["package_manifest"]
+        with tempfile.TemporaryDirectory() as raw:
+            root = Path(raw)
+            package = root / "package"
+            package.mkdir()
+            outside = root / "outside.txt"
+            outside.write_text("not bundled")
+            (package / "leak.txt").symlink_to(outside)
+            with self.assertRaisesRegex(ValueError, "symlink"):
+                manifest(package)
+
+    def test_copy_validation_rejects_missing_resource_and_bad_helper_syntax(self):
+        inspect = runpy.run_path(str(ROOT / "scripts/check-packages"))["inspect_package"]
+        with tempfile.TemporaryDirectory() as raw:
+            package = Path(raw)
+            (package / "SKILL.md").write_text("See references/needed.md\n")
+            with self.assertRaisesRegex(ValueError, "missing resource"):
+                inspect(package)
+            (package / "SKILL.md").write_text("Run scripts/helper\n")
+            (package / "scripts").mkdir()
+            helper = package / "scripts/helper"
+            helper.write_text("#!/usr/bin/env python3\nif broken\n")
+            helper.chmod(0o755)
+            with self.assertRaises(SyntaxError):
+                inspect(package)
+
+
+class DomainHelpers(unittest.TestCase):
+    def test_zero_delta_is_never_a_performance_improvement(self):
+        result = subprocess.run([str(ROOT / "skills/hotpath/scripts/measure-report"),
+                                 "--baseline", "100", "--after", "100", "--threshold", "0",
+                                 "--conditions", "identical workload", "--json"],
+                                capture_output=True, text=True)
+        self.assertEqual(result.returncode, 1, result.stderr)
+        document = json.loads(result.stdout)
+        self.assertFalse(document["significant"])
+        self.assertTrue(document["verdict"].startswith("NOISE"))
+
+    def test_expected_network_rejection_is_a_contract_check(self):
+        result = subprocess.run([str(ROOT / "skills/roadtest/scripts/test-matrix"),
+                                 "--paths", "denied-tenant", "--viewports", "390", "--json"],
+                                capture_output=True, text=True, check=True)
+        checks = json.loads(result.stdout)["matrix"][0]["checks"]
+        self.assertIn("network-matches-contract", checks)
+        self.assertNotIn("network-2xx", checks)
+        self.assertNotIn("network-clean", checks)
+
+    def test_inventory_excludes_generated_vendor_and_cache_noise_consistently(self):
+        with tempfile.TemporaryDirectory() as raw:
+            root = Path(raw)
+            (root / "main.py").write_text("# TODO first-party\n")
+            (root / "test_main.py").write_text("assert True\n")
+            for folder in ("vendor", "generated", "__pycache__", "build", "dist", ".venv", "node_modules"):
+                target = root / folder
+                target.mkdir()
+                (target / "noise.py").write_text("# TODO excluded-noise\n" * 20)
+                (target / "test_noise.py").write_text("# TODO excluded-noise\n")
+            result = subprocess.run([str(ROOT / "skills/spelunk/scripts/inventory"), raw, "--json"],
+                                    capture_output=True, text=True, check=True)
+            document = json.loads(result.stdout)
+            self.assertEqual(document["source_files"], "1")
+            self.assertEqual(document["test_files"], "1")
+            self.assertNotIn("noise.py", document["largest_files"])
+            self.assertNotIn("noise.py", document["debt_markers"])
+
+
+if __name__ == "__main__":
+    unittest.main(verbosity=2)

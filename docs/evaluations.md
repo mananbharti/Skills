@@ -16,10 +16,12 @@ scripts/eval-trigger --agent claude --tier smoke  # 12 cases, measured
 scripts/eval-trigger --suite all --agent claude --tier standard
 ```
 
-- **Suites:** `evals/trigger/cases.md` (173 positive/negative +
-  direct-route cases), `sibling-confusion.md` (24 adjacency cases),
-  `router-stress.md` (14 adversarial/multi-skill/degraded cases)
-  = 211 total.
+- **Suites:** `evals/trigger/cases.md`, `sibling-confusion.md`, and
+  `router-stress.md`. `scripts/run-evals` reports the current authored count;
+  `scripts/check-trigger-contracts` rejects contradictory normalized prompts.
+  The 2026-10-14 revision corrects one conflicting label and adds boundary,
+  multilingual and degraded-mode cases. Historical outputs retain their
+  original case labels; do not pool results from different case revisions.
 - **Method:** routing-given-metadata (see `evals/adapters/README.md`).
   Measures routing decisions, not in-runtime auto-activation — that
   limitation is stated wherever results are quoted.
@@ -84,7 +86,7 @@ cross-model, or compatibility superiority is established.
 held-out coverage, verify-command shape, and artifact-glob shape without
 invoking an agent.
 
-The outcome runner (schema outcome/5 current; outcome/2–4 rows preserved
+The outcome runner (schema outcome/6 current; outcome/2–5 rows preserved
 with their original grading provenance) checkpoints each completed trial,
 including invocation errors. New records also snapshot the selected task contracts in
 `task_contracts`, preserving their requests, commands, and expectations.
@@ -105,6 +107,15 @@ sandbox. Artifact collection rejects symlink escapes and files over its
 Treatment workspaces include the complete skill package for local helper use.
 Historical results retain their original schema and grading provenance.
 
+New treatment runs load the entrypoint initially, with the complete package
+available for on-demand reads. `--reference-policy eager` explicitly recreates
+the old all-references loading policy for a new experiment. Policy, initial
+context hash and prompt character counts are recorded; characters are not token
+or cost telemetry. Resume rejects changed package, checker, fixture, context,
+runner and agent-version identities as well as task/model/settings changes.
+Neither policy is retrospectively applied to old results. See the
+[upgrade evidence](upgrade-ledger.md) for failing and corrected integrity tests.
+
 ## Budget controls
 
 `--tier smoke|standard|release` (12/40/all), `--max-cases`, `--runs`,
@@ -121,3 +132,9 @@ time.
 Run `scripts/test-regressions` for deterministic runner and helper regressions.
 These tests use temporary fixture copies and fake local agent commands; they
 do not invoke model providers or measure skill effectiveness.
+
+Run `scripts/test-upgrade` for context, resume, trigger-label and isolated-copy
+integrity regressions. `scripts/check-packages` performs offline package copies;
+with an explicit `--cli` path it exercises project-local single-skill installs.
+That optional path never invokes a coding agent and is distinct from native
+activation or a task-outcome campaign.

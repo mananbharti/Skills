@@ -26,6 +26,10 @@ jobs:
         run: scripts/check-readme-sync
       - name: regression tests
         run: scripts/test-regressions
+      - name: evaluation integrity regressions
+        run: scripts/test-upgrade
+      - name: standalone packages
+        run: scripts/check-packages
       - name: eval fixtures well-formed
         run: scripts/run-evals
       - name: generated docs up to date

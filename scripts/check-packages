@@ -1,0 +1,120 @@
+#!/usr/bin/env python3
+"""Copy each skill alone; optionally exercise an explicitly supplied skills CLI.
+
+Default is offline and never installs dependencies or invokes an agent. CLI
+mode runs local-source project installs in disposable directories, then checks
+every byte and executable bit. It does not test host activation or task lift.
+Usage: scripts/check-packages [--cli /path/to/skills/bin/cli.mjs] [--output file]
+"""
+import argparse
+import hashlib
+import json
+import os
+import re
+import shutil
+import subprocess
+import sys
+import tempfile
+from datetime import datetime, timezone
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+
+
+def package_manifest(root):
+    manifest = {}
+    for path in sorted(root.rglob("*")):
+        if path.is_symlink():
+            raise ValueError(f"package contains symlink: {path.relative_to(root)}")
+        if path.is_file():
+            manifest[str(path.relative_to(root))] = {
+                "sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
+                "executable": bool(path.stat().st_mode & 0o111),
+            }
+    return manifest
+
+
+def inspect_package(root):
+    text = (root / "SKILL.md").read_text()
+    if re.search(r"\]\(\.\./|\]\(/|(^|[^\w])shared/", text):
+        raise ValueError("entrypoint depends outside the package")
+    for relative in set(re.findall(r"(?:references|scripts|assets)/[A-Za-z0-9._/-]+", text)):
+        if not (root / relative).is_file():
+            raise ValueError(f"missing resource: {relative}")
+    for relative, record in package_manifest(root).items():
+        path = root / relative
+        if relative.startswith("scripts/"):
+            if not record["executable"]:
+                raise ValueError(f"helper is not executable: {relative}")
+            if path.read_text().startswith("#!/usr/bin/env python3"):
+                compile(path.read_text(), relative, "exec")
+            elif path.read_text().startswith("#!/usr/bin/env bash"):
+                subprocess.run(["bash", "-n", str(path)], check=True, capture_output=True)
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--cli", type=Path, help="explicit installed skills CLI; .mjs uses node")
+    parser.add_argument("--output", type=Path)
+    args = parser.parse_args()
+    cli = None
+    if args.cli:
+        if not args.cli.is_file():
+            parser.error("--cli must point to an installed CLI file")
+        cli = (["node", str(args.cli.resolve())] if args.cli.suffix == ".mjs"
+               else [str(args.cli.resolve())])
+    env = {**os.environ, "DISABLE_TELEMETRY": "1", "DO_NOT_TRACK": "1"}
+    report = {"schema": "packages/1", "date": datetime.now(timezone.utc).isoformat(),
+              "platform": sys.platform, "python": sys.version.split()[0],
+              "kind": "cli-local-source" if cli else "standalone-copy",
+              "runtime_activation": "UNVERIFIED", "skills": []}
+    if cli:
+        version = subprocess.run(cli + ["--version"], env=env, capture_output=True,
+                                 text=True, timeout=30, check=True)
+        report["cli_version"] = version.stdout.strip()
+    with tempfile.TemporaryDirectory(prefix="skills-packages-") as raw:
+        work = Path(raw)
+        for source in sorted((ROOT / "skills").iterdir()):
+            if not source.is_dir():
+                continue
+            row = {"skill": source.name, "status": "FAIL"}
+            report["skills"].append(row)
+            try:
+                original = package_manifest(source)
+                isolated = work / "source" / source.name
+                isolated.parent.mkdir(exist_ok=True)
+                shutil.copytree(source, isolated)
+                destination = isolated
+                if cli:
+                    project = work / ("project-" + source.name)
+                    project.mkdir()
+                    command = cli + ["add", str(isolated), "--skill", source.name,
+                                     "--agent", "codex", "--copy", "--yes"]
+                    result = subprocess.run(command, cwd=project, env=env,
+                                            capture_output=True, text=True, timeout=60)
+                    row["cli_exit"] = result.returncode
+                    row["cli_output"] = result.stdout + result.stderr
+                    if result.returncode:
+                        raise ValueError("CLI install failed")
+                    destination = project / ".agents" / "skills" / source.name
+                    installed = sorted(p.name for p in destination.parent.iterdir() if p.is_dir())
+                    if installed != [source.name]:
+                        raise ValueError("individual install included other skills")
+                if package_manifest(destination) != original:
+                    raise ValueError("copied files or executable bits differ")
+                inspect_package(destination)
+                row.update(status="PASS", files=len(original), manifest=original)
+            except (OSError, ValueError, SyntaxError, subprocess.SubprocessError) as exc:
+                row["error"] = str(exc)
+            print(f"{row['status']}: {source.name}", flush=True)
+    passed = len(report["skills"]) == 28 and all(row["status"] == "PASS" for row in report["skills"])
+    report["status"] = "PASS" if passed else "FAIL"
+    if args.output:
+        args.output.parent.mkdir(parents=True, exist_ok=True)
+        args.output.write_text(json.dumps(report, indent=2) + "\n")
+    print(f"{report['status']}: {len(report['skills'])} isolated packages; host behavior UNVERIFIED")
+    return 0 if passed else 1
+
+
+if __name__ == "__main__":
+    sys.exit(main())

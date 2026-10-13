@@ -5,7 +5,7 @@ Same task, same agent/model/tools/environment; the only intended
 difference is whether the skill's runtime files are in context.
 Baseline gets the skill catalog (names + descriptions — exactly what a
 runtime shows); treatment additionally gets the skill's SKILL.md body
-plus its references. Deterministic grading first; raw outputs preserved
+with references available on demand in the copied package. Deterministic grading first; raw outputs preserved
 including failures. Results: evals/results/<ts>-outcome-<skill>-<agent>.json
 (gitignored).
 
@@ -32,7 +32,7 @@ from eval_isolation import (
 RESULTS = os.path.join(ROOT, "evals", "results")
 RESULTS_TMP = os.path.join(RESULTS, "tmp")
 
-SCHEMA = "outcome/5"
+SCHEMA = "outcome/6"
 # GRADER_VERSION tracks grading-semantics changes. v3 added workspace_pass /
 # format_pass notes (objective correctness vs skill-format adherence) without
 # changing overall pass semantics. v4 narrows the workdir-path strip so
@@ -89,8 +89,10 @@ def catalog():
     return skills
 
 
-def skill_context(slug):
-    """SKILL.md body + references for the treatment condition."""
+def skill_context(slug, reference_policy="on-demand"):
+    """Entrypoint by default; explicit eager policy reproduces old context loading."""
+    if reference_policy not in ("on-demand", "eager"):
+        raise ValueError("unknown reference policy")
     base = os.path.join(ROOT, "skills", slug)
     parts = []
     with open(os.path.join(base, "SKILL.md"), encoding="utf-8") as f:
@@ -98,11 +100,14 @@ def skill_context(slug):
     body = re.sub(r"\A---\n.*?\n---\n", "", text, count=1, flags=re.S)
     parts.append(f"# {slug} SKILL.md\n{body}")
     refdir = os.path.join(base, "references")
-    if os.path.isdir(refdir):
+    if reference_policy == "eager" and os.path.isdir(refdir):
         for fn in sorted(os.listdir(refdir)):
             if fn.endswith(".md"):
                 with open(os.path.join(refdir, fn), encoding="utf-8") as f:
                     parts.append(f"# {slug} references/{fn}\n{f.read()}")
+    if reference_policy == "on-demand":
+        parts.append(f"Read task-relevant references or helpers from .eval-skill/{slug}/ "
+                     "only when needed; the complete package is available locally.")
     return "\n\n".join(parts)
 
 
@@ -705,6 +710,10 @@ def main():
                     help="model id passed to the agent CLI (e.g. "
                          "opencode/muse-spark-1.3-contributor-free); recorded in the "
                          "result JSON — results are model-scoped")
+    ap.add_argument("--reference-policy", choices=["on-demand", "eager"],
+                    default="on-demand",
+                    help="load only SKILL.md initially (default); eager includes all "
+                         "references to reproduce historical context loading")
     ap.add_argument("--timeout-override", type=int, default=None,
                     help="replace per-task timeouts (slow free models); "
                          "plumbing only — no grading gate changes; "
@@ -768,7 +777,7 @@ def main():
     commit = subprocess.run(["git", "rev-parse", "--short", "HEAD"], cwd=ROOT,
                             capture_output=True, text=True).stdout.strip()
     cat = catalog()
-    treat = skill_context(a.skill)
+    treat = skill_context(a.skill, a.reference_policy)
     if a.task:
         pool = load_tasks(a.skill, True) + load_tasks(a.skill, False)
         tasks = [t for t in pool if t.get("id") == a.task]
@@ -804,6 +813,10 @@ def main():
                "grader_version": GRADER_VERSION,
                "skill_package": dir_manifest(
                    os.path.join(ROOT, "skills", a.skill)),
+               "checkers": dir_manifest(os.path.join(ROOT, "scripts")),
+               "fixtures": {name: dir_manifest(os.path.join(ROOT, "benchmarks", "fixtures", name))
+                            for name in sorted({task["fixture"] for task in tasks if task.get("fixture")})},
+               "treatment_context_sha256": hashlib.sha256(treat.encode()).hexdigest(),
                "requested_model": a.model,
                "agent_version": aver,
                "settings": {
@@ -813,6 +826,7 @@ def main():
                    "max_consec": max_consec,
                    "order": a.order,
                    "task_filter": a.task,
+                   "reference_policy": a.reference_policy,
                },
                "isolation": isolation_record(a.agent),
                "started": time.strftime("%Y-%m-%dT%H:%M:%S"),
@@ -838,7 +852,7 @@ def main():
             if prior.get(key) != rec[key]:
                 mismatches.append(f"{key} is {prior.get(key)!r}, requested {rec[key]!r}")
         prior_settings = (prior.get("provenance") or {}).get("settings") or {}
-        for key in ("timeout_default", "timeout_override", "order", "task_filter"):
+        for key in ("timeout_default", "timeout_override", "order", "task_filter", "reference_policy"):
             if prior_settings.get(key) != rec["provenance"]["settings"][key]:
                 mismatches.append(f"settings.{key} differs")
         if prior.get("grader_version") != GRADER_VERSION:
@@ -847,6 +861,11 @@ def main():
             mismatches.append("model differs")
         if prior.get("task_contracts") != rec["task_contracts"]:
             mismatches.append("task_contracts differ")
+        if prior.get("runner_sha256") != rec["runner_sha256"]:
+            mismatches.append("runner implementation differs")
+        for key in ("skill_package", "checkers", "fixtures", "treatment_context_sha256", "agent_version"):
+            if (prior.get("provenance") or {}).get(key) != rec["provenance"][key]:
+                mismatches.append(f"provenance.{key} differs")
         if mismatches:
             print("--resume-from identity mismatch: " + "; ".join(mismatches) + " — "
                   "refusing (source preserved, nothing written)",
@@ -897,7 +916,8 @@ def main():
                 to = (a.timeout_override if a.timeout_override
                       else task.get("timeout", a.timeout))
                 started = time.strftime("%Y-%m-%dT%H:%M:%S")
-                obs = observe(a.agent, build_prompt(task, cat, ctx), cfg, to,
+                prompt = build_prompt(task, cat, ctx)
+                obs = observe(a.agent, prompt, cfg, to,
                               model=a.model, fixture=task.get("fixture"),
                               verify=task.get("verify"),
                               artifacts=task.get("artifacts"),
@@ -909,6 +929,7 @@ def main():
                                      "trial": t + 1, "pass": passed,
                                      "first": conds[0][0],
                                      "timeout_s": to, "started": started,
+                                     "prompt_chars": len(prompt),
                                      "notes": notes, "obs": obs})
                 consec_bad = consec_bad + 1 if obs.get("status") != "ok" else 0
                 abort = max_consec and consec_bad >= max_consec
